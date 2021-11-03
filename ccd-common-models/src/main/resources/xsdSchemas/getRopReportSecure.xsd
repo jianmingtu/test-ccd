@@ -1,0 +1,41 @@
+<xsd:schema targetNamespace="http://reeks.bcgov/CCD.Source.GetROPReport.ws:GetROPReportSecure"
+            xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            xmlns:tns="http://reeks.bcgov/CCD.Source.GetROPReport.ws:GetROPReportSecure">
+
+
+    <xsd:element name="getROPReportSecure">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="ROPSecureRequest" nillable="true" type="tns:RopSecureRequest"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+
+    <xsd:complexType name="RopSecureRequest">
+        <xsd:sequence>
+            <xsd:element name="RequestAgencyIdentifierId" nillable="true" type="xsd:string"/>
+            <xsd:element name="RequestPartId" nillable="true" type="xsd:string"/>
+            <xsd:element name="RequestDtm" nillable="true" type="xsd:dateTime"/>
+            <xsd:element name="ApplicationCd" nillable="true" type="xsd:string"/>
+            <xsd:element name="Param1" nillable="true" type="xsd:string"/>
+            <xsd:element name="Param2" nillable="true" type="xsd:string"/>
+            <xsd:element name="FormCd" nillable="true" type="xsd:string"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:element name="getROPReportSecureResponse">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="ROPResponse" nillable="true" type="tns:RopResult"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+
+    <xsd:complexType name="RopResult">
+        <xsd:sequence>
+            <xsd:element name="B64Content" nillable="true" type="xsd:string"/>
+            <xsd:element name="ResultCd" nillable="true" type="xsd:string"/>
+            <xsd:element name="ResultMessage" nillable="true" type="xsd:string"/>
+        </xsd:sequence>
+    </xsd:complexType>
+</xsd:schema>

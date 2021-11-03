@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" name="GetROPReportSecure" targetNamespace="http://reeks.bcgov/CCD.Source.GetROPReport.ws:GetROPReportSecure" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:soapjms="http://www.w3.org/2010/soapjms/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:tns="http://reeks.bcgov/CCD.Source.GetROPReport.ws:GetROPReportSecure" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/">
+    <wsdl:types>
+        <xsd:schema targetNamespace="http://reeks.bcgov/CCD.Source.GetROPReport.ws:GetROPReportSecure" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://reeks.bcgov/CCD.Source.GetROPReport.ws:GetROPReportSecure">
+            <xsd:element name="getROPReportSecure" type="tns:getROPReportSecure"/>
+            <xsd:element name="getROPReportSecureResponse" type="tns:getROPReportSecureResponse"/>
+            <xsd:complexType name="getROPReportSecure">
+                <xsd:sequence>
+                    <xsd:element name="ROPSecureRequest" nillable="true" type="tns:RopSecureRequest"/>
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:complexType name="RopSecureRequest">
+                <xsd:sequence>
+                    <xsd:element name="RequestAgencyIdentifierId" nillable="true" type="xsd:string"/>
+                    <xsd:element name="RequestPartId" nillable="true" type="xsd:string"/>
+                    <xsd:element name="RequestDtm" nillable="true" type="xsd:string"/>
+                    <xsd:element name="ApplicationCd" nillable="true" type="xsd:string"/>
+                    <xsd:element name="Param1" nillable="true" type="xsd:string"/>
+                    <xsd:element name="Param2" nillable="true" type="xsd:string"/>
+                    <xsd:element name="FormCd" nillable="true" type="xsd:string"/>
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:complexType name="getROPReportSecureResponse">
+                <xsd:sequence>
+                    <xsd:element name="ROPResponse" nillable="true" type="tns:RopResult"/>
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:complexType name="RopResult">
+                <xsd:sequence>
+                    <xsd:element name="B64Content" nillable="true" type="xsd:string"/>
+                    <xsd:element name="ResultCd" nillable="true" type="xsd:string"/>
+                    <xsd:element name="ResultMessage" nillable="true" type="xsd:string"/>
+                </xsd:sequence>
+            </xsd:complexType>
+        </xsd:schema>
+    </wsdl:types>
+    <wsdl:message name="GetROPReportSecure_PortType_getROPReportSecure">
+        <wsdl:part name="parameters" element="tns:getROPReportSecure">
+        </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="GetROPReportSecure_PortType_getROPReportSecureResponse">
+        <wsdl:part name="parameters" element="tns:getROPReportSecureResponse">
+        </wsdl:part>
+    </wsdl:message>
+    <wsdl:portType name="GetROPReportSecure_PortType">
+        <wsdl:operation name="getROPReportSecure">
+            <wsdl:input message="tns:GetROPReportSecure_PortType_getROPReportSecure">
+            </wsdl:input>
+            <wsdl:output message="tns:GetROPReportSecure_PortType_getROPReportSecureResponse">
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:binding name="CCD_Source_GetROPReport_ws_GetROPReportSecure_Binder" type="tns:GetROPReportSecure_PortType">
+        <soap12:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="getROPReportSecure">
+            <soap12:operation soapAction="CCD_Source_GetROPReport_ws_GetROPReportSecure_Binder_getROPReportSecure" style="document"/>
+            <wsdl:input>
+                <soap12:body parts="parameters" use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body parts="parameters" use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:service name="GetROPReportSecure">
+        <wsdl:port name="CCD_Source_GetROPReport_ws_GetROPReportSecure_Port" binding="tns:CCD_Source_GetROPReport_ws_GetROPReportSecure_Binder">
+            <soap12:address location="http://reeks.bcgov:5555/ws/CCD.Source.GetROPReport.ws:GetROPReportSecure/CCD_Source_GetROPReport_ws_GetROPReportSecure_Port"/>
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>

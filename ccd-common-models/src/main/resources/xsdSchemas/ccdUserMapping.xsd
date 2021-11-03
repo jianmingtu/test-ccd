@@ -1,0 +1,40 @@
+<xsd:schema targetNamespace="http://courts.ag.gov.bc.ca/CCD.Source.CCDUserMapping.ws:ccdUserMapping"
+            xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            xmlns:tns="http://courts.ag.gov.bc.ca/CCD.Source.CCDUserMapping.ws:ccdUserMapping">
+
+    <xsd:element name="getParticipantInfo">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="guid" nillable="true" type="xsd:string"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+
+    <xsd:element name="getParticipantInfoResponse">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="partId" nillable="true" type="xsd:string"/>
+                <xsd:element name="partyName" nillable="true" type="xsd:string"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+
+    <xsd:element name="mapGuidToParticipant">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="guid" nillable="true" type="xsd:string"/>
+                <xsd:element name="partId" nillable="true" type="xsd:string"/>
+                <xsd:element name="idirId" nillable="true" type="xsd:string"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+
+    <xsd:element name="mapGuidToParticipantResponse">
+        <xsd:complexType name="mapGuidToParticipantResponse">
+            <xsd:sequence>
+                <xsd:element name="success" nillable="true" type="xsd:string"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+
+</xsd:schema>

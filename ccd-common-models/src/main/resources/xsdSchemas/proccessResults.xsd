@@ -1,0 +1,1429 @@
+<xsd:schema targetNamespace="http://court.ag.gov.bc.ca/CCD.Source.ProcessResults.ws.provider:ProcessResults"
+            xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            xmlns:tns="http://court.ag.gov.bc.ca/CCD.Source.ProcessResults.ws.provider:ProcessResults">
+
+    <xsd:element name="processVariation">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="Variation" nillable="true" type="tns:VariationType"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+
+    <xsd:complexType name="VariationType">
+        <xsd:sequence>
+            <xsd:element name="CourtAgencyIdentifierCode" nillable="true" type="xsd:string"/>
+            <xsd:element name="CourtRoomCode" nillable="true" type="xsd:string"/>
+            <xsd:element name="CourtProceedingDate" nillable="true" type="xsd:string"/>
+            <xsd:element name="CreationTime" nillable="true" type="xsd:string"/>
+            <xsd:element name="EnterUserId" nillable="true" type="xsd:string"/>
+            <xsd:element name="EventTime" nillable="true" type="xsd:string"/>
+            <xsd:element name="EventTypeCode" nillable="true" type="xsd:string"/>
+            <xsd:element name="EventLogText" nillable="true" type="xsd:string"/>
+            <xsd:element name="SourceEventSeqNo" nillable="true" type="xsd:string"/>
+            <xsd:element name="SourcePackageId" nillable="true" type="xsd:string"/>
+            <xsd:element name="VariationDetail" nillable="true" type="tns:VariationDetailType" maxOccurs="unbounded"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="VariationDetailType">
+        <xsd:sequence>
+            <xsd:element name="VariationType" nillable="true" type="xsd:string"/>
+            <xsd:element name="DocmId" nillable="true" type="xsd:string"/>
+            <xsd:element name="DocmTypeDsc" nillable="true" type="xsd:string"/>
+            <xsd:element name="VariationDetailText" nillable="true" type="xsd:string"/>
+            <xsd:element name="ApplyToFile" nillable="true" type="tns:ApplyToFileVariationType" maxOccurs="unbounded"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="ApplyToFileVariationType">
+        <xsd:sequence>
+            <xsd:element name="AppearanceId" type="xsd:string"/>
+            <xsd:element name="FileNumber" type="xsd:string"/>
+            <xsd:element name="CountId" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="CountNumber" type="xsd:string" minOccurs="0"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:element name="processVariationResponse">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="status" nillable="true" type="xsd:string"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+
+    <xsd:element name="processSpeaker">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="Speaker" nillable="true" type="tns:Speaker"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+
+    <xsd:complexType name="Speaker">
+        <xsd:sequence>
+            <xsd:element name="TerminateExistingYN" nillable="true" type="xsd:string"/>
+            <xsd:element name="ApplyToFile" nillable="true" type="tns:ApplyToFileSpeakerType" maxOccurs="unbounded"/>
+            <xsd:element name="SpeakerDetail" nillable="true" type="tns:SpeakerDetailsType" maxOccurs="unbounded"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="ApplyToFileSpeakerType">
+        <xsd:sequence>
+            <xsd:element name="AppearanceId" nillable="true" type="xsd:string"/>
+            <xsd:element name="FileNumber" nillable="true" type="xsd:string"/>
+            <xsd:element name="FileCourtDivisionCd" nillable="true" type="xsd:string"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="SpeakerDetailsType">
+        <xsd:sequence>
+            <xsd:element name="SpeakerId" nillable="true" type="xsd:string"/>
+            <xsd:element name="SpeakerTypeCd" nillable="true" type="xsd:string"/>
+            <xsd:element name="SpeakerSeqNo" nillable="true" type="xsd:string"/>
+            <xsd:element name="SpeakerName" nillable="true" type="xsd:string"/>
+            <xsd:element name="VoirDireSeqNo" nillable="true" type="xsd:string"/>
+            <xsd:element name="SpeakerStatusDsc" nillable="true" type="xsd:string"/>
+            <xsd:element name="AttendanceMethodCd" nillable="true" type="xsd:string"/>
+            <xsd:element name="SpeakerEvent" nillable="true" type="tns:SpeakerEventsType" maxOccurs="unbounded"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="SpeakerEventsType">
+        <xsd:sequence>
+            <xsd:element name="SpeakerEventDate" nillable="true" type="xsd:string"/>
+            <xsd:element name="SpeakerEventTime" nillable="true" type="xsd:string"/>
+            <xsd:element name="SpeakerEventText" nillable="true" type="xsd:string"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:element name="processSpeakerResponse">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="status" nillable="true" type="xsd:string"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+
+    <xsd:element name="processCivilResults">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="civilResult" nillable="true" type="tns:CivilResultType"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+
+    <xsd:complexType name="CivilResultType">
+        <xsd:sequence>
+            <xsd:element name="CourtAgencyIdentifierCode" nillable="true" type="xsd:string"/>
+            <xsd:element name="CourtRoomCode" nillable="true" type="xsd:string"/>
+            <xsd:element name="CourtProceedingDate" nillable="true" type="xsd:string"/>
+            <xsd:element name="CreationTime" nillable="true" type="xsd:string"/>
+            <xsd:element name="EnterUserId" nillable="true" type="xsd:string"/>
+            <xsd:element name="EventTime" nillable="true" type="xsd:string"/>
+            <xsd:element name="EventTypeCode" nillable="true" type="xsd:string"/>
+            <xsd:element name="EventLogText" nillable="true" type="xsd:string"/>
+            <xsd:element name="SourceEventSeqNo" nillable="true" type="xsd:string"/>
+            <xsd:element name="SourcePackageId" nillable="true" type="xsd:string"/>
+            <xsd:element name="CivilResultDetail" nillable="true" type="tns:CivilResultDetailType"
+                         maxOccurs="unbounded"/>
+            <xsd:element name="NextAppearance" nillable="true" type="tns:NextAppearanceType" maxOccurs="unbounded"/>
+            <xsd:element name="NewDocumentFiled" nillable="true" type="tns:NewDocumentFiledType" maxOccurs="unbounded"/>
+            <xsd:element name="OralApplication" nillable="true" type="tns:OralApplicationType" maxOccurs="unbounded"/>
+            <xsd:element name="JudgeComment" nillable="true" type="tns:JudgeCommentType" maxOccurs="unbounded"/>
+            <xsd:element name="HearingRestriction" nillable="true" type="tns:HearingRestrictionType"
+                         maxOccurs="unbounded"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="CivilResultDetailType">
+        <xsd:sequence>
+            <xsd:element name="AppearanceId" nillable="true" type="xsd:string"/>
+            <xsd:element name="DocumentId" nillable="true" type="xsd:string"/>
+            <xsd:element name="DocumentResultCd" nillable="true" type="xsd:string"/>
+            <xsd:element name="WarrantTypeCd" nillable="true" type="xsd:string"/>
+            <xsd:element name="WithNoticeImmediateCd" nillable="true" type="xsd:string"/>
+            <xsd:element name="WarrantPartyId" nillable="true" type="xsd:string"/>
+            <xsd:element name="WarrantPartyName" nillable="true" type="xsd:string"/>
+            <xsd:element name="WarrantReasonForArrestCd" nillable="true" type="xsd:string"/>
+            <xsd:element name="WarrantReasonForArrestText" nillable="true" type="xsd:string"/>
+            <xsd:element name="WarrantJudgeCommentText" nillable="true" type="xsd:string"/>
+            <xsd:element name="Issues" nillable="true" type="tns:IssueType" maxOccurs="unbounded"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="IssueType">
+        <xsd:sequence>
+            <xsd:element name="IssueNumber" nillable="true" type="xsd:string"/>
+            <xsd:element name="IssueResultCd" nillable="true" type="xsd:string"/>
+            <xsd:element name="ConcludedYN" nillable="true" type="xsd:string"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="NextAppearanceType">
+        <xsd:sequence>
+            <xsd:element name="AppearanceDate" nillable="true" type="xsd:string"/>
+            <xsd:element name="AppearanceTime" nillable="true" type="xsd:string"/>
+            <xsd:element name="AppearanceReason" nillable="true" type="xsd:string"/>
+            <xsd:element name="CourtAgencyIdentifier" nillable="true" type="xsd:string"/>
+            <xsd:element name="CourtRoom" nillable="true" type="xsd:string"/>
+            <xsd:element name="AppearanceId" nillable="true" type="xsd:string"/>
+            <xsd:element name="ApplyToFile" nillable="true" type="tns:ApplyToFileCivilResultType"
+                         maxOccurs="unbounded"/>
+            <xsd:element name="Party" nillable="true" type="tns:PartyType" maxOccurs="unbounded"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="ApplyToFileCivilResultType">
+        <xsd:sequence>
+            <xsd:element name="AppearanceId" nillable="true" type="xsd:string"/>
+            <xsd:element name="FileNumber" nillable="true" type="xsd:string"/>
+            <xsd:element name="DocumentId" nillable="true" type="xsd:string"/>
+            <xsd:element name="FileSeqNo" nillable="true" type="xsd:string"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="PartyType">
+        <xsd:sequence>
+            <xsd:element name="PartyId" nillable="true" type="xsd:string"/>
+            <xsd:element name="IntepreterLanguageCd" nillable="true" type="xsd:string"/>
+            <xsd:element name="AttendanceMethodCd" nillable="true" type="xsd:string"/>
+            <xsd:element name="PhoneNumber" nillable="true" type="xsd:string"/>
+            <xsd:element name="Instruction" nillable="true" type="xsd:string"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="NewDocumentFiledType">
+        <xsd:sequence>
+            <xsd:element name="AppearanceId" nillable="true" type="xsd:string"/>
+            <xsd:element name="FilingPartyId" nillable="true" type="xsd:string"/>
+            <xsd:element name="FilingPartyName" nillable="true" type="xsd:string"/>
+            <xsd:element name="FilingPartyRole" nillable="true" type="xsd:string"/>
+            <xsd:element name="DocumentDescription" nillable="true" type="xsd:string"/>
+            <xsd:element name="DocumentResultCd" nillable="true" type="xsd:string"/>
+            <xsd:element name="DocumentTypeCd" nillable="true" type="xsd:string"/>
+            <xsd:element name="AccessLevelCd" nillable="true" type="xsd:string"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="OralApplicationType">
+        <xsd:sequence>
+            <xsd:element name="AppearanceId" nillable="true" type="xsd:string"/>
+            <xsd:element name="IssueDescription" nillable="true" type="xsd:string"/>
+            <xsd:element name="IssueResultCd" nillable="true" type="xsd:string"/>
+            <xsd:element name="RaisedByPartyId" nillable="true" type="xsd:string"/>
+            <xsd:element name="RaisedByPartyName" nillable="true" type="xsd:string"/>
+            <xsd:element name="RaisedByPartyRole" nillable="true" type="xsd:string"/>
+            <xsd:element name="IssueTypeCd" nillable="true" type="xsd:string"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="JudgeCommentType">
+        <xsd:sequence>
+            <xsd:element name="AppearanceId" nillable="true" type="xsd:string"/>
+            <xsd:element name="JudgeCommentText" nillable="true" type="xsd:string"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="HearingRestrictionType">
+        <xsd:sequence>
+            <xsd:element name="HearingRestrictionType" nillable="true" type="xsd:string"/>
+            <xsd:element name="JudgePartId" nillable="true" type="xsd:string"/>
+            <xsd:element name="ApplyToFile" nillable="true" type="tns:ApplyToFileCivilResultType"
+                         maxOccurs="unbounded"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:element name="processCivilResultsResponse">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="status" nillable="true" type="xsd:string"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+
+    <xsd:element name="processAppearanceMethod">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="AppearanceMethod" nillable="true" type="tns:AppearanceMethod"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+
+    <xsd:complexType name="AppearanceMethod">
+        <xsd:sequence>
+            <xsd:element name="CourtAgencyIdentifierCode" nillable="true" type="xsd:string"/>
+            <xsd:element name="CourtRoomCode" nillable="true" type="xsd:string"/>
+            <xsd:element name="CourtProceedingDate" nillable="true" type="xsd:string"/>
+            <xsd:element name="CreationTime" nillable="true" type="xsd:string"/>
+            <xsd:element name="EnterUserId" nillable="true" type="xsd:string"/>
+            <xsd:element name="EventTime" nillable="true" type="xsd:string"/>
+            <xsd:element name="EventTypeCode" nillable="true" type="xsd:string"/>
+            <xsd:element name="EventLogText" nillable="true" type="xsd:string"/>
+            <xsd:element name="SourceEventSeqNo" nillable="true" type="xsd:string"/>
+            <xsd:element name="AppearanceMethodDetail" nillable="true" type="tns:AppearanceMethodDetailType"
+                         maxOccurs="unbounded"/>
+            <xsd:element name="SourcePackageId" nillable="true" type="xsd:string"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="AppearanceMethodDetailType">
+        <xsd:sequence>
+            <xsd:element name="ApplyToFileAppearanceMethod" nillable="true" type="tns:ApplyToFileAppearanceMethodType"
+                         maxOccurs="unbounded"/>
+            <xsd:element name="PartyAppearanceMethod" nillable="true" type="tns:partyAppearanceMethodType"
+                         maxOccurs="unbounded"/>
+            <xsd:element name="JuryTrialYN" nillable="true" type="xsd:string"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="ApplyToFileAppearanceMethodType">
+        <xsd:sequence>
+            <xsd:element name="AppearanceId" nillable="true" type="xsd:string"/>
+            <xsd:element name="FileNumber" nillable="true" type="xsd:string"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="partyAppearanceMethodType">
+        <xsd:sequence>
+            <xsd:element name="PartyName" nillable="true" type="xsd:string"/>
+            <xsd:element name="PartyRole" nillable="true" type="xsd:string"/>
+            <xsd:element name="PartyId" nillable="true" type="xsd:string"/>
+            <xsd:element name="PartyAppearanceMethod" nillable="true" type="xsd:string"/>
+            <xsd:element name="ActionCd" nillable="true" type="xsd:string"/>
+            <xsd:element name="AttendingPartyType" nillable="true" type="xsd:string"/>
+            <xsd:element name="RemoteAttendanceYN" nillable="true" type="xsd:string"/>
+            <xsd:element name="RemoteAgencyIdentifierId" nillable="true" type="xsd:string"/>
+            <xsd:element name="RemoteCourtRoomAgencyIdentifierId" nillable="true" type="xsd:string"/>
+            <xsd:element name="RemoteCourtRoomCd" nillable="true" type="xsd:string"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:element name="processAppearanceMethodResponse">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="status" nillable="true" type="xsd:string"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+
+    <xsd:element name="processPlea">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="Plea" nillable="true" type="tns:Plea"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+
+    <xsd:complexType name="Plea">
+        <xsd:sequence>
+            <xsd:element name="CourtAgencyIdentifierCode" nillable="true" type="xsd:string"/>
+            <xsd:element name="CourtRoomCode" nillable="true" type="xsd:string"/>
+            <xsd:element name="CourtProceedingDate" nillable="true" type="xsd:string"/>
+            <xsd:element name="CreationTime" nillable="true" type="xsd:string"/>
+            <xsd:element name="EnterUserId" nillable="true" type="xsd:string"/>
+            <xsd:element name="EventTime" nillable="true" type="xsd:string"/>
+            <xsd:element name="EventTypeCode" nillable="true" type="xsd:string"/>
+            <xsd:element name="EventLogText" nillable="true" type="xsd:string"/>
+            <xsd:element name="SourceEventSeqNo" nillable="true" type="xsd:string"/>
+            <xsd:element name="PleaDetail" nillable="true" type="tns:PleaDetails" maxOccurs="unbounded"/>
+            <xsd:element name="SourcePackageId" nillable="true" type="xsd:string"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="PleaDetails">
+        <xsd:sequence>
+            <xsd:element name="ApplyToFile" nillable="true" type="tns:ApplyToFilePleaType" maxOccurs="unbounded"/>
+            <xsd:element name="ActionCd" nillable="true" type="xsd:string"/>
+            <xsd:element name="PleaCd" nillable="true" type="xsd:string"/>
+            <xsd:element name="SectionOtherStatuteId" nillable="true" type="xsd:string"/>
+            <xsd:element name="SectionOther" nillable="true" type="xsd:string"/>
+            <xsd:element name="JudgeStrikePleaYN" nillable="true" type="xsd:string"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="ApplyToFilePleaType">
+        <xsd:sequence>
+            <xsd:element name="AppearanceId" nillable="true" type="xsd:string"/>
+            <xsd:element name="FileNumber" nillable="true" type="xsd:string"/>
+            <xsd:element name="CountId" nillable="true" type="xsd:string"/>
+            <xsd:element name="CountNumber" nillable="true" type="xsd:string"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:element name="processPleaResponse">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="status" nillable="true" type="xsd:string"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+
+
+    <xsd:element name="processElection">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="Election" nillable="true" type="tns:Election"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+
+    <xsd:complexType name="Election">
+        <xsd:sequence>
+            <xsd:element name="CourtAgencyIdentifierCode" nillable="true" type="xsd:string"/>
+            <xsd:element name="CourtRoomCode" nillable="true" type="xsd:string"/>
+            <xsd:element name="CourtProceedingDate" nillable="true" type="xsd:string"/>
+            <xsd:element name="CreationTime" nillable="true" type="xsd:string"/>
+            <xsd:element name="EnterUserId" nillable="true" type="xsd:string"/>
+            <xsd:element name="EventTime" nillable="true" type="xsd:string"/>
+            <xsd:element name="EventTypeCode" nillable="true" type="xsd:string"/>
+            <xsd:element name="EventLogText" nillable="true" type="xsd:string"/>
+            <xsd:element name="SourceEventSeqNo" nillable="true" type="xsd:string"/>
+            <xsd:element name="ElectionDetails" nillable="true" type="tns:ElectionDetailType" maxOccurs="unbounded"/>
+            <xsd:element name="SourcePackageId" nillable="true" type="xsd:string"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="ElectionDetailType">
+        <xsd:sequence>
+            <xsd:element name="CrownProceed" nillable="true" type="xsd:string"/>
+            <xsd:element name="Election" nillable="true" type="xsd:string"/>
+            <xsd:element name="ApplyToFileElection" nillable="true" type="tns:ApplyToFileElectionType"
+                         maxOccurs="unbounded"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="ApplyToFileElectionType">
+        <xsd:sequence>
+            <xsd:element name="AppearanceId" type="xsd:string"/>
+            <xsd:element name="FileNumber" type="xsd:string"/>
+            <xsd:element name="CountId" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="CountNumber" type="xsd:string" minOccurs="0"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:element name="processElectionResponse">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="status" nillable="true" type="xsd:string"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+
+    <xsd:element name="processBail">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="bailDocInput" nillable="true" type="tns:BailDoc"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+
+    <xsd:complexType name="BailDoc">
+        <xsd:sequence>
+            <xsd:element name="CourtAgencyIdentifierCode" nillable="true" type="xsd:string"/>
+            <xsd:element name="CourtRoomCode" nillable="true" type="xsd:string"/>
+            <xsd:element name="CourtProceedingDate" nillable="true" type="xsd:string"/>
+            <xsd:element name="CreationTime" nillable="true" type="xsd:string"/>
+            <xsd:element name="EnterUserId" nillable="true" type="xsd:string"/>
+            <xsd:element name="EventTime" nillable="true" type="xsd:string"/>
+            <xsd:element name="EventTypeCode" nillable="true" type="xsd:string"/>
+            <xsd:element name="EventLogText" nillable="true" type="xsd:string"/>
+            <xsd:element name="SourceEventSeqNo" nillable="true" type="xsd:string"/>
+            <xsd:element name="BailDetail" nillable="true" type="tns:BailDetailType" maxOccurs="unbounded"/>
+            <xsd:element name="SourcePackageId" nillable="true" type="xsd:string"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="BailDetailType">
+        <xsd:sequence>
+            <xsd:element name="BailOrderedTypeCd" nillable="true" type="xsd:string"/>
+            <xsd:element name="ResponsiblePersonName" nillable="true" type="xsd:string"/>
+            <xsd:element name="RecogTypeCd" nillable="true" type="xsd:string"/>
+            <xsd:element name="RecogAmount" nillable="true" type="xsd:string"/>
+            <xsd:element name="RecogDeposit" nillable="true" type="xsd:string"/>
+            <xsd:element name="AlternateBailText" nillable="true" type="xsd:string" maxOccurs="unbounded"/>
+            <xsd:element name="BdpcYN" nillable="true" type="xsd:string"/>
+            <xsd:element name="DetainedUnderSec524YN" nillable="true" type="xsd:string"/>
+            <xsd:element name="SuretyQty" nillable="true" type="xsd:string"/>
+            <xsd:element name="MoreSuretiesAllowedYn" nillable="true" type="xsd:string"/>
+            <xsd:element name="Surety" nillable="true" type="tns:SuretyType" maxOccurs="unbounded"/>
+            <xsd:element name="ApplyToFile" nillable="true" type="tns:ApplyToFileBailType" maxOccurs="unbounded"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="SuretyType">
+        <xsd:sequence>
+            <xsd:element name="RecogSurety" nillable="true" type="xsd:string"/>
+            <xsd:element name="RecogNamedSurety" nillable="true" type="xsd:string"/>
+            <xsd:element name="SuretyAddress" nillable="true" type="xsd:string"/>
+            <xsd:element name="SuretyDeclaration" nillable="true" type="xsd:string"/>
+            <xsd:element name="SuretyDeposit" nillable="true" type="xsd:string"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="ApplyToFileBailType">
+        <xsd:sequence>
+            <xsd:element name="AppearanceId" type="xsd:string"/>
+            <xsd:element name="FileNumber" type="xsd:string"/>
+            <xsd:element name="CountId" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="CountNumber" type="xsd:string" minOccurs="0"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:element name="processBailResponse">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="status" nillable="true" type="xsd:string"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+
+    <xsd:element name="processCriminalResult">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="CriminalResult" nillable="true" type="tns:CriminalResult"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+
+    <xsd:complexType name="CriminalResult">
+        <xsd:sequence>
+            <xsd:element name="CourtAgencyIdentifierCode" nillable="true" type="xsd:string"/>
+            <xsd:element name="CourtRoomCode" nillable="true" type="xsd:string"/>
+            <xsd:element name="CourtProceedingDate" nillable="true" type="xsd:string"/>
+            <xsd:element name="CreationTime" nillable="true" type="xsd:string"/>
+            <xsd:element name="EnterUserId" nillable="true" type="xsd:string"/>
+            <xsd:element name="EventTime" nillable="true" type="xsd:string"/>
+            <xsd:element name="EventTypeCode" nillable="true" type="xsd:string"/>
+            <xsd:element name="EventLogText" nillable="true" type="xsd:string"/>
+            <xsd:element name="SourceEventSeqNo" nillable="true" type="xsd:string"/>
+            <xsd:element name="CriminalResultsDetail" nillable="true" type="tns:CriminalResultsDetail"
+                         maxOccurs="unbounded"/>
+            <xsd:element name="SourcePackageId" nillable="true" type="xsd:string"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="CriminalResultsDetail">
+        <xsd:sequence>
+            <xsd:element name="AppearanceResult" nillable="true" type="xsd:string"/>
+            <xsd:element name="JudgeSeizedPartId" nillable="true" type="xsd:string"/>
+            <xsd:element name="JudgeSeizedName" nillable="true" type="xsd:string"/>
+            <xsd:element name="JudgeDisqualifiedPartId" nillable="true" type="xsd:string"/>
+            <xsd:element name="JudgeDisqualifiedName" nillable="true" type="xsd:string"/>
+            <xsd:element name="TrialProceededYN" nillable="true" type="xsd:string"/>
+            <xsd:element name="ApplyToFile" nillable="true" type="tns:ApplyToFileCRType" maxOccurs="unbounded"/>
+            <xsd:element name="NextAppearance" nillable="true" type="tns:NextAppearanceCRType" maxOccurs="unbounded"/>
+            <xsd:element name="GenerateDocument" nillable="true" type="tns:GenerateDocumentCRType"
+                         maxOccurs="unbounded"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="ApplyToFileCRType">
+        <xsd:sequence>
+            <xsd:element name="AppearanceId" nillable="true" type="xsd:string"/>
+            <xsd:element name="FileNumber" nillable="true" type="xsd:string"/>
+            <xsd:element name="CountId" nillable="true" type="xsd:string"/>
+            <xsd:element name="CountNumber" nillable="true" type="xsd:string"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="NextAppearanceCRType">
+        <xsd:sequence>
+            <xsd:element name="AppearanceDate" nillable="true" type="xsd:string"/>
+            <xsd:element name="AppearanceTime" nillable="true" type="xsd:string"/>
+            <xsd:element name="AppearanceReason" nillable="true" type="xsd:string"/>
+            <xsd:element name="CourtAgencyIdentifier" nillable="true" type="xsd:string"/>
+            <xsd:element name="CourtRoom" nillable="true" type="xsd:string"/>
+            <xsd:element name="Interpreter" nillable="true" type="xsd:string"/>
+            <xsd:element name="InterpreterForAllAppr" nillable="true" type="xsd:string"/>
+            <xsd:element name="Language" nillable="true" type="xsd:string"/>
+            <xsd:element name="AppearanceId" nillable="true" type="xsd:string"/>
+            <xsd:element name="NotifySchedulerOnlyYN" nillable="true" type="xsd:string"/>
+            <xsd:element name="NextAppMethod" nillable="true" type="tns:NextAppearanceMethodCRType"
+                         maxOccurs="unbounded"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="NextAppearanceMethodCRType">
+        <xsd:sequence>
+            <xsd:element name="PartyRole" nillable="true" type="xsd:string"/>
+            <xsd:element name="AppearanceMethodCd" nillable="true" type="xsd:string"/>
+            <xsd:element name="PartyName" nillable="true" type="xsd:string"/>
+            <xsd:element name="PhoneNumber" nillable="true" type="xsd:string"/>
+            <xsd:element name="Instruction" nillable="true" type="xsd:string"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="GenerateDocumentCRType">
+        <xsd:sequence>
+            <xsd:element name="FormTypeCd" nillable="true" type="xsd:string"/>
+            <xsd:element name="NextAppearanceDate" nillable="true" type="xsd:string"/>
+            <xsd:element name="RegistryToCreateYN" nillable="true" type="xsd:string"/>
+            <xsd:element name="ReferralTo" nillable="true" type="xsd:string"/>
+            <xsd:element name="ReferralReason" nillable="true" type="xsd:string"/>
+            <xsd:element name="ReferralComment" nillable="true" type="xsd:string"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:element name="processCriminalResultResponse">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="status" nillable="true" type="xsd:string"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+
+    <xsd:element name="processAgeNotice">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="AgeNotice" nillable="true" type="tns:AgeNotice"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+
+    <xsd:complexType name="AgeNotice">
+        <xsd:sequence>
+            <xsd:element name="CourtAgencyIdentifierCode" nillable="true" type="xsd:string"/>
+            <xsd:element name="CourtRoomCode" nillable="true" type="xsd:string"/>
+            <xsd:element name="CourtProceedingDate" nillable="true" type="xsd:string"/>
+            <xsd:element name="CreationTime" nillable="true" type="xsd:string"/>
+            <xsd:element name="EnterUserId" nillable="true" type="xsd:string"/>
+            <xsd:element name="EventTime" nillable="true" type="xsd:string"/>
+            <xsd:element name="EventTypeCode" nillable="true" type="xsd:string"/>
+            <xsd:element name="EventLogText" nillable="true" type="xsd:string"/>
+            <xsd:element name="SourceEventSeqNo" nillable="true" type="xsd:string"/>
+            <xsd:element name="AgeNoticeDetail" nillable="true" type="tns:AgeNoticeDetailType" maxOccurs="unbounded"/>
+            <xsd:element name="SourcePackageId" nillable="true" type="xsd:string"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="AgeNoticeDetailType">
+        <xsd:sequence>
+            <xsd:element name="ApplyToFileAgeNotice" nillable="true" type="tns:ApplyToFileTypeAgeNotice"
+                         maxOccurs="unbounded"/>
+            <xsd:element name="AgeNoticeEvent" nillable="true" type="tns:AgeNoticeEventType" maxOccurs="unbounded"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="ApplyToFileTypeAgeNotice">
+        <xsd:sequence>
+            <xsd:element name="AppearanceId" nillable="true" type="xsd:string"/>
+            <xsd:element name="FileNumber" nillable="true" type="xsd:string"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="AgeNoticeEventType">
+        <xsd:sequence>
+            <xsd:element name="EventType" nillable="true" type="xsd:string"/>
+            <xsd:element name="DetailText" nillable="true" type="xsd:string"/>
+            <xsd:element name="DOB" nillable="true" type="xsd:string"/>
+            <xsd:element name="Relationship" nillable="true" type="xsd:string"/>
+            <xsd:element name="ProvenBy" nillable="true" type="xsd:string"/>
+            <xsd:element name="NoticeTo" nillable="true" type="xsd:string"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:element name="processAgeNoticeResponse">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="status" nillable="true" type="xsd:string"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+
+    <xsd:element name="processMatterCall">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="MatterCall" nillable="true" type="tns:MatterCall"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+
+    <xsd:complexType name="MatterCall">
+        <xsd:sequence>
+            <xsd:element name="CourtAgencyIdentifierCode" nillable="true" type="xsd:string"/>
+            <xsd:element name="CourtRoomCode" nillable="true" type="xsd:string"/>
+            <xsd:element name="CourtProceedingDate" nillable="true" type="xsd:string"/>
+            <xsd:element name="CreationTime" nillable="true" type="xsd:string"/>
+            <xsd:element name="EnterUserId" nillable="true" type="xsd:string"/>
+            <xsd:element name="EventTime" nillable="true" type="xsd:string"/>
+            <xsd:element name="EventTypeCode" nillable="true" type="xsd:string"/>
+            <xsd:element name="EventLogText" nillable="true" type="xsd:string"/>
+            <xsd:element name="SourceEventSeqNo" nillable="true" type="xsd:string"/>
+            <xsd:element name="SourcePackageId" nillable="true" type="xsd:string"/>
+            <xsd:element name="MatterCallDetails" nillable="true" type="tns:MatterCallDetails" maxOccurs="unbounded"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="MatterCallDetails">
+        <xsd:sequence>
+            <xsd:element name="ActionCd" nillable="true" type="xsd:string"/>
+            <xsd:element name="PreviousSourceEventSeqNo" nillable="true" type="xsd:string"/>
+            <xsd:element name="CalledFile" nillable="true" type="tns:CalledFile" maxOccurs="unbounded"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="CalledFile">
+        <xsd:sequence>
+            <xsd:element name="AppearanceId" nillable="true" type="xsd:string"/>
+            <xsd:element name="MdocJustinNo" nillable="true" type="xsd:string"/>
+            <xsd:element name="PartId" nillable="true" type="xsd:string"/>
+            <xsd:element name="ProfSeqNo" nillable="true" type="xsd:string"/>
+            <xsd:element name="CivilPhysicalFileId" nillable="true" type="xsd:string"/>
+            <xsd:element name="FileNumber" nillable="true" type="xsd:string"/>
+            <xsd:element name="FileCourtDivisionCd" nillable="true" type="xsd:string"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:element name="processMatterCallResponse">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="status" nillable="true" type="xsd:string"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+
+    <xsd:element name="processSentence">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="Sentence" nillable="true" type="tns:Sentence"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+
+    <xsd:complexType name="Sentence">
+        <xsd:sequence>
+            <xsd:element name="CourtAgencyIdentifierCode" nillable="true" type="xsd:string"/>
+            <xsd:element name="CourtRoomCode" nillable="true" type="xsd:string"/>
+            <xsd:element name="CourtProceedingDate" nillable="true" type="xsd:string"/>
+            <xsd:element name="CreationTime" nillable="true" type="xsd:string"/>
+            <xsd:element name="EnterUserId" nillable="true" type="xsd:string"/>
+            <xsd:element name="EventTime" nillable="true" type="xsd:string"/>
+            <xsd:element name="EventTypeCode" nillable="true" type="xsd:string"/>
+            <xsd:element name="EventLogText" nillable="true" type="xsd:string"/>
+            <xsd:element name="SourceEventSeqNo" nillable="true" type="xsd:string"/>
+            <xsd:element name="SentencetDetail" nillable="true" type="tns:SentencetDetailType" maxOccurs="unbounded"/>
+            <xsd:element name="SourcePackageId" nillable="true" type="xsd:string"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="SentencetDetailType">
+        <xsd:sequence>
+            <xsd:element name="ApplyToFile" nillable="true" type="tns:SentenceApplyToFileType" maxOccurs="unbounded"/>
+            <xsd:element name="MonetaryTerm" nillable="true" type="tns:MonetaryTermType" maxOccurs="unbounded"/>
+            <xsd:element name="NonMonetaryTerm" nillable="true" type="tns:NonMonetaryTermType" maxOccurs="unbounded"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="SentenceApplyToFileType">
+        <xsd:sequence>
+            <xsd:element name="AppearanceId" type="xsd:string"/>
+            <xsd:element name="FileNumber" type="xsd:string"/>
+            <xsd:element name="CountId" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="CountNumber" type="xsd:string" minOccurs="0"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="MonetaryTermType">
+        <xsd:sequence>
+            <xsd:element name="SentenceTypeCd" nillable="true" type="xsd:string"/>
+            <xsd:element name="Amount" nillable="true" type="xsd:string"/>
+            <xsd:element name="VictimSurchargeTypeCd" nillable="true" type="xsd:string"/>
+            <xsd:element name="DueDate" nillable="true" type="xsd:string"/>
+            <xsd:element name="PaymentScheduleText" nillable="true" type="xsd:string"/>
+            <xsd:element name="JailYN" nillable="true" type="xsd:string"/>
+            <xsd:element name="SameAsFineYN" nillable="true" type="xsd:string"/>
+            <xsd:element name="Name" nillable="true" type="xsd:string"/>
+            <xsd:element name="SuretyText" nillable="true" type="xsd:string"/>
+            <xsd:element name="Duration" nillable="true" type="tns:DurationType" maxOccurs="unbounded"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="DurationType">
+        <xsd:sequence>
+            <xsd:element name="DurationLength" nillable="true" type="xsd:string"/>
+            <xsd:element name="DurationUnitCd" nillable="true" type="xsd:string"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="NonMonetaryTermType">
+        <xsd:sequence>
+            <xsd:element name="Term" nillable="true" type="tns:TermType" maxOccurs="unbounded"/>
+            <xsd:element name="SentenceTypeCd" nillable="true" type="xsd:string"/>
+            <xsd:element name="TimeServedYN" nillable="true" type="xsd:string"/>
+            <xsd:element name="IntermittentYN" nillable="true" type="xsd:string"/>
+            <xsd:element name="ConcurrentText" nillable="true" type="xsd:string"/>
+            <xsd:element name="ConsecutiveText" nillable="true" type="xsd:string"/>
+            <xsd:element name="TermText" nillable="true" type="xsd:string"/>
+            <xsd:element name="SectionText" nillable="true" type="xsd:string"/>
+            <xsd:element name="ReportingDate" nillable="true" type="xsd:string"/>
+            <xsd:element name="ReportingTime" nillable="true" type="xsd:string"/>
+            <xsd:element name="ReportingLocationText" nillable="true" type="xsd:string"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="TermType">
+        <xsd:sequence>
+            <xsd:element name="TermTypeCd" nillable="true" type="xsd:string"/>
+            <xsd:element name="Duration" nillable="true" type="tns:DurationType" maxOccurs="unbounded"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:element name="processSentenceResponse">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="status" nillable="true" type="xsd:string"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+
+    <xsd:element name="processBan">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="Ban" nillable="true" type="tns:Ban"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+
+    <xsd:complexType name="Ban">
+        <xsd:sequence>
+            <xsd:element name="CourtAgencyIdentifierCode" nillable="true" type="xsd:string"/>
+            <xsd:element name="CourtRoomCode" nillable="true" type="xsd:string"/>
+            <xsd:element name="CourtProceedingDate" nillable="true" type="xsd:string"/>
+            <xsd:element name="CreationTime" nillable="true" type="xsd:string"/>
+            <xsd:element name="EnterUserId" nillable="true" type="xsd:string"/>
+            <xsd:element name="EventTime" nillable="true" type="xsd:string"/>
+            <xsd:element name="EventTypeCode" nillable="true" type="xsd:string"/>
+            <xsd:element name="EventLogText" nillable="true" type="xsd:string"/>
+            <xsd:element name="SourceEventSeqNo" nillable="true" type="xsd:string"/>
+            <xsd:element name="BanDetail" nillable="true" type="tns:BanDetailType" maxOccurs="unbounded"/>
+            <xsd:element name="SourcePackageId" nillable="true" type="xsd:string"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="BanDetailType">
+        <xsd:sequence>
+            <xsd:element name="ApplyToFileBan" nillable="true" type="tns:ApplyToFileBanType" maxOccurs="unbounded"/>
+            <xsd:element name="BanInfo" nillable="true" type="tns:BanInfoType" maxOccurs="unbounded"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="ApplyToFileBanType">
+        <xsd:sequence>
+            <xsd:element name="AppearanceId" nillable="true" type="xsd:string"/>
+            <xsd:element name="FileNumber" nillable="true" type="xsd:string"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="BanInfoType">
+        <xsd:sequence>
+            <xsd:element name="ActionCd" nillable="true" type="xsd:string"/>
+            <xsd:element name="BanType" nillable="true" type="xsd:string"/>
+            <xsd:element name="OrderedDate" nillable="true" type="xsd:string"/>
+            <xsd:element name="BanStatuteId" nillable="true" type="xsd:string"/>
+            <xsd:element name="BanOtherStatuteDsc" nillable="true" type="xsd:string"/>
+            <xsd:element name="ExpiredDate" nillable="true" type="xsd:string"/>
+            <xsd:element name="BanCommentText" nillable="true" type="xsd:string"/>
+            <xsd:element name="AcprId" nillable="true" type="xsd:string"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:element name="processBanResponse">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="status" nillable="true" type="xsd:string"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+
+    <xsd:element name="processNote">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="Note" nillable="true" type="tns:NoteType"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+
+    <xsd:complexType name="NoteType">
+        <xsd:sequence>
+            <xsd:element name="SourcePackageId" nillable="true" type="xsd:string"/>
+            <xsd:element name="EnterUserId" nillable="true" type="xsd:string"/>
+            <xsd:element name="ApplyToFile" nillable="true" type="tns:ApplyToFileType" maxOccurs="unbounded"/>
+            <xsd:element name="NoteDetail" nillable="true" type="tns:NoteDetailType" maxOccurs="unbounded"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="ApplyToFileType">
+        <xsd:sequence>
+            <xsd:element name="AppearanceId" nillable="true" type="xsd:string"/>
+            <xsd:element name="FileNumber" nillable="true" type="xsd:string"/>
+            <xsd:element name="FileCourtDivisionCd" nillable="true" type="xsd:string"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="NoteDetailType">
+        <xsd:sequence>
+            <xsd:element name="NoteTypeCd" nillable="true" type="xsd:string"/>
+            <xsd:element name="NoteSeqNo" nillable="true" type="xsd:string"/>
+            <xsd:element name="NoteText" nillable="true" type="xsd:string"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:element name="processNoteResponse">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="status" nillable="true" type="xsd:string"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+
+    <xsd:element name="processArraignment">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="Arraignment" nillable="true" type="tns:Arraignment"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+
+    <xsd:complexType name="Arraignment">
+        <xsd:sequence>
+            <xsd:element name="CourtAgencyIdentifierCode" nillable="true" type="xsd:string"/>
+            <xsd:element name="CourtRoomCode" nillable="true" type="xsd:string"/>
+            <xsd:element name="CourtProceedingDate" nillable="true" type="xsd:string"/>
+            <xsd:element name="CreationTime" nillable="true" type="xsd:string"/>
+            <xsd:element name="EnterUserId" nillable="true" type="xsd:string"/>
+            <xsd:element name="EventTime" nillable="true" type="xsd:string"/>
+            <xsd:element name="EventTypeCode" nillable="true" type="xsd:string"/>
+            <xsd:element name="EventLogText" nillable="true" type="xsd:string"/>
+            <xsd:element name="SourceEventSeqNo" nillable="true" type="xsd:string"/>
+            <xsd:element name="ArraignmentDetail" nillable="true" type="tns:ArraignmentDetailType"
+                         maxOccurs="unbounded"/>
+            <xsd:element name="SourcePackageId" nillable="true" type="xsd:string"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="ArraignmentDetailType">
+        <xsd:sequence>
+            <xsd:element name="ApplyToFileArraignment" nillable="true" type="tns:ApplyToFileArraignmentType"
+                         maxOccurs="unbounded"/>
+            <xsd:element name="ArraignmentEvent" nillable="true" type="tns:ArraignmentEventType" maxOccurs="unbounded"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="ApplyToFileArraignmentType">
+        <xsd:sequence>
+            <xsd:element name="AppearanceId" nillable="true" type="xsd:string"/>
+            <xsd:element name="FileNumber" nillable="true" type="xsd:string"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="ArraignmentEventType">
+        <xsd:sequence>
+            <xsd:element name="EventType" nillable="true" type="xsd:string"/>
+            <xsd:element name="DetailText" nillable="true" type="xsd:string"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:element name="processArraignmentResponse">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="status" nillable="true" type="xsd:string"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+
+    <xsd:element name="processMove">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="Move" nillable="true" type="tns:Move"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+
+    <xsd:complexType name="Move">
+        <xsd:sequence>
+            <xsd:element name="CourtAgencyIdentifierCode" nillable="true" type="xsd:string"/>
+            <xsd:element name="CourtRoomCode" nillable="true" type="xsd:string"/>
+            <xsd:element name="CourtProceedingDate" nillable="true" type="xsd:string"/>
+            <xsd:element name="CreationTime" nillable="true" type="xsd:string"/>
+            <xsd:element name="EnterUserId" nillable="true" type="xsd:string"/>
+            <xsd:element name="EventTime" nillable="true" type="xsd:string"/>
+            <xsd:element name="EventTypeCode" nillable="true" type="xsd:string"/>
+            <xsd:element name="EventLogText" nillable="true" type="xsd:string"/>
+            <xsd:element name="SourceEventSeqNo" nillable="true" type="xsd:string"/>
+            <xsd:element name="MoveDetail" nillable="true" type="tns:MoveDetailType" maxOccurs="unbounded"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="MoveDetailType">
+        <xsd:sequence>
+            <xsd:element name="CourtAgencyIdentifier" nillable="true" type="xsd:string"/>
+            <xsd:element name="CourtRoom" nillable="true" type="xsd:string"/>
+            <xsd:element name="ApplyToFileMove" nillable="true" type="tns:ApplyToFileMoveType" maxOccurs="unbounded"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="ApplyToFileMoveType">
+        <xsd:sequence>
+            <xsd:element name="AppearanceId" type="xsd:string"/>
+            <xsd:element name="FileCourtDivisionCd" nillable="true" type="xsd:string"/>
+            <xsd:element name="FileNumber" type="xsd:string"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:element name="processMoveResponse">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="status" nillable="true" type="xsd:string"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+
+    <xsd:element name="processFinding">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="Finding" nillable="true" type="tns:Finding"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+
+    <xsd:complexType name="Finding">
+        <xsd:sequence>
+            <xsd:element name="CourtAgencyIdentifierCode" nillable="true" type="xsd:string"/>
+            <xsd:element name="CourtRoomCode" nillable="true" type="xsd:string"/>
+            <xsd:element name="CourtProceedingDate" nillable="true" type="xsd:string"/>
+            <xsd:element name="CreationTime" nillable="true" type="xsd:string"/>
+            <xsd:element name="EnterUserId" nillable="true" type="xsd:string"/>
+            <xsd:element name="EventTime" nillable="true" type="xsd:string"/>
+            <xsd:element name="EventTypeCode" nillable="true" type="xsd:string"/>
+            <xsd:element name="SourcePackageId" nillable="true" type="xsd:string"/>
+            <xsd:element name="EventLogText" nillable="true" type="xsd:string"/>
+            <xsd:element name="SourceEventSeqNo" nillable="true" type="xsd:string"/>
+            <xsd:element name="FindingDetails" nillable="true" type="tns:FindingDetailType" maxOccurs="unbounded"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="FindingDetailType">
+        <xsd:sequence>
+            <xsd:element name="Finding" nillable="true" type="xsd:string"/>
+            <xsd:element name="SectionOtherStatuteId" nillable="true" type="xsd:string"/>
+            <xsd:element name="SectionOther" nillable="true" type="xsd:string"/>
+            <xsd:element name="ApplyToFileFinding" nillable="true" type="tns:ApplyToFileFindingType"
+                         maxOccurs="unbounded"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="ApplyToFileFindingType">
+        <xsd:sequence>
+            <xsd:element name="AppearanceId" type="xsd:string"/>
+            <xsd:element name="FileNumber" type="xsd:string"/>
+            <xsd:element name="CountId" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="CountNumber" type="xsd:string" minOccurs="0"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:element name="processFindingResponse">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="status" nillable="true" type="xsd:string"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+
+    <xsd:element name="processGenericResult">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="GenericResult" nillable="true" type="tns:GenericResult"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+
+    <xsd:complexType name="GenericResult">
+        <xsd:sequence>
+            <xsd:element name="CourtAgencyIdentifierCode" nillable="true" type="xsd:string"/>
+            <xsd:element name="CourtRoomCode" nillable="true" type="xsd:string"/>
+            <xsd:element name="CourtProceedingDate" nillable="true" type="xsd:string"/>
+            <xsd:element name="CreationTime" nillable="true" type="xsd:string"/>
+            <xsd:element name="EnterUserId" nillable="true" type="xsd:string"/>
+            <xsd:element name="EventTime" nillable="true" type="xsd:string"/>
+            <xsd:element name="EventTypeCode" nillable="true" type="xsd:string"/>
+            <xsd:element name="EventLogText" nillable="true" type="xsd:string"/>
+            <xsd:element name="SourceEventSeqNo" nillable="true" type="xsd:string"/>
+            <xsd:element name="ResultDetail" nillable="true" type="tns:ResultDetail" maxOccurs="unbounded"/>
+            <xsd:element name="SourcePackageId" nillable="true" type="xsd:string"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="ResultDetail">
+        <xsd:sequence>
+            <xsd:element name="ApplyToFileGenericResults" nillable="true" type="tns:ApplyToFileGenericResults"
+                         maxOccurs="unbounded"/>
+            <xsd:element name="EventSubType" nillable="true" type="xsd:string"/>
+            <xsd:element name="EventValue" nillable="true" type="xsd:string"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="ApplyToFileGenericResults">
+        <xsd:sequence>
+            <xsd:element name="AppearanceId" nillable="true" type="xsd:string"/>
+            <xsd:element name="FileNumber" nillable="true" type="xsd:string"/>
+            <xsd:element name="CountId" nillable="true" type="xsd:string"/>
+            <xsd:element name="CountNumber" nillable="true" type="xsd:string"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:element name="processGenericResultResponse">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="status" nillable="true" type="xsd:string"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+
+    <xsd:element name="ProcessCivilAppearanceMethod">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="CivilAppearanceMethod" nillable="true" type="tns:CivilAppearanceMethod"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+
+    <xsd:complexType name="CivilAppearanceMethod">
+        <xsd:sequence>
+            <xsd:element name="CourtAgencyIdentifierCode" nillable="true" type="xsd:string"/>
+            <xsd:element name="CourtRoomCode" nillable="true" type="xsd:string"/>
+            <xsd:element name="CourtProceedingDate" nillable="true" type="xsd:string"/>
+            <xsd:element name="CreationTime" nillable="true" type="xsd:string"/>
+            <xsd:element name="EnterUserId" nillable="true" type="xsd:string"/>
+            <xsd:element name="EventTime" nillable="true" type="xsd:string"/>
+            <xsd:element name="EventTypeCode" nillable="true" type="xsd:string"/>
+            <xsd:element name="EventLogText" nillable="true" type="xsd:string"/>
+            <xsd:element name="SourceEventSeqNo" nillable="true" type="xsd:string"/>
+            <xsd:element name="SourcePackageId" nillable="true" type="xsd:string"/>
+            <xsd:element name="CivilAppearanceMethodDetail" nillable="true" type="tns:CivilAppearanceMethodDetailType"
+                         maxOccurs="unbounded"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="CivilAppearanceMethodDetailType">
+        <xsd:sequence>
+            <xsd:element name="ApplyToFile" nillable="true" type="tns:ApplyToFileCivilAppMethodType"
+                         maxOccurs="unbounded"/>
+            <xsd:element name="PartyAppearanceMethod" nillable="true" type="tns:CivilPartyAppearanceMethodType"
+                         maxOccurs="unbounded"/>
+            <xsd:element name="JuryTrialYN" nillable="true" type="xsd:string"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="ApplyToFileCivilAppMethodType">
+        <xsd:sequence>
+            <xsd:element name="AppearanceId" nillable="true" type="xsd:string"/>
+            <xsd:element name="FileNumber" nillable="true" type="xsd:string"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="CivilPartyAppearanceMethodType">
+        <xsd:sequence>
+            <xsd:element name="PartyName" nillable="true" type="xsd:string"/>
+            <xsd:element name="PartyRole" nillable="true" type="xsd:string"/>
+            <xsd:element name="PartyId" nillable="true" type="xsd:string"/>
+            <xsd:element name="PartyTypeCd" nillable="true" type="xsd:string"/>
+            <xsd:element name="PartyAppearanceMethod" nillable="true" type="xsd:string"/>
+            <xsd:element name="Counsel" nillable="true" type="tns:CounselType" maxOccurs="unbounded"/>
+            <xsd:element name="Representative" nillable="true" type="tns:RepresentativeType" maxOccurs="unbounded"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="CounselType">
+        <xsd:sequence>
+            <xsd:element name="CounselFullName" nillable="true" type="xsd:string"/>
+            <xsd:element name="PartyId" nillable="true" type="xsd:string"/>
+            <xsd:element name="AttendanceMethodCd" nillable="true" type="xsd:string"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="RepresentativeType">
+        <xsd:sequence>
+            <xsd:element name="RepresentativeFullName" nillable="true" type="xsd:string"/>
+            <xsd:element name="AttendanceMethodCd" nillable="true" type="xsd:string"/>
+            <xsd:element name="PartyId" nillable="true" type="xsd:string"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:element name="ProcessCivilAppearanceMethodResponse">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="status" nillable="true" type="xsd:string"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+
+    <xsd:element name="processOrder">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="order" nillable="true" type="tns:OrderType"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+
+    <xsd:complexType name="OrderType">
+        <xsd:sequence>
+            <xsd:element name="CourtAgencyIdentifierCode" nillable="true" type="xsd:string"/>
+            <xsd:element name="CourtRoomCode" nillable="true" type="xsd:string"/>
+            <xsd:element name="CourtProceedingDate" nillable="true" type="xsd:string"/>
+            <xsd:element name="CreationTime" nillable="true" type="xsd:string"/>
+            <xsd:element name="EnterUserId" nillable="true" type="xsd:string"/>
+            <xsd:element name="EventTime" nillable="true" type="xsd:string"/>
+            <xsd:element name="EventTypeCode" nillable="true" type="xsd:string"/>
+            <xsd:element name="EventLogText" nillable="true" type="xsd:string"/>
+            <xsd:element name="SourceEventSeqNo" nillable="true" type="xsd:string"/>
+            <xsd:element name="SourcePackageId" nillable="true" type="xsd:string"/>
+            <xsd:element name="OrderDetail" nillable="true" type="tns:OrderDetailType" maxOccurs="unbounded"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="OrderDetailType">
+        <xsd:sequence>
+            <xsd:element name="ApplyToFile" nillable="true" type="tns:ApplyToFileOrderType" maxOccurs="unbounded"/>
+            <xsd:element name="OrderEvent" nillable="true" type="tns:OrderEventType" maxOccurs="unbounded"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="ApplyToFileOrderType">
+        <xsd:sequence>
+            <xsd:element name="AppearanceId" nillable="true" type="xsd:string"/>
+            <xsd:element name="FileNumber" nillable="true" type="xsd:string"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="OrderEventType">
+        <xsd:sequence>
+            <xsd:element name="OrderDetailText" nillable="true" type="xsd:string"/>
+            <xsd:element name="DueDate" nillable="true" type="xsd:string"/>
+            <xsd:element name="DisclosureAuthorizedTo" nillable="true" type="xsd:string"/>
+            <xsd:element name="OrderUnderSection" nillable="true" type="xsd:string"/>
+            <xsd:element name="PurposeOfReport" nillable="true" type="xsd:string"/>
+            <xsd:element name="Custody" nillable="true" type="xsd:string"/>
+            <xsd:element name="OrderTypeCds" nillable="true" type="tns:OrderTypeCdType" maxOccurs="unbounded"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="OrderTypeCdType">
+        <xsd:sequence>
+            <xsd:element name="OrderTypeCd" nillable="true" type="xsd:string"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:element name="processOrderResponse">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="status" nillable="true" type="xsd:string"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+
+    <xsd:element name="processCivilOrderResult">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="civilOrderResult" nillable="true" type="tns:CivilOrderType"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+
+    <xsd:complexType name="CivilOrderType">
+        <xsd:sequence>
+            <xsd:element name="CourtAgencyIdentifierCode" nillable="true" type="xsd:string"/>
+            <xsd:element name="CourtRoomCode" nillable="true" type="xsd:string"/>
+            <xsd:element name="CourtProceedingDate" nillable="true" type="xsd:string"/>
+            <xsd:element name="CreationTime" nillable="true" type="xsd:string"/>
+            <xsd:element name="EnterUserId" nillable="true" type="xsd:string"/>
+            <xsd:element name="EventTime" nillable="true" type="xsd:string"/>
+            <xsd:element name="EventTypeCode" nillable="true" type="xsd:string"/>
+            <xsd:element name="EventLogText" nillable="true" type="xsd:string"/>
+            <xsd:element name="SourceEventSeqNo" nillable="true" type="xsd:string"/>
+            <xsd:element name="SourcePackageId" nillable="true" type="xsd:string"/>
+            <xsd:element name="CivilOrderDetail" nillable="true" type="tns:CivilOrderDetailType" maxOccurs="unbounded"/>
+            <xsd:element name="AdminOrderDetail" nillable="true" type="tns:AdminOrderDetailType" maxOccurs="unbounded"/>
+            <xsd:element name="JudgeComment" nillable="true" type="tns:JudgeCommentType2" maxOccurs="unbounded"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="CivilOrderDetailType">
+        <xsd:sequence>
+            <xsd:element name="OrderTypeCd" nillable="true" type="xsd:string"/>
+            <xsd:element name="AdjudicatorPartId" nillable="true" type="xsd:string"/>
+            <xsd:element name="EnteredDate" nillable="true" type="xsd:string"/>
+            <xsd:element name="ExpiryDate" nillable="true" type="xsd:string"/>
+            <xsd:element name="RegistryToDraftYN" nillable="true" type="xsd:string"/>
+            <xsd:element name="NoticeRequiredYN" nillable="true" type="xsd:string"/>
+            <xsd:element name="SignedOnBenchYN" nillable="true" type="xsd:string"/>
+            <xsd:element name="NoneRequiredYN" nillable="true" type="xsd:string"/>
+            <xsd:element name="FinalYN" nillable="true" type="xsd:string"/>
+            <xsd:element name="InterimYN" nillable="true" type="xsd:string"/>
+            <xsd:element name="ByConsentYN" nillable="true" type="xsd:string"/>
+            <xsd:element name="ExParteYN" nillable="true" type="xsd:string"/>
+            <xsd:element name="SealedYN" nillable="true" type="xsd:string"/>
+            <xsd:element name="BanYN" nillable="true" type="xsd:string"/>
+            <xsd:element name="FirearmYN" nillable="true" type="xsd:string"/>
+            <xsd:element name="VaryDocumentId" nillable="true" type="xsd:string"/>
+            <xsd:element name="CancelDocumentId" nillable="true" type="xsd:string"/>
+            <xsd:element name="ApplyToFile" nillable="true" type="tns:ApplyToFileCivilOrderType" maxOccurs="unbounded"/>
+            <xsd:element name="OrderTerm" nillable="true" type="tns:OrderTermType" maxOccurs="unbounded"/>
+            <xsd:element name="Party" nillable="true" type="tns:CivilOrderPartyType" maxOccurs="unbounded"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="ApplyToFileCivilOrderType">
+        <xsd:sequence>
+            <xsd:element name="AppearanceId" nillable="true" type="xsd:string"/>
+            <xsd:element name="FileNumber" nillable="true" type="xsd:string"/>
+            <xsd:element name="DocumentId" nillable="true" type="xsd:string"/>
+            <xsd:element name="FileSeqNo" nillable="true" type="xsd:string"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="OrderTermType">
+        <xsd:sequence>
+            <xsd:element name="OrderTermSeqNo" nillable="true" type="xsd:string"/>
+            <xsd:element name="OrderTermEventTime" nillable="true" type="xsd:string"/>
+            <xsd:element name="OrderTermText" nillable="true" type="xsd:string"/>
+            <xsd:element name="OrderTermLogNoteText" nillable="true" type="xsd:string"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="CivilOrderPartyType">
+        <xsd:sequence>
+            <xsd:element name="OrderRoleCd" nillable="true" type="xsd:string"/>
+            <xsd:element name="PartyFullName" nillable="true" type="xsd:string"/>
+            <xsd:element name="PartyId" nillable="true" type="xsd:string"/>
+            <xsd:element name="BirthDate" nillable="true" type="xsd:string"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="AdminOrderDetailType">
+        <xsd:sequence>
+            <xsd:element name="ApplyToFile" nillable="true" type="tns:ApplyToFileCivilOrderType" maxOccurs="unbounded"/>
+            <xsd:element name="OrderTerm" nillable="true" type="tns:OrderTermType" maxOccurs="unbounded"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="JudgeCommentType2">
+        <xsd:sequence>
+            <xsd:element name="AppearanceId" nillable="true" type="xsd:string"/>
+            <xsd:element name="JudgeCommentText" nillable="true" type="xsd:string"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:element name="processCivilOrderResultResponse">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="status" nillable="true" type="xsd:string"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+
+    <xsd:element name="processExhibit">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="exhibitRequest" nillable="true" type="tns:Exhibit"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+
+    <xsd:complexType name="Exhibit">
+        <xsd:sequence>
+            <xsd:element name="CourtAgencyIdentifierCode" nillable="true" type="xsd:string"/>
+            <xsd:element name="CourtRoomCode" nillable="true" type="xsd:string"/>
+            <xsd:element name="CourtProceedingDate" nillable="true" type="xsd:string"/>
+            <xsd:element name="CreationTime" nillable="true" type="xsd:string"/>
+            <xsd:element name="EventTime" nillable="true" type="xsd:string"/>
+            <xsd:element name="EnterUserId" nillable="true" type="xsd:string"/>
+            <xsd:element name="EventTypeCode" nillable="true" type="xsd:string"/>
+            <xsd:element name="EventLogText" nillable="true" type="xsd:string"/>
+            <xsd:element name="SourceEventSeqNo" nillable="true" type="xsd:string"/>
+            <xsd:element name="SourcePackageId" nillable="true" type="xsd:string"/>
+            <xsd:element name="ExhibitDetail" type="tns:ExhibitDetail" maxOccurs="unbounded"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="ExhibitDetail">
+        <xsd:sequence>
+            <xsd:element name="ApplyToFile" type="tns:ApplyToFile" maxOccurs="unbounded"/>
+            <xsd:element name="ExhibitType" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="ExhibitCardNo" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="ExhibitItem" type="tns:ExhibitItem" minOccurs="0" maxOccurs="unbounded"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="ApplyToFile">
+        <xsd:sequence>
+            <xsd:element name="AppearanceId" type="xsd:string"/>
+            <xsd:element name="FileNumber" type="xsd:string"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="ExhibitItem">
+        <xsd:sequence>
+            <xsd:element name="ExhibitNo" nillable="true" type="xsd:string"/>
+            <xsd:element name="SubmittedBy" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="ExhibitDescription" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="OwnedBy" type="xsd:string" minOccurs="0"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:element name="processExhibitResponse">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="XML_Message_ID" nillable="true" type="xsd:string"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+
+    <xsd:element name="processSpecialCourt">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="SpecialCourt" nillable="true" type="tns:SpecialCourt"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+
+    <xsd:complexType name="SpecialCourt">
+        <xsd:sequence>
+            <xsd:element name="CourtAgencyIdentifierCode" nillable="true" type="xsd:string"/>
+            <xsd:element name="CourtRoomCode" nillable="true" type="xsd:string"/>
+            <xsd:element name="CourtProceedingDate" nillable="true" type="xsd:string"/>
+            <xsd:element name="CreationTime" nillable="true" type="xsd:string"/>
+            <xsd:element name="EventTime" nillable="true" type="xsd:string"/>
+            <xsd:element name="EnterUserId" nillable="true" type="xsd:string"/>
+            <xsd:element name="EventTypeCode" nillable="true" type="xsd:string"/>
+            <xsd:element name="EventLogText" nillable="true" type="xsd:string"/>
+            <xsd:element name="SourceEventSeqNo" nillable="true" type="xsd:string"/>
+            <xsd:element name="SourcePackageId" nillable="true" type="xsd:string"/>
+            <xsd:element name="SpecialCourtDetail" nillable="true" type="tns:SpecialCourtDetail"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="SpecialCourtDetail">
+        <xsd:sequence>
+            <xsd:element name="ApplyToFile" type="tns:ApplyToFile2" maxOccurs="unbounded"/>
+            <xsd:element name="SpecialCourtCd" nillable="true" type="xsd:string" maxOccurs="unbounded"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="ApplyToFile2">
+        <xsd:sequence>
+            <xsd:element name="AppearanceId" type="xsd:string"/>
+            <xsd:element name="FileNumber" type="xsd:string"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:element name="processSpecialCourtResponse">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="status" nillable="true" type="xsd:string"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+
+</xsd:schema>

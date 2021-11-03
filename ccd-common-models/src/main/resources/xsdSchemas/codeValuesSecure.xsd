@@ -1,0 +1,45 @@
+<xsd:schema targetNamespace="http://reeks.bcgov/CCD.Source.CodeValues.ws.provider:CodeValuesSecure"
+            xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            xmlns:tns="http://reeks.bcgov/CCD.Source.CodeValues.ws.provider:CodeValuesSecure">
+
+
+    <xsd:element name="getCodeValuesSecure">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="RequestAgencyIdentifierId" nillable="true" type="xsd:string"/>
+                <xsd:element name="RequestPartId" nillable="true" type="xsd:string"/>
+                <xsd:element name="RequestDtm" nillable="true" type="xsd:dateTime"/>
+                <xsd:element name="ApplicationCd" nillable="true" type="xsd:string"/>
+                <xsd:element name="LastRetrievedDate" nillable="true" type="xsd:string"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+
+    <xsd:element name="getCodeValuesSecureResponse">
+        <xsd:complexType name="getCodeValuesSecureResponse">
+            <xsd:sequence>
+                <xsd:element name="ResultCd" nillable="true" type="xsd:string"/>
+                <xsd:element name="ResultMessage" nillable="true" type="xsd:string"/>
+                <xsd:element name="CeisCodeValues" nillable="true" type="tns:CodeValues"/>
+                <xsd:element name="JustinCodeValues" nillable="true" type="tns:CodeValues"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+
+    <xsd:complexType name="CodeValues">
+        <xsd:sequence>
+            <xsd:element name="CodeValue" nillable="true" type="tns:CodeValue" maxOccurs="unbounded"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="CodeValue">
+        <xsd:sequence>
+            <xsd:element name="codeType" nillable="true" type="xsd:string"/>
+            <xsd:element name="code" nillable="true" type="xsd:string"/>
+            <xsd:element name="shortDesc" nillable="true" type="xsd:string"/>
+            <xsd:element name="longDesc" nillable="true" type="xsd:string"/>
+            <xsd:element name="flex" nillable="true" type="xsd:string"/>
+        </xsd:sequence>
+    </xsd:complexType>
+</xsd:schema>
+

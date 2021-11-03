@@ -1,0 +1,8 @@
+security:
+  basic-auth:
+    password: ${BASIC_AUTH_PASS}
+    username: ${BASIC_AUTH_USER}
+ccd:
+  host: http://127.0.0.1/
+  namespace: ${CCD_NAMESPACE}
+
