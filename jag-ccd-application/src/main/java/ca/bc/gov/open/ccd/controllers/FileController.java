@@ -199,7 +199,7 @@ public class FileController {
                     objectMapper.writeValueAsString(
                             new OrdsErrorLog(
                                     "Error received from ORDS",
-                                    "getCivilFileContent",
+                                    "getCivilFileContentSecure",
                                     ex.getMessage(),
                                     null)));
             throw new ORDSException();
