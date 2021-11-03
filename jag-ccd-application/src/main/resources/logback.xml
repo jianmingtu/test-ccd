@@ -19,7 +19,7 @@
         <token>${SPLUNK_TOKEN}</token>
         <index>${SPLUNK_INDEX}</index>
         <source>ccd-application</source>
-        <sourcetype>cdds-logs</sourcetype>
+        <sourcetype>ccd-logs</sourcetype>
         <disableCertificateValidation>true</disableCertificateValidation>
         <batch_size_count>1</batch_size_count>
         <connectTimeout>5000</connectTimeout>
