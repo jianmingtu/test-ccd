@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" name="getUserLogin" targetNamespace="http://brooks/CCD.Source.GetUserLogin.WS:getUserLogin" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:soapjms="http://www.w3.org/2008/07/soap/bindings/JMS/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:tns="http://brooks/CCD.Source.GetUserLogin.WS:getUserLogin" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/">
+    <wsdl:types>
+        <xsd:schema targetNamespace="http://brooks/CCD.Source.GetUserLogin.WS:getUserLogin" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://brooks/CCD.Source.GetUserLogin.WS:getUserLogin">
+            <xsd:complexType name="GetUserLogin">
+                <xsd:sequence>
+                    <xsd:element name="Request" nillable="true" type="tns:GetUserLoginRequestType"/>
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:complexType name="GetUserLoginRequestType">
+                <xsd:sequence>
+                    <xsd:element name="DomainNm" nillable="true" type="xsd:string"/>
+                    <xsd:element name="DomainUserGuid" nillable="true" type="xsd:string"/>
+                    <xsd:element name="DomainUserId" nillable="true" type="xsd:string"/>
+                    <xsd:element name="LoginDtm" nillable="true" type="xsd:string"/>
+                    <xsd:element name="DeviceNm" nillable="true" type="xsd:string"/>
+                    <xsd:element name="IpAddressTxt" nillable="true" type="xsd:string"/>
+                    <xsd:element name="TemporaryAccessGuid" nillable="true" type="xsd:string"/>
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:complexType name="GetUserLoginResponse">
+                <xsd:sequence>
+                    <xsd:element name="Response" nillable="true" type="tns:GetUserLoginResponseType"/>
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:complexType name="GetUserLoginResponseType">
+                <xsd:sequence>
+                    <xsd:element name="ResponseCd" nillable="true" type="xsd:string"/>
+                    <xsd:element name="ResponseMessageTxt" nillable="true" type="xsd:string"/>
+                    <xsd:element name="UserPartId" nillable="true" type="xsd:string"/>
+                    <xsd:element name="UserDefaultAgencyCd" nillable="true" type="xsd:string"/>
+                    <xsd:element name="UserNm" nillable="true" type="xsd:string"/>
+                    <xsd:element name="LoginHistory" nillable="true" type="tns:LoginHistoryType" maxOccurs="unbounded"/>
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:complexType name="LoginHistoryType">
+                <xsd:sequence>
+                    <xsd:element name="LoginDtm" nillable="true" type="xsd:string"/>
+                    <xsd:element name="LoginDayOfWeek" nillable="true" type="xsd:string"/>
+                    <xsd:element name="DeviceNm" nillable="true" type="xsd:string"/>
+                    <xsd:element name="IpAddressTxt" nillable="true" type="xsd:string"/>
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:element name="GetUserLogin" type="tns:GetUserLogin"/>
+            <xsd:element name="GetUserLoginResponse" type="tns:GetUserLoginResponse"/>
+        </xsd:schema>
+    </wsdl:types>
+    <wsdl:message name="getUserLogin_PortType_GetUserLoginResponse">
+        <wsdl:part name="parameters" element="tns:GetUserLoginResponse">
+        </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="getUserLogin_PortType_GetUserLogin">
+        <wsdl:part name="parameters" element="tns:GetUserLogin">
+        </wsdl:part>
+    </wsdl:message>
+    <wsdl:portType name="getUserLogin_PortType">
+        <wsdl:operation name="GetUserLogin">
+            <wsdl:input message="tns:getUserLogin_PortType_GetUserLogin">
+            </wsdl:input>
+            <wsdl:output message="tns:getUserLogin_PortType_GetUserLoginResponse">
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:binding name="CCD_Source_GetUserLogin_WS_getUserLogin_Binder" type="tns:getUserLogin_PortType">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="GetUserLogin">
+            <soap:operation soapAction="CCD_Source_GetUserLogin_WS_getUserLogin_Binder_GetUserLogin" style="document"/>
+            <wsdl:input>
+                <soap:body parts="parameters" use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body parts="parameters" use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:service name="getUserLogin">
+        <wsdl:port name="CCD_Source_GetUserLogin_WS_getUserLogin_Port" binding="tns:CCD_Source_GetUserLogin_WS_getUserLogin_Binder">
+            <soap:address location="http://reeks.bcgov:5555/ws/CCD.Source.GetUserLogin.WS:getUserLogin/CCD_Source_GetUserLogin_WS_getUserLogin_Port"/>
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>

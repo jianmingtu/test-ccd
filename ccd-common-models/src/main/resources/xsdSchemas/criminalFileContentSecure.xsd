@@ -1,0 +1,185 @@
+<xsd:schema targetNamespace="http://reeks.bcgov/CCD.Source.CriminalFileContent.ws.provider:CriminalFileContentSecure"
+            xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            xmlns:tns="http://reeks.bcgov/CCD.Source.CriminalFileContent.ws.provider:CriminalFileContentSecure">
+
+    <xsd:element name="getCriminalFileContentSecure">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="RequestAgencyIdentifierId" nillable="true" type="xsd:string"/>
+                <xsd:element name="RequestPartId" nillable="true" type="xsd:string"/>
+                <xsd:element name="RequestDtm" nillable="true" type="xsd:dateTime"/>
+                <xsd:element name="ApplicationCd" nillable="true" type="xsd:string"/>
+                <xsd:element name="agency_identifier_cd" nillable="true" type="xsd:string"/>
+                <xsd:element name="room_cd" nillable="true" type="xsd:string"/>
+                <xsd:element name="proceeding_date" nillable="true" type="xsd:string"/>
+                <xsd:element name="appearanceID" nillable="true" type="xsd:string"/>
+                <xsd:element name="MdocJustinNo" nillable="true" type="xsd:string"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+
+    <xsd:element name="getCriminalFileContentSecureResponse">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="ResultCd" nillable="true" type="xsd:string"/>
+                <xsd:element name="ResultMessage" nillable="true" type="xsd:string"/>
+                <xsd:element name="fileContent" nillable="true" type="tns:FileContentDoc"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+
+    <xsd:complexType name="FileContentDoc">
+        <xsd:sequence>
+            <xsd:element name="CourtLocaCd" form="qualified" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="CourtRoomCd" form="qualified" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="CourtProceedingDate" form="qualified" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="AppearanceId" form="qualified" type="xsd:string" maxOccurs="unbounded"/>
+            <xsd:element name="MdocJustinNo" nillable="true" type="xsd:string"/>
+            <xsd:element name="AccusedFile" type="tns:AccusedFileType" minOccurs="0" maxOccurs="unbounded"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="AccusedFileType">
+        <xsd:sequence>
+            <xsd:element name="FileNumber" form="qualified" type="xsd:string"/>
+            <xsd:element name="FileLocaAgencyIdentifierCd" form="qualified" type="xsd:string"/>
+            <xsd:element name="MdocJustinNo" form="qualified" type="xsd:string"/>
+            <xsd:element name="MDocInfoSeqNo" form="qualified" type="xsd:string"/>
+            <xsd:element name="PhysTicketSeriesTxt" form="qualified" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="PhyFileFolderNo" form="qualified" type="xsd:string"/>
+            <xsd:element name="CourtClassCd" form="qualified" type="xsd:string"/>
+            <xsd:element name="CourtLevelCd" form="qualified" type="xsd:string"/>
+            <xsd:element name="PartId" form="qualified" type="xsd:string"/>
+            <xsd:element name="ProfSeqNo" form="qualified" type="xsd:string"/>
+            <xsd:element name="SealTypeCd" nillable="true" type="xsd:string"/>
+            <xsd:element name="FiledDate" nillable="true" type="xsd:string"/>
+            <xsd:element name="ArrestWarrant" nillable="true" type="tns:ArrestWarrantType" maxOccurs="unbounded"/>
+            <xsd:element name="Ban" nillable="true" type="tns:BanTypes" maxOccurs="unbounded"/>
+            <xsd:element name="ProtectionOrder" nillable="true" type="tns:ProtectionOrderType" maxOccurs="unbounded"/>
+            <xsd:element name="CFCOrder" nillable="true" type="tns:CFCOrderType" maxOccurs="unbounded"/>
+            <xsd:element name="HearingRestriction" nillable="true" type="tns:HearingRestrictionType"
+                         maxOccurs="unbounded"/>
+            <xsd:element name="Document" nillable="true" type="tns:DocumentType" maxOccurs="unbounded"/>
+            <xsd:element name="Appearance" nillable="true" type="tns:AppearanceTypes" maxOccurs="unbounded"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="ArrestWarrantType">
+        <xsd:sequence>
+            <xsd:element name="FileNumberText" form="qualified" type="xsd:string"/>
+            <xsd:element name="WarrantDate" form="qualified" type="xsd:string"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="BanTypes">
+        <xsd:sequence>
+            <xsd:element name="BanTypeCd" form="qualified" type="xsd:string"/>
+            <xsd:element name="BanTypeDescription" form="qualified" type="xsd:string"/>
+            <xsd:element name="BanTypeAct" form="qualified" type="xsd:string"/>
+            <xsd:element name="BanTypeSection" form="qualified" type="xsd:string"/>
+            <xsd:element name="BanTypeSubSection" form="qualified" type="xsd:string"/>
+            <xsd:element name="BanStatuteId" form="qualified" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="BanCommentText" form="qualified" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="BanOrderedDate" form="qualified" type="xsd:string"/>
+            <xsd:element name="BanSeqNo" form="qualified" type="xsd:string"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="ProtectionOrderType">
+        <xsd:sequence>
+            <xsd:element name="POROrderIssueDate" form="qualified" type="xsd:string"/>
+            <xsd:element name="OrderTypeDsc" form="qualified" type="xsd:string"/>
+            <xsd:element name="PORConditionText" form="qualified" type="xsd:string" minOccurs="0"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="CFCOrderType">
+        <xsd:sequence>
+            <xsd:element name="CFCOrderIssueDate" form="qualified" type="xsd:string"/>
+            <xsd:element name="OrderTypeDsc" form="qualified" type="xsd:string"/>
+            <xsd:element name="CFCConditionText" form="qualified" type="xsd:string" minOccurs="0"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="HearingRestrictionType">
+        <xsd:sequence>
+            <xsd:element name="HearingRestrictiontype" form="qualified" type="xsd:string"/>
+            <xsd:element name="JudgeName" form="qualified" type="xsd:string"/>
+            <xsd:element name="HearingRestrictionDate" form="qualified" type="xsd:string"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="DocumentType">
+        <xsd:sequence>
+            <xsd:element name="DocmClassification" form="qualified" type="xsd:string"/>
+            <xsd:element name="DocmId" form="qualified" type="xsd:string"/>
+            <xsd:element name="IssueDate" form="qualified" type="xsd:string"/>
+            <xsd:element name="DocmFormId" form="qualified" type="xsd:string"/>
+            <xsd:element name="DocmFormDsc" form="qualified" type="xsd:string"/>
+            <xsd:element name="DocmDispositionDsc" form="qualified" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="DocmDispositionDate" form="qualified" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="ImageId" form="qualified" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="DocumentPageCount" nillable="true" type="xsd:string"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="AppearanceTypes">
+        <xsd:sequence>
+            <xsd:element name="AppearanceId" form="qualified" type="xsd:string"/>
+            <xsd:element name="AppearanceDate" form="qualified" type="xsd:string"/>
+            <xsd:element name="CourtAgencyIdentifier" form="qualified" type="xsd:string"/>
+            <xsd:element name="CourtRoom" form="qualified" type="xsd:string"/>
+            <xsd:element name="AppearanceNote" form="qualified" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="EstimatedTimeHour" form="qualified" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="EstimatedTimeMin" form="qualified" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="ConfirmStatusDsc" form="qualified" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="JudgesRecommendation" nillable="true" type="xsd:string"/>
+            <xsd:element name="AppearanceCount" nillable="true" type="tns:AppearanceCountTypes" maxOccurs="unbounded"/>
+            <xsd:element name="PartyAppearanceMethod" nillable="true" type="tns:PartyAppearanceMethodType"
+                         maxOccurs="unbounded"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="AppearanceCountTypes">
+        <xsd:sequence>
+            <xsd:element name="AppcId" form="qualified" type="xsd:string"/>
+            <xsd:element name="CountNumber" form="qualified" type="xsd:string"/>
+            <xsd:element name="AppearanceReason" form="qualified" type="xsd:string"/>
+            <xsd:element name="AppearanceResult" form="qualified" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="Finding" nillable="true" type="xsd:string"/>
+            <xsd:element name="SectionTxt" nillable="true" type="xsd:string"/>
+            <xsd:element name="SectionDscTxt" nillable="true" type="xsd:string"/>
+            <xsd:element name="Sentence" nillable="true" type="tns:SentenceType" maxOccurs="unbounded"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="SentenceType">
+        <xsd:sequence>
+            <xsd:element name="SntpCd" nillable="true" type="xsd:string"/>
+            <xsd:element name="SentTermPeriodQty" nillable="true" type="xsd:string"/>
+            <xsd:element name="SentTermCd" nillable="true" type="xsd:string"/>
+            <xsd:element name="SentSubtermPeriodQty" nillable="true" type="xsd:string"/>
+            <xsd:element name="SentSubtermCd" nillable="true" type="xsd:string"/>
+            <xsd:element name="SentTertiaryTermPeriodQty" nillable="true" type="xsd:string"/>
+            <xsd:element name="SentTertiaryTermCd" nillable="true" type="xsd:string"/>
+            <xsd:element name="SentIntermittentYn" nillable="true" type="xsd:string"/>
+            <xsd:element name="SentMonetaryAmt" nillable="true" type="xsd:string"/>
+            <xsd:element name="SentDueTtpDt" nillable="true" type="xsd:string"/>
+            <xsd:element name="SentEffectiveDt" nillable="true" type="xsd:string"/>
+            <xsd:element name="SentDetailTxt" nillable="true" type="xsd:string"/>
+            <xsd:element name="SentYcjaAdultYouthCd" nillable="true" type="xsd:string"/>
+            <xsd:element name="SentCustodySecureYn" nillable="true" type="xsd:string"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="PartyAppearanceMethodType">
+        <xsd:sequence>
+            <xsd:element name="PartyName" nillable="true" form="qualified" type="xsd:string"/>
+            <xsd:element name="PartyRole" nillable="true" form="qualified" type="xsd:string"/>
+            <xsd:element name="PartId" nillable="true" form="qualified" type="xsd:string"/>
+            <xsd:element name="PartyAppearanceMethod" nillable="true" form="qualified" type="xsd:string"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+</xsd:schema>
+

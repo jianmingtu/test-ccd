@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" name="ccdUserMapping" targetNamespace="http://courts.ag.gov.bc.ca/CCD.Source.CCDUserMapping.ws:ccdUserMapping" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:soapjms="http://www.w3.org/2008/07/soap/bindings/JMS/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:tns="http://courts.ag.gov.bc.ca/CCD.Source.CCDUserMapping.ws:ccdUserMapping" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/">
+    <wsdl:types>
+        <xsd:schema targetNamespace="http://courts.ag.gov.bc.ca/CCD.Source.CCDUserMapping.ws:ccdUserMapping" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://courts.ag.gov.bc.ca/CCD.Source.CCDUserMapping.ws:ccdUserMapping">
+            <xsd:complexType name="getParticipantInfo">
+                <xsd:sequence>
+                    <xsd:element name="guid" nillable="true" type="xsd:string"/>
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:complexType name="getParticipantInfoResponse">
+                <xsd:sequence>
+                    <xsd:element name="partId" nillable="true" type="xsd:string"/>
+                    <xsd:element name="partyName" nillable="true" type="xsd:string"/>
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:complexType name="mapGuidToParticipant">
+                <xsd:sequence>
+                    <xsd:element name="guid" nillable="true" type="xsd:string"/>
+                    <xsd:element name="partId" nillable="true" type="xsd:string"/>
+                    <xsd:element name="idirId" nillable="true" type="xsd:string"/>
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:complexType name="mapGuidToParticipantResponse">
+                <xsd:sequence>
+                    <xsd:element name="success" nillable="true" type="xsd:string"/>
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:element name="mapGuidToParticipant" type="tns:mapGuidToParticipant"/>
+            <xsd:element name="mapGuidToParticipantResponse" type="tns:mapGuidToParticipantResponse"/>
+            <xsd:element name="getParticipantInfo" type="tns:getParticipantInfo"/>
+            <xsd:element name="getParticipantInfoResponse" type="tns:getParticipantInfoResponse"/>
+        </xsd:schema>
+    </wsdl:types>
+    <wsdl:message name="ccdUserMapping_PortType_getParticipantInfo">
+        <wsdl:part name="parameters" element="tns:getParticipantInfo">
+        </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="ccdUserMapping_PortType_mapGuidToParticipantResponse">
+        <wsdl:part name="parameters" element="tns:mapGuidToParticipantResponse">
+        </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="ccdUserMapping_PortType_mapGuidToParticipant">
+        <wsdl:part name="parameters" element="tns:mapGuidToParticipant">
+        </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="ccdUserMapping_PortType_getParticipantInfoResponse">
+        <wsdl:part name="parameters" element="tns:getParticipantInfoResponse">
+        </wsdl:part>
+    </wsdl:message>
+    <wsdl:portType name="ccdUserMapping_PortType">
+        <wsdl:operation name="mapGuidToParticipant">
+            <wsdl:input message="tns:ccdUserMapping_PortType_mapGuidToParticipant">
+            </wsdl:input>
+            <wsdl:output message="tns:ccdUserMapping_PortType_mapGuidToParticipantResponse">
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="getParticipantInfo">
+            <wsdl:input message="tns:ccdUserMapping_PortType_getParticipantInfo">
+            </wsdl:input>
+            <wsdl:output message="tns:ccdUserMapping_PortType_getParticipantInfoResponse">
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:binding name="CCD_Source_CCDUserMapping_ws_ccdUserMapping_Binder" type="tns:ccdUserMapping_PortType">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="mapGuidToParticipant">
+            <soap:operation soapAction="CCD_Source_CCDUserMapping_ws_ccdUserMapping_Binder_mapGuidToParticipant" style="document"/>
+            <wsdl:input>
+                <soap:body parts="parameters" use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body parts="parameters" use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="getParticipantInfo">
+            <soap:operation soapAction="CCD_Source_CCDUserMapping_ws_ccdUserMapping_Binder_getParticipantInfo" style="document"/>
+            <wsdl:input>
+                <soap:body parts="parameters" use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body parts="parameters" use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:service name="ccdUserMapping">
+        <wsdl:port name="CCD_Source_CCDUserMapping_ws_ccdUserMapping_Port" binding="tns:CCD_Source_CCDUserMapping_ws_ccdUserMapping_Binder">
+            <soap:address location="http://reeks.bcgov:5555/ws/CCD.Source.CCDUserMapping.ws:ccdUserMapping/CCD_Source_CCDUserMapping_ws_ccdUserMapping_Port"/>
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>

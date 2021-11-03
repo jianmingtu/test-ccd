@@ -1,0 +1,38 @@
+<xsd:schema targetNamespace="http://brooks.ag.gov.bc.ca/CCD.Source.GetROPReport.ws:GetROPReport"
+            xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            xmlns:tns="http://brooks.ag.gov.bc.ca/CCD.Source.GetROPReport.ws:GetROPReport">
+
+    <xsd:element name="getROPReport">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="ROPRequest" nillable="true" type="tns:Rop"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+
+    <xsd:complexType name="Rop">
+        <xsd:sequence>
+            <xsd:element name="Param1" nillable="true" type="xsd:string"/>
+            <xsd:element name="Param2" nillable="true" type="xsd:string"/>
+            <xsd:element name="FormCd" nillable="true" type="xsd:string"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:element name="getROPReportResponse">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="ROPResponse" nillable="true" type="tns:RopResult"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+
+    <xsd:complexType name="RopResult">
+        <xsd:sequence>
+            <xsd:element name="B64Content" nillable="true" type="xsd:string"/>
+            <xsd:element name="ResultCd" nillable="true" type="xsd:string"/>
+            <xsd:element name="ResultMessage" nillable="true" type="xsd:string"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+</xsd:schema>
+
