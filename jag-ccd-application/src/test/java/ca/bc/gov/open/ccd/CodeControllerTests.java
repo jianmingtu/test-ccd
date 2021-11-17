@@ -32,13 +32,12 @@ public class CodeControllerTests {
 
     @Autowired private ObjectMapper objectMapper;
 
-    private CodeController codeController;
 
     @Mock private RestTemplate restTemplate = new RestTemplate();
 
     @Test
     public void getCodeValuesTest() throws JsonProcessingException {
-        codeController = new CodeController(restTemplate, objectMapper);
+
         var req = new GetCodeValues();
         req.setLastRetrievedDate("A");
 
@@ -65,6 +64,7 @@ public class CodeControllerTests {
                         Mockito.<Class<GetCodeValuesResponse>>any()))
                 .thenReturn(responseEntity);
 
+        CodeController codeController = new CodeController(restTemplate, objectMapper);
         var resp = codeController.getCodeValues(req);
 
         Assertions.assertNotNull(resp);
