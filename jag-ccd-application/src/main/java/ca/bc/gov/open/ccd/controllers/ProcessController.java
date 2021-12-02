@@ -56,13 +56,14 @@ public class ProcessController {
 
             return resp.getBody();
         } catch (Exception ex) {
+            inner.setEnterUserId("");
             log.error(
                     objectMapper.writeValueAsString(
                             new OrdsErrorLog(
                                     "Error received from ORDS",
                                     "processVariation",
                                     ex.getMessage(),
-                                    null)));
+                                    inner)));
             throw new ORDSException();
         }
     }
@@ -94,7 +95,7 @@ public class ProcessController {
                                     "Error received from ORDS",
                                     "processSpeaker",
                                     ex.getMessage(),
-                                    null)));
+                                    inner)));
             throw new ORDSException();
         }
     }
@@ -121,13 +122,14 @@ public class ProcessController {
 
             return resp.getBody();
         } catch (Exception ex) {
+            inner.setEnterUserId("");
             log.error(
                     objectMapper.writeValueAsString(
                             new OrdsErrorLog(
                                     "Error received from ORDS",
                                     "processCivilResults",
                                     ex.getMessage(),
-                                    null)));
+                                    inner)));
             throw new ORDSException();
         }
     }
@@ -156,13 +158,14 @@ public class ProcessController {
 
             return resp.getBody();
         } catch (Exception ex) {
+            inner.setEnterUserId("");
             log.error(
                     objectMapper.writeValueAsString(
                             new OrdsErrorLog(
                                     "Error received from ORDS",
                                     "processAppearanceMethod",
                                     ex.getMessage(),
-                                    null)));
+                                    inner)));
             throw new ORDSException();
         }
     }
@@ -188,13 +191,14 @@ public class ProcessController {
 
             return resp.getBody();
         } catch (Exception ex) {
+            inner.setEnterUserId("");
             log.error(
                     objectMapper.writeValueAsString(
                             new OrdsErrorLog(
                                     "Error received from ORDS",
                                     "processPlea",
                                     ex.getMessage(),
-                                    null)));
+                                    inner)));
             throw new ORDSException();
         }
     }
@@ -220,13 +224,14 @@ public class ProcessController {
 
             return resp.getBody();
         } catch (Exception ex) {
+            inner.setEnterUserId("");
             log.error(
                     objectMapper.writeValueAsString(
                             new OrdsErrorLog(
                                     "Error received from ORDS",
                                     "processElection",
                                     ex.getMessage(),
-                                    null)));
+                                    inner)));
             throw new ORDSException();
         }
     }
@@ -252,13 +257,14 @@ public class ProcessController {
 
             return resp.getBody();
         } catch (Exception ex) {
+            inner.setEnterUserId("");
             log.error(
                     objectMapper.writeValueAsString(
                             new OrdsErrorLog(
                                     "Error received from ORDS",
                                     "processBail",
                                     ex.getMessage(),
-                                    null)));
+                                    inner)));
             throw new ORDSException();
         }
     }
@@ -287,13 +293,14 @@ public class ProcessController {
 
             return resp.getBody();
         } catch (Exception ex) {
+            inner.setEnterUserId("");
             log.error(
                     objectMapper.writeValueAsString(
                             new OrdsErrorLog(
                                     "Error received from ORDS",
                                     "processCriminalResult",
                                     ex.getMessage(),
-                                    null)));
+                                    inner)));
             throw new ORDSException();
         }
     }
@@ -319,13 +326,14 @@ public class ProcessController {
 
             return resp.getBody();
         } catch (Exception ex) {
+            inner.setEnterUserId("");
             log.error(
                     objectMapper.writeValueAsString(
                             new OrdsErrorLog(
                                     "Error received from ORDS",
                                     "processAgeNotice",
                                     ex.getMessage(),
-                                    null)));
+                                    inner)));
             throw new ORDSException();
         }
     }
@@ -351,13 +359,14 @@ public class ProcessController {
 
             return resp.getBody();
         } catch (Exception ex) {
+            inner.setEnterUserId("");
             log.error(
                     objectMapper.writeValueAsString(
                             new OrdsErrorLog(
                                     "Error received from ORDS",
                                     "processMatterCall",
                                     ex.getMessage(),
-                                    null)));
+                                    inner)));
             throw new ORDSException();
         }
     }
@@ -383,13 +392,14 @@ public class ProcessController {
 
             return resp.getBody();
         } catch (Exception ex) {
+            inner.setEnterUserId("");
             log.error(
                     objectMapper.writeValueAsString(
                             new OrdsErrorLog(
                                     "Error received from ORDS",
                                     "processSentence",
                                     ex.getMessage(),
-                                    null)));
+                                    inner)));
             throw new ORDSException();
         }
     }
@@ -415,13 +425,14 @@ public class ProcessController {
 
             return resp.getBody();
         } catch (Exception ex) {
+            inner.setEnterUserId("");
             log.error(
                     objectMapper.writeValueAsString(
                             new OrdsErrorLog(
                                     "Error received from ORDS",
                                     "processBan",
                                     ex.getMessage(),
-                                    null)));
+                                    inner)));
             throw new ORDSException();
         }
     }
@@ -447,13 +458,14 @@ public class ProcessController {
 
             return resp.getBody();
         } catch (Exception ex) {
+            inner.setEnterUserId("");
             log.error(
                     objectMapper.writeValueAsString(
                             new OrdsErrorLog(
                                     "Error received from ORDS",
                                     "processNote",
                                     ex.getMessage(),
-                                    null)));
+                                    inner)));
             throw new ORDSException();
         }
     }
@@ -479,13 +491,14 @@ public class ProcessController {
 
             return resp.getBody();
         } catch (Exception ex) {
+            inner.setEnterUserId("");
             log.error(
                     objectMapper.writeValueAsString(
                             new OrdsErrorLog(
                                     "Error received from ORDS",
                                     "processArraignment",
                                     ex.getMessage(),
-                                    null)));
+                                    inner)));
             throw new ORDSException();
         }
     }
@@ -511,13 +524,14 @@ public class ProcessController {
 
             return resp.getBody();
         } catch (Exception ex) {
+            inner.setEnterUserId("");
             log.error(
                     objectMapper.writeValueAsString(
                             new OrdsErrorLog(
                                     "Error received from ORDS",
                                     "processMove",
                                     ex.getMessage(),
-                                    null)));
+                                    inner)));
             throw new ORDSException();
         }
     }
@@ -543,13 +557,14 @@ public class ProcessController {
 
             return resp.getBody();
         } catch (Exception ex) {
+            inner.setEnterUserId("");
             log.error(
                     objectMapper.writeValueAsString(
                             new OrdsErrorLog(
                                     "Error received from ORDS",
                                     "processFinding",
                                     ex.getMessage(),
-                                    null)));
+                                    inner)));
             throw new ORDSException();
         }
     }
@@ -578,13 +593,14 @@ public class ProcessController {
 
             return resp.getBody();
         } catch (Exception ex) {
+            inner.setEnterUserId("");
             log.error(
                     objectMapper.writeValueAsString(
                             new OrdsErrorLog(
                                     "Error received from ORDS",
                                     "processGenericResult",
                                     ex.getMessage(),
-                                    null)));
+                                    inner)));
             throw new ORDSException();
         }
     }
@@ -613,13 +629,14 @@ public class ProcessController {
 
             return resp.getBody();
         } catch (Exception ex) {
+            inner.setEnterUserId("");
             log.error(
                     objectMapper.writeValueAsString(
                             new OrdsErrorLog(
                                     "Error received from ORDS",
                                     "ProcessCivilAppearanceMethod",
                                     ex.getMessage(),
-                                    null)));
+                                    inner)));
             throw new ORDSException();
         }
     }
@@ -645,13 +662,14 @@ public class ProcessController {
 
             return resp.getBody();
         } catch (Exception ex) {
+            inner.setEnterUserId("");
             log.error(
                     objectMapper.writeValueAsString(
                             new OrdsErrorLog(
                                     "Error received from ORDS",
                                     "processOrder",
                                     ex.getMessage(),
-                                    null)));
+                                    inner)));
             throw new ORDSException();
         }
     }
@@ -680,13 +698,14 @@ public class ProcessController {
 
             return resp.getBody();
         } catch (Exception ex) {
+            inner.setEnterUserId("");
             log.error(
                     objectMapper.writeValueAsString(
                             new OrdsErrorLog(
                                     "Error received from ORDS",
                                     "processCivilOrderResult",
                                     ex.getMessage(),
-                                    null)));
+                                    inner)));
             throw new ORDSException();
         }
     }
@@ -713,13 +732,14 @@ public class ProcessController {
 
             return resp.getBody();
         } catch (Exception ex) {
+            inner.setEnterUserId("");
             log.error(
                     objectMapper.writeValueAsString(
                             new OrdsErrorLog(
                                     "Error received from ORDS",
                                     "processExhibit",
                                     ex.getMessage(),
-                                    null)));
+                                    inner)));
             throw new ORDSException();
         }
     }
@@ -746,13 +766,14 @@ public class ProcessController {
 
             return resp.getBody();
         } catch (Exception ex) {
+            inner.setEnterUserId("");
             log.error(
                     objectMapper.writeValueAsString(
                             new OrdsErrorLog(
                                     "Error received from ORDS",
                                     "processSpecialCourt",
                                     ex.getMessage(),
-                                    null)));
+                                    inner)));
             throw new ORDSException();
         }
     }
