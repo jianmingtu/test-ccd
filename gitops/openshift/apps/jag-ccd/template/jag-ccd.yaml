@@ -25,7 +25,8 @@ parameters:
 - name: OC_NAMESPACE
   description: The OpenShift namespace prefix
   required: false
-  value: 970a9e
+  # change the OC_Namespace value as per the cluster being used.
+  value: 52e74e
   
 - name: OC_ENV
   description: The OpenShift environment, ie dev, test or prod
@@ -44,8 +45,8 @@ parameters:
 - name: DNS
   description: The application name that each component is part of
   required: false
-  # Below value must be changed as per gold cluster certificate/DNS
-  value: apps.gold.devops.gov.bc.ca
+  # Below value must be changed as per the DNS of openshift cluster used.
+  value: apps.silver.devops.gov.bc.ca
   
 objects:
 
