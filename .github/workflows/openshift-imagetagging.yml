@@ -6,7 +6,7 @@ on:
     workflow_dispatch:
         inputs:
             app:
-                description: 'App Name (jag-ccd)'    
+                description: 'App Name (jag-ccd/jag-ccd-tests)'   
                 required: true
                 default: 'jag-ccd'
             imageSourceEnv:
