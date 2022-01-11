@@ -1,13 +1,7 @@
 package ca.bc.gov.open.ccd.controllers;
 
-import brooks.ccd_source_getuserlogin_ws.getuserlogin.GetUserLogin;
-import brooks.ccd_source_getuserlogin_ws.getuserlogin.GetUserLoginRequestType;
-import brooks.ccd_source_getuserlogin_ws.getuserlogin.GetUserLoginResponse;
-import brooks.ccd_source_getuserlogin_ws.getuserlogin.GetUserLoginResponseType;
-import ca.bc.gov.ag.courts.ccd_source_ccdusermapping_ws.ccdusermapping.GetParticipantInfo;
-import ca.bc.gov.ag.courts.ccd_source_ccdusermapping_ws.ccdusermapping.GetParticipantInfoResponse;
-import ca.bc.gov.ag.courts.ccd_source_ccdusermapping_ws.ccdusermapping.MapGuidToParticipant;
-import ca.bc.gov.ag.courts.ccd_source_ccdusermapping_ws.ccdusermapping.MapGuidToParticipantResponse;
+import ca.bc.gov.open.ccd.common.user.login.*;
+import ca.bc.gov.open.ccd.common.user.mapping.*;
 import ca.bc.gov.open.ccd.configuration.SoapConfig;
 import ca.bc.gov.open.ccd.exceptions.ORDSException;
 import ca.bc.gov.open.ccd.models.OrdsErrorLog;

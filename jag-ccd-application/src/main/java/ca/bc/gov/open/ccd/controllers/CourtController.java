@@ -1,11 +1,9 @@
 package ca.bc.gov.open.ccd.controllers;
 
 import ca.bc.gov.open.ccd.configuration.SoapConfig;
+import ca.bc.gov.open.ccd.court.one.*;
 import ca.bc.gov.open.ccd.court.one.CourtListTypes;
-import ca.bc.gov.open.ccd.court.one.GetCrtList;
-import ca.bc.gov.open.ccd.court.one.GetCrtListResponse;
-import ca.bc.gov.open.ccd.court.secure.one.GetCrtListSecure;
-import ca.bc.gov.open.ccd.court.secure.one.GetCrtListSecureResponse;
+import ca.bc.gov.open.ccd.court.secure.one.*;
 import ca.bc.gov.open.ccd.exceptions.ORDSException;
 import ca.bc.gov.open.ccd.models.OrdsErrorLog;
 import ca.bc.gov.open.ccd.models.serializers.InstantSerializer;
@@ -48,9 +46,6 @@ public class CourtController {
                 UriComponentsBuilder.fromHttpUrl(host + "appearance")
                         .queryParam("agencyIdentifierCd", getCrtList.getAgencyIdentifierCd())
                         .queryParam("roomCd", getCrtList.getRoomCd())
-
-                        //                    TODO This might be a date but not sure confirm with
-                        // ords
                         .queryParam("proceedingDate", getCrtList.getProceedingDate())
                         .queryParam("divisionCd", getCrtList.getDivisionCd())
                         .queryParam("fileNumber", getCrtList.getFileNumber());
@@ -86,9 +81,6 @@ public class CourtController {
                 UriComponentsBuilder.fromHttpUrl(host + "appearance")
                         .queryParam("agencyIdentifierCd", getCrtList.getAgencyIdentifierCd())
                         .queryParam("roomCd", getCrtList.getRoomCd())
-
-                        //                    TODO This might be a date but not sure confirm with
-                        // ords
                         .queryParam("proceedingDate", getCrtList.getProceedingDate())
                         .queryParam("divisionCd", getCrtList.getDivisionCd())
                         .queryParam("fileNumber", getCrtList.getFileNumber())

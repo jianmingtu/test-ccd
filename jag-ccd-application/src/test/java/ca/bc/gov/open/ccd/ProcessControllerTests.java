@@ -2,7 +2,7 @@ package ca.bc.gov.open.ccd;
 
 import static org.mockito.Mockito.when;
 
-import ca.bc.gov.ag.court.ccd_source_processresults_ws_provider.processresults.*;
+import ca.bc.gov.open.ccd.common.process.results.*;
 import ca.bc.gov.open.ccd.controllers.ProcessController;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -63,7 +63,7 @@ public class ProcessControllerTests {
         ResponseEntity<ProcessVariationResponse> responseEntity =
                 new ResponseEntity<>(out, HttpStatus.OK);
 
-        //     Set up to mock ords response
+        // Set up to mock ords response
         when(restTemplate.exchange(
                         Mockito.any(String.class),
                         Mockito.eq(HttpMethod.POST),
@@ -113,7 +113,7 @@ public class ProcessControllerTests {
         ResponseEntity<ProcessSpeakerResponse> responseEntity =
                 new ResponseEntity<>(out, HttpStatus.OK);
 
-        //     Set up to mock ords response
+        // Set up to mock ords response
         when(restTemplate.exchange(
                         Mockito.any(String.class),
                         Mockito.eq(HttpMethod.POST),
@@ -235,7 +235,7 @@ public class ProcessControllerTests {
         ResponseEntity<ProcessCivilResultsResponse> responseEntity =
                 new ResponseEntity<>(out, HttpStatus.OK);
 
-        //     Set up to mock ords response
+        // Set up to mock ords response
         when(restTemplate.exchange(
                         Mockito.any(String.class),
                         Mockito.eq(HttpMethod.POST),
@@ -293,7 +293,7 @@ public class ProcessControllerTests {
         ResponseEntity<ProcessAppearanceMethodResponse> responseEntity =
                 new ResponseEntity<>(out, HttpStatus.OK);
 
-        //     Set up to mock ords response
+        // Set up to mock ords response
         when(restTemplate.exchange(
                         Mockito.any(String.class),
                         Mockito.eq(HttpMethod.POST),
@@ -344,7 +344,7 @@ public class ProcessControllerTests {
         ResponseEntity<ProcessPleaResponse> responseEntity =
                 new ResponseEntity<>(out, HttpStatus.OK);
 
-        //     Set up to mock ords response
+        // Set up to mock ords response
         when(restTemplate.exchange(
                         Mockito.any(String.class),
                         Mockito.eq(HttpMethod.POST),
@@ -390,7 +390,7 @@ public class ProcessControllerTests {
         ResponseEntity<ProcessElectionResponse> responseEntity =
                 new ResponseEntity<>(out, HttpStatus.OK);
 
-        //     Set up to mock ords response
+        // Set up to mock ords response
         when(restTemplate.exchange(
                         Mockito.any(String.class),
                         Mockito.eq(HttpMethod.POST),
@@ -452,7 +452,7 @@ public class ProcessControllerTests {
         ResponseEntity<ProcessBailResponse> responseEntity =
                 new ResponseEntity<>(out, HttpStatus.OK);
 
-        //     Set up to mock ords response
+        // Set up to mock ords response
         when(restTemplate.exchange(
                         Mockito.any(String.class),
                         Mockito.eq(HttpMethod.POST),
@@ -533,7 +533,7 @@ public class ProcessControllerTests {
         ResponseEntity<ProcessCriminalResultResponse> responseEntity =
                 new ResponseEntity<>(out, HttpStatus.OK);
 
-        //     Set up to mock ords response
+        // Set up to mock ords response
         when(restTemplate.exchange(
                         Mockito.any(String.class),
                         Mockito.eq(HttpMethod.POST),
@@ -588,7 +588,7 @@ public class ProcessControllerTests {
         ResponseEntity<ProcessAgeNoticeResponse> responseEntity =
                 new ResponseEntity<>(out, HttpStatus.OK);
 
-        //     Set up to mock ords response
+        // Set up to mock ords response
         when(restTemplate.exchange(
                         Mockito.any(String.class),
                         Mockito.eq(HttpMethod.POST),
@@ -638,7 +638,7 @@ public class ProcessControllerTests {
         ResponseEntity<ProcessMatterCallResponse> responseEntity =
                 new ResponseEntity<>(out, HttpStatus.OK);
 
-        //     Set up to mock ords response
+        // Set up to mock ords response
         when(restTemplate.exchange(
                         Mockito.any(String.class),
                         Mockito.eq(HttpMethod.POST),
@@ -720,7 +720,7 @@ public class ProcessControllerTests {
         ResponseEntity<ProcessSentenceResponse> responseEntity =
                 new ResponseEntity<>(out, HttpStatus.OK);
 
-        //     Set up to mock ords response
+        // Set up to mock ords response
         when(restTemplate.exchange(
                         Mockito.any(String.class),
                         Mockito.eq(HttpMethod.POST),
@@ -776,7 +776,7 @@ public class ProcessControllerTests {
         ResponseEntity<ProcessBanResponse> responseEntity =
                 new ResponseEntity<>(out, HttpStatus.OK);
 
-        //     Set up to mock ords response
+        // Set up to mock ords response
         when(restTemplate.exchange(
                         Mockito.any(String.class),
                         Mockito.eq(HttpMethod.POST),
@@ -819,7 +819,7 @@ public class ProcessControllerTests {
         ResponseEntity<ProcessNoteResponse> responseEntity =
                 new ResponseEntity<>(out, HttpStatus.OK);
 
-        //     Set up to mock ords response
+        // Set up to mock ords response
         when(restTemplate.exchange(
                         Mockito.any(String.class),
                         Mockito.eq(HttpMethod.POST),
@@ -869,7 +869,7 @@ public class ProcessControllerTests {
         ResponseEntity<ProcessArraignmentResponse> responseEntity =
                 new ResponseEntity<>(out, HttpStatus.OK);
 
-        //     Set up to mock ords response
+        // Set up to mock ords response
         when(restTemplate.exchange(
                         Mockito.any(String.class),
                         Mockito.eq(HttpMethod.POST),
@@ -914,7 +914,7 @@ public class ProcessControllerTests {
         ResponseEntity<ProcessMoveResponse> responseEntity =
                 new ResponseEntity<>(out, HttpStatus.OK);
 
-        //     Set up to mock ords response
+        // Set up to mock ords response
         when(restTemplate.exchange(
                         Mockito.any(String.class),
                         Mockito.eq(HttpMethod.POST),
@@ -964,7 +964,7 @@ public class ProcessControllerTests {
         ResponseEntity<ProcessFindingResponse> responseEntity =
                 new ResponseEntity<>(out, HttpStatus.OK);
 
-        //     Set up to mock ords response
+        // Set up to mock ords response
         when(restTemplate.exchange(
                         Mockito.any(String.class),
                         Mockito.eq(HttpMethod.POST),
@@ -1014,7 +1014,7 @@ public class ProcessControllerTests {
         ResponseEntity<ProcessGenericResultResponse> responseEntity =
                 new ResponseEntity<>(out, HttpStatus.OK);
 
-        //     Set up to mock ords response
+        // Set up to mock ords response
         when(restTemplate.exchange(
                         Mockito.any(String.class),
                         Mockito.eq(HttpMethod.POST),
@@ -1082,7 +1082,7 @@ public class ProcessControllerTests {
         ResponseEntity<ProcessCivilAppearanceMethodResponse> responseEntity =
                 new ResponseEntity<>(out, HttpStatus.OK);
 
-        //     Set up to mock ords response
+        // Set up to mock ords response
         when(restTemplate.exchange(
                         Mockito.any(String.class),
                         Mockito.eq(HttpMethod.POST),
@@ -1137,7 +1137,7 @@ public class ProcessControllerTests {
         ResponseEntity<ProcessOrderResponse> responseEntity =
                 new ResponseEntity<>(out, HttpStatus.OK);
 
-        //     Set up to mock ords response
+        // Set up to mock ords response
         when(restTemplate.exchange(
                         Mockito.any(String.class),
                         Mockito.eq(HttpMethod.POST),
@@ -1226,7 +1226,7 @@ public class ProcessControllerTests {
         ResponseEntity<ProcessCivilOrderResultResponse> responseEntity =
                 new ResponseEntity<>(out, HttpStatus.OK);
 
-        //     Set up to mock ords response
+        // Set up to mock ords response
         when(restTemplate.exchange(
                         Mockito.any(String.class),
                         Mockito.eq(HttpMethod.POST),
@@ -1284,7 +1284,7 @@ public class ProcessControllerTests {
         ResponseEntity<ProcessExhibitResponse> responseEntity =
                 new ResponseEntity<>(out, HttpStatus.OK);
 
-        //     Set up to mock ords response
+        // Set up to mock ords response
         when(restTemplate.exchange(
                         Mockito.any(String.class),
                         Mockito.eq(HttpMethod.POST),
@@ -1329,7 +1329,7 @@ public class ProcessControllerTests {
         ResponseEntity<ProcessSpecialCourtResponse> responseEntity =
                 new ResponseEntity<>(out, HttpStatus.OK);
 
-        //     Set up to mock ords response
+        // Set up to mock ords response
         when(restTemplate.exchange(
                         Mockito.any(String.class),
                         Mockito.eq(HttpMethod.POST),
