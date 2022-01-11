@@ -432,7 +432,7 @@ public class CourtControllerTests {
 
         ResponseEntity<CourtListTypes> responseEntity = new ResponseEntity<>(out, HttpStatus.OK);
 
-        //     Set up to mock ords response
+        // Set up to mock ords response
         when(restTemplate.exchange(
                         Mockito.any(String.class),
                         Mockito.eq(HttpMethod.GET),
@@ -858,7 +858,7 @@ public class CourtControllerTests {
         ResponseEntity<GetCrtListSecureResponse> responseEntity =
                 new ResponseEntity<>(out, HttpStatus.OK);
 
-        //     Set up to mock ords response
+        // Set up to mock ords response
         when(restTemplate.exchange(
                         Mockito.any(String.class),
                         Mockito.eq(HttpMethod.GET),

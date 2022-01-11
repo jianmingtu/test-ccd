@@ -1,6 +1,6 @@
 package ca.bc.gov.open.ccd.controllers;
 
-import ca.bc.gov.ag.court.ccd_source_processresults_ws_provider.processresults.*;
+import ca.bc.gov.open.ccd.common.process.results.*;
 import ca.bc.gov.open.ccd.configuration.SoapConfig;
 import ca.bc.gov.open.ccd.exceptions.ORDSException;
 import ca.bc.gov.open.ccd.models.OrdsErrorLog;

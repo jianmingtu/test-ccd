@@ -1,9 +1,7 @@
 package ca.bc.gov.open.ccd.controllers;
 
-import bcgov.reeks.ccd_source_codevalues_ws_provider.codevaluessecure.GetCodeValuesSecure;
-import bcgov.reeks.ccd_source_codevalues_ws_provider.codevaluessecure.GetCodeValuesSecureResponse;
-import brooks.ccd_source_codevalues_ws_provider.codevalues.GetCodeValues;
-import brooks.ccd_source_codevalues_ws_provider.codevalues.GetCodeValuesResponse;
+import ca.bc.gov.open.ccd.common.code.values.*;
+import ca.bc.gov.open.ccd.common.code.values.secure.*;
 import ca.bc.gov.open.ccd.configuration.SoapConfig;
 import ca.bc.gov.open.ccd.exceptions.ORDSException;
 import ca.bc.gov.open.ccd.models.OrdsErrorLog;

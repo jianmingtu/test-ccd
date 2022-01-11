@@ -2,11 +2,9 @@ package ca.bc.gov.open.ccd;
 
 import static org.mockito.Mockito.when;
 
-import bcgov.reeks.ccd_source_getropreport_ws.getropreportsecure.GetROPReportSecure;
-import bcgov.reeks.ccd_source_getropreport_ws.getropreportsecure.RopSecureRequest;
-import ca.bc.gov.ag.brooks.ccd_source_getropreport_ws.getropreport.GetROPReport;
-import ca.bc.gov.ag.brooks.ccd_source_getropreport_ws.getropreport.Rop;
-import ca.bc.gov.ag.brooks.ccd_source_getropreport_ws.getropreport.RopResult;
+import ca.bc.gov.open.ccd.common.rop.report.*;
+import ca.bc.gov.open.ccd.common.rop.report.RopResult;
+import ca.bc.gov.open.ccd.common.rop.report.secure.*;
 import ca.bc.gov.open.ccd.controllers.ReportController;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -50,7 +48,7 @@ public class ReportControllerTests {
 
         ResponseEntity<RopResult> responseEntity = new ResponseEntity<>(out, HttpStatus.OK);
 
-        //     Set up to mock ords response
+        // Set up to mock ords response
         when(restTemplate.exchange(
                         Mockito.any(String.class),
                         Mockito.eq(HttpMethod.GET),
@@ -79,23 +77,21 @@ public class ReportControllerTests {
 
         req.setROPSecureRequest(one);
 
-        var out = new bcgov.reeks.ccd_source_getropreport_ws.getropreportsecure.RopResult();
+        var out = new ca.bc.gov.open.ccd.common.rop.report.secure.RopResult();
         out.setB64Content("A");
         out.setResultCd("A");
         out.setResultMessage("A");
 
-        ResponseEntity<bcgov.reeks.ccd_source_getropreport_ws.getropreportsecure.RopResult>
-                responseEntity = new ResponseEntity<>(out, HttpStatus.OK);
+        ResponseEntity<ca.bc.gov.open.ccd.common.rop.report.secure.RopResult> responseEntity =
+                new ResponseEntity<>(out, HttpStatus.OK);
 
-        //     Set up to mock ords response
+        // Set up to mock ords response
         when(restTemplate.exchange(
                         Mockito.any(String.class),
                         Mockito.eq(HttpMethod.GET),
                         Mockito.<HttpEntity<String>>any(),
                         Mockito
-                                .<Class<
-                                                bcgov.reeks.ccd_source_getropreport_ws
-                                                        .getropreportsecure.RopResult>>
+                                .<Class<ca.bc.gov.open.ccd.common.rop.report.secure.RopResult>>
                                         any()))
                 .thenReturn(responseEntity);
 

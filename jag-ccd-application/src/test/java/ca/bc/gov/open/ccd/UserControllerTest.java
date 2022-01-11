@@ -2,14 +2,8 @@ package ca.bc.gov.open.ccd;
 
 import static org.mockito.Mockito.when;
 
-import brooks.ccd_source_getuserlogin_ws.getuserlogin.GetUserLogin;
-import brooks.ccd_source_getuserlogin_ws.getuserlogin.GetUserLoginRequestType;
-import brooks.ccd_source_getuserlogin_ws.getuserlogin.GetUserLoginResponseType;
-import brooks.ccd_source_getuserlogin_ws.getuserlogin.LoginHistoryType;
-import ca.bc.gov.ag.courts.ccd_source_ccdusermapping_ws.ccdusermapping.GetParticipantInfo;
-import ca.bc.gov.ag.courts.ccd_source_ccdusermapping_ws.ccdusermapping.GetParticipantInfoResponse;
-import ca.bc.gov.ag.courts.ccd_source_ccdusermapping_ws.ccdusermapping.MapGuidToParticipant;
-import ca.bc.gov.ag.courts.ccd_source_ccdusermapping_ws.ccdusermapping.MapGuidToParticipantResponse;
+import ca.bc.gov.open.ccd.common.user.login.*;
+import ca.bc.gov.open.ccd.common.user.mapping.*;
 import ca.bc.gov.open.ccd.controllers.UserController;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -48,7 +42,7 @@ public class UserControllerTest {
         ResponseEntity<GetParticipantInfoResponse> responseEntity =
                 new ResponseEntity<>(out, HttpStatus.OK);
 
-        //     Set up to mock ords response
+        // Set up to mock ords response
         when(restTemplate.exchange(
                         Mockito.any(String.class),
                         Mockito.eq(HttpMethod.GET),
@@ -75,7 +69,7 @@ public class UserControllerTest {
         ResponseEntity<MapGuidToParticipantResponse> responseEntity =
                 new ResponseEntity<>(out, HttpStatus.OK);
 
-        //     Set up to mock ords response
+        // Set up to mock ords response
         when(restTemplate.exchange(
                         Mockito.any(String.class),
                         Mockito.eq(HttpMethod.POST),
@@ -120,7 +114,7 @@ public class UserControllerTest {
         ResponseEntity<GetUserLoginResponseType> responseEntity =
                 new ResponseEntity<>(out, HttpStatus.OK);
 
-        //     Set up to mock ords response
+        // Set up to mock ords response
         when(restTemplate.exchange(
                         Mockito.any(String.class),
                         Mockito.eq(HttpMethod.GET),
