@@ -6,6 +6,8 @@ import ca.bc.gov.open.ccd.common.process.results.*;
 import ca.bc.gov.open.ccd.controllers.ProcessController;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+
+import java.time.Instant;
 import java.util.Collections;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -34,10 +36,10 @@ public class ProcessControllerTests {
         var var = new VariationType();
         var.setCourtAgencyIdentifierCode("A");
         var.setCourtRoomCode("A");
-        var.setCourtProceedingDate("A");
-        var.setCreationTime("A");
+        var.setCourtProceedingDate(Instant.now());
+        var.setCreationTime(Instant.now());
         var.setEnterUserId("A");
-        var.setEventTime("A");
+        var.setEventTime(Instant.now());
         var.setEventTypeCode("A");
         var.setEventLogText("A");
         var.setSourceEventSeqNo("A");
@@ -99,8 +101,8 @@ public class ProcessControllerTests {
         sd.setSpeakerStatusDsc("A");
         sd.setAttendanceMethodCd("A");
         var se = new SpeakerEventsType();
-        se.setSpeakerEventDate("A");
-        se.setSpeakerEventTime("A");
+        se.setSpeakerEventDate(Instant.now());
+        se.setSpeakerEventTime(Instant.now());
         se.setSpeakerEventText("A");
 
         sd.setSpeakerEvent(Collections.singletonList(se));
@@ -133,10 +135,10 @@ public class ProcessControllerTests {
         var cr = new CivilResultType();
         cr.setCourtAgencyIdentifierCode("A");
         cr.setCourtRoomCode("A");
-        cr.setCourtProceedingDate("A");
-        cr.setCreationTime("A");
+        cr.setCourtProceedingDate(Instant.now());
+        cr.setCreationTime(Instant.now());
         cr.setEnterUserId("A");
-        cr.setEventTime("A");
+        cr.setEventTime(Instant.now());
         cr.setEventTypeCode("A");
         cr.setEventLogText("A");
         cr.setSourceEventSeqNo("A");
@@ -158,12 +160,12 @@ public class ProcessControllerTests {
         is.setIssueResultCd("A");
 
         var ni = new NextAppearanceType();
-        ni.setAppearanceDate("A");
+        ni.setAppearanceDate(Instant.now());
         ni.setAppearanceId("A");
         ni.setAppearanceReason("A");
         ni.setCourtAgencyIdentifier("A");
         ni.setCourtRoom("A");
-        ni.setAppearanceTime("A");
+        ni.setAppearanceTime(Instant.now());
 
         var af = new ApplyToFileCivilResultType();
         af.setAppearanceId("A");
@@ -256,10 +258,10 @@ public class ProcessControllerTests {
 
         one.setCourtAgencyIdentifierCode("A");
         one.setCourtRoomCode("A");
-        one.setCourtProceedingDate("A");
-        one.setCreationTime("A");
+        one.setCourtProceedingDate(Instant.now());
+        one.setCreationTime(Instant.now());
         one.setEnterUserId("A");
-        one.setEventTime("A");
+        one.setEventTime(Instant.now());
         one.setEventTypeCode("A");
         one.setEventLogText("A");
         one.setSourceEventSeqNo("A");
@@ -314,10 +316,10 @@ public class ProcessControllerTests {
 
         one.setCourtAgencyIdentifierCode("A");
         one.setCourtRoomCode("A");
-        one.setCourtProceedingDate("A");
-        one.setCreationTime("A");
+        one.setCourtProceedingDate(Instant.now());
+        one.setCreationTime(Instant.now());
         one.setEnterUserId("A");
-        one.setEventTime("A");
+        one.setEventTime(Instant.now());
         one.setEventTypeCode("A");
         one.setEventLogText("A");
         one.setSourceEventSeqNo("A");
@@ -364,10 +366,10 @@ public class ProcessControllerTests {
         var one = new Election();
         one.setCourtAgencyIdentifierCode("A");
         one.setCourtRoomCode("A");
-        one.setCourtProceedingDate("A");
-        one.setCreationTime("A");
+        one.setCourtProceedingDate(Instant.now());
+        one.setCreationTime(Instant.now());
         one.setEnterUserId("A");
-        one.setEventTime("A");
+        one.setEventTime(Instant.now());
         one.setEventTypeCode("A");
         one.setEventLogText("A");
         one.setSourceEventSeqNo("A");
@@ -410,10 +412,10 @@ public class ProcessControllerTests {
         var one = new BailDoc();
         one.setCourtAgencyIdentifierCode("A");
         one.setCourtRoomCode("A");
-        one.setCourtProceedingDate("A");
-        one.setCreationTime("A");
+        one.setCourtProceedingDate(Instant.now());
+        one.setCreationTime(Instant.now());
         one.setEnterUserId("A");
-        one.setEventTime("A");
+        one.setEventTime(Instant.now());
         one.setEventTypeCode("A");
         one.setEventLogText("A");
         one.setSourceEventSeqNo("A");
@@ -472,10 +474,10 @@ public class ProcessControllerTests {
         var one = new CriminalResult();
         one.setCourtAgencyIdentifierCode("A");
         one.setCourtRoomCode("A");
-        one.setCourtProceedingDate("A");
-        one.setCreationTime("A");
+        one.setCourtProceedingDate(Instant.now());
+        one.setCreationTime(Instant.now());
         one.setEnterUserId("A");
-        one.setEventTime("A");
+        one.setEventTime(Instant.now());
         one.setEventTypeCode("A");
         one.setEventLogText("A");
         one.setSourceEventSeqNo("A");
@@ -494,8 +496,8 @@ public class ProcessControllerTests {
         af.setCountNumber("A");
 
         var nc = new NextAppearanceCRType();
-        nc.setAppearanceDate("A");
-        nc.setAppearanceTime("A");
+        nc.setAppearanceDate(Instant.now());
+        nc.setAppearanceTime(Instant.now());
         nc.setAppearanceReason("A");
         nc.setCourtAgencyIdentifier("A");
         nc.setCourtRoom("A");
@@ -553,10 +555,10 @@ public class ProcessControllerTests {
         var one = new AgeNotice();
         one.setCourtAgencyIdentifierCode("A");
         one.setCourtRoomCode("A");
-        one.setCourtProceedingDate("A");
-        one.setCreationTime("A");
+        one.setCourtProceedingDate(Instant.now());
+        one.setCreationTime(Instant.now());
         one.setEnterUserId("A");
-        one.setEventTime("A");
+        one.setEventTime(Instant.now());
         one.setEventTypeCode("A");
         one.setEventLogText("A");
         one.setSourceEventSeqNo("A");
@@ -608,10 +610,10 @@ public class ProcessControllerTests {
         var one = new MatterCall();
         one.setCourtAgencyIdentifierCode("A");
         one.setCourtRoomCode("A");
-        one.setCourtProceedingDate("A");
-        one.setCreationTime("A");
+        one.setCourtProceedingDate(Instant.now());
+        one.setCreationTime(Instant.now());
         one.setEnterUserId("A");
-        one.setEventTime("A");
+        one.setEventTime(Instant.now());
         one.setEventTypeCode("A");
         one.setEventLogText("A");
         one.setSourceEventSeqNo("A");
@@ -658,10 +660,10 @@ public class ProcessControllerTests {
         var one = new Sentence();
         one.setCourtAgencyIdentifierCode("A");
         one.setCourtRoomCode("A");
-        one.setCourtProceedingDate("A");
-        one.setCreationTime("A");
+        one.setCourtProceedingDate(Instant.now());
+        one.setCreationTime(Instant.now());
         one.setEnterUserId("A");
-        one.setEventTime("A");
+        one.setEventTime(Instant.now());
         one.setEventTypeCode("A");
         one.setEventLogText("A");
         one.setSourceEventSeqNo("A");
@@ -679,7 +681,7 @@ public class ProcessControllerTests {
         mt.setSentenceTypeCd("A");
         mt.setAmount("A");
         mt.setVictimSurchargeTypeCd("A");
-        mt.setDueDate("A");
+        mt.setDueDate(Instant.now());
         mt.setPaymentScheduleText("A");
         mt.setJailYN("A");
         mt.setSameAsFineYN("A");
@@ -699,8 +701,8 @@ public class ProcessControllerTests {
         nt.setConsecutiveText("A");
         nt.setTermText("A");
         nt.setSectionText("A");
-        nt.setReportingDate("A");
-        nt.setReportingTime("A");
+        nt.setReportingDate(Instant.now());
+        nt.setReportingTime(Instant.now());
         nt.setReportingLocationText("A");
 
         var tt = new TermType();
@@ -741,10 +743,10 @@ public class ProcessControllerTests {
 
         one.setCourtAgencyIdentifierCode("A");
         one.setCourtRoomCode("A");
-        one.setCourtProceedingDate("A");
-        one.setCreationTime("A");
+        one.setCourtProceedingDate(Instant.now());
+        one.setCreationTime(Instant.now());
         one.setEnterUserId("A");
-        one.setEventTime("A");
+        one.setEventTime(Instant.now());
         one.setEventTypeCode("A");
         one.setEventLogText("A");
         one.setSourceEventSeqNo("A");
@@ -758,10 +760,10 @@ public class ProcessControllerTests {
         var bi = new BanInfoType();
         bi.setActionCd("A");
         bi.setBanType("A");
-        bi.setOrderedDate("A");
+        bi.setOrderedDate(Instant.now());
         bi.setBanStatuteId("A");
         bi.setBanOtherStatuteDsc("A");
-        bi.setExpiredDate("A");
+        bi.setExpiredDate(Instant.now());
         bi.setBanCommentText("A");
         bi.setAcprId("A");
 
@@ -840,10 +842,10 @@ public class ProcessControllerTests {
 
         one.setCourtAgencyIdentifierCode("A");
         one.setCourtRoomCode("A");
-        one.setCourtProceedingDate("A");
-        one.setCreationTime("A");
+        one.setCourtProceedingDate(Instant.now());
+        one.setCreationTime(Instant.now());
         one.setEnterUserId("A");
-        one.setEventTime("A");
+        one.setEventTime(Instant.now());
         one.setEventTypeCode("A");
         one.setEventLogText("A");
         one.setSourceEventSeqNo("A");
@@ -889,10 +891,10 @@ public class ProcessControllerTests {
         var one = new Move();
         one.setCourtAgencyIdentifierCode("A");
         one.setCourtRoomCode("A");
-        one.setCourtProceedingDate("A");
-        one.setCreationTime("A");
+        one.setCourtProceedingDate(Instant.now());
+        one.setCreationTime(Instant.now());
         one.setEnterUserId("A");
-        one.setEventTime("A");
+        one.setEventTime(Instant.now());
         one.setEventTypeCode("A");
         one.setEventLogText("A");
         one.setSourceEventSeqNo("A");
@@ -934,10 +936,10 @@ public class ProcessControllerTests {
         var one = new Finding();
         one.setCourtAgencyIdentifierCode("A");
         one.setCourtRoomCode("A");
-        one.setCourtProceedingDate("A");
-        one.setCreationTime("A");
+        one.setCourtProceedingDate(Instant.now());
+        one.setCreationTime(Instant.now());
         one.setEnterUserId("A");
-        one.setEventTime("A");
+        one.setEventTime(Instant.now());
         one.setEventTypeCode("A");
         one.setEventLogText("A");
         one.setSourceEventSeqNo("A");
@@ -984,10 +986,10 @@ public class ProcessControllerTests {
         var one = new GenericResult();
         one.setCourtAgencyIdentifierCode("A");
         one.setCourtRoomCode("A");
-        one.setCourtProceedingDate("A");
-        one.setCreationTime("A");
+        one.setCourtProceedingDate(Instant.now());
+        one.setCreationTime(Instant.now());
         one.setEnterUserId("A");
-        one.setEventTime("A");
+        one.setEventTime(Instant.now());
         one.setEventTypeCode("A");
         one.setEventLogText("A");
         one.setSourceEventSeqNo("A");
@@ -1034,10 +1036,10 @@ public class ProcessControllerTests {
         var one = new CivilAppearanceMethod();
         one.setCourtAgencyIdentifierCode("A");
         one.setCourtRoomCode("A");
-        one.setCourtProceedingDate("A");
-        one.setCreationTime("A");
+        one.setCourtProceedingDate(Instant.now());
+        one.setCreationTime(Instant.now());
         one.setEnterUserId("A");
-        one.setEventTime("A");
+        one.setEventTime(Instant.now());
         one.setEventTypeCode("A");
         one.setEventLogText("A");
         one.setSourceEventSeqNo("A");
@@ -1102,10 +1104,10 @@ public class ProcessControllerTests {
         var one = new OrderType();
         one.setCourtAgencyIdentifierCode("A");
         one.setCourtRoomCode("A");
-        one.setCourtProceedingDate("A");
-        one.setCreationTime("A");
+        one.setCourtProceedingDate(Instant.now());
+        one.setCreationTime(Instant.now());
         one.setEnterUserId("A");
-        one.setEventTime("A");
+        one.setEventTime(Instant.now());
         one.setEventTypeCode("A");
         one.setEventLogText("A");
         one.setSourceEventSeqNo("A");
@@ -1119,7 +1121,7 @@ public class ProcessControllerTests {
 
         var oe = new OrderEventType();
         oe.setOrderDetailText("A");
-        oe.setDueDate("A");
+        oe.setDueDate(Instant.now());
         oe.setDisclosureAuthorizedTo("A");
         oe.setOrderUnderSection("A");
         oe.setPurposeOfReport("A");
@@ -1157,10 +1159,10 @@ public class ProcessControllerTests {
         var one = new CivilOrderType();
         one.setCourtAgencyIdentifierCode("A");
         one.setCourtRoomCode("A");
-        one.setCourtProceedingDate("A");
-        one.setCreationTime("A");
+        one.setCourtProceedingDate(Instant.now());
+        one.setCreationTime(Instant.now());
         one.setEnterUserId("A");
-        one.setEventTime("A");
+        one.setEventTime(Instant.now());
         one.setEventTypeCode("A");
         one.setEventLogText("A");
         one.setSourceEventSeqNo("A");
@@ -1169,8 +1171,8 @@ public class ProcessControllerTests {
         var co = new CivilOrderDetailType();
         co.setOrderTypeCd("A");
         co.setAdjudicatorPartId("A");
-        co.setEnteredDate("A");
-        co.setExpiryDate("A");
+        co.setEnteredDate(Instant.now());
+        co.setExpiryDate(Instant.now());
         co.setRegistryToDraftYN("A");
         co.setNoticeRequiredYN("A");
         co.setFinalYN("A");
@@ -1192,7 +1194,7 @@ public class ProcessControllerTests {
 
         var ot = new OrderTermType();
         ot.setOrderTermSeqNo("A");
-        ot.setOrderTermEventTime("A");
+        ot.setOrderTermEventTime(Instant.now());
         ot.setOrderTermText("A");
         ot.setOrderTermLogNoteText("A");
         co.setOrderTerm(Collections.singletonList(ot));
@@ -1201,7 +1203,7 @@ public class ProcessControllerTests {
         op.setOrderRoleCd("A");
         op.setPartyFullName("A");
         op.setPartyId("A");
-        op.setBirthDate("A");
+        op.setBirthDate(Instant.now());
         co.setParty(Collections.singletonList(op));
 
         one.setCivilOrderDetail(Collections.singletonList(co));
@@ -1247,10 +1249,10 @@ public class ProcessControllerTests {
         var one = new Exhibit();
         one.setCourtAgencyIdentifierCode("A");
         one.setCourtRoomCode("A");
-        one.setCourtProceedingDate("A");
-        one.setCreationTime("A");
+        one.setCourtProceedingDate(Instant.now());
+        one.setCreationTime(Instant.now());
         one.setEnterUserId("A");
-        one.setEventTime("A");
+        one.setEventTime(Instant.now());
         one.setEventTypeCode("A");
         one.setEventLogText("A");
         one.setSourceEventSeqNo("A");
@@ -1304,10 +1306,10 @@ public class ProcessControllerTests {
         var one = new SpecialCourt();
         one.setCourtAgencyIdentifierCode("A");
         one.setCourtRoomCode("A");
-        one.setCourtProceedingDate("A");
-        one.setCreationTime("A");
+        one.setCourtProceedingDate(Instant.now());
+        one.setCreationTime(Instant.now());
         one.setEnterUserId("A");
-        one.setEventTime("A");
+        one.setEventTime(Instant.now());
         one.setEventTypeCode("A");
         one.setEventLogText("A");
         one.setSourceEventSeqNo("A");

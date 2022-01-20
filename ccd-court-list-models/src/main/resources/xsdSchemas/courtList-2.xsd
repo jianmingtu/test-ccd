@@ -3,5 +3,5 @@
             xmlns:xsd="http://www.w3.org/2001/XMLSchema">
     <xsd:element name="HearingRestrictiontype" type="xsd:string"/>
     <xsd:element name="JudgeName" type="xsd:string"/>
-    <xsd:element name="HearingRestrictionDate" type="xsd:string"/>
+    <xsd:element name="HearingRestrictionDate" type="xsd:dateTime"/>
 </xsd:schema>
