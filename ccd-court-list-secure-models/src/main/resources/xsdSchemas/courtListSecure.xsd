@@ -12,7 +12,7 @@
                 <xsd:element name="ApplicationCd" nillable="true" type="xsd:string"/>
                 <xsd:element name="AgencyIdentifierCd" nillable="true" type="xsd:string"/>
                 <xsd:element name="RoomCd" nillable="true" type="xsd:string"/>
-                <xsd:element name="ProceedingDate" nillable="true" type="xsd:string"/>
+                <xsd:element name="ProceedingDate" nillable="true" type="xsd:dateTime"/>
                 <xsd:element name="DivisionCd" nillable="true" type="xsd:string"/>
                 <xsd:element name="FileNumber" nillable="true" type="xsd:string"/>
             </xsd:sequence>
