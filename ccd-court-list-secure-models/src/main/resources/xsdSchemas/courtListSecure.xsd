@@ -3,28 +3,32 @@
             xmlns:xsd="http://www.w3.org/2001/XMLSchema"
             xmlns:tns="http://reeks.bcgov/CCD.Source.CourtLists.ws.provider:CourtListSecure">
     <xsd:import namespace="http://courts.gov.bc.ca/XMLSchema/CriminalFileContent/1.0.0"/>
-    <xsd:element name="getCrtListSecure" type="tns:getCrtListSecure"/>
-    <xsd:element name="getCrtListSecureResponse" type="tns:getCrtListSecureResponse"/>
-    <xsd:complexType name="getCrtListSecure">
-        <xsd:sequence>
-            <xsd:element name="RequestAgencyIdentifierId" nillable="true" type="xsd:string"/>
-            <xsd:element name="RequestPartId" nillable="true" type="xsd:string"/>
-            <xsd:element name="RequestDtm" nillable="true" type="xsd:dateTime"/>
-            <xsd:element name="ApplicationCd" nillable="true" type="xsd:string"/>
-            <xsd:element name="AgencyIdentifierCd" nillable="true" type="xsd:string"/>
-            <xsd:element name="RoomCd" nillable="true" type="xsd:string"/>
-            <xsd:element name="ProceedingDate" nillable="true" type="xsd:dateTime"/>
-            <xsd:element name="DivisionCd" nillable="true" type="xsd:string"/>
-            <xsd:element name="FileNumber" nillable="true" type="xsd:string"/>
-        </xsd:sequence>
-    </xsd:complexType>
-    <xsd:complexType name="getCrtListSecureResponse">
-        <xsd:sequence>
-            <xsd:element name="ResultCd" nillable="true" type="xsd:string"/>
-            <xsd:element name="ResultMessage" nillable="true" type="xsd:string"/>
-            <xsd:element name="CourtLists" nillable="true" type="tns:CourtListTypes"/>
-        </xsd:sequence>
-    </xsd:complexType>
+    <xsd:element name="getCrtListSecure">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="RequestAgencyIdentifierId" nillable="true" type="xsd:string"/>
+                <xsd:element name="RequestPartId" nillable="true" type="xsd:string"/>
+                <xsd:element name="RequestDtm" nillable="true" type="xsd:dateTime"/>
+                <xsd:element name="ApplicationCd" nillable="true" type="xsd:string"/>
+                <xsd:element name="AgencyIdentifierCd" nillable="true" type="xsd:string"/>
+                <xsd:element name="RoomCd" nillable="true" type="xsd:string"/>
+                <xsd:element name="ProceedingDate" nillable="true" type="xsd:string"/>
+                <xsd:element name="DivisionCd" nillable="true" type="xsd:string"/>
+                <xsd:element name="FileNumber" nillable="true" type="xsd:string"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+
+    <xsd:element name="getCrtListSecureResponse">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="ResultCd" nillable="true" type="xsd:string"/>
+                <xsd:element name="ResultMessage" nillable="true" type="xsd:string"/>
+                <xsd:element name="CourtLists" nillable="true" type="tns:CourtListTypes"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+
     <xsd:complexType name="CourtListTypes">
         <xsd:sequence>
             <xsd:element name="CourtLocationName" type="xsd:string"/>
