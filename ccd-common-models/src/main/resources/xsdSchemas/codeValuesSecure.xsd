@@ -16,7 +16,7 @@
     </xsd:element>
 
     <xsd:element name="getCodeValuesSecureResponse">
-        <xsd:complexType name="getCodeValuesSecureResponse">
+        <xsd:complexType>
             <xsd:sequence>
                 <xsd:element name="ResultCd" nillable="true" type="xsd:string"/>
                 <xsd:element name="ResultMessage" nillable="true" type="xsd:string"/>

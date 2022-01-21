@@ -65,7 +65,10 @@ public class HealthController {
         }
     }
 
-    @PayloadRoot(namespace = SoapConfig.SOAP_NAMESPACE, localPart = "getPing")
+    @PayloadRoot(
+            namespace =
+                    "http://court.ag.gov.bc.ca/CCD.Source.ProcessResults.ws.provider:ProcessResults",
+            localPart = "getPing")
     @ResponsePayload
     public GetPingResponse getPing(@RequestPayload GetPing empty) throws JsonProcessingException {
         UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(host + "ping");

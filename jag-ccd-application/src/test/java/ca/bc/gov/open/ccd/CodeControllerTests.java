@@ -32,7 +32,6 @@ public class CodeControllerTests {
 
     @Autowired private ObjectMapper objectMapper;
 
-
     @Mock private RestTemplate restTemplate = new RestTemplate();
 
     @Test

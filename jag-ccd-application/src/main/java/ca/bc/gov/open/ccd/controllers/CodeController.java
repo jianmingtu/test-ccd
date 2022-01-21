@@ -4,7 +4,6 @@ import bcgov.reeks.ccd_source_codevalues_ws_provider.codevaluessecure.GetCodeVal
 import bcgov.reeks.ccd_source_codevalues_ws_provider.codevaluessecure.GetCodeValuesSecureResponse;
 import brooks.ccd_source_codevalues_ws_provider.codevalues.GetCodeValues;
 import brooks.ccd_source_codevalues_ws_provider.codevalues.GetCodeValuesResponse;
-import ca.bc.gov.open.ccd.configuration.SoapConfig;
 import ca.bc.gov.open.ccd.exceptions.ORDSException;
 import ca.bc.gov.open.ccd.models.OrdsErrorLog;
 import ca.bc.gov.open.ccd.models.serializers.InstantSerializer;
@@ -38,7 +37,9 @@ public class CodeController {
         this.objectMapper = objectMapper;
     }
 
-    @PayloadRoot(namespace = SoapConfig.SOAP_NAMESPACE, localPart = "getCodeValues")
+    @PayloadRoot(
+            namespace = "http://brooks/CCD.Source.CodeValues.ws.provider:CodeValues",
+            localPart = "getCodeValues")
     @ResponsePayload
     public GetCodeValuesResponse getCodeValues(@RequestPayload GetCodeValues getCodeValues)
             throws JsonProcessingException {
@@ -67,7 +68,9 @@ public class CodeController {
         }
     }
 
-    @PayloadRoot(namespace = SoapConfig.SOAP_NAMESPACE, localPart = "getCodeValuesSecure")
+    @PayloadRoot(
+            namespace = "http://reeks.bcgov/CCD.Source.CodeValues.ws.provider:CodeValuesSecure",
+            localPart = "getCodeValuesSecure")
     @ResponsePayload
     public GetCodeValuesSecureResponse getCodeValuesSecure(
             @RequestPayload GetCodeValuesSecure getCodeValues) throws JsonProcessingException {
