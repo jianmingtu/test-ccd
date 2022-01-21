@@ -27,8 +27,6 @@ import org.springframework.ws.wsdl.wsdl11.Wsdl11Definition;
 @Configuration
 public class SoapConfig extends WsConfigurerAdapter {
 
-    public static final String SOAP_NAMESPACE = "http://courts.gov.bc.ca/xml/ns/ccd/v1";
-
     @Bean
     public ServletRegistrationBean<MessageDispatcherServlet> messageDispatcherServlet(
             ApplicationContext applicationContext) {

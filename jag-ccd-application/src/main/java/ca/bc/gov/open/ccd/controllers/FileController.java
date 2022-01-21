@@ -6,7 +6,6 @@ import ca.bc.gov.open.ccd.civil.secure.*;
 import ca.bc.gov.open.ccd.common.criminal.file.content.*;
 import ca.bc.gov.open.ccd.common.criminal.file.content.FileContentDoc;
 import ca.bc.gov.open.ccd.common.criminal.file.content.secure.*;
-import ca.bc.gov.open.ccd.configuration.SoapConfig;
 import ca.bc.gov.open.ccd.exceptions.ORDSException;
 import ca.bc.gov.open.ccd.models.OrdsErrorLog;
 import ca.bc.gov.open.ccd.models.serializers.InstantSerializer;
@@ -41,7 +40,10 @@ public class FileController {
         this.objectMapper = objectMapper;
     }
 
-    @PayloadRoot(namespace = SoapConfig.SOAP_NAMESPACE, localPart = "getCriminalFileContent")
+    @PayloadRoot(
+            namespace =
+                    "http://courts.ag.gov.bc.ca/CCD.Source.CriminalFileContent.ws.provider:CriminalFileContent",
+            localPart = "getCriminalFileContent")
     @ResponsePayload
     public GetCriminalFileContentResponse getCriminalFileContent(
             @RequestPayload GetCriminalFileContent getCriminalFileContent)
@@ -81,7 +83,10 @@ public class FileController {
         }
     }
 
-    @PayloadRoot(namespace = SoapConfig.SOAP_NAMESPACE, localPart = "getCriminalFileContentSecure")
+    @PayloadRoot(
+            namespace =
+                    "http://reeks.bcgov/CCD.Source.CriminalFileContent.ws.provider:CriminalFileContentSecure",
+            localPart = "getCriminalFileContentSecure")
     @ResponsePayload
     public GetCriminalFileContentSecureResponse getCriminalFileContentSecure(
             @RequestPayload GetCriminalFileContentSecure getCriminalFileContent)
@@ -126,7 +131,10 @@ public class FileController {
         }
     }
 
-    @PayloadRoot(namespace = SoapConfig.SOAP_NAMESPACE, localPart = "getCivilFileContent")
+    @PayloadRoot(
+            namespace =
+                    "http://courts.ag.gov.bc.ca/CCD.Source.CivilFileContent.ws:CivilFileContent",
+            localPart = "getCivilFileContent")
     @ResponsePayload
     public GetCivilFileContentResponse getCivilFileContent(
             @RequestPayload GetCivilFileContent getCivilFileContent)
@@ -164,7 +172,10 @@ public class FileController {
         }
     }
 
-    @PayloadRoot(namespace = SoapConfig.SOAP_NAMESPACE, localPart = "getCivilFileContentSecure")
+    @PayloadRoot(
+            namespace =
+                    "http://courts.ag.gov.bc.ca/CCD.Source.CivilFileContent.ws:CivilFileContent",
+            localPart = "getCivilFileContentSecure")
     @ResponsePayload
     public GetCivilFileContentSecureResponse getCivilFileContentSecure(
             @RequestPayload GetCivilFileContentSecure getCivilFileContent)

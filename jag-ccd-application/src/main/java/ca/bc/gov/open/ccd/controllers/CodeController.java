@@ -2,7 +2,6 @@ package ca.bc.gov.open.ccd.controllers;
 
 import ca.bc.gov.open.ccd.common.code.values.*;
 import ca.bc.gov.open.ccd.common.code.values.secure.*;
-import ca.bc.gov.open.ccd.configuration.SoapConfig;
 import ca.bc.gov.open.ccd.exceptions.ORDSException;
 import ca.bc.gov.open.ccd.models.OrdsErrorLog;
 import ca.bc.gov.open.ccd.models.serializers.InstantSerializer;
