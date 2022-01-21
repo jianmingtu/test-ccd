@@ -63,12 +63,12 @@ public class FileControllerTests {
         req.setAppearanceID("A");
         req.setRoomCd("A");
         req.setMdocJustinNo("A");
-        req.setProceedingDate("A");
+        req.setProceedingDate(Instant.now());
 
         var out = new FileContentDoc();
         out.setCourtLocaCd("A");
         out.setCourtRoomCd("A");
-        out.setCourtProceedingDate("A");
+        out.setCourtProceedingDate(Instant.now());
         out.setAppearanceId(Collections.singletonList("A"));
         out.setMdocJustinNo("A");
         AccusedFileType ac = new AccusedFileType();
@@ -84,11 +84,11 @@ public class FileControllerTests {
         ac.setPartId("A");
         ac.setProfSeqNo("A");
         ac.setSealTypeCd("A");
-        ac.setFiledDate("A");
+        ac.setFiledDate(Instant.now());
 
         ArrestWarrantType wt = new ArrestWarrantType();
         wt.setFileNumberText("A");
-        wt.setWarrantDate("A");
+        wt.setWarrantDate(Instant.now());
         ac.setArrestWarrant(Collections.singletonList(wt));
 
         BanTypes bt = new BanTypes();
@@ -99,18 +99,18 @@ public class FileControllerTests {
         bt.setBanTypeSubSection("A");
         bt.setBanStatuteId("A");
         bt.setBanCommentText("A");
-        bt.setBanOrderedDate("A");
+        bt.setBanOrderedDate(Instant.now());
         bt.setBanSeqNo("A");
         ac.setBan(Collections.singletonList(bt));
 
         ProtectionOrderType pt = new ProtectionOrderType();
-        pt.setPOROrderIssueDate("A");
+        pt.setPOROrderIssueDate(Instant.now());
         pt.setOrderTypeDsc("A");
         pt.setPORConditionText("A");
         ac.setProtectionOrder(Collections.singletonList(pt));
 
         CFCOrderType ct = new CFCOrderType();
-        ct.setCFCOrderIssueDate("A");
+        ct.setCFCOrderIssueDate(Instant.now());
         ct.setCFCConditionText("A");
         ct.setOrderTypeDsc("A");
         ac.setCFCOrder(Collections.singletonList(ct));
@@ -118,24 +118,24 @@ public class FileControllerTests {
         HearingRestrictionType ht = new HearingRestrictionType();
         ht.setHearingRestrictiontype("A");
         ht.setJudgeName("A");
-        ht.setHearingRestrictionDate("A");
+        ht.setHearingRestrictionDate(Instant.now());
         ac.setHearingRestriction(Collections.singletonList(ht));
 
         DocumentType dt = new DocumentType();
         dt.setDocmClassification("A");
         dt.setDocmId("A");
-        dt.setIssueDate("A");
+        dt.setIssueDate(Instant.now());
         dt.setDocmFormId("A");
         dt.setDocmFormDsc("A");
         dt.setDocmDispositionDsc("A");
-        dt.setDocmDispositionDate("A");
+        dt.setDocmDispositionDate(Instant.now());
         dt.setImageId("A");
         dt.setDocumentPageCount("A");
         ac.setDocument(Collections.singletonList(dt));
 
         AppearanceTypes at = new AppearanceTypes();
         at.setAppearanceId("A");
-        at.setAppearanceDate("A");
+        at.setAppearanceDate(Instant.now());
         at.setCourtAgencyIdentifier("A");
         at.setCourtRoom("A");
         at.setAppearanceNote("A");
@@ -161,8 +161,8 @@ public class FileControllerTests {
         st.setSentTertiaryTermCd("A");
         st.setSentIntermittentYn("A");
         st.setSentMonetaryAmt("A");
-        st.setSentDueTtpDt("A");
-        st.setSentEffectiveDt("A");
+        st.setSentDueTtpDt(Instant.now());
+        st.setSentEffectiveDt(Instant.now());
         st.setSentDetailTxt("A");
         st.setSentYcjaAdultYouthCd("A");
         st.setSentCustodySecureYn("A");
@@ -203,7 +203,7 @@ public class FileControllerTests {
         req.setApplicationCd("A");
         req.setAgencyIdentifierCd("A");
         req.setRoomCd("A");
-        req.setProceedingDate("A");
+        req.setProceedingDate(Instant.now());
         req.setAppearanceID("A");
         req.setMdocJustinNo("A");
 
@@ -214,14 +214,14 @@ public class FileControllerTests {
 
         fc.setCourtLocaCd("A");
         fc.setCourtRoomCd("A");
-        fc.setCourtProceedingDate("A");
+        fc.setCourtProceedingDate(Instant.now());
         fc.setAppearanceId(Collections.singletonList("A"));
         fc.setMdocJustinNo("A");
         var ac = new ca.bc.gov.open.ccd.common.criminal.file.content.secure.AccusedFileType();
 
         var ap = new ca.bc.gov.open.ccd.common.criminal.file.content.secure.AppearanceTypes();
         ap.setAppearanceId("A");
-        ap.setAppearanceDate("A");
+        ap.setAppearanceDate(Instant.now());
         ap.setCourtAgencyIdentifier("A");
         ap.setCourtRoom("A");
         ap.setAppearanceNote("A");
@@ -249,8 +249,8 @@ public class FileControllerTests {
         st.setSentTertiaryTermCd("A");
         st.setSentIntermittentYn("A");
         st.setSentMonetaryAmt("A");
-        st.setSentDueTtpDt("A");
-        st.setSentEffectiveDt("A");
+        st.setSentDueTtpDt(Instant.now());
+        st.setSentEffectiveDt(Instant.now());
         st.setSentDetailTxt("A");
         st.setSentYcjaAdultYouthCd("A");
         st.setSentCustodySecureYn("A");
@@ -272,11 +272,11 @@ public class FileControllerTests {
         ac.setPartId("A");
         ac.setProfSeqNo("A");
         ac.setSealTypeCd("A");
-        ac.setFiledDate("A");
+        ac.setFiledDate(Instant.now());
 
         var wt = new ca.bc.gov.open.ccd.common.criminal.file.content.secure.ArrestWarrantType();
         wt.setFileNumberText("A");
-        wt.setWarrantDate("A");
+        wt.setWarrantDate(Instant.now());
         ac.setArrestWarrant(Collections.singletonList(wt));
 
         var bt = new ca.bc.gov.open.ccd.common.criminal.file.content.secure.BanTypes();
@@ -287,18 +287,18 @@ public class FileControllerTests {
         bt.setBanTypeSubSection("A");
         bt.setBanStatuteId("A");
         bt.setBanCommentText("A");
-        bt.setBanOrderedDate("A");
+        bt.setBanOrderedDate(Instant.now());
         bt.setBanSeqNo("A");
         ac.setBan(Collections.singletonList(bt));
 
         var pt = new ca.bc.gov.open.ccd.common.criminal.file.content.secure.ProtectionOrderType();
-        pt.setPOROrderIssueDate("A");
+        pt.setPOROrderIssueDate(Instant.now());
         pt.setOrderTypeDsc("A");
         pt.setPORConditionText("A");
         ac.setProtectionOrder(Collections.singletonList(pt));
 
         var ct = new ca.bc.gov.open.ccd.common.criminal.file.content.secure.CFCOrderType();
-        ct.setCFCOrderIssueDate("A");
+        ct.setCFCOrderIssueDate(Instant.now());
         ct.setCFCConditionText("A");
         ct.setOrderTypeDsc("A");
         ac.setCFCOrder(Collections.singletonList(ct));
@@ -307,24 +307,24 @@ public class FileControllerTests {
                 new ca.bc.gov.open.ccd.common.criminal.file.content.secure.HearingRestrictionType();
         ht.setHearingRestrictiontype("A");
         ht.setJudgeName("A");
-        ht.setHearingRestrictionDate("A");
+        ht.setHearingRestrictionDate(Instant.now());
         ac.setHearingRestriction(Collections.singletonList(ht));
 
         var dt = new ca.bc.gov.open.ccd.common.criminal.file.content.secure.DocumentType();
         dt.setDocmClassification("A");
         dt.setDocmId("A");
-        dt.setIssueDate("A");
+        dt.setIssueDate(Instant.now());
         dt.setDocmFormId("A");
         dt.setDocmFormDsc("A");
         dt.setDocmDispositionDsc("A");
-        dt.setDocmDispositionDate("A");
+        dt.setDocmDispositionDate(Instant.now());
         dt.setImageId("A");
         dt.setDocumentPageCount("A");
         ac.setDocument(Collections.singletonList(dt));
 
         AppearanceTypes at = new AppearanceTypes();
         at.setAppearanceId("A");
-        at.setAppearanceDate("A");
+        at.setAppearanceDate(Instant.now());
         at.setCourtAgencyIdentifier("A");
         at.setCourtRoom("A");
         at.setAppearanceNote("A");
@@ -359,8 +359,8 @@ public class FileControllerTests {
         st2.setSentTertiaryTermCd("A");
         st2.setSentIntermittentYn("A");
         st2.setSentMonetaryAmt("A");
-        st2.setSentDueTtpDt("A");
-        st2.setSentEffectiveDt("A");
+        st2.setSentDueTtpDt(Instant.now());
+        st2.setSentEffectiveDt(Instant.now());
         st2.setSentDetailTxt("A");
         st2.setSentYcjaAdultYouthCd("A");
         st2.setSentCustodySecureYn("A");
@@ -398,7 +398,7 @@ public class FileControllerTests {
         var req = new GetCivilFileContent();
         req.setCourtLocaCd("A");
         req.setCourtRoomCd("A");
-        req.setCourtProceedingDate("A");
+        req.setCourtProceedingDate(Instant.now());
         req.setAppearanceId(1L);
         req.setPhysicalFileId("A");
         req.setApplicationCd("A");
@@ -406,7 +406,7 @@ public class FileControllerTests {
         var out = new CivilFileContentDoc();
         out.setCourtLocaCd("A");
         out.setCourtRoomCd("A");
-        out.setCourtProceedingDate("A");
+        out.setCourtProceedingDate(Instant.now());
         out.setAppearanceId(Collections.singletonList("A"));
         out.setPhysicalFileId("A");
 
@@ -418,17 +418,17 @@ public class FileControllerTests {
         cft.setIndigencyGrantedYN("A");
         cft.setInfantFileYN("A");
         cft.setCFCSAFileYN("A");
-        cft.setMarriageDate("A");
-        cft.setMarriageDate("A");
-        cft.setDivorceDate("A");
-        cft.setFederalClearanceDate("A");
+        cft.setMarriageDate(Instant.now());
+        cft.setMarriageDate(Instant.now());
+        cft.setDivorceDate(Instant.now());
+        cft.setFederalClearanceDate(Instant.now());
         cft.setCentralRegNumber("A");
-        cft.setCaveatExpiryDate("A");
+        cft.setCaveatExpiryDate(Instant.now());
         cft.setProbateFileNumber("A");
         cft.setCaveatCancelledYN("A");
         cft.setAssetDeclaredAmt("A");
         cft.setProbateFeeAmt("A");
-        cft.setProbateEnteredDate("A");
+        cft.setProbateEnteredDate(Instant.now());
         cft.setAdditionalAssetDeclaredAmt("A");
         cft.setAdditionalProbateFeeAmt("A");
         cft.setEstateValueAmt("A");
@@ -441,16 +441,16 @@ public class FileControllerTests {
 
         var sp = new SpecialProgramType();
         sp.setSpecialProgramDsc("A");
-        sp.setProgramEntryDate("A");
+        sp.setProgramEntryDate(Instant.now());
         sp.setProgramEntryReasonDsc("A");
-        sp.setProgramExitDate("A");
+        sp.setProgramExitDate(Instant.now());
         sp.setProgramExitReasonDsc("A");
 
         cft.setSpecialProgram(Collections.singletonList(sp));
 
         var pt = new PreviousAppearanceType();
         pt.setAppearanceId("A");
-        pt.setAppearanceDate("A");
+        pt.setAppearanceDate(Instant.now());
         pt.setCourtAgencyIdentifier("A");
         pt.setCourtRoom("A");
         pt.setAdjudicatorName("A");
@@ -503,13 +503,13 @@ public class FileControllerTests {
         dt.setDocumentTypeCd("A");
         dt.setDocumentTypeDescription("A");
         dt.setDocumentAccessLevelCd("A");
-        dt.setDocumentSealEndDate("A");
-        dt.setDocumentSealStartDate("A");
+        dt.setDocumentSealEndDate(Instant.now());
+        dt.setDocumentSealStartDate(Instant.now());
         dt.setDateGranted("A");
         dt.setEstimatedDocumentMinutes("A");
-        dt.setEndedDate("A");
+        dt.setEndedDate(Instant.now());
         dt.setDateVaried("A");
-        dt.setCancelledDate("A");
+        dt.setCancelledDate(Instant.now());
         dt.setDocumentCommentText("A");
         dt.setOrderDocumentYN("A");
         dt.setPOROrderYN("A");
@@ -529,7 +529,7 @@ public class FileControllerTests {
         var pit = new PartyInterestType();
         pit.setOrderRoleTypeDsc("A");
         pit.setPartyName("A");
-        pit.setPartyBirthDate("A");
+        pit.setPartyBirthDate(Instant.now());
         dt.setPartyInterest(Collections.singletonList(pit));
 
         cft.setDocument(Collections.singletonList(dt));
@@ -538,7 +538,7 @@ public class FileControllerTests {
         rd.setReferenceDocumentId("A");
         rd.setReferenceDocumentNo("A");
         rd.setAppearanceId("A");
-        rd.setAppearanceDate("a");
+        rd.setAppearanceDate(Instant.now());
         rd.setObjectGuid("A");
         rd.setDescriptionText("A");
         rd.setEnterDtm("A");
@@ -578,7 +578,7 @@ public class FileControllerTests {
         req.setAppearanceId(1L);
         req.setCourtLocaCd("A");
         req.setCourtRoomCd("A");
-        req.setCourtProceedingDate("A");
+        req.setCourtProceedingDate(Instant.now());
         req.setAppearanceId(1L);
         req.setPhysicalFileId("A");
 
@@ -589,7 +589,7 @@ public class FileControllerTests {
         var doc = new ca.bc.gov.open.ccd.civil.secure.CivilFileContentDoc();
         doc.setCourtLocaCd("A");
         doc.setCourtRoomCd("A");
-        doc.setCourtProceedingDate("A");
+        doc.setCourtProceedingDate(Instant.now());
         doc.setAppearanceId(Collections.singletonList("A"));
         doc.setPhysicalFileId("A");
 

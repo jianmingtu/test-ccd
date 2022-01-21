@@ -45,7 +45,7 @@ public class CodeControllerTests {
     public void getCodeValuesTest() throws JsonProcessingException {
 
         var req = new GetCodeValues();
-        req.setLastRetrievedDate("A");
+        req.setLastRetrievedDate(Instant.now());
 
         var out = new GetCodeValuesResponse();
         var cvs = new CodeValues();
@@ -80,7 +80,7 @@ public class CodeControllerTests {
     public void getCodeValuesSecureTest() throws JsonProcessingException {
         var req = new GetCodeValuesSecure();
         req.setApplicationCd("A");
-        req.setLastRetrievedDate("A");
+        req.setLastRetrievedDate(Instant.now());
         req.setRequestDtm(Instant.now());
         req.setRequestPartId("A");
         req.setRequestAgencyIdentifierId("A");
@@ -130,7 +130,7 @@ public class CodeControllerTests {
         String out = objectMapper.writeValueAsString(time);
 
         String expected =
-                DateTimeFormatter.ofPattern("yyyy-MM-dd")
+                DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm:ss")
                         .withZone(ZoneId.of("GMT-7"))
                         .withLocale(Locale.US)
                         .format(time);

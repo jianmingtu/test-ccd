@@ -5,7 +5,7 @@
     <xsd:element name="getCodeValues">
         <xsd:complexType>
             <xsd:sequence>
-                <xsd:element name="lastRetrievedDate" nillable="true" type="xsd:string"/>
+                <xsd:element name="lastRetrievedDate" nillable="true" type="xsd:dateTime"/>
             </xsd:sequence>
         </xsd:complexType>
     </xsd:element>

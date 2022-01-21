@@ -99,7 +99,7 @@ public class UserController {
 
     @PayloadRoot(
             namespace = "http://brooks/CCD.Source.GetUserLogin.WS:getUserLogin",
-            localPart = "getUserLogin")
+            localPart = "GetUserLogin")
     @ResponsePayload
     public GetUserLoginResponse getUserLogin(@RequestPayload GetUserLogin getUserLogin)
             throws JsonProcessingException {

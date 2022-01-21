@@ -36,14 +36,14 @@ public class CourtControllerTests {
         var req = new GetCrtList();
         req.setAgencyIdentifierCd("A");
         req.setRoomCd("A");
-        req.setProceedingDate("A");
+        req.setProceedingDate(Instant.now());
         req.setDivisionCd("A");
         req.setFileNumber("A");
 
         var out = new CourtListTypes();
         out.setCourtLocationName("A");
         out.setCourtRoomCode("A");
-        out.setCourtProceedingsDate("A");
+        out.setCourtProceedingsDate(Instant.now());
         var fs = new FileSearchParameter();
         fs.setFileNumber("A");
         fs.setCourtDivisionCd("A");
@@ -54,7 +54,7 @@ public class CourtControllerTests {
         crl.setCriminalAppearanceID("A");
         crl.setCourtListTypeCd("A");
         crl.setAppearanceSequenceNumber("A");
-        crl.setAppearanceTime("A");
+        crl.setAppearanceTime(Instant.now());
         var fi = new FileInformationType();
         fi.setFileLocaAgencyIdentifierCd("A");
         fi.setPhyFileFolderNo("A");
@@ -95,7 +95,7 @@ public class CourtControllerTests {
 
         crl.setAccusedFormattedName(fn);
 
-        crl.setAccusedBirthDate("A");
+        crl.setAccusedBirthDate(Instant.now());
         crl.setAccusedCurrentBailProcessText("A");
         crl.setAccusedInCustodyFlag("A");
         crl.setCounselFullName("A");
@@ -127,16 +127,16 @@ public class CourtControllerTests {
         ac.setLesserIncludedChargeStatuteDescription("A");
         ac.setAppearanceReasonCode("A");
         ac.setPleaCode("A");
-        ac.setPleaDate("A");
+        ac.setPleaDate(Instant.now());
         ac.setElectionCode("A");
-        ac.setElectionDate("A");
+        ac.setElectionDate(Instant.now());
         ac.setMdctSeqNo("A");
         ac.setOffenceAgeDaysNumber("A");
         ac.setIssuingOfficerPoliceForceCode("A");
         ac.setIssuingOfficerPINText("A");
         ac.setIssuingOfficerSurnameName("A");
         ac.setFindingCode("A");
-        ac.setFindingDate("A");
+        ac.setFindingDate(Instant.now());
 
         crl.setAppearanceCount(Collections.singletonList(ac));
 
@@ -155,7 +155,7 @@ public class CourtControllerTests {
         bov.setFormTypeCd("A");
         bov.setDocmTypeDsc("A");
         bov.setDocmId("A");
-        bov.setDocmIssueDate("A");
+        bov.setDocmIssueDate(Instant.now());
         bov.setDocmImageId("A");
         bov.setDocmStatus("A");
         crl.setBailOrderToVary(Collections.singletonList(bov));
@@ -164,16 +164,16 @@ public class CourtControllerTests {
         sov.setFormTypeCd("A");
         sov.setDocmTypeDsc("A");
         sov.setDocmId("A");
-        sov.setDocmIssueDate("A");
+        sov.setDocmIssueDate(Instant.now());
         sov.setDocmImageId("A");
         sov.setDocmStatus("A");
         crl.setSentOrderToVary(Collections.singletonList(sov));
 
         var an = new AgeNotice();
-        an.setEventDate("A");
+        an.setEventDate(Instant.now());
         an.setEventTypeDsc("A");
         an.setDetailText("A");
-        an.setDOB("A");
+        an.setDOB(Instant.now());
         an.setRelationship("A");
         an.setProvenBy("A");
         an.setNoticeTo("A");
@@ -190,7 +190,7 @@ public class CourtControllerTests {
         st.setSpeakerStatusDsc("A");
         SpeakerEvent se = new SpeakerEvent();
         se.setSpeakerEventDate("A");
-        se.setSpeakerEventTime("A");
+        se.setSpeakerEventTime(Instant.now());
         se.setSpeakerEventText("A");
 
         st.setSpeakerEvent(Collections.singletonList(se));
@@ -204,15 +204,15 @@ public class CourtControllerTests {
         var crp = new CRProtectionOrderType();
         crp.setPORConditionText("A");
         crp.setOrderTypeDsc("A");
-        crp.setPOROrderIssueDate("A");
+        crp.setPOROrderIssueDate(Instant.now());
         crl.setProtectionOrder(Collections.singletonList(crp));
 
         var sa = new ScheduledAppearance();
         sa.setAppearanceId("A");
         sa.setCourtAgencyIdentifier("A");
         sa.setCourtRoom("A");
-        sa.setAppearanceDate("A");
-        sa.setAppearanceTime("A");
+        sa.setAppearanceDate(Instant.now());
+        sa.setAppearanceTime(Instant.now());
         sa.setAppearanceReasonCd("A");
         sa.setEstDurationHours("A");
         sa.setEstDurationMins("A");
@@ -220,13 +220,13 @@ public class CourtControllerTests {
         var hr = new HearingRestrictionType();
         hr.setHearingRestrictiontype("A");
         hr.setJudgeName("A");
-        hr.setHearingRestrictionDate("A");
+        hr.setHearingRestrictionDate(Instant.now());
 
         crl.setHearingRestriction(Collections.singletonList(hr));
         crl.setScheduledAppearance(Collections.singletonList(sa));
 
         var co = new CFCOrderType();
-        co.setCFCOrderIssueDate("A");
+        co.setCFCOrderIssueDate(Instant.now());
         co.setOrderTypeDsc("A");
         co.setCFCConditionText("A");
 
@@ -234,18 +234,18 @@ public class CourtControllerTests {
 
         var crl2 = new CivilCourtListType();
         crl2.setAppearanceId("A");
-        crl2.setAppearanceTime("A");
+        crl2.setAppearanceTime(Instant.now());
         crl2.setBinderText("A");
         crl2.setCourtListPrintSortNumber("A");
         crl2.setCivilDocumentsAvailable("A");
-        crl2.setAppearanceDate("A");
+        crl2.setAppearanceDate(Instant.now());
         crl2.setExternalFileNumberText("A");
         crl2.setCourtListTypeCd("A");
         crl2.setCourtRoomCd("A");
         crl2.setCourtClassCd("A");
         crl2.setFileAccessLevelCd("A");
-        crl2.setSealStartDate("A");
-        crl2.setSealEndDate("A");
+        crl2.setSealStartDate(Instant.now());
+        crl2.setSealEndDate(Instant.now());
         crl2.setSheriffCommentText("A");
         crl2.setSealFileSOCText("A");
         crl2.setEstimatedAppearanceMinutes("A");
@@ -280,12 +280,12 @@ public class CourtControllerTests {
         dt.setDocumentTypeCd("A");
         dt.setDocumentTypeDescription("A");
         dt.setDocumentAccessLevelCd("A");
-        dt.setDocumentSealEndDate("A");
-        dt.setDocumentSealStartDate("A");
+        dt.setDocumentSealEndDate(Instant.now());
+        dt.setDocumentSealStartDate(Instant.now());
         dt.setDateGranted("A");
         dt.setEstimatedDocumentMinutes("A");
         dt.setDateVaried("A");
-        dt.setCancelledDate("A");
+        dt.setCancelledDate(Instant.now());
         dt.setOrderDocumentYN("A");
         dt.setAdjudicatorPartId("A");
         dt.setAdjudicatorName("A");
@@ -312,11 +312,11 @@ public class CourtControllerTests {
         pt.setAttendanceMethodCd("A");
         pt.setPartyTypeCd("A");
         pt.setLeftRightParty("A");
-        pt.setBirthDate("A");
+        pt.setBirthDate(Instant.now());
         pt.setPhoneNumber("A");
         pt.setInstruction("A");
         pt.setPartyFullAddressText("A");
-        pt.setWarrantIssueDate("A");
+        pt.setWarrantIssueDate(Instant.now());
         pt.setActiveYN("A");
         CounselType ct = new CounselType();
         ct.setCounselFullName("A");
@@ -367,14 +367,14 @@ public class CourtControllerTests {
         SpeakerEvent se2 = new SpeakerEvent();
         se2.setSpeakerEventText("A");
         se2.setSpeakerEventDate("A");
-        se2.setSpeakerEventTime("A");
+        se2.setSpeakerEventTime(Instant.now());
         st2.setSpeakerEvent(Collections.singletonList(se2));
 
         var pot = new ProtectionOrderType();
-        pot.setPOROrderIssueDate("A");
+        pot.setPOROrderIssueDate(Instant.now());
         pot.setOrderTypeDsc("A");
         pot.setPORConditionText("A");
-        pot.setPOROrderExpiryDate("A");
+        pot.setPOROrderExpiryDate(Instant.now());
         RestrainingPartyNameType rpt = new RestrainingPartyNameType();
         rpt.setRestrainingPartyName("A");
         ProtectedPartyNameType ppt = new ProtectedPartyNameType();
@@ -388,8 +388,8 @@ public class CourtControllerTests {
         sat.setAppearanceId("A");
         sat.setCourtAgencyIdentifier("A");
         sat.setCourtRoom("A");
-        sat.setAppearanceDate("A");
-        sat.setAppearanceTime("A");
+        sat.setAppearanceDate(Instant.now());
+        sat.setAppearanceTime(Instant.now());
         sat.setAppearanceReasonCd("A");
         sat.setEstDurationHours("A");
         sat.setEstDurationMins("A");
@@ -397,13 +397,13 @@ public class CourtControllerTests {
         crl2.setScheduledAppearance(Collections.singletonList(sat));
 
         var hr2 = new HearingRestrictionType();
-        hr2.setHearingRestrictionDate("A");
+        hr2.setHearingRestrictionDate(Instant.now());
         hr2.setJudgeName("A");
-        hr2.setHearingRestrictionDate("A");
+        hr2.setHearingRestrictionDate(Instant.now());
         crl2.setHearingRestriction(Collections.singletonList(hr2));
 
         var caw = new CivilArrestWarrantType();
-        caw.setWarrantDate("A");
+        caw.setWarrantDate(Instant.now());
         caw.setWarrantTypeCd("A");
         caw.setWarrantTypeDsc("A");
         crl2.setArrestWarrant(Collections.singletonList(caw));
@@ -455,7 +455,7 @@ public class CourtControllerTests {
         req.setApplicationCd("A");
         req.setAgencyIdentifierCd("A");
         req.setRoomCd("A");
-        req.setProceedingDate("A");
+        req.setProceedingDate(Instant.now());
         req.setDivisionCd("A");
         req.setFileNumber("A");
 
@@ -467,7 +467,7 @@ public class CourtControllerTests {
 
         clt.setCourtLocationName("A");
         clt.setCourtRoomCode("A");
-        clt.setCourtProceedingsDate("A");
+        clt.setCourtProceedingsDate(Instant.now());
         var fs = new ca.bc.gov.open.ccd.court.secure.one.FileSearchParameter();
         fs.setFileNumber("A");
         fs.setCourtDivisionCd("A");
@@ -478,7 +478,7 @@ public class CourtControllerTests {
         crl.setCriminalAppearanceID("A");
         crl.setCourtListTypeCd("A");
         crl.setAppearanceSequenceNumber("A");
-        crl.setAppearanceTime("A");
+        crl.setAppearanceTime(Instant.now());
         var fi = new ca.bc.gov.open.ccd.court.secure.one.FileInformationType();
         fi.setFileLocaAgencyIdentifierCd("A");
         fi.setPhyFileFolderNo("A");
@@ -519,7 +519,7 @@ public class CourtControllerTests {
 
         crl.setAccusedFormattedName(fn);
 
-        crl.setAccusedBirthDate("A");
+        crl.setAccusedBirthDate(Instant.now());
         crl.setAccusedCurrentBailProcessText("A");
         crl.setAccusedInCustodyFlag("A");
         crl.setCounselFullName("A");
@@ -551,16 +551,16 @@ public class CourtControllerTests {
         ac.setLesserIncludedChargeStatuteDescription("A");
         ac.setAppearanceReasonCode("A");
         ac.setPleaCode("A");
-        ac.setPleaDate("A");
+        ac.setPleaDate(Instant.now());
         ac.setElectionCode("A");
-        ac.setElectionDate("A");
+        ac.setElectionDate(Instant.now());
         ac.setMdctSeqNo("A");
         ac.setOffenceAgeDaysNumber("A");
         ac.setIssuingOfficerPoliceForceCode("A");
         ac.setIssuingOfficerPINText("A");
         ac.setIssuingOfficerSurnameName("A");
         ac.setFindingCode("A");
-        ac.setFindingDate("A");
+        ac.setFindingDate(Instant.now());
 
         crl.setAppearanceCount(Collections.singletonList(ac));
 
@@ -579,7 +579,7 @@ public class CourtControllerTests {
         bov.setFormTypeCd("A");
         bov.setDocmTypeDsc("A");
         bov.setDocmId("A");
-        bov.setDocmIssueDate("A");
+        bov.setDocmIssueDate(Instant.now());
         bov.setDocmImageId("A");
         bov.setDocmStatus("A");
         crl.setBailOrderToVary(Collections.singletonList(bov));
@@ -588,16 +588,16 @@ public class CourtControllerTests {
         sov.setFormTypeCd("A");
         sov.setDocmTypeDsc("A");
         sov.setDocmId("A");
-        sov.setDocmIssueDate("A");
+        sov.setDocmIssueDate(Instant.now());
         sov.setDocmImageId("A");
         sov.setDocmStatus("A");
         crl.setSentOrderToVary(Collections.singletonList(sov));
 
         var an = new ca.bc.gov.open.ccd.court.secure.one.AgeNotice();
-        an.setEventDate("A");
+        an.setEventDate(Instant.now());
         an.setEventTypeDsc("A");
         an.setDetailText("A");
-        an.setDOB("A");
+        an.setDOB(Instant.now());
         an.setRelationship("A");
         an.setProvenBy("A");
         an.setNoticeTo("A");
@@ -613,8 +613,8 @@ public class CourtControllerTests {
         st.setSpeakerStatusCd("A");
         st.setSpeakerStatusDsc("A");
         var se = new ca.bc.gov.open.ccd.court.secure.one.SpeakerEvent();
-        se.setSpeakerEventDate("A");
-        se.setSpeakerEventTime("A");
+        se.setSpeakerEventDate(Instant.now());
+        se.setSpeakerEventTime(Instant.now());
         se.setSpeakerEventText("A");
 
         st.setSpeakerEvent(Collections.singletonList(se));
@@ -622,21 +622,21 @@ public class CourtControllerTests {
 
         var aw = new ca.bc.gov.open.ccd.court.secure.one.ArrestWarrant();
         aw.setFileNumberText("A");
-        aw.setWarrantDate("A");
+        aw.setWarrantDate(Instant.now());
         crl.setArrestWarrant(Collections.singletonList(aw));
 
         var crp = new ca.bc.gov.open.ccd.court.secure.one.CRProtectionOrderType();
         crp.setPORConditionText("A");
         crp.setOrderTypeDsc("A");
-        crp.setPOROrderIssueDate("A");
+        crp.setPOROrderIssueDate(Instant.now());
         crl.setProtectionOrder(Collections.singletonList(crp));
 
         var sa = new ca.bc.gov.open.ccd.court.secure.one.ScheduledAppearance();
         sa.setAppearanceId("A");
         sa.setCourtAgencyIdentifier("A");
         sa.setCourtRoom("A");
-        sa.setAppearanceDate("A");
-        sa.setAppearanceTime("A");
+        sa.setAppearanceDate(Instant.now());
+        sa.setAppearanceTime(Instant.now());
         sa.setAppearanceReasonCd("A");
         sa.setEstDurationHours("A");
         sa.setEstDurationMins("A");
@@ -644,13 +644,13 @@ public class CourtControllerTests {
         var hr = new ca.bc.gov.open.ccd.court.secure.one.HearingRestrictionType();
         hr.setHearingRestrictiontype("A");
         hr.setJudgeName("A");
-        hr.setHearingRestrictionDate("A");
+        hr.setHearingRestrictionDate(Instant.now());
 
         crl.setHearingRestriction(Collections.singletonList(hr));
         crl.setScheduledAppearance(Collections.singletonList(sa));
 
         var co = new ca.bc.gov.open.ccd.court.secure.one.CFCOrderType();
-        co.setCFCOrderIssueDate("A");
+        co.setCFCOrderIssueDate(Instant.now());
         co.setOrderTypeDsc("A");
         co.setCFCConditionText("A");
 
@@ -658,18 +658,18 @@ public class CourtControllerTests {
 
         var crl2 = new ca.bc.gov.open.ccd.court.secure.one.CivilCourtListType();
         crl2.setAppearanceId("A");
-        crl2.setAppearanceTime("A");
+        crl2.setAppearanceTime(Instant.now());
         crl2.setBinderText("A");
         crl2.setCourtListPrintSortNumber("A");
         crl2.setCivilDocumentsAvailable("A");
-        crl2.setAppearanceDate("A");
+        crl2.setAppearanceDate(Instant.now());
         crl2.setExternalFileNumberText("A");
         crl2.setCourtListTypeCd("A");
         crl2.setCourtRoomCd("A");
         crl2.setCourtClassCd("A");
         crl2.setFileAccessLevelCd("A");
-        crl2.setSealStartDate("A");
-        crl2.setSealEndDate("A");
+        crl2.setSealStartDate(Instant.now());
+        crl2.setSealEndDate(Instant.now());
         crl2.setSheriffCommentText("A");
         crl2.setSealFileSOCText("A");
         crl2.setEstimatedAppearanceMinutes("A");
@@ -704,12 +704,12 @@ public class CourtControllerTests {
         dt.setDocumentTypeCd("A");
         dt.setDocumentTypeDescription("A");
         dt.setDocumentAccessLevelCd("A");
-        dt.setDocumentSealEndDate("A");
-        dt.setDocumentSealStartDate("A");
+        dt.setDocumentSealEndDate(Instant.now());
+        dt.setDocumentSealStartDate(Instant.now());
         dt.setDateGranted("A");
         dt.setEstimatedDocumentMinutes("A");
         dt.setDateVaried("A");
-        dt.setCancelledDate("A");
+        dt.setCancelledDate(Instant.now());
         dt.setOrderDocumentYN("A");
         dt.setAdjudicatorPartId("A");
         dt.setAdjudicatorName("A");
@@ -736,7 +736,7 @@ public class CourtControllerTests {
         pt.setAttendanceMethodCd("A");
         pt.setPartyTypeCd("A");
         pt.setLeftRightParty("A");
-        pt.setBirthDate("A");
+        pt.setBirthDate(Instant.now());
         pt.setPhoneNumber("A");
         pt.setInstruction("A");
         pt.setPartyFullAddressText("A");
@@ -790,15 +790,15 @@ public class CourtControllerTests {
         st2.setSpeakerStatusDsc("A");
         var se2 = new ca.bc.gov.open.ccd.court.secure.one.SpeakerEvent();
         se2.setSpeakerEventText("A");
-        se2.setSpeakerEventDate("A");
-        se2.setSpeakerEventTime("A");
+        se2.setSpeakerEventDate(Instant.now());
+        se2.setSpeakerEventTime(Instant.now());
         st2.setSpeakerEvent(Collections.singletonList(se2));
 
         var pot = new ca.bc.gov.open.ccd.court.secure.one.ProtectionOrderType();
-        pot.setPOROrderIssueDate("A");
+        pot.setPOROrderIssueDate(Instant.now());
         pot.setOrderTypeDsc("A");
         pot.setPORConditionText("A");
-        pot.setPOROrderExpiryDate("A");
+        pot.setPOROrderExpiryDate(Instant.now());
         var rpt = new ca.bc.gov.open.ccd.court.secure.one.RestrainingPartyNameType();
         rpt.setRestrainingPartyName("A");
         var ppt = new ca.bc.gov.open.ccd.court.secure.one.ProtectedPartyNameType();
@@ -812,8 +812,8 @@ public class CourtControllerTests {
         sat.setAppearanceId("A");
         sat.setCourtAgencyIdentifier("A");
         sat.setCourtRoom("A");
-        sat.setAppearanceDate("A");
-        sat.setAppearanceTime("A");
+        sat.setAppearanceDate(Instant.now());
+        sat.setAppearanceTime(Instant.now());
         sat.setAppearanceReasonCd("A");
         sat.setEstDurationHours("A");
         sat.setEstDurationMins("A");
@@ -821,13 +821,13 @@ public class CourtControllerTests {
         crl2.setScheduledAppearance(Collections.singletonList(sat));
 
         var hr2 = new ca.bc.gov.open.ccd.court.secure.one.HearingRestrictionType();
-        hr2.setHearingRestrictionDate("A");
+        hr2.setHearingRestrictionDate(Instant.now());
         hr2.setJudgeName("A");
-        hr2.setHearingRestrictionDate("A");
+        hr2.setHearingRestrictionDate(Instant.now());
         crl2.setHearingRestriction(Collections.singletonList(hr2));
 
         var caw = new ca.bc.gov.open.ccd.court.secure.one.CivilArrestWarrantType();
-        caw.setWarrantDate("A");
+        caw.setWarrantDate(Instant.now());
         caw.setWarrantTypeCd("A");
         caw.setWarrantTypeDsc("A");
         crl2.setArrestWarrant(Collections.singletonList(caw));

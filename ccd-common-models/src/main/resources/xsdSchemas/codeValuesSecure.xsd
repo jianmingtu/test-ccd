@@ -10,7 +10,7 @@
                 <xsd:element name="RequestPartId" nillable="true" type="xsd:string"/>
                 <xsd:element name="RequestDtm" nillable="true" type="xsd:dateTime"/>
                 <xsd:element name="ApplicationCd" nillable="true" type="xsd:string"/>
-                <xsd:element name="LastRetrievedDate" nillable="true" type="xsd:string"/>
+                <xsd:element name="LastRetrievedDate" nillable="true" type="xsd:dateTime"/>
             </xsd:sequence>
         </xsd:complexType>
     </xsd:element>

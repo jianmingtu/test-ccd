@@ -30,7 +30,7 @@
     </xsd:element>
 
     <xsd:element name="mapGuidToParticipantResponse">
-        <xsd:complexType name="mapGuidToParticipantResponse">
+        <xsd:complexType>
             <xsd:sequence>
                 <xsd:element name="success" nillable="true" type="xsd:string"/>
             </xsd:sequence>
