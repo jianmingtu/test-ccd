@@ -1,11 +1,11 @@
 package ca.bc.gov.open.ccd.controllers;
 
-import bcgov.reeks.ccd_source_criminalfilecontent_ws_provider.criminalfilecontentsecure.GetCriminalFileContentSecure;
-import bcgov.reeks.ccd_source_criminalfilecontent_ws_provider.criminalfilecontentsecure.GetCriminalFileContentSecureResponse;
-import ca.bc.gov.ag.courts.ccd_source_civilfilecontent_ws.civilfilecontent.*;
-import ca.bc.gov.ag.courts.ccd_source_criminalfilecontent_ws_provider.criminalfilecontent.FileContentDoc;
-import ca.bc.gov.ag.courts.ccd_source_criminalfilecontent_ws_provider.criminalfilecontent.GetCriminalFileContent;
-import ca.bc.gov.ag.courts.ccd_source_criminalfilecontent_ws_provider.criminalfilecontent.GetCriminalFileContentResponse;
+import ca.bc.gov.open.ccd.civil.*;
+import ca.bc.gov.open.ccd.civil.CivilFileContentDoc;
+import ca.bc.gov.open.ccd.civil.secure.*;
+import ca.bc.gov.open.ccd.common.criminal.file.content.*;
+import ca.bc.gov.open.ccd.common.criminal.file.content.FileContentDoc;
+import ca.bc.gov.open.ccd.common.criminal.file.content.secure.*;
 import ca.bc.gov.open.ccd.configuration.SoapConfig;
 import ca.bc.gov.open.ccd.exceptions.ORDSException;
 import ca.bc.gov.open.ccd.models.OrdsErrorLog;
@@ -187,12 +187,13 @@ public class FileController {
                         .queryParam("applicationCd", getCivilFileContent.getApplicationCd());
 
         try {
-            HttpEntity<GetCivilFileContentSecureResponse> resp =
+            HttpEntity<ca.bc.gov.open.ccd.civil.secure.GetCivilFileContentSecureResponse> resp =
                     restTemplate.exchange(
                             builder.toUriString(),
                             HttpMethod.GET,
                             new HttpEntity<>(new HttpHeaders()),
-                            GetCivilFileContentSecureResponse.class);
+                            ca.bc.gov.open.ccd.civil.secure.GetCivilFileContentSecureResponse
+                                    .class);
             return resp.getBody();
         } catch (Exception ex) {
             log.error(

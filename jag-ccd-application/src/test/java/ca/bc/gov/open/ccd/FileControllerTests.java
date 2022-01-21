@@ -2,11 +2,35 @@ package ca.bc.gov.open.ccd;
 
 import static org.mockito.Mockito.when;
 
-import bcgov.reeks.ccd_source_criminalfilecontent_ws_provider.criminalfilecontentsecure.GetCriminalFileContentSecure;
-import bcgov.reeks.ccd_source_criminalfilecontent_ws_provider.criminalfilecontentsecure.GetCriminalFileContentSecureResponse;
-import ca.bc.gov.ag.courts.ccd_source_civilfilecontent_ws.civilfilecontent.*;
-import ca.bc.gov.ag.courts.ccd_source_criminalfilecontent_ws_provider.criminalfilecontent.*;
-import ca.bc.gov.ag.courts.ccd_source_criminalfilecontent_ws_provider.criminalfilecontent.DocumentType;
+import ca.bc.gov.open.ccd.civil.*;
+import ca.bc.gov.open.ccd.civil.CivilFileContentDoc;
+import ca.bc.gov.open.ccd.civil.CivilFileType;
+import ca.bc.gov.open.ccd.civil.CounselType;
+import ca.bc.gov.open.ccd.civil.CourtParticipantType;
+import ca.bc.gov.open.ccd.civil.DocumentHearingType;
+import ca.bc.gov.open.ccd.civil.FiledByType;
+import ca.bc.gov.open.ccd.civil.GeneralAttendeeType;
+import ca.bc.gov.open.ccd.civil.IssueType;
+import ca.bc.gov.open.ccd.civil.PartyInterestType;
+import ca.bc.gov.open.ccd.civil.PreviousAppearanceType;
+import ca.bc.gov.open.ccd.civil.ReferenceDocInterest;
+import ca.bc.gov.open.ccd.civil.ReferenceDocumentType;
+import ca.bc.gov.open.ccd.civil.SpecialProgramType;
+import ca.bc.gov.open.ccd.civil.secure.*;
+import ca.bc.gov.open.ccd.common.criminal.file.content.*;
+import ca.bc.gov.open.ccd.common.criminal.file.content.AccusedFileType;
+import ca.bc.gov.open.ccd.common.criminal.file.content.AppearanceCountTypes;
+import ca.bc.gov.open.ccd.common.criminal.file.content.AppearanceTypes;
+import ca.bc.gov.open.ccd.common.criminal.file.content.ArrestWarrantType;
+import ca.bc.gov.open.ccd.common.criminal.file.content.BanTypes;
+import ca.bc.gov.open.ccd.common.criminal.file.content.CFCOrderType;
+import ca.bc.gov.open.ccd.common.criminal.file.content.DocumentType;
+import ca.bc.gov.open.ccd.common.criminal.file.content.FileContentDoc;
+import ca.bc.gov.open.ccd.common.criminal.file.content.HearingRestrictionType;
+import ca.bc.gov.open.ccd.common.criminal.file.content.PartyAppearanceMethodType;
+import ca.bc.gov.open.ccd.common.criminal.file.content.ProtectionOrderType;
+import ca.bc.gov.open.ccd.common.criminal.file.content.SentenceType;
+import ca.bc.gov.open.ccd.common.criminal.file.content.secure.*;
 import ca.bc.gov.open.ccd.controllers.FileController;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -156,7 +180,7 @@ public class FileControllerTests {
 
         ResponseEntity<FileContentDoc> responseEntity = new ResponseEntity<>(out, HttpStatus.OK);
 
-        //     Set up to mock ords response
+        // Set up to mock ords response
         when(restTemplate.exchange(
                         Mockito.any(String.class),
                         Mockito.eq(HttpMethod.GET),
@@ -186,22 +210,16 @@ public class FileControllerTests {
         var out = new GetCriminalFileContentSecureResponse();
         out.setResultCd("A");
         out.setResultMessage("A");
-        var fc =
-                new bcgov.reeks.ccd_source_criminalfilecontent_ws_provider.criminalfilecontentsecure
-                        .FileContentDoc();
+        var fc = new ca.bc.gov.open.ccd.common.criminal.file.content.secure.FileContentDoc();
 
         fc.setCourtLocaCd("A");
         fc.setCourtRoomCd("A");
         fc.setCourtProceedingDate("A");
         fc.setAppearanceId(Collections.singletonList("A"));
         fc.setMdocJustinNo("A");
-        var ac =
-                new bcgov.reeks.ccd_source_criminalfilecontent_ws_provider.criminalfilecontentsecure
-                        .AccusedFileType();
+        var ac = new ca.bc.gov.open.ccd.common.criminal.file.content.secure.AccusedFileType();
 
-        var ap =
-                new bcgov.reeks.ccd_source_criminalfilecontent_ws_provider.criminalfilecontentsecure
-                        .AppearanceTypes();
+        var ap = new ca.bc.gov.open.ccd.common.criminal.file.content.secure.AppearanceTypes();
         ap.setAppearanceId("A");
         ap.setAppearanceDate("A");
         ap.setCourtAgencyIdentifier("A");
@@ -212,9 +230,7 @@ public class FileControllerTests {
         ap.setConfirmStatusDsc("A");
         ap.setJudgesRecommendation("A");
 
-        var act =
-                new bcgov.reeks.ccd_source_criminalfilecontent_ws_provider.criminalfilecontentsecure
-                        .AppearanceCountTypes();
+        var act = new ca.bc.gov.open.ccd.common.criminal.file.content.secure.AppearanceCountTypes();
         act.setAppcId("A");
         act.setCountNumber("A");
         act.setAppearanceReason("A");
@@ -222,9 +238,7 @@ public class FileControllerTests {
         act.setFinding("A");
         act.setSectionDscTxt("A");
         act.setSectionTxt("A");
-        var st =
-                new bcgov.reeks.ccd_source_criminalfilecontent_ws_provider.criminalfilecontentsecure
-                        .SentenceType();
+        var st = new ca.bc.gov.open.ccd.common.criminal.file.content.secure.SentenceType();
 
         st.setSntpCd("A");
         st.setSentTermPeriodQty("A");
@@ -260,16 +274,12 @@ public class FileControllerTests {
         ac.setSealTypeCd("A");
         ac.setFiledDate("A");
 
-        var wt =
-                new bcgov.reeks.ccd_source_criminalfilecontent_ws_provider.criminalfilecontentsecure
-                        .ArrestWarrantType();
+        var wt = new ca.bc.gov.open.ccd.common.criminal.file.content.secure.ArrestWarrantType();
         wt.setFileNumberText("A");
         wt.setWarrantDate("A");
         ac.setArrestWarrant(Collections.singletonList(wt));
 
-        var bt =
-                new bcgov.reeks.ccd_source_criminalfilecontent_ws_provider.criminalfilecontentsecure
-                        .BanTypes();
+        var bt = new ca.bc.gov.open.ccd.common.criminal.file.content.secure.BanTypes();
         bt.setBanTypeCd("A");
         bt.setBanTypeDescription("A");
         bt.setBanTypeAct("A");
@@ -281,33 +291,26 @@ public class FileControllerTests {
         bt.setBanSeqNo("A");
         ac.setBan(Collections.singletonList(bt));
 
-        var pt =
-                new bcgov.reeks.ccd_source_criminalfilecontent_ws_provider.criminalfilecontentsecure
-                        .ProtectionOrderType();
+        var pt = new ca.bc.gov.open.ccd.common.criminal.file.content.secure.ProtectionOrderType();
         pt.setPOROrderIssueDate("A");
         pt.setOrderTypeDsc("A");
         pt.setPORConditionText("A");
         ac.setProtectionOrder(Collections.singletonList(pt));
 
-        var ct =
-                new bcgov.reeks.ccd_source_criminalfilecontent_ws_provider.criminalfilecontentsecure
-                        .CFCOrderType();
+        var ct = new ca.bc.gov.open.ccd.common.criminal.file.content.secure.CFCOrderType();
         ct.setCFCOrderIssueDate("A");
         ct.setCFCConditionText("A");
         ct.setOrderTypeDsc("A");
         ac.setCFCOrder(Collections.singletonList(ct));
 
         var ht =
-                new bcgov.reeks.ccd_source_criminalfilecontent_ws_provider.criminalfilecontentsecure
-                        .HearingRestrictionType();
+                new ca.bc.gov.open.ccd.common.criminal.file.content.secure.HearingRestrictionType();
         ht.setHearingRestrictiontype("A");
         ht.setJudgeName("A");
         ht.setHearingRestrictionDate("A");
         ac.setHearingRestriction(Collections.singletonList(ht));
 
-        var dt =
-                new bcgov.reeks.ccd_source_criminalfilecontent_ws_provider.criminalfilecontentsecure
-                        .DocumentType();
+        var dt = new ca.bc.gov.open.ccd.common.criminal.file.content.secure.DocumentType();
         dt.setDocmClassification("A");
         dt.setDocmId("A");
         dt.setIssueDate("A");
@@ -331,7 +334,7 @@ public class FileControllerTests {
         at.setJudgesRecommendation("A");
 
         var pa =
-                new bcgov.reeks.ccd_source_criminalfilecontent_ws_provider.criminalfilecontentsecure
+                new ca.bc.gov.open.ccd.common.criminal.file.content.secure
                         .PartyAppearanceMethodType();
 
         pa.setPartyName("A");
@@ -376,7 +379,7 @@ public class FileControllerTests {
         ResponseEntity<GetCriminalFileContentSecureResponse> responseEntity =
                 new ResponseEntity<>(out, HttpStatus.OK);
 
-        //     Set up to mock ords response
+        // Set up to mock ords response
         when(restTemplate.exchange(
                         Mockito.any(String.class),
                         Mockito.eq(HttpMethod.GET),
@@ -494,9 +497,7 @@ public class FileControllerTests {
 
         pt.setGeneralAttendee(Collections.singletonList(gt));
 
-        var dt =
-                new ca.bc.gov.ag.courts.ccd_source_civilfilecontent_ws.civilfilecontent
-                        .DocumentType();
+        var dt = new ca.bc.gov.open.ccd.civil.DocumentType();
         dt.setDocumentId("A");
         dt.setFileSeqNumber("A");
         dt.setDocumentTypeCd("A");
@@ -554,7 +555,7 @@ public class FileControllerTests {
         ResponseEntity<CivilFileContentDoc> responseEntity =
                 new ResponseEntity<>(out, HttpStatus.OK);
 
-        //     Set up to mock ords response
+        // Set up to mock ords response
         when(restTemplate.exchange(
                         Mockito.any(String.class),
                         Mockito.eq(HttpMethod.GET),
@@ -585,7 +586,7 @@ public class FileControllerTests {
         out.setResultCd("A");
         out.setResultMessage("A");
 
-        var doc = new CivilFileContentDoc();
+        var doc = new ca.bc.gov.open.ccd.civil.secure.CivilFileContentDoc();
         doc.setCourtLocaCd("A");
         doc.setCourtRoomCd("A");
         doc.setCourtProceedingDate("A");
@@ -597,7 +598,7 @@ public class FileControllerTests {
         ResponseEntity<GetCivilFileContentSecureResponse> responseEntity =
                 new ResponseEntity<>(out, HttpStatus.OK);
 
-        //     Set up to mock ords response
+        // Set up to mock ords response
         when(restTemplate.exchange(
                         Mockito.any(String.class),
                         Mockito.eq(HttpMethod.GET),

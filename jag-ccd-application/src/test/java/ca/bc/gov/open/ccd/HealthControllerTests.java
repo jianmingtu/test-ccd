@@ -2,13 +2,11 @@ package ca.bc.gov.open.ccd;
 
 import static org.mockito.Mockito.when;
 
-import ca.bc.gov.ag.court.ccd_source_processresults_ws_provider.processresults.GetHealth;
-import ca.bc.gov.ag.court.ccd_source_processresults_ws_provider.processresults.GetHealthResponse;
-import ca.bc.gov.ag.court.ccd_source_processresults_ws_provider.processresults.GetPing;
-import ca.bc.gov.ag.court.ccd_source_processresults_ws_provider.processresults.GetPingResponse;
+import ca.bc.gov.open.ccd.common.process.results.*;
 import ca.bc.gov.open.ccd.controllers.HealthController;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.mockito.Mockito;
@@ -49,7 +47,7 @@ public class HealthControllerTests {
 
         var resp = healthController.getPing(get);
 
-        assert resp != null;
+        Assertions.assertNotNull(resp);
     }
 
     @Test
@@ -78,6 +76,6 @@ public class HealthControllerTests {
 
         var resp = healthController.getHealth(get);
 
-        assert resp != null;
+        Assertions.assertNotNull(resp);
     }
 }

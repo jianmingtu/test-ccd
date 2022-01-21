@@ -1,12 +1,8 @@
 package ca.bc.gov.open.ccd.controllers;
 
-import bcgov.reeks.ccd_source_getropreport_ws.getropreportsecure.GetROPReportSecure;
-import bcgov.reeks.ccd_source_getropreport_ws.getropreportsecure.GetROPReportSecureResponse;
-import bcgov.reeks.ccd_source_getropreport_ws.getropreportsecure.RopSecureRequest;
-import ca.bc.gov.ag.brooks.ccd_source_getropreport_ws.getropreport.GetROPReport;
-import ca.bc.gov.ag.brooks.ccd_source_getropreport_ws.getropreport.GetROPReportResponse;
-import ca.bc.gov.ag.brooks.ccd_source_getropreport_ws.getropreport.Rop;
-import ca.bc.gov.ag.brooks.ccd_source_getropreport_ws.getropreport.RopResult;
+import ca.bc.gov.open.ccd.common.rop.report.*;
+import ca.bc.gov.open.ccd.common.rop.report.RopResult;
+import ca.bc.gov.open.ccd.common.rop.report.secure.*;
 import ca.bc.gov.open.ccd.configuration.SoapConfig;
 import ca.bc.gov.open.ccd.exceptions.ORDSException;
 import ca.bc.gov.open.ccd.models.OrdsErrorLog;
@@ -97,13 +93,12 @@ public class ReportController {
                         .queryParam("requestDtm", InstantSerializer.convert(inner.getRequestDtm()));
 
         try {
-            HttpEntity<bcgov.reeks.ccd_source_getropreport_ws.getropreportsecure.RopResult> resp =
+            HttpEntity<ca.bc.gov.open.ccd.common.rop.report.secure.RopResult> resp =
                     restTemplate.exchange(
                             builder.toUriString(),
                             HttpMethod.GET,
                             new HttpEntity<>(new HttpHeaders()),
-                            bcgov.reeks.ccd_source_getropreport_ws.getropreportsecure.RopResult
-                                    .class);
+                            ca.bc.gov.open.ccd.common.rop.report.secure.RopResult.class);
             var out = new GetROPReportSecureResponse();
             out.setROPResponse(resp.getBody());
             return out;

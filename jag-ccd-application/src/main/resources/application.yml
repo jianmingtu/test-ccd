@@ -4,7 +4,6 @@ security:
     username: ${BASIC_AUTH_USER}
 ccd:
   host: ${ORDS_HOST}
-  namespace: ${CCD_NAMESPACE}
 
 management:
   trace:
