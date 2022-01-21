@@ -3,7 +3,6 @@ package ca.bc.gov.open.ccd.controllers;
 import ca.bc.gov.open.ccd.common.rop.report.*;
 import ca.bc.gov.open.ccd.common.rop.report.RopResult;
 import ca.bc.gov.open.ccd.common.rop.report.secure.*;
-import ca.bc.gov.open.ccd.configuration.SoapConfig;
 import ca.bc.gov.open.ccd.exceptions.ORDSException;
 import ca.bc.gov.open.ccd.models.OrdsErrorLog;
 import ca.bc.gov.open.ccd.models.serializers.InstantSerializer;
@@ -37,7 +36,9 @@ public class ReportController {
         this.objectMapper = objectMapper;
     }
 
-    @PayloadRoot(namespace = SoapConfig.SOAP_NAMESPACE, localPart = "getROPReport")
+    @PayloadRoot(
+            namespace = "http://brooks.ag.gov.bc.ca/CCD.Source.GetROPReport.ws:GetROPReport",
+            localPart = "getROPReport")
     @ResponsePayload
     public GetROPReportResponse getRopReport(@RequestPayload GetROPReport getROPReport)
             throws JsonProcessingException {
@@ -74,7 +75,9 @@ public class ReportController {
         }
     }
 
-    @PayloadRoot(namespace = SoapConfig.SOAP_NAMESPACE, localPart = "getROPReportSecure")
+    @PayloadRoot(
+            namespace = "http://reeks.bcgov/CCD.Source.GetROPReport.ws:GetROPReportSecure",
+            localPart = "getROPReportSecure")
     @ResponsePayload
     public GetROPReportSecureResponse getRopReportSecure(
             @RequestPayload GetROPReportSecure getROPReport) throws JsonProcessingException {

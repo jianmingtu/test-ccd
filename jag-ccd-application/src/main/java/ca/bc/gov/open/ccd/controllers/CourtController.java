@@ -1,6 +1,5 @@
 package ca.bc.gov.open.ccd.controllers;
 
-import ca.bc.gov.open.ccd.configuration.SoapConfig;
 import ca.bc.gov.open.ccd.court.one.*;
 import ca.bc.gov.open.ccd.court.one.CourtListTypes;
 import ca.bc.gov.open.ccd.court.secure.one.*;
@@ -37,7 +36,9 @@ public class CourtController {
         this.objectMapper = objectMapper;
     }
 
-    @PayloadRoot(namespace = SoapConfig.SOAP_NAMESPACE, localPart = "getCrtList")
+    @PayloadRoot(
+            namespace = "http://brooks/CCD.Source.CourtLists.ws.provider:CourtList",
+            localPart = "getCrtList")
     @ResponsePayload
     public GetCrtListResponse getCrtList(@RequestPayload GetCrtList getCrtList)
             throws JsonProcessingException {
@@ -72,7 +73,9 @@ public class CourtController {
         }
     }
 
-    @PayloadRoot(namespace = SoapConfig.SOAP_NAMESPACE, localPart = "getCrtListSecure")
+    @PayloadRoot(
+            namespace = "http://reeks.bcgov/CCD.Source.CourtLists.ws.provider:CourtListSecure",
+            localPart = "getCrtListSecure")
     @ResponsePayload
     public GetCrtListSecureResponse getCrtListSecure(@RequestPayload GetCrtListSecure getCrtList)
             throws JsonProcessingException {

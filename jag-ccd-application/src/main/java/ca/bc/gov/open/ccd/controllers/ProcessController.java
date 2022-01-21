@@ -1,7 +1,6 @@
 package ca.bc.gov.open.ccd.controllers;
 
 import ca.bc.gov.open.ccd.common.process.results.*;
-import ca.bc.gov.open.ccd.configuration.SoapConfig;
 import ca.bc.gov.open.ccd.exceptions.ORDSException;
 import ca.bc.gov.open.ccd.models.OrdsErrorLog;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -26,6 +25,9 @@ public class ProcessController {
     @Value("${ccd.host}")
     private String host = "https://127.0.0.1/";
 
+    private static final String PROCESS_NAMESPACE =
+            "http://court.ag.gov.bc.ca/CCD.Source.ProcessResults.ws.provider:ProcessResults";
+
     private final RestTemplate restTemplate;
     private final ObjectMapper objectMapper;
 
@@ -35,7 +37,7 @@ public class ProcessController {
         this.objectMapper = objectMapper;
     }
 
-    @PayloadRoot(namespace = SoapConfig.SOAP_NAMESPACE, localPart = "processVariation")
+    @PayloadRoot(namespace = PROCESS_NAMESPACE, localPart = "processVariation")
     @ResponsePayload
     public ProcessVariationResponse processVariation(@RequestPayload ProcessVariation process)
             throws JsonProcessingException {
@@ -68,7 +70,7 @@ public class ProcessController {
         }
     }
 
-    @PayloadRoot(namespace = SoapConfig.SOAP_NAMESPACE, localPart = "processSpeaker")
+    @PayloadRoot(namespace = PROCESS_NAMESPACE, localPart = "processSpeaker")
     @ResponsePayload
     public ProcessSpeakerResponse processSpeaker(@RequestPayload ProcessSpeaker process)
             throws JsonProcessingException {
@@ -100,7 +102,7 @@ public class ProcessController {
         }
     }
 
-    @PayloadRoot(namespace = SoapConfig.SOAP_NAMESPACE, localPart = "processCivilResults")
+    @PayloadRoot(namespace = PROCESS_NAMESPACE, localPart = "processCivilResults")
     @ResponsePayload
     public ProcessCivilResultsResponse processCivilResults(
             @RequestPayload ProcessCivilResults process) throws JsonProcessingException {
@@ -134,7 +136,7 @@ public class ProcessController {
         }
     }
 
-    @PayloadRoot(namespace = SoapConfig.SOAP_NAMESPACE, localPart = "processAppearanceMethod")
+    @PayloadRoot(namespace = PROCESS_NAMESPACE, localPart = "processAppearanceMethod")
     @ResponsePayload
     public ProcessAppearanceMethodResponse processAppearanceMethod(
             @RequestPayload ProcessAppearanceMethod process) throws JsonProcessingException {
@@ -170,7 +172,7 @@ public class ProcessController {
         }
     }
 
-    @PayloadRoot(namespace = SoapConfig.SOAP_NAMESPACE, localPart = "processPlea")
+    @PayloadRoot(namespace = PROCESS_NAMESPACE, localPart = "processPlea")
     @ResponsePayload
     public ProcessPleaResponse processPlea(@RequestPayload ProcessPlea process)
             throws JsonProcessingException {
@@ -203,7 +205,7 @@ public class ProcessController {
         }
     }
 
-    @PayloadRoot(namespace = SoapConfig.SOAP_NAMESPACE, localPart = "processElection")
+    @PayloadRoot(namespace = PROCESS_NAMESPACE, localPart = "processElection")
     @ResponsePayload
     public ProcessElectionResponse processElection(@RequestPayload ProcessElection process)
             throws JsonProcessingException {
@@ -236,7 +238,7 @@ public class ProcessController {
         }
     }
 
-    @PayloadRoot(namespace = SoapConfig.SOAP_NAMESPACE, localPart = "processBail")
+    @PayloadRoot(namespace = PROCESS_NAMESPACE, localPart = "processBail")
     @ResponsePayload
     public ProcessBailResponse processBail(@RequestPayload ProcessBail process)
             throws JsonProcessingException {
@@ -269,7 +271,7 @@ public class ProcessController {
         }
     }
 
-    @PayloadRoot(namespace = SoapConfig.SOAP_NAMESPACE, localPart = "processCriminalResult")
+    @PayloadRoot(namespace = PROCESS_NAMESPACE, localPart = "processCriminalResult")
     @ResponsePayload
     public ProcessCriminalResultResponse processCriminalResult(
             @RequestPayload ProcessCriminalResult process) throws JsonProcessingException {
@@ -305,7 +307,7 @@ public class ProcessController {
         }
     }
 
-    @PayloadRoot(namespace = SoapConfig.SOAP_NAMESPACE, localPart = "processAgeNotice")
+    @PayloadRoot(namespace = PROCESS_NAMESPACE, localPart = "processAgeNotice")
     @ResponsePayload
     public ProcessAgeNoticeResponse processAgeNotice(@RequestPayload ProcessAgeNotice process)
             throws JsonProcessingException {
@@ -338,7 +340,7 @@ public class ProcessController {
         }
     }
 
-    @PayloadRoot(namespace = SoapConfig.SOAP_NAMESPACE, localPart = "processMatterCall")
+    @PayloadRoot(namespace = PROCESS_NAMESPACE, localPart = "processMatterCall")
     @ResponsePayload
     public ProcessMatterCallResponse processMatterCall(@RequestPayload ProcessMatterCall process)
             throws JsonProcessingException {
@@ -371,7 +373,7 @@ public class ProcessController {
         }
     }
 
-    @PayloadRoot(namespace = SoapConfig.SOAP_NAMESPACE, localPart = "processSentence")
+    @PayloadRoot(namespace = PROCESS_NAMESPACE, localPart = "processSentence")
     @ResponsePayload
     public ProcessSentenceResponse processSentence(@RequestPayload ProcessSentence process)
             throws JsonProcessingException {
@@ -404,7 +406,7 @@ public class ProcessController {
         }
     }
 
-    @PayloadRoot(namespace = SoapConfig.SOAP_NAMESPACE, localPart = "processBan")
+    @PayloadRoot(namespace = PROCESS_NAMESPACE, localPart = "processBan")
     @ResponsePayload
     public ProcessBanResponse processBan(@RequestPayload ProcessBan process)
             throws JsonProcessingException {
@@ -437,7 +439,7 @@ public class ProcessController {
         }
     }
 
-    @PayloadRoot(namespace = SoapConfig.SOAP_NAMESPACE, localPart = "processNote")
+    @PayloadRoot(namespace = PROCESS_NAMESPACE, localPart = "processNote")
     @ResponsePayload
     public ProcessNoteResponse processNote(@RequestPayload ProcessNote process)
             throws JsonProcessingException {
@@ -470,7 +472,7 @@ public class ProcessController {
         }
     }
 
-    @PayloadRoot(namespace = SoapConfig.SOAP_NAMESPACE, localPart = "processArraignment")
+    @PayloadRoot(namespace = PROCESS_NAMESPACE, localPart = "processArraignment")
     @ResponsePayload
     public ProcessArraignmentResponse processArraignment(@RequestPayload ProcessArraignment process)
             throws JsonProcessingException {
@@ -503,7 +505,7 @@ public class ProcessController {
         }
     }
 
-    @PayloadRoot(namespace = SoapConfig.SOAP_NAMESPACE, localPart = "processMove")
+    @PayloadRoot(namespace = PROCESS_NAMESPACE, localPart = "processMove")
     @ResponsePayload
     public ProcessMoveResponse processMove(@RequestPayload ProcessMove process)
             throws JsonProcessingException {
@@ -536,7 +538,7 @@ public class ProcessController {
         }
     }
 
-    @PayloadRoot(namespace = SoapConfig.SOAP_NAMESPACE, localPart = "processFinding")
+    @PayloadRoot(namespace = PROCESS_NAMESPACE, localPart = "processFinding")
     @ResponsePayload
     public ProcessFindingResponse processFinding(@RequestPayload ProcessFinding process)
             throws JsonProcessingException {
@@ -569,7 +571,7 @@ public class ProcessController {
         }
     }
 
-    @PayloadRoot(namespace = SoapConfig.SOAP_NAMESPACE, localPart = "processGenericResult")
+    @PayloadRoot(namespace = PROCESS_NAMESPACE, localPart = "processGenericResult")
     @ResponsePayload
     public ProcessGenericResultResponse processGenericResult(
             @RequestPayload ProcessGenericResult process) throws JsonProcessingException {
@@ -605,7 +607,7 @@ public class ProcessController {
         }
     }
 
-    @PayloadRoot(namespace = SoapConfig.SOAP_NAMESPACE, localPart = "ProcessCivilAppearanceMethod")
+    @PayloadRoot(namespace = PROCESS_NAMESPACE, localPart = "ProcessCivilAppearanceMethod")
     @ResponsePayload
     public ProcessCivilAppearanceMethodResponse processCivilAppearanceMethod(
             @RequestPayload ProcessCivilAppearanceMethod process) throws JsonProcessingException {
@@ -641,7 +643,7 @@ public class ProcessController {
         }
     }
 
-    @PayloadRoot(namespace = SoapConfig.SOAP_NAMESPACE, localPart = "processOrder")
+    @PayloadRoot(namespace = PROCESS_NAMESPACE, localPart = "processOrder")
     @ResponsePayload
     public ProcessOrderResponse processOrder(@RequestPayload ProcessOrder process)
             throws JsonProcessingException {
@@ -674,7 +676,7 @@ public class ProcessController {
         }
     }
 
-    @PayloadRoot(namespace = SoapConfig.SOAP_NAMESPACE, localPart = "processCivilOrderResult")
+    @PayloadRoot(namespace = PROCESS_NAMESPACE, localPart = "processCivilOrderResult")
     @ResponsePayload
     public ProcessCivilOrderResultResponse processCivilOrderResult(
             @RequestPayload ProcessCivilOrderResult process) throws JsonProcessingException {
@@ -710,7 +712,7 @@ public class ProcessController {
         }
     }
 
-    @PayloadRoot(namespace = SoapConfig.SOAP_NAMESPACE, localPart = "processExhibit")
+    @PayloadRoot(namespace = PROCESS_NAMESPACE, localPart = "processExhibit")
     @ResponsePayload
     public ProcessExhibitResponse processExhibit(@RequestPayload ProcessExhibit process)
             throws JsonProcessingException {
@@ -744,7 +746,7 @@ public class ProcessController {
         }
     }
 
-    @PayloadRoot(namespace = SoapConfig.SOAP_NAMESPACE, localPart = "processSpecialCourt")
+    @PayloadRoot(namespace = PROCESS_NAMESPACE, localPart = "processSpecialCourt")
     @ResponsePayload
     public ProcessSpecialCourtResponse processSpecialCourt(
             @RequestPayload ProcessSpecialCourt process) throws JsonProcessingException {
