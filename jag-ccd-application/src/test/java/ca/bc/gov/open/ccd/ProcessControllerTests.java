@@ -6,7 +6,6 @@ import ca.bc.gov.open.ccd.common.process.results.*;
 import ca.bc.gov.open.ccd.controllers.ProcessController;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-
 import java.time.Instant;
 import java.util.Collections;
 import org.junit.jupiter.api.Assertions;

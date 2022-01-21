@@ -7,10 +7,8 @@ import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.Instant;
-import java.util.Date;
 import java.util.Locale;
 import java.util.TimeZone;
-
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
