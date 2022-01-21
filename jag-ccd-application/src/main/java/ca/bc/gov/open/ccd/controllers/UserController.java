@@ -2,7 +2,6 @@ package ca.bc.gov.open.ccd.controllers;
 
 import ca.bc.gov.open.ccd.common.user.login.*;
 import ca.bc.gov.open.ccd.common.user.mapping.*;
-import ca.bc.gov.open.ccd.configuration.SoapConfig;
 import ca.bc.gov.open.ccd.exceptions.ORDSException;
 import ca.bc.gov.open.ccd.models.OrdsErrorLog;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -35,7 +34,9 @@ public class UserController {
         this.objectMapper = objectMapper;
     }
 
-    @PayloadRoot(namespace = SoapConfig.SOAP_NAMESPACE, localPart = "getParticipantInfo")
+    @PayloadRoot(
+            namespace = "http://courts.ag.gov.bc.ca/CCD.Source.CCDUserMapping.ws:ccdUserMapping",
+            localPart = "getParticipantInfo")
     @ResponsePayload
     public GetParticipantInfoResponse getParticipantInfo(
             @RequestPayload GetParticipantInfo getParticipantInfo) throws JsonProcessingException {
@@ -63,7 +64,9 @@ public class UserController {
         }
     }
 
-    @PayloadRoot(namespace = SoapConfig.SOAP_NAMESPACE, localPart = "mapGuidToParticipant")
+    @PayloadRoot(
+            namespace = "http://courts.ag.gov.bc.ca/CCD.Source.CCDUserMapping.ws:ccdUserMapping",
+            localPart = "mapGuidToParticipant")
     @ResponsePayload
     public MapGuidToParticipantResponse mapGuidToParticipant(
             @RequestPayload MapGuidToParticipant mapGuidToParticipant)
@@ -94,7 +97,9 @@ public class UserController {
         }
     }
 
-    @PayloadRoot(namespace = SoapConfig.SOAP_NAMESPACE, localPart = "getUserLogin")
+    @PayloadRoot(
+            namespace = "http://brooks/CCD.Source.GetUserLogin.WS:getUserLogin",
+            localPart = "getUserLogin")
     @ResponsePayload
     public GetUserLoginResponse getUserLogin(@RequestPayload GetUserLogin getUserLogin)
             throws JsonProcessingException {
