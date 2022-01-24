@@ -102,7 +102,7 @@ public class FileController {
                         .queryParam("appearanceID", getCriminalFileContent.getAppearanceID())
                         .queryParam("mdocJustinNo", getCriminalFileContent.getMdocJustinNo())
                         .queryParam(
-                                "requestAgenId",
+                                "requestAgencyId",
                                 getCriminalFileContent.getRequestAgencyIdentifierId())
                         .queryParam("requestPartId", getCriminalFileContent.getRequestPartId())
                         .queryParam(
@@ -190,7 +190,7 @@ public class FileController {
                         .queryParam("appearanceId", getCivilFileContent.getAppearanceId())
                         .queryParam("physicalFileId", getCivilFileContent.getPhysicalFileId())
                         .queryParam(
-                                "requestAgenId", getCivilFileContent.getRequestAgencyIdentifierId())
+                                "requestAgencyId", getCivilFileContent.getRequestAgencyIdentifierId())
                         .queryParam("requestPartId", getCivilFileContent.getRequestPartId())
                         .queryParam(
                                 "requestDtm",

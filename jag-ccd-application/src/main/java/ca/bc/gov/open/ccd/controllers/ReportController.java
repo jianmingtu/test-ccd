@@ -91,7 +91,7 @@ public class ReportController {
                         .queryParam("param1", inner.getParam1())
                         .queryParam("param2", inner.getParam2())
                         .queryParam("formCd", inner.getFormCd())
-                        .queryParam("requestAgenId", inner.getRequestAgencyIdentifierId())
+                        .queryParam("requestAgencyId", inner.getRequestAgencyIdentifierId())
                         .queryParam("requestPartId", inner.getRequestPartId())
                         .queryParam("requestDtm", InstantSerializer.convert(inner.getRequestDtm()));
 

@@ -76,7 +76,7 @@ public class CodeController {
         UriComponentsBuilder builder =
                 UriComponentsBuilder.fromHttpUrl(host + "appearance")
                         .queryParam("lastRetrievedDate", getCodeValues.getLastRetrievedDate())
-                        .queryParam("requestAgenId", getCodeValues.getRequestAgencyIdentifierId())
+                        .queryParam("requestAgencyId", getCodeValues.getRequestAgencyIdentifierId())
                         .queryParam("requestPartId", getCodeValues.getRequestPartId())
                         .queryParam(
                                 "requestDtm",
