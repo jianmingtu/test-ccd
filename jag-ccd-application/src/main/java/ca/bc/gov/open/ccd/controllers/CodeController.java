@@ -23,8 +23,14 @@ import org.springframework.ws.server.endpoint.annotation.ResponsePayload;
 @Slf4j
 @Endpoint
 public class CodeController {
-    @Value("${ccd.host}")
+    @Value("${ccd.host}" + "common/")
     private String host = "https://127.0.0.1/";
+
+    @Value("${ccd.generic-agen-id}")
+    private String genericAgenId;
+
+    @Value("${ccd.generic-part-id}")
+    private String genericPartId;
 
     private final RestTemplate restTemplate;
     private final ObjectMapper objectMapper;
@@ -49,7 +55,7 @@ public class CodeController {
         try {
             HttpEntity<GetCodeValuesResponse> resp =
                     restTemplate.exchange(
-                            builder.toUriString(),
+                            builder.build().toUri(),
                             HttpMethod.GET,
                             new HttpEntity<>(new HttpHeaders()),
                             GetCodeValuesResponse.class);
@@ -74,10 +80,12 @@ public class CodeController {
             @RequestPayload GetCodeValuesSecure getCodeValues) throws JsonProcessingException {
 
         UriComponentsBuilder builder =
-                UriComponentsBuilder.fromHttpUrl(host + "appearance")
-                        .queryParam("lastRetrievedDate", getCodeValues.getLastRetrievedDate())
+                UriComponentsBuilder.fromHttpUrl(host + "codevalues/secure")
+                        .queryParam("genericAgenId", genericAgenId)
+                        .queryParam("genericPartId", genericPartId)
                         .queryParam("requestAgencyId", getCodeValues.getRequestAgencyIdentifierId())
                         .queryParam("requestPartId", getCodeValues.getRequestPartId())
+                        .queryParam("lastRetrievedDate", getCodeValues.getLastRetrievedDate())
                         .queryParam(
                                 "requestDtm",
                                 InstantSerializer.convert(getCodeValues.getRequestDtm()))
@@ -86,7 +94,7 @@ public class CodeController {
         try {
             HttpEntity<GetCodeValuesSecureResponse> resp =
                     restTemplate.exchange(
-                            builder.toUriString(),
+                            builder.build().toUri(),
                             HttpMethod.GET,
                             new HttpEntity<>(new HttpHeaders()),
                             GetCodeValuesSecureResponse.class);

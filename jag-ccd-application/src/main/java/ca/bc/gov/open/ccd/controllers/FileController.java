@@ -190,7 +190,8 @@ public class FileController {
                         .queryParam("appearanceId", getCivilFileContent.getAppearanceId())
                         .queryParam("physicalFileId", getCivilFileContent.getPhysicalFileId())
                         .queryParam(
-                                "requestAgencyId", getCivilFileContent.getRequestAgencyIdentifierId())
+                                "requestAgencyId",
+                                getCivilFileContent.getRequestAgencyIdentifierId())
                         .queryParam("requestPartId", getCivilFileContent.getRequestPartId())
                         .queryParam(
                                 "requestDtm",

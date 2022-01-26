@@ -576,14 +576,10 @@ public class ProcessController {
     public ProcessGenericResultResponse processGenericResult(
             @RequestPayload ProcessGenericResult process) throws JsonProcessingException {
 
-        var inner =
-                process.getGenericResult() != null
-                        ? process.getGenericResult()
-                        : new GenericResult();
+        UriComponentsBuilder builder =
+                UriComponentsBuilder.fromHttpUrl(host + "common/" + "generic-result");
 
-        UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(host + "appearance");
-
-        HttpEntity<GenericResult> payload = new HttpEntity<>(inner, new HttpHeaders());
+        HttpEntity<ProcessGenericResult> payload = new HttpEntity<>(process, new HttpHeaders());
 
         try {
             HttpEntity<ProcessGenericResultResponse> resp =
@@ -595,14 +591,15 @@ public class ProcessController {
 
             return resp.getBody();
         } catch (Exception ex) {
-            inner.setEnterUserId("");
+            if (process != null && process.getGenericResult() != null)
+                process.getGenericResult().setEnterUserId("");
             log.error(
                     objectMapper.writeValueAsString(
                             new OrdsErrorLog(
                                     "Error received from ORDS",
                                     "processGenericResult",
                                     ex.getMessage(),
-                                    inner)));
+                                    process)));
             throw new ORDSException();
         }
     }
@@ -617,7 +614,8 @@ public class ProcessController {
                         ? process.getCivilAppearanceMethod()
                         : new CivilAppearanceMethod();
 
-        UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(host + "appearance");
+        UriComponentsBuilder builder =
+                UriComponentsBuilder.fromHttpUrl(host + "civil/" + "appearance-method");
 
         HttpEntity<CivilAppearanceMethod> payload = new HttpEntity<>(inner, new HttpHeaders());
 
