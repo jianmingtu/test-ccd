@@ -15,6 +15,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.databind.module.SimpleModule;
 import java.io.IOException;
+import java.net.URI;
 import java.time.Instant;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
@@ -64,7 +65,7 @@ public class CodeControllerTests {
 
         // Set up to mock ords response
         when(restTemplate.exchange(
-                        Mockito.any(String.class),
+                        Mockito.any(URI.class),
                         Mockito.eq(HttpMethod.GET),
                         Mockito.<HttpEntity<String>>any(),
                         Mockito.<Class<GetCodeValuesResponse>>any()))
@@ -104,7 +105,7 @@ public class CodeControllerTests {
 
         // Set up to mock ords response
         when(restTemplate.exchange(
-                        Mockito.any(String.class),
+                        Mockito.any(URI.class),
                         Mockito.eq(HttpMethod.GET),
                         Mockito.<HttpEntity<String>>any(),
                         Mockito.<Class<GetCodeValuesSecureResponse>>any()))

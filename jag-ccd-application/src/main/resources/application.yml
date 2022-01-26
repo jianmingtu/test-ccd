@@ -4,6 +4,8 @@ security:
     username: ${BASIC_AUTH_USER}
 ccd:
   host: ${ORDS_HOST}
+  generic-agen-id:  ${GENERIC_AGENCY_ID}
+  generic-part-id:  ${GENERIC_PART_ID}
 
 management:
   trace:
