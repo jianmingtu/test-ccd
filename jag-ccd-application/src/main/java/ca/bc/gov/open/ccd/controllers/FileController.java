@@ -66,17 +66,14 @@ public class FileController {
                         .queryParam("mdocJustinNo", getCriminalFileContent.getMdocJustinNo());
 
         try {
-            HttpEntity<FileContentDoc> resp =
+            HttpEntity<GetCriminalFileContentResponse> resp =
                     restTemplate.exchange(
                             builder.build().toUri(),
                             HttpMethod.GET,
                             new HttpEntity<>(new HttpHeaders()),
-                            FileContentDoc.class);
+                            GetCriminalFileContentResponse.class);
 
-            var out = new GetCriminalFileContentResponse();
-            out.setFileContent(resp.getBody());
-
-            return out;
+            return resp.getBody();
         } catch (Exception ex) {
             log.error(
                     objectMapper.writeValueAsString(
@@ -120,17 +117,14 @@ public class FileController {
                         .queryParam("applicationCd", getCriminalFileContent.getApplicationCd());
 
         try {
-            HttpEntity<ca.bc.gov.open.ccd.common.criminal.file.content.secure.FileContentDoc> resp =
+            HttpEntity<GetCriminalFileContentSecureResponse> resp =
                     restTemplate.exchange(
                             builder.build().toUri(),
                             HttpMethod.GET,
                             new HttpEntity<>(new HttpHeaders()),
-                            ca.bc.gov.open.ccd.common.criminal.file.content.secure.FileContentDoc
-                                    .class);
+                            GetCriminalFileContentSecureResponse.class);
 
-            var out = new GetCriminalFileContentSecureResponse();
-            out.setFileContent(resp.getBody());
-            return out;
+            return resp.getBody();
         } catch (Exception ex) {
             log.error(
                     objectMapper.writeValueAsString(
