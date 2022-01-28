@@ -4,7 +4,6 @@ import ca.bc.gov.open.ccd.civil.*;
 import ca.bc.gov.open.ccd.civil.CivilFileContentDoc;
 import ca.bc.gov.open.ccd.civil.secure.*;
 import ca.bc.gov.open.ccd.common.criminal.file.content.*;
-import ca.bc.gov.open.ccd.common.criminal.file.content.FileContentDoc;
 import ca.bc.gov.open.ccd.common.criminal.file.content.secure.*;
 import ca.bc.gov.open.ccd.exceptions.ORDSException;
 import ca.bc.gov.open.ccd.models.OrdsErrorLog;
