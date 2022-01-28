@@ -28,8 +28,11 @@ import org.springframework.ws.server.endpoint.annotation.ResponsePayload;
 @Endpoint
 public class FileController {
 
-    @Value("${ccd.host}")
-    private String host = "https://127.0.0.1/";
+    @Value("${ccd.host}" + "civil/")
+    private String host_civil = "https://127.0.0.1/";
+
+    @Value("${ccd.host}" + "criminal/")
+    private String host_criminal = "https://127.0.0.1/";
 
     private final RestTemplate restTemplate;
     private final ObjectMapper objectMapper;
@@ -50,19 +53,22 @@ public class FileController {
             throws JsonProcessingException {
 
         UriComponentsBuilder builder =
-                UriComponentsBuilder.fromHttpUrl(host + "appearance")
+                UriComponentsBuilder.fromHttpUrl(host_criminal + "file")
                         .queryParam(
                                 "agencyIdentifierCd",
                                 getCriminalFileContent.getAgencyIdentifierCd())
                         .queryParam("roomCd", getCriminalFileContent.getRoomCd())
-                        .queryParam("proceedingDate", getCriminalFileContent.getProceedingDate())
-                        .queryParam("appearanceID", getCriminalFileContent.getAppearanceID())
+                        .queryParam(
+                                "proceedingDate",
+                                InstantSerializer.convert(
+                                        getCriminalFileContent.getProceedingDate()))
+                        .queryParam("appearanceId", getCriminalFileContent.getAppearanceID())
                         .queryParam("mdocJustinNo", getCriminalFileContent.getMdocJustinNo());
 
         try {
             HttpEntity<FileContentDoc> resp =
                     restTemplate.exchange(
-                            builder.toUriString(),
+                            builder.build().toUri(),
                             HttpMethod.GET,
                             new HttpEntity<>(new HttpHeaders()),
                             FileContentDoc.class);
@@ -93,13 +99,16 @@ public class FileController {
             throws JsonProcessingException {
 
         UriComponentsBuilder builder =
-                UriComponentsBuilder.fromHttpUrl(host + "appearance")
+                UriComponentsBuilder.fromHttpUrl(host_criminal + "file/secure")
                         .queryParam(
                                 "agencyIdentifierCd",
                                 getCriminalFileContent.getAgencyIdentifierCd())
                         .queryParam("roomCd", getCriminalFileContent.getRoomCd())
-                        .queryParam("proceedingDate", getCriminalFileContent.getProceedingDate())
-                        .queryParam("appearanceID", getCriminalFileContent.getAppearanceID())
+                        .queryParam(
+                                "proceedingDate",
+                                InstantSerializer.convert(
+                                        getCriminalFileContent.getProceedingDate()))
+                        .queryParam("appearanceId", getCriminalFileContent.getAppearanceID())
                         .queryParam("mdocJustinNo", getCriminalFileContent.getMdocJustinNo())
                         .queryParam(
                                 "requestAgencyId",
@@ -111,14 +120,17 @@ public class FileController {
                         .queryParam("applicationCd", getCriminalFileContent.getApplicationCd());
 
         try {
-            HttpEntity<GetCriminalFileContentSecureResponse> resp =
+            HttpEntity<ca.bc.gov.open.ccd.common.criminal.file.content.secure.FileContentDoc> resp =
                     restTemplate.exchange(
-                            builder.toUriString(),
+                            builder.build().toUri(),
                             HttpMethod.GET,
                             new HttpEntity<>(new HttpHeaders()),
-                            GetCriminalFileContentSecureResponse.class);
+                            ca.bc.gov.open.ccd.common.criminal.file.content.secure.FileContentDoc
+                                    .class);
 
-            return resp.getBody();
+            var out = new GetCriminalFileContentSecureResponse();
+            out.setFileContent(resp.getBody());
+            return out;
         } catch (Exception ex) {
             log.error(
                     objectMapper.writeValueAsString(
@@ -141,11 +153,13 @@ public class FileController {
             throws JsonProcessingException {
 
         UriComponentsBuilder builder =
-                UriComponentsBuilder.fromHttpUrl(host + "appearance")
+                UriComponentsBuilder.fromHttpUrl(host_civil + "file")
                         .queryParam("courtLocaCd", getCivilFileContent.getCourtLocaCd())
                         .queryParam("courtRoomCd", getCivilFileContent.getCourtRoomCd())
                         .queryParam(
-                                "courtProceedingDate", getCivilFileContent.getCourtProceedingDate())
+                                "courtProceedingDate",
+                                InstantSerializer.convert(
+                                        getCivilFileContent.getCourtProceedingDate()))
                         .queryParam("appearanceId", getCivilFileContent.getAppearanceId())
                         .queryParam("physicalFileId", getCivilFileContent.getPhysicalFileId())
                         .queryParam("applicationCd", getCivilFileContent.getApplicationCd());
@@ -153,7 +167,7 @@ public class FileController {
         try {
             HttpEntity<CivilFileContentDoc> resp =
                     restTemplate.exchange(
-                            builder.toUriString(),
+                            builder.build().toUri(),
                             HttpMethod.GET,
                             new HttpEntity<>(new HttpHeaders()),
                             CivilFileContentDoc.class);
@@ -182,11 +196,13 @@ public class FileController {
             throws JsonProcessingException {
 
         UriComponentsBuilder builder =
-                UriComponentsBuilder.fromHttpUrl(host + "appearance")
+                UriComponentsBuilder.fromHttpUrl(host_civil + "file/secure")
                         .queryParam("courtLocaCd", getCivilFileContent.getCourtLocaCd())
                         .queryParam("courtRoomCd", getCivilFileContent.getCourtRoomCd())
                         .queryParam(
-                                "courtProceedingDate", getCivilFileContent.getCourtProceedingDate())
+                                "courtProceedingDate",
+                                InstantSerializer.convert(
+                                        getCivilFileContent.getCourtProceedingDate()))
                         .queryParam("appearanceId", getCivilFileContent.getAppearanceId())
                         .queryParam("physicalFileId", getCivilFileContent.getPhysicalFileId())
                         .queryParam(
