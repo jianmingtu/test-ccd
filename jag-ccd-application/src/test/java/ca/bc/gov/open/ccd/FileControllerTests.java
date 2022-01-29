@@ -179,14 +179,18 @@ public class FileControllerTests {
 
         out.setAccusedFile(Collections.singletonList(ac));
 
-        ResponseEntity<FileContentDoc> responseEntity = new ResponseEntity<>(out, HttpStatus.OK);
+        var outer = new GetCriminalFileContentResponse();
+        outer.setFileContent(out);
+
+        ResponseEntity<GetCriminalFileContentResponse> responseEntity =
+                new ResponseEntity<>(outer, HttpStatus.OK);
 
         // Set up to mock ords response
         when(restTemplate.exchange(
-                        Mockito.any(String.class),
+                        Mockito.any(URI.class),
                         Mockito.eq(HttpMethod.GET),
                         Mockito.<HttpEntity<String>>any(),
-                        Mockito.<Class<FileContentDoc>>any()))
+                        Mockito.<Class<GetCriminalFileContentResponse>>any()))
                 .thenReturn(responseEntity);
 
         FileController fileController = new FileController(restTemplate, objectMapper);
@@ -382,7 +386,7 @@ public class FileControllerTests {
 
         // Set up to mock ords response
         when(restTemplate.exchange(
-                        Mockito.any(String.class),
+                        Mockito.any(URI.class),
                         Mockito.eq(HttpMethod.GET),
                         Mockito.<HttpEntity<String>>any(),
                         Mockito.<Class<GetCriminalFileContentSecureResponse>>any()))
