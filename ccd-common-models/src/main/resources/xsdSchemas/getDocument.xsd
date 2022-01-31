@@ -1,0 +1,36 @@
+<xsd:schema targetNamespace="http://courts.gov.bc.ca/CCD.Source.GetDocument.ws:GetDocument"
+            xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            xmlns:tns="http://courts.gov.bc.ca/CCD.Source.GetDocument.ws:GetDocument">
+
+    <xsd:element name="getDocument">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="DocumentRequest" nillable="true" type="tns:Document"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+
+    <xsd:element name="getDocumentResponse">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="DocumentResponse" nillable="true" type="tns:DocumentResult"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+
+    <xsd:complexType name="Document">
+        <xsd:sequence>
+            <xsd:element name="DocumentResult" type="xsd:string"/>
+            <xsd:element name="CourtDivisionCd" type="xsd:string"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="DocumentResult">
+        <xsd:sequence>
+            <xsd:element name="B64Content" nillable="true" type="xsd:string"/>
+            <xsd:element name="ResultCd" nillable="true" type="xsd:string"/>
+            <xsd:element name="ResultMessage" nillable="true" type="xsd:string"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+</xsd:schema>

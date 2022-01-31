@@ -96,4 +96,34 @@
             <namespace:prefix name="xsi" namespaceURI="http://www.w3.org/2001/XMLSchema-instance" />
         </jxb:bindings>
     </jxb:bindings>
+    <jxb:bindings choiceContentProperty="true" schemaLocation="../xsdSchemas/getDocument.xsd">
+        <jxb:schemaBindings>
+            <jxb:package name="ca.bc.gov.open.ccd.common.document" />
+        </jxb:schemaBindings>
+        <jxb:bindings>
+            <namespace:prefix name="ser-root" />
+            <!-- Additional @XmlNs prefix declarations to take effect for this schema/package -->
+            <namespace:prefix name="xsi" namespaceURI="http://www.w3.org/2001/XMLSchema-instance" />
+        </jxb:bindings>
+    </jxb:bindings>
+    <jxb:bindings choiceContentProperty="true" schemaLocation="../xsdSchemas/getDocumentSecure.xsd">
+        <jxb:schemaBindings>
+            <jxb:package name="ca.bc.gov.open.ccd.common.document.secure" />
+        </jxb:schemaBindings>
+        <jxb:bindings>
+            <namespace:prefix name="ser-root" />
+            <!-- Additional @XmlNs prefix declarations to take effect for this schema/package -->
+            <namespace:prefix name="xsi" namespaceURI="http://www.w3.org/2001/XMLSchema-instance" />
+        </jxb:bindings>
+    </jxb:bindings>
+    <jxb:bindings choiceContentProperty="true" schemaLocation="../xsdSchemas/getDevUtils.xsd">
+        <jxb:schemaBindings>
+            <jxb:package name="ca.bc.gov.open.ccd.common.dev.utils" />
+        </jxb:schemaBindings>
+        <jxb:bindings>
+            <namespace:prefix name="ser-root" />
+            <!-- Additional @XmlNs prefix declarations to take effect for this schema/package -->
+            <namespace:prefix name="xsi" namespaceURI="http://www.w3.org/2001/XMLSchema-instance" />
+        </jxb:bindings>
+    </jxb:bindings>
 </jxb:bindings>
