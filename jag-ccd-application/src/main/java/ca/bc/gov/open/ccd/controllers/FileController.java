@@ -27,11 +27,8 @@ import org.springframework.ws.server.endpoint.annotation.ResponsePayload;
 @Endpoint
 public class FileController {
 
-    @Value("${ccd.host}" + "civil/")
-    private String host_civil = "https://127.0.0.1/";
-
-    @Value("${ccd.host}" + "criminal/")
-    private String host_criminal = "https://127.0.0.1/";
+    @Value("${ccd.host}")
+    private String host = "https://127.0.0.1/";
 
     private final RestTemplate restTemplate;
     private final ObjectMapper objectMapper;
@@ -52,7 +49,7 @@ public class FileController {
             throws JsonProcessingException {
 
         UriComponentsBuilder builder =
-                UriComponentsBuilder.fromHttpUrl(host_criminal + "file")
+                UriComponentsBuilder.fromHttpUrl(host +  "criminal/" + "file")
                         .queryParam(
                                 "agencyIdentifierCd",
                                 getCriminalFileContent.getAgencyIdentifierCd())
@@ -95,7 +92,7 @@ public class FileController {
             throws JsonProcessingException {
 
         UriComponentsBuilder builder =
-                UriComponentsBuilder.fromHttpUrl(host_criminal + "file/secure")
+                UriComponentsBuilder.fromHttpUrl(host +  "criminal/" + "file/secure")
                         .queryParam(
                                 "agencyIdentifierCd",
                                 getCriminalFileContent.getAgencyIdentifierCd())
@@ -146,7 +143,7 @@ public class FileController {
             throws JsonProcessingException {
 
         UriComponentsBuilder builder =
-                UriComponentsBuilder.fromHttpUrl(host_civil + "file")
+                UriComponentsBuilder.fromHttpUrl(host + "civil/" + "file")
                         .queryParam("courtLocaCd", getCivilFileContent.getCourtLocaCd())
                         .queryParam("courtRoomCd", getCivilFileContent.getCourtRoomCd())
                         .queryParam(
@@ -189,7 +186,7 @@ public class FileController {
             throws JsonProcessingException {
 
         UriComponentsBuilder builder =
-                UriComponentsBuilder.fromHttpUrl(host_civil + "file/secure")
+                UriComponentsBuilder.fromHttpUrl(host + "civil/" + "file/secure")
                         .queryParam("courtLocaCd", getCivilFileContent.getCourtLocaCd())
                         .queryParam("courtRoomCd", getCivilFileContent.getCourtRoomCd())
                         .queryParam(
