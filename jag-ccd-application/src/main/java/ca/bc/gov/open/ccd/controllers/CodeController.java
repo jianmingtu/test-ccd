@@ -49,8 +49,10 @@ public class CodeController {
             throws JsonProcessingException {
 
         UriComponentsBuilder builder =
-                UriComponentsBuilder.fromHttpUrl(host + "appearance")
-                        .queryParam("lastRetrievedDate", getCodeValues.getLastRetrievedDate());
+                UriComponentsBuilder.fromHttpUrl(host + "codevalues")
+                        .queryParam(
+                                "lastRetrievedDate",
+                                InstantSerializer.convert(getCodeValues.getLastRetrievedDate()));
 
         try {
             HttpEntity<GetCodeValuesResponse> resp =
@@ -85,7 +87,9 @@ public class CodeController {
                         .queryParam("genericPartId", genericPartId)
                         .queryParam("requestAgencyId", getCodeValues.getRequestAgencyIdentifierId())
                         .queryParam("requestPartId", getCodeValues.getRequestPartId())
-                        .queryParam("lastRetrievedDate", getCodeValues.getLastRetrievedDate())
+                        .queryParam(
+                                "lastRetrievedDate",
+                                InstantSerializer.convert(getCodeValues.getLastRetrievedDate()))
                         .queryParam(
                                 "requestDtm",
                                 InstantSerializer.convert(getCodeValues.getRequestDtm()))

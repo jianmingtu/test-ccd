@@ -34,6 +34,7 @@ import ca.bc.gov.open.ccd.common.criminal.file.content.secure.*;
 import ca.bc.gov.open.ccd.controllers.FileController;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import java.net.URI;
 import java.time.Instant;
 import java.util.Collections;
 import org.junit.jupiter.api.Assertions;
@@ -178,14 +179,18 @@ public class FileControllerTests {
 
         out.setAccusedFile(Collections.singletonList(ac));
 
-        ResponseEntity<FileContentDoc> responseEntity = new ResponseEntity<>(out, HttpStatus.OK);
+        var outer = new GetCriminalFileContentResponse();
+        outer.setFileContent(out);
+
+        ResponseEntity<GetCriminalFileContentResponse> responseEntity =
+                new ResponseEntity<>(outer, HttpStatus.OK);
 
         // Set up to mock ords response
         when(restTemplate.exchange(
-                        Mockito.any(String.class),
+                        Mockito.any(URI.class),
                         Mockito.eq(HttpMethod.GET),
                         Mockito.<HttpEntity<String>>any(),
-                        Mockito.<Class<FileContentDoc>>any()))
+                        Mockito.<Class<GetCriminalFileContentResponse>>any()))
                 .thenReturn(responseEntity);
 
         FileController fileController = new FileController(restTemplate, objectMapper);
@@ -381,7 +386,7 @@ public class FileControllerTests {
 
         // Set up to mock ords response
         when(restTemplate.exchange(
-                        Mockito.any(String.class),
+                        Mockito.any(URI.class),
                         Mockito.eq(HttpMethod.GET),
                         Mockito.<HttpEntity<String>>any(),
                         Mockito.<Class<GetCriminalFileContentSecureResponse>>any()))
@@ -557,7 +562,7 @@ public class FileControllerTests {
 
         // Set up to mock ords response
         when(restTemplate.exchange(
-                        Mockito.any(String.class),
+                        Mockito.any(URI.class),
                         Mockito.eq(HttpMethod.GET),
                         Mockito.<HttpEntity<String>>any(),
                         Mockito.<Class<CivilFileContentDoc>>any()))

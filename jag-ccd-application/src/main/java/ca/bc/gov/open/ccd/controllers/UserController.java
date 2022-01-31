@@ -22,7 +22,7 @@ import org.springframework.ws.server.endpoint.annotation.ResponsePayload;
 @Endpoint
 @Slf4j
 public class UserController {
-    @Value("${ccd.host}")
+    @Value("${ccd.host}" + "common/")
     private String host = "https://127.0.0.1/";
 
     private final RestTemplate restTemplate;
@@ -41,7 +41,7 @@ public class UserController {
     public GetParticipantInfoResponse getParticipantInfo(
             @RequestPayload GetParticipantInfo getParticipantInfo) throws JsonProcessingException {
         UriComponentsBuilder builder =
-                UriComponentsBuilder.fromHttpUrl(host + "appearance")
+                UriComponentsBuilder.fromHttpUrl(host + "user/mapping/participant-info")
                         .queryParam("guid", getParticipantInfo.getGuid());
 
         try {
@@ -72,7 +72,7 @@ public class UserController {
             @RequestPayload MapGuidToParticipant mapGuidToParticipant)
             throws JsonProcessingException {
         UriComponentsBuilder builder =
-                UriComponentsBuilder.fromHttpUrl(host + "appearance")
+                UriComponentsBuilder.fromHttpUrl(host + "user/mapping/partid-to-guid")
                         .queryParam("guid", mapGuidToParticipant.getGuid())
                         .queryParam("partId", mapGuidToParticipant.getPartId())
                         .queryParam("idirId", mapGuidToParticipant.getIdirId());
@@ -109,7 +109,7 @@ public class UserController {
                         : new GetUserLoginRequestType();
 
         UriComponentsBuilder builder =
-                UriComponentsBuilder.fromHttpUrl(host + "appearance")
+                UriComponentsBuilder.fromHttpUrl(host + "user/login")
                         .queryParam("temporaryAccessGuid", inner.getTemporaryAccessGuid())
                         .queryParam("domainUserGuid", inner.getDomainUserGuid())
                         .queryParam("domainUserId", inner.getDomainUserId());

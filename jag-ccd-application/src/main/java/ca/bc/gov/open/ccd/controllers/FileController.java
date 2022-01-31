@@ -4,7 +4,6 @@ import ca.bc.gov.open.ccd.civil.*;
 import ca.bc.gov.open.ccd.civil.CivilFileContentDoc;
 import ca.bc.gov.open.ccd.civil.secure.*;
 import ca.bc.gov.open.ccd.common.criminal.file.content.*;
-import ca.bc.gov.open.ccd.common.criminal.file.content.FileContentDoc;
 import ca.bc.gov.open.ccd.common.criminal.file.content.secure.*;
 import ca.bc.gov.open.ccd.exceptions.ORDSException;
 import ca.bc.gov.open.ccd.models.OrdsErrorLog;
@@ -50,27 +49,27 @@ public class FileController {
             throws JsonProcessingException {
 
         UriComponentsBuilder builder =
-                UriComponentsBuilder.fromHttpUrl(host + "appearance")
+                UriComponentsBuilder.fromHttpUrl(host +  "criminal/" + "file")
                         .queryParam(
                                 "agencyIdentifierCd",
                                 getCriminalFileContent.getAgencyIdentifierCd())
                         .queryParam("roomCd", getCriminalFileContent.getRoomCd())
-                        .queryParam("proceedingDate", getCriminalFileContent.getProceedingDate())
-                        .queryParam("appearanceID", getCriminalFileContent.getAppearanceID())
+                        .queryParam(
+                                "proceedingDate",
+                                InstantSerializer.convert(
+                                        getCriminalFileContent.getProceedingDate()))
+                        .queryParam("appearanceId", getCriminalFileContent.getAppearanceID())
                         .queryParam("mdocJustinNo", getCriminalFileContent.getMdocJustinNo());
 
         try {
-            HttpEntity<FileContentDoc> resp =
+            HttpEntity<GetCriminalFileContentResponse> resp =
                     restTemplate.exchange(
-                            builder.toUriString(),
+                            builder.build().toUri(),
                             HttpMethod.GET,
                             new HttpEntity<>(new HttpHeaders()),
-                            FileContentDoc.class);
+                            GetCriminalFileContentResponse.class);
 
-            var out = new GetCriminalFileContentResponse();
-            out.setFileContent(resp.getBody());
-
-            return out;
+            return resp.getBody();
         } catch (Exception ex) {
             log.error(
                     objectMapper.writeValueAsString(
@@ -93,13 +92,16 @@ public class FileController {
             throws JsonProcessingException {
 
         UriComponentsBuilder builder =
-                UriComponentsBuilder.fromHttpUrl(host + "appearance")
+                UriComponentsBuilder.fromHttpUrl(host +  "criminal/" + "file/secure")
                         .queryParam(
                                 "agencyIdentifierCd",
                                 getCriminalFileContent.getAgencyIdentifierCd())
                         .queryParam("roomCd", getCriminalFileContent.getRoomCd())
-                        .queryParam("proceedingDate", getCriminalFileContent.getProceedingDate())
-                        .queryParam("appearanceID", getCriminalFileContent.getAppearanceID())
+                        .queryParam(
+                                "proceedingDate",
+                                InstantSerializer.convert(
+                                        getCriminalFileContent.getProceedingDate()))
+                        .queryParam("appearanceId", getCriminalFileContent.getAppearanceID())
                         .queryParam("mdocJustinNo", getCriminalFileContent.getMdocJustinNo())
                         .queryParam(
                                 "requestAgencyId",
@@ -113,7 +115,7 @@ public class FileController {
         try {
             HttpEntity<GetCriminalFileContentSecureResponse> resp =
                     restTemplate.exchange(
-                            builder.toUriString(),
+                            builder.build().toUri(),
                             HttpMethod.GET,
                             new HttpEntity<>(new HttpHeaders()),
                             GetCriminalFileContentSecureResponse.class);
@@ -141,11 +143,13 @@ public class FileController {
             throws JsonProcessingException {
 
         UriComponentsBuilder builder =
-                UriComponentsBuilder.fromHttpUrl(host + "appearance")
+                UriComponentsBuilder.fromHttpUrl(host + "civil/" + "file")
                         .queryParam("courtLocaCd", getCivilFileContent.getCourtLocaCd())
                         .queryParam("courtRoomCd", getCivilFileContent.getCourtRoomCd())
                         .queryParam(
-                                "courtProceedingDate", getCivilFileContent.getCourtProceedingDate())
+                                "courtProceedingDate",
+                                InstantSerializer.convert(
+                                        getCivilFileContent.getCourtProceedingDate()))
                         .queryParam("appearanceId", getCivilFileContent.getAppearanceId())
                         .queryParam("physicalFileId", getCivilFileContent.getPhysicalFileId())
                         .queryParam("applicationCd", getCivilFileContent.getApplicationCd());
@@ -153,7 +157,7 @@ public class FileController {
         try {
             HttpEntity<CivilFileContentDoc> resp =
                     restTemplate.exchange(
-                            builder.toUriString(),
+                            builder.build().toUri(),
                             HttpMethod.GET,
                             new HttpEntity<>(new HttpHeaders()),
                             CivilFileContentDoc.class);
@@ -182,11 +186,13 @@ public class FileController {
             throws JsonProcessingException {
 
         UriComponentsBuilder builder =
-                UriComponentsBuilder.fromHttpUrl(host + "appearance")
+                UriComponentsBuilder.fromHttpUrl(host + "civil/" + "file/secure")
                         .queryParam("courtLocaCd", getCivilFileContent.getCourtLocaCd())
                         .queryParam("courtRoomCd", getCivilFileContent.getCourtRoomCd())
                         .queryParam(
-                                "courtProceedingDate", getCivilFileContent.getCourtProceedingDate())
+                                "courtProceedingDate",
+                                InstantSerializer.convert(
+                                        getCivilFileContent.getCourtProceedingDate()))
                         .queryParam("appearanceId", getCivilFileContent.getAppearanceId())
                         .queryParam("physicalFileId", getCivilFileContent.getPhysicalFileId())
                         .queryParam(

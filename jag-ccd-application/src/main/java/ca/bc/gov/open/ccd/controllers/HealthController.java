@@ -22,7 +22,7 @@ import org.springframework.ws.server.endpoint.annotation.ResponsePayload;
 @Slf4j
 public class HealthController {
 
-    @Value("${ccd.host}")
+    @Value("${ccd.host}" + "common/")
     private String host = "https://127.0.0.1/";
 
     private static final String PROCESS_NAMESPACE =
