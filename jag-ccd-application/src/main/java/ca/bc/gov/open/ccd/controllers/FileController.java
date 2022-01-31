@@ -49,7 +49,7 @@ public class FileController {
             throws JsonProcessingException {
 
         UriComponentsBuilder builder =
-                UriComponentsBuilder.fromHttpUrl(host +  "criminal/" + "file")
+                UriComponentsBuilder.fromHttpUrl(host + "criminal/" + "file")
                         .queryParam(
                                 "agencyIdentifierCd",
                                 getCriminalFileContent.getAgencyIdentifierCd())
@@ -92,7 +92,7 @@ public class FileController {
             throws JsonProcessingException {
 
         UriComponentsBuilder builder =
-                UriComponentsBuilder.fromHttpUrl(host +  "criminal/" + "file/secure")
+                UriComponentsBuilder.fromHttpUrl(host + "criminal/" + "file/secure")
                         .queryParam(
                                 "agencyIdentifierCd",
                                 getCriminalFileContent.getAgencyIdentifierCd())

@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" name="DevUtils" targetNamespace="http://courts.ag.gov.bc.ca/CCD.Source.DevUtil.ws:DevUtils" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:soapjms="http://www.w3.org/2008/07/soap/bindings/JMS/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:tns="http://courts.ag.gov.bc.ca/CCD.Source.DevUtil.ws:DevUtils" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/">
+    <wsdl:types>
+        <xsd:schema targetNamespace="http://courts.ag.gov.bc.ca/CCD.Source.DevUtil.ws:DevUtils" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://courts.ag.gov.bc.ca/CCD.Source.DevUtil.ws:DevUtils">
+            <xsd:complexType name="clearAppearanceResults">
+                <xsd:sequence>
+                    <xsd:element name="ClrResults" nillable="true" type="tns:ClrResults"/>
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:complexType name="ClrResults">
+                <xsd:sequence>
+                    <xsd:element name="AppearanceId" nillable="true" type="xsd:string"/>
+                    <xsd:element name="CourtAgencyIdentifierCode" nillable="true" type="xsd:string"/>
+                    <xsd:element name="CourtProceedingDate" nillable="true" type="xsd:string"/>
+                    <xsd:element name="CourtRoomCode" nillable="true" type="xsd:string"/>
+                    <xsd:element name="CourtListTypeCd" nillable="true" type="xsd:string"/>
+                    <xsd:element name="RecordTypeToRemove" nillable="true" type="xsd:string"/>
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:complexType name="clearAppearanceResultsResponse">
+                <xsd:sequence>
+                    <xsd:element name="status" nillable="true" type="xsd:string"/>
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:complexType name="RecreateCourtList">
+                <xsd:sequence>
+                    <xsd:element name="RecreateCourtListDoc" nillable="true" type="tns:RecreateCourtListDoc"/>
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:complexType name="RecreateCourtListDoc">
+                <xsd:sequence>
+                    <xsd:element name="CourtAgencyIdentifierCode" nillable="true" type="xsd:string"/>
+                    <xsd:element name="CourtProceedingDate" nillable="true" type="xsd:string"/>
+                    <xsd:element name="CourtRoomCode" nillable="true" type="xsd:string"/>
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:complexType name="RecreateCourtListResponse">
+                <xsd:sequence>
+                    <xsd:element name="status" nillable="true" type="xsd:string"/>
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:element name="RecreateCourtList" type="tns:RecreateCourtList"/>
+            <xsd:element name="RecreateCourtListResponse" type="tns:RecreateCourtListResponse"/>
+            <xsd:element name="clearAppearanceResults" type="tns:clearAppearanceResults"/>
+            <xsd:element name="clearAppearanceResultsResponse" type="tns:clearAppearanceResultsResponse"/>
+        </xsd:schema>
+    </wsdl:types>
+    <wsdl:message name="DevUtils_PortType_RecreateCourtListResponse">
+        <wsdl:part name="parameters" element="tns:RecreateCourtListResponse">
+        </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="DevUtils_PortType_clearAppearanceResultsResponse">
+        <wsdl:part name="parameters" element="tns:clearAppearanceResultsResponse">
+        </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="DevUtils_PortType_RecreateCourtList">
+        <wsdl:part name="parameters" element="tns:RecreateCourtList">
+        </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="DevUtils_PortType_clearAppearanceResults">
+        <wsdl:part name="parameters" element="tns:clearAppearanceResults">
+        </wsdl:part>
+    </wsdl:message>
+    <wsdl:portType name="DevUtils_PortType">
+        <wsdl:operation name="RecreateCrtList">
+            <wsdl:input message="tns:DevUtils_PortType_RecreateCourtList">
+            </wsdl:input>
+            <wsdl:output message="tns:DevUtils_PortType_RecreateCourtListResponse">
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="clearAppearanceResults">
+            <wsdl:input message="tns:DevUtils_PortType_clearAppearanceResults">
+            </wsdl:input>
+            <wsdl:output message="tns:DevUtils_PortType_clearAppearanceResultsResponse">
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:binding name="CCD_Source_DevUtil_ws_DevUtils_Binder" type="tns:DevUtils_PortType">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="RecreateCrtList">
+            <soap:operation soapAction="CCD_Source_DevUtil_ws_DevUtils_Binder_RecreateCrtList" style="document"/>
+            <wsdl:input>
+                <soap:body parts="parameters" use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body parts="parameters" use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="clearAppearanceResults">
+            <soap:operation soapAction="CCD_Source_DevUtil_ws_DevUtils_Binder_clearAppearanceResults" style="document"/>
+            <wsdl:input>
+                <soap:body parts="parameters" use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body parts="parameters" use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:service name="DevUtils">
+        <wsdl:port name="CCD_Source_DevUtil_ws_DevUtils_Port" binding="tns:CCD_Source_DevUtil_ws_DevUtils_Binder">
+            <soap:address location="http://reeks.bcgov:5555/ws/CCD.Source.DevUtil.ws:DevUtils/CCD_Source_DevUtil_ws_DevUtils_Port"/>
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>
