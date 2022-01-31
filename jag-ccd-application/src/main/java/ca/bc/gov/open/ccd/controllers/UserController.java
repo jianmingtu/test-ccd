@@ -81,7 +81,7 @@ public class UserController {
             HttpEntity<MapGuidToParticipantResponse> resp =
                     restTemplate.exchange(
                             builder.toUriString(),
-                            HttpMethod.GET,
+                            HttpMethod.POST,
                             new HttpEntity<>(new HttpHeaders()),
                             MapGuidToParticipantResponse.class);
             return resp.getBody();
