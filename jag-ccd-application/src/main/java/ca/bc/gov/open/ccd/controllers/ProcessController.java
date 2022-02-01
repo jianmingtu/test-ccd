@@ -44,7 +44,8 @@ public class ProcessController {
 
         var inner = process.getVariation() != null ? process.getVariation() : new VariationType();
 
-        UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(host + "appearance");
+        UriComponentsBuilder builder =
+                UriComponentsBuilder.fromHttpUrl(host + "criminal/variation");
 
         HttpEntity<VariationType> payload = new HttpEntity<>(inner, new HttpHeaders());
 
@@ -77,7 +78,7 @@ public class ProcessController {
 
         var inner = process.getSpeaker() != null ? process.getSpeaker() : new Speaker();
 
-        UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(host + "appearance");
+        UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(host + "criminal/speaker");
 
         HttpEntity<Speaker> payload = new HttpEntity<>(inner, new HttpHeaders());
 
@@ -110,7 +111,7 @@ public class ProcessController {
         var inner =
                 process.getCivilResult() != null ? process.getCivilResult() : new CivilResultType();
 
-        UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(host + "appearance");
+        UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(host + "civil/results");
 
         HttpEntity<CivilResultType> payload = new HttpEntity<>(inner, new HttpHeaders());
 
@@ -146,7 +147,8 @@ public class ProcessController {
                         ? process.getAppearanceMethod()
                         : new AppearanceMethod();
 
-        UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(host + "appearance");
+        UriComponentsBuilder builder =
+                UriComponentsBuilder.fromHttpUrl(host + "criminal/appearance-method");
 
         HttpEntity<AppearanceMethod> payload = new HttpEntity<>(inner, new HttpHeaders());
 
@@ -179,7 +181,7 @@ public class ProcessController {
 
         var inner = process.getPlea() != null ? process.getPlea() : new Plea();
 
-        UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(host + "appearance");
+        UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(host + "criminal/plea");
 
         HttpEntity<Plea> payload = new HttpEntity<>(inner, new HttpHeaders());
 
@@ -212,7 +214,7 @@ public class ProcessController {
 
         var inner = process.getElection() != null ? process.getElection() : new Election();
 
-        UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(host + "appearance");
+        UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(host + "criminal/election");
 
         HttpEntity<Election> payload = new HttpEntity<>(inner, new HttpHeaders());
 
@@ -245,7 +247,7 @@ public class ProcessController {
 
         var inner = process.getBailDocInput() != null ? process.getBailDocInput() : new BailDoc();
 
-        UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(host + "appearance");
+        UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(host + "criminal/bail");
 
         HttpEntity<BailDoc> payload = new HttpEntity<>(inner, new HttpHeaders());
 
@@ -314,7 +316,8 @@ public class ProcessController {
 
         var inner = process.getAgeNotice() != null ? process.getAgeNotice() : new AgeNotice();
 
-        UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(host + "appearance");
+        UriComponentsBuilder builder =
+                UriComponentsBuilder.fromHttpUrl(host + "criminal/age-notice");
 
         HttpEntity<AgeNotice> payload = new HttpEntity<>(inner, new HttpHeaders());
 
@@ -347,7 +350,8 @@ public class ProcessController {
 
         var inner = process.getMatterCall() != null ? process.getMatterCall() : new MatterCall();
 
-        UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(host + "appearance");
+        UriComponentsBuilder builder =
+                UriComponentsBuilder.fromHttpUrl(host + "criminal/mattercall");
 
         HttpEntity<MatterCall> payload = new HttpEntity<>(inner, new HttpHeaders());
 
@@ -380,7 +384,7 @@ public class ProcessController {
 
         var inner = process.getSentence() != null ? process.getSentence() : new Sentence();
 
-        UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(host + "appearance");
+        UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(host + "criminal/sentence");
 
         HttpEntity<Sentence> payload = new HttpEntity<>(inner, new HttpHeaders());
 
@@ -413,7 +417,7 @@ public class ProcessController {
 
         var inner = process.getBan() != null ? process.getBan() : new Ban();
 
-        UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(host + "appearance");
+        UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(host + "criminal/ban");
 
         HttpEntity<Ban> payload = new HttpEntity<>(inner, new HttpHeaders());
 
@@ -446,7 +450,7 @@ public class ProcessController {
 
         var inner = process.getNote() != null ? process.getNote() : new NoteType();
 
-        UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(host + "appearance");
+        UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(host + "criminal/note");
 
         HttpEntity<NoteType> payload = new HttpEntity<>(inner, new HttpHeaders());
 
@@ -479,7 +483,8 @@ public class ProcessController {
 
         var inner = process.getArraignment() != null ? process.getArraignment() : new Arraignment();
 
-        UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(host + "appearance");
+        UriComponentsBuilder builder =
+                UriComponentsBuilder.fromHttpUrl(host + "criminal/arraignment");
 
         HttpEntity<Arraignment> payload = new HttpEntity<>(inner, new HttpHeaders());
 
@@ -512,7 +517,7 @@ public class ProcessController {
 
         var inner = process.getMove() != null ? process.getMove() : new Move();
 
-        UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(host + "appearance");
+        UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(host + "criminal/move");
 
         HttpEntity<Move> payload = new HttpEntity<>(inner, new HttpHeaders());
 
@@ -545,7 +550,7 @@ public class ProcessController {
 
         var inner = process.getFinding() != null ? process.getFinding() : new Finding();
 
-        UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(host + "appearance");
+        UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(host + "criminal/finding");
 
         HttpEntity<Finding> payload = new HttpEntity<>(inner, new HttpHeaders());
 
@@ -577,7 +582,7 @@ public class ProcessController {
             @RequestPayload ProcessGenericResult process) throws JsonProcessingException {
 
         UriComponentsBuilder builder =
-                UriComponentsBuilder.fromHttpUrl(host + "common/" + "generic-result");
+                UriComponentsBuilder.fromHttpUrl(host + "common/generic-result");
 
         HttpEntity<ProcessGenericResult> payload = new HttpEntity<>(process, new HttpHeaders());
 
@@ -648,7 +653,7 @@ public class ProcessController {
 
         var inner = process.getOrder() != null ? process.getOrder() : new OrderType();
 
-        UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(host + "appearance");
+        UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(host + "civil/order");
 
         HttpEntity<OrderType> payload = new HttpEntity<>(inner, new HttpHeaders());
 
@@ -684,7 +689,7 @@ public class ProcessController {
                         ? process.getCivilOrderResult()
                         : new CivilOrderType();
 
-        UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(host + "appearance");
+        UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(host + "civil/order");
 
         HttpEntity<CivilOrderType> payload = new HttpEntity<>(inner, new HttpHeaders());
 
@@ -718,7 +723,7 @@ public class ProcessController {
         var inner =
                 process.getExhibitRequest() != null ? process.getExhibitRequest() : new Exhibit();
 
-        UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(host + "appearance");
+        UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(host + "criminal/exhibit");
 
         HttpEntity<Exhibit> payload = new HttpEntity<>(inner, new HttpHeaders());
 
