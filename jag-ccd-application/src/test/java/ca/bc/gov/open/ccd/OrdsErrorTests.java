@@ -9,6 +9,10 @@ import ca.bc.gov.open.ccd.common.code.values.GetCodeValues;
 import ca.bc.gov.open.ccd.common.code.values.secure.GetCodeValuesSecure;
 import ca.bc.gov.open.ccd.common.criminal.file.content.GetCriminalFileContent;
 import ca.bc.gov.open.ccd.common.criminal.file.content.secure.GetCriminalFileContentSecure;
+import ca.bc.gov.open.ccd.common.dev.utils.ClearAppearanceResults;
+import ca.bc.gov.open.ccd.common.dev.utils.RecreateCourtList;
+import ca.bc.gov.open.ccd.common.document.GetDocument;
+import ca.bc.gov.open.ccd.common.document.secure.GetDocumentSecure;
 import ca.bc.gov.open.ccd.common.process.results.*;
 import ca.bc.gov.open.ccd.common.rop.report.GetROPReport;
 import ca.bc.gov.open.ccd.common.rop.report.secure.GetROPReportSecure;
@@ -361,6 +365,43 @@ public class OrdsErrorTests {
         Assertions.assertThrows(
                 ORDSException.class,
                 () -> reportController.getRopReportSecure(new GetROPReportSecure()));
+    }
+
+
+    @Test
+    public void testGetClearAppearanceResultsOrdsFail() {
+        DevUtilsController devUtilsController = new DevUtilsController(restTemplate, objectMapper);
+
+        Assertions.assertThrows(
+                ORDSException.class,
+                () -> devUtilsController.clearAppearanceResults(new ClearAppearanceResults()));
+    }
+
+    @Test
+    public void testGetRecreateCourtListOrdsFail() {
+        DevUtilsController devUtilsController = new DevUtilsController(restTemplate, objectMapper);
+
+        Assertions.assertThrows(
+                ORDSException.class,
+                () -> devUtilsController.reCreateCourtList(new RecreateCourtList()));
+    }
+
+    @Test
+    public void testGetDocumentOrdsFail() {
+        DocumentController documentController = new DocumentController(restTemplate, objectMapper);
+
+        Assertions.assertThrows(
+                ORDSException.class,
+                () -> documentController.getDocument(new GetDocument()));
+    }
+
+    @Test
+    public void testGetDocumentSecureOrdsFail() {
+        DocumentController documentController = new DocumentController(restTemplate, objectMapper);
+
+        Assertions.assertThrows(
+                ORDSException.class,
+                () -> documentController.getDocumentSecure(new GetDocumentSecure()));
     }
 
     @Test

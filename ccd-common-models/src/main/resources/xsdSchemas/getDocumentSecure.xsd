@@ -23,11 +23,13 @@
         </xsd:sequence>
     </xsd:complexType>
 
-    <xsd:complexType name="getDocumentSecureResponse">
-        <xsd:sequence>
-            <xsd:element name="DocumentResponse" nillable="true" type="tns:DocumentResult"/>
-        </xsd:sequence>
-    </xsd:complexType>
+    <xsd:element name="getDocumentSecureResponse">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="DocumentResponse" nillable="true" type="tns:DocumentResult"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
 
     <xsd:complexType name="DocumentResult">
         <xsd:sequence>
