@@ -1,5 +1,7 @@
 package ca.bc.gov.open.ccd;
 
+import static org.mockito.Mockito.when;
+
 import ca.bc.gov.open.ccd.common.dev.utils.ClearAppearanceResults;
 import ca.bc.gov.open.ccd.common.dev.utils.ClearAppearanceResultsResponse;
 import ca.bc.gov.open.ccd.common.dev.utils.RecreateCourtList;
@@ -20,15 +22,12 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.web.client.RestTemplate;
 
-import static org.mockito.Mockito.when;
-
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @ActiveProfiles("test")
 public class DevUtilsControlTests {
     @Autowired private ObjectMapper objectMapper;
 
-    @Mock
-    private RestTemplate restTemplate = new RestTemplate();
+    @Mock private RestTemplate restTemplate = new RestTemplate();
 
     @Test
     public void clearAppearanceResultsTest() throws JsonProcessingException {
@@ -43,10 +42,10 @@ public class DevUtilsControlTests {
 
         // Set up to mock ords response
         when(restTemplate.exchange(
-                Mockito.any(String.class),
-                Mockito.eq(HttpMethod.POST),
-                Mockito.<HttpEntity<String>>any(),
-                Mockito.<Class<ClearAppearanceResultsResponse>>any()))
+                        Mockito.any(String.class),
+                        Mockito.eq(HttpMethod.POST),
+                        Mockito.<HttpEntity<String>>any(),
+                        Mockito.<Class<ClearAppearanceResultsResponse>>any()))
                 .thenReturn(responseEntity);
 
         DevUtilsController devUtilsController = new DevUtilsController(restTemplate, objectMapper);
@@ -68,10 +67,10 @@ public class DevUtilsControlTests {
 
         // Set up to mock ords response
         when(restTemplate.exchange(
-                Mockito.any(String.class),
-                Mockito.eq(HttpMethod.POST),
-                Mockito.<HttpEntity<String>>any(),
-                Mockito.<Class<RecreateCourtListResponse>>any()))
+                        Mockito.any(String.class),
+                        Mockito.eq(HttpMethod.POST),
+                        Mockito.<HttpEntity<String>>any(),
+                        Mockito.<Class<RecreateCourtListResponse>>any()))
                 .thenReturn(responseEntity);
 
         DevUtilsController devUtilsController = new DevUtilsController(restTemplate, objectMapper);

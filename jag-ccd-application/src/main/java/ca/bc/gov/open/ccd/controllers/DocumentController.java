@@ -48,7 +48,10 @@ public class DocumentController {
 
         UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(host + "common/document");
 
-        var inner = document.getDocumentRequest() != null ? document.getDocumentRequest() : new Document();
+        var inner =
+                document.getDocumentRequest() != null
+                        ? document.getDocumentRequest()
+                        : new Document();
         HttpEntity<Document> payload = new HttpEntity<>(inner, new HttpHeaders());
 
         try {
@@ -72,17 +75,21 @@ public class DocumentController {
         }
     }
 
-
     @PayloadRoot(
-            namespace = "http://reeks.bcgov/CCD.Source.GetDocument.ws:CCD.Source.GetDocument.ws:GetDocumentSecure",
+            namespace =
+                    "http://reeks.bcgov/CCD.Source.GetDocument.ws:CCD.Source.GetDocument.ws:GetDocumentSecure",
             localPart = "getDocumentSecure")
     @ResponsePayload
     public GetDocumentSecureResponse getDocumentSecure(@RequestPayload GetDocumentSecure document)
             throws JsonProcessingException {
 
-        UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(host + "common/secure/document");
+        UriComponentsBuilder builder =
+                UriComponentsBuilder.fromHttpUrl(host + "common/secure/document");
 
-        var inner = document.getDocumentSecureRequest() != null ? document.getDocumentSecureRequest() : new DocumentSecureRequest();
+        var inner =
+                document.getDocumentSecureRequest() != null
+                        ? document.getDocumentSecureRequest()
+                        : new DocumentSecureRequest();
         HttpEntity<DocumentSecureRequest> payload = new HttpEntity<>(inner, new HttpHeaders());
 
         try {
@@ -106,4 +113,3 @@ public class DocumentController {
         }
     }
 }
-

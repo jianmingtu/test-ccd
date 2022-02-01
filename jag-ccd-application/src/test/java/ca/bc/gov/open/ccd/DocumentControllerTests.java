@@ -1,5 +1,7 @@
 package ca.bc.gov.open.ccd;
 
+import static org.mockito.Mockito.when;
+
 import ca.bc.gov.open.ccd.common.document.DocumentResult;
 import ca.bc.gov.open.ccd.common.document.GetDocument;
 import ca.bc.gov.open.ccd.common.document.GetDocumentResponse;
@@ -21,33 +23,29 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.web.client.RestTemplate;
 
-import static org.mockito.Mockito.when;
-
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @ActiveProfiles("test")
 public class DocumentControllerTests {
-    @Autowired
-    private ObjectMapper objectMapper;
+    @Autowired private ObjectMapper objectMapper;
 
-    @Mock
-    private RestTemplate restTemplate = new RestTemplate();
+    @Mock private RestTemplate restTemplate = new RestTemplate();
 
     @Test
     public void getDocumentTest() throws JsonProcessingException {
 
         var req = new GetDocument();
         var out = new GetDocumentResponse();
-        var docR  = new DocumentResult();
+        var docR = new DocumentResult();
         out.setDocumentResponse(docR);
         ResponseEntity<GetDocumentResponse> responseEntity =
                 new ResponseEntity<>(out, HttpStatus.OK);
 
         // Set up to mock ords response
         when(restTemplate.exchange(
-                Mockito.any(String.class),
-                Mockito.eq(HttpMethod.GET),
-                Mockito.<HttpEntity<String>>any(),
-                Mockito.<Class<GetDocumentResponse>>any()))
+                        Mockito.any(String.class),
+                        Mockito.eq(HttpMethod.GET),
+                        Mockito.<HttpEntity<String>>any(),
+                        Mockito.<Class<GetDocumentResponse>>any()))
                 .thenReturn(responseEntity);
 
         DocumentController documentController = new DocumentController(restTemplate, objectMapper);
@@ -61,17 +59,17 @@ public class DocumentControllerTests {
 
         var req = new GetDocumentSecure();
         var out = new GetDocumentSecureResponse();
-        var docR  = new ca.bc.gov.open.ccd.common.document.secure.DocumentResult();
+        var docR = new ca.bc.gov.open.ccd.common.document.secure.DocumentResult();
         out.setDocumentResponse(docR);
         ResponseEntity<GetDocumentSecureResponse> responseEntity =
                 new ResponseEntity<>(out, HttpStatus.OK);
 
         // Set up to mock ords response
         when(restTemplate.exchange(
-                Mockito.any(String.class),
-                Mockito.eq(HttpMethod.GET),
-                Mockito.<HttpEntity<String>>any(),
-                Mockito.<Class<GetDocumentSecureResponse>>any()))
+                        Mockito.any(String.class),
+                        Mockito.eq(HttpMethod.GET),
+                        Mockito.<HttpEntity<String>>any(),
+                        Mockito.<Class<GetDocumentSecureResponse>>any()))
                 .thenReturn(responseEntity);
 
         DocumentController documentController = new DocumentController(restTemplate, objectMapper);
@@ -79,5 +77,4 @@ public class DocumentControllerTests {
 
         Assertions.assertNotNull(resp);
     }
-
 }

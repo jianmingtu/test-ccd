@@ -38,18 +38,20 @@ public class DevUtilsController {
             namespace = "http://courts.ag.gov.bc.ca/CCD.Source.DevUtil.ws:DevUtils",
             localPart = "clearAppearanceResults")
     @ResponsePayload
-    public ClearAppearanceResultsResponse clearAppearanceResults(@RequestPayload ClearAppearanceResults clrResults)
-        throws JsonProcessingException {
+    public ClearAppearanceResultsResponse clearAppearanceResults(
+            @RequestPayload ClearAppearanceResults clrResults) throws JsonProcessingException {
 
-        UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(host + "criminal/clear-appr-results");
+        UriComponentsBuilder builder =
+                UriComponentsBuilder.fromHttpUrl(host + "criminal/clear-appr-results");
 
-        var inner = clrResults.getClrResults() != null ? clrResults.getClrResults() : new ClrResults();
+        var inner =
+                clrResults.getClrResults() != null ? clrResults.getClrResults() : new ClrResults();
         HttpEntity<ClrResults> payload = new HttpEntity<>(inner, new HttpHeaders());
 
         try {
             HttpEntity<ClearAppearanceResultsResponse> resp =
                     restTemplate.exchange(
-                        builder.toUriString(),
+                            builder.toUriString(),
                             HttpMethod.POST,
                             payload,
                             ClearAppearanceResultsResponse.class);
@@ -74,9 +76,13 @@ public class DevUtilsController {
     public RecreateCourtListResponse reCreateCourtList(@RequestPayload RecreateCourtList crtList)
             throws JsonProcessingException {
 
-        UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(host + "criminal/recreatecourtlist");
+        UriComponentsBuilder builder =
+                UriComponentsBuilder.fromHttpUrl(host + "criminal/recreatecourtlist");
 
-        var inner = crtList.getRecreateCourtListDoc() != null ? crtList.getRecreateCourtListDoc() : new RecreateCourtListDoc();
+        var inner =
+                crtList.getRecreateCourtListDoc() != null
+                        ? crtList.getRecreateCourtListDoc()
+                        : new RecreateCourtListDoc();
         HttpEntity<RecreateCourtListDoc> payload = new HttpEntity<>(inner, new HttpHeaders());
 
         try {

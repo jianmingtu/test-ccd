@@ -367,7 +367,6 @@ public class OrdsErrorTests {
                 () -> reportController.getRopReportSecure(new GetROPReportSecure()));
     }
 
-
     @Test
     public void testGetClearAppearanceResultsOrdsFail() {
         DevUtilsController devUtilsController = new DevUtilsController(restTemplate, objectMapper);
@@ -391,8 +390,7 @@ public class OrdsErrorTests {
         DocumentController documentController = new DocumentController(restTemplate, objectMapper);
 
         Assertions.assertThrows(
-                ORDSException.class,
-                () -> documentController.getDocument(new GetDocument()));
+                ORDSException.class, () -> documentController.getDocument(new GetDocument()));
     }
 
     @Test
