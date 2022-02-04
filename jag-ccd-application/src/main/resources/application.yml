@@ -6,6 +6,9 @@ ccd:
   host: ${ORDS_HOST}
   generic-agen-id:  ${GENERIC_AGENCY_ID}
   generic-part-id:  ${GENERIC_PART_ID}
+  oracle-host: ${ORACLE_HOST}
+  oracle-name: ${ORACLE_NAME}
+  adobe-host: ${ADOBE_HOST}
 
 management:
   trace:

@@ -11,9 +11,11 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
+import org.springframework.util.Base64Utils;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
 import org.springframework.ws.server.endpoint.annotation.Endpoint;
@@ -21,11 +23,22 @@ import org.springframework.ws.server.endpoint.annotation.PayloadRoot;
 import org.springframework.ws.server.endpoint.annotation.RequestPayload;
 import org.springframework.ws.server.endpoint.annotation.ResponsePayload;
 
+import java.util.Map;
+
 @Endpoint
 @Slf4j
 public class ReportController {
-    @Value("${ccd.host}")
-    private String host = "https://127.0.0.1/";
+    @Value("${ccd.host}" + "criminal/")
+    private String ordsHost = "https://127.0.0.1/";
+
+    @Value("${ccd.oracle-host}")
+    private String oracleHost = "https://127.0.0.1/";
+
+    @Value("${ccd.oracle-name}")
+    private String oracleServerName = "A";
+
+    @Value("${ccd.adobe-host}")
+    private String adobeServerHost;
 
     private final RestTemplate restTemplate;
     private final ObjectMapper objectMapper;
@@ -47,21 +60,44 @@ public class ReportController {
                 getROPReport != null && getROPReport.getROPRequest() != null
                         ? getROPReport.getROPRequest()
                         : new Rop();
+
         UriComponentsBuilder builder =
-                UriComponentsBuilder.fromHttpUrl(host + "appearance")
+                UriComponentsBuilder.fromHttpUrl(ordsHost + "ropreport")
                         .queryParam("param1", inner.getParam1())
                         .queryParam("param2", inner.getParam2())
                         .queryParam("formCd", inner.getFormCd());
-
         try {
-            HttpEntity<RopResult> resp =
+
+            // request url and key from ccd Report EndPoint
+            HttpEntity<Map> resp =
+                    restTemplate.exchange(builder.toUriString(), HttpMethod.GET, new HttpEntity<>(new HttpHeaders()), Map.class);
+
+            String url = resp.getBody() != null ? resp.getBody().get("url").toString() : "";
+            String keyValue = resp.getBody() != null ? resp.getBody().get("keyValue").toString() : "";
+            String query = url.split("\\?")[1];
+
+            // build an adobe server uri using its url and parameters being return from ccd and
+            // request base64 stream from this adobe server
+            query = query.replace("<<FORM>>", inner.getFormCd())
+                    .replace("<<APP>>", "justin")
+                    .replace("<<TICKET>>", keyValue);
+
+            String rpServer = (adobeServerHost !=null && adobeServerHost.length() > 0) ? adobeServerHost : (url + "?" + query);
+            HttpEntity<byte[]> resp2 =
                     restTemplate.exchange(
-                            builder.toUriString(),
+                            rpServer,
                             HttpMethod.GET,
                             new HttpEntity<>(new HttpHeaders()),
-                            RopResult.class);
+                            byte[].class);
+
+            String bs64 =
+                    resp2.getBody() != null ? Base64Utils.encodeToString(resp2.getBody()) : "";
+
             var out = new GetROPReportResponse();
-            out.setROPResponse(resp.getBody());
+            var one = new RopResult();
+            one.setB64Content(bs64);
+            one.setResultCd("0");
+            out.setROPResponse(one);
             return out;
         } catch (Exception ex) {
             log.error(
@@ -86,24 +122,48 @@ public class ReportController {
                 getROPReport != null && getROPReport.getROPSecureRequest() != null
                         ? getROPReport.getROPSecureRequest()
                         : new RopSecureRequest();
+
         UriComponentsBuilder builder =
-                UriComponentsBuilder.fromHttpUrl(host + "appearance")
-                        .queryParam("param1", inner.getParam1())
-                        .queryParam("param2", inner.getParam2())
-                        .queryParam("formCd", inner.getFormCd())
+                UriComponentsBuilder.fromHttpUrl(ordsHost + "ropreport/secure")
                         .queryParam("requestAgencyId", inner.getRequestAgencyIdentifierId())
                         .queryParam("requestPartId", inner.getRequestPartId())
-                        .queryParam("requestDtm", InstantSerializer.convert(inner.getRequestDtm()));
+                        .queryParam("requestDtm", InstantSerializer.convert(inner.getRequestDtm()))
+                        .queryParam("applicationCd", inner.getApplicationCd())
+                        .queryParam("param1", inner.getParam1())
+                        .queryParam("param2", inner.getParam2())
+                        .queryParam("formCd", inner.getFormCd());
 
         try {
-            HttpEntity<ca.bc.gov.open.ccd.common.rop.report.secure.RopResult> resp =
+
+            // request url and key from ccd Report EndPoint
+            HttpEntity<Map> resp =
+                    restTemplate.exchange(builder.toUriString(), HttpMethod.GET, new HttpEntity<>(new HttpHeaders()), Map.class);
+
+            String url = resp.getBody() != null ? resp.getBody().get("url").toString() : "";
+            String keyValue = resp.getBody() != null ? resp.getBody().get("keyValue").toString() : "";
+            String query = url.split("\\?")[1];
+
+            query = query.replace("<<FORM>>", inner.getFormCd())
+                    .replace("<<APP>>", "justin")
+                    .replace("<<TICKET>>", keyValue);
+
+            // build an adobe server uri using its url and parameters being return from ccd and
+            // request base64 stream from this adobe server
+            String rpServer = (adobeServerHost !=null && adobeServerHost.length() > 0) ? adobeServerHost : (url + "?" + query);
+            HttpEntity<byte[]> resp2 =
                     restTemplate.exchange(
-                            builder.toUriString(),
+                            rpServer,
                             HttpMethod.GET,
                             new HttpEntity<>(new HttpHeaders()),
-                            ca.bc.gov.open.ccd.common.rop.report.secure.RopResult.class);
+                            byte[].class);
+
+            String bs64 = resp2.getBody() != null ? Base64Utils.encodeToString(resp2.getBody()) : "";
+
             var out = new GetROPReportSecureResponse();
-            out.setROPResponse(resp.getBody());
+            var one = new ca.bc.gov.open.ccd.common.rop.report.secure.RopResult();
+            one.setB64Content(bs64);
+            one.setResultCd("0");
+            out.setROPResponse(one);
             return out;
         } catch (Exception ex) {
             log.error(
