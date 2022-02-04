@@ -12,6 +12,7 @@ import java.util.Map;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
@@ -67,17 +68,20 @@ public class ReportController {
         try {
 
             // request url and key from ccd Report EndPoint
-            HttpEntity<Map> resp =
+            HttpEntity<Map<String, String>> resp =
                     restTemplate.exchange(
                             builder.toUriString(),
                             HttpMethod.GET,
                             new HttpEntity<>(new HttpHeaders()),
-                            Map.class);
+                            new ParameterizedTypeReference<>() {});
 
-            String url = resp.getBody() != null ? resp.getBody().get("url").toString() : "";
+            String url = resp.getBody() != null ? resp.getBody().get("url") : "";
+
             String keyValue =
-                    resp.getBody() != null ? resp.getBody().get("keyValue").toString() : "";
-            String query = url.split("\\?")[1];
+                    resp.getBody() != null ? resp.getBody().get("keyValue") : "";
+
+            String query = "";
+            if(url.contains("?")) query = url.split("\\?")[1];
 
             // build an adobe server uri using its url and parameters being return from ccd and
             // request base64 stream from this adobe server
@@ -86,13 +90,12 @@ public class ReportController {
                             .replace("<<APP>>", "justin")
                             .replace("<<TICKET>>", keyValue);
 
-            String rpServer =
-                    (adobeServerHost != null && adobeServerHost.length() > 0)
-                            ? adobeServerHost
-                            : (url + "?" + query);
+            String rpServerHost = url.length() > 0 ? adobeServerHost : url;
+            String rpServerUri  = rpServerHost + "?" + query;
+
             HttpEntity<byte[]> resp2 =
                     restTemplate.exchange(
-                            rpServer,
+                            rpServerUri,
                             HttpMethod.GET,
                             new HttpEntity<>(new HttpHeaders()),
                             byte[].class);
@@ -143,18 +146,20 @@ public class ReportController {
         try {
 
             // request url and key from ccd Report EndPoint
-            HttpEntity<Map> resp =
-                    restTemplate.exchange(
-                            builder.toUriString(),
-                            HttpMethod.GET,
-                            new HttpEntity<>(new HttpHeaders()),
-                            Map.class);
+            HttpEntity<Map<String, String>> resp;
+            resp = restTemplate.exchange(
+                    builder.toUriString(),
+                    HttpMethod.GET,
+                    new HttpEntity<>(new HttpHeaders()),
+                    new ParameterizedTypeReference<Map<String, String>>(){});
 
-            String url = resp.getBody() != null ? resp.getBody().get("url").toString() : "";
+            String url = resp.getBody() != null ? resp.getBody().get("url") : "";
+
             String keyValue =
-                    resp.getBody() != null ? resp.getBody().get("keyValue").toString() : "";
-            String query = url.split("\\?")[1];
+                    resp.getBody() != null ? resp.getBody().get("keyValue") : "";
 
+            String query = "";
+            if(url.contains("?")) query = url.split("\\?")[1];
             query =
                     query.replace("<<FORM>>", inner.getFormCd())
                             .replace("<<APP>>", "justin")
@@ -162,13 +167,12 @@ public class ReportController {
 
             // build an adobe server uri using its url and parameters being return from ccd and
             // request base64 stream from this adobe server
-            String rpServer =
-                    (adobeServerHost != null && adobeServerHost.length() > 0)
-                            ? adobeServerHost
-                            : (url + "?" + query);
+            String rpServerHost = url.length() > 0 ? adobeServerHost : url;
+            String rpServerUri  = rpServerHost + "?" + query;
+
             HttpEntity<byte[]> resp2 =
                     restTemplate.exchange(
-                            rpServer,
+                            rpServerUri,
                             HttpMethod.GET,
                             new HttpEntity<>(new HttpHeaders()),
                             byte[].class);

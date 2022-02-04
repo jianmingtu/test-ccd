@@ -18,6 +18,7 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
@@ -46,16 +47,16 @@ public class ReportControllerTests {
         req.setROPRequest(one);
 
         Map<String, String> m = new HashMap<>();
-        m.put("url", "https://abc.com?param1=<<FORM>>&&param3=<<TICKET>>");
+        m.put("url", "http://127.0.0.1?param1=<<FORM>>&&param3=<<TICKET>>");
         m.put("keyValue", "tokenvalue");
-        ResponseEntity<Map> responseEntity2 = new ResponseEntity<>(m, HttpStatus.OK);
+        ResponseEntity<Map<String, String>> responseEntity2 = new ResponseEntity<>(m, HttpStatus.OK);
 
         // Set up to mock ords response
         when(restTemplate.exchange(
                         Mockito.matches("^((?!tokenvalue).)*$"),
                         Mockito.eq(HttpMethod.GET),
                         Mockito.<HttpEntity<String>>any(),
-                        Mockito.<Class<Map>>any()))
+                        Mockito.<ParameterizedTypeReference<Map<String, String>>>any()))
                 .thenReturn(responseEntity2);
 
         var out = "A";
@@ -92,16 +93,16 @@ public class ReportControllerTests {
         req.setROPSecureRequest(one);
 
         Map<String, String> m = new HashMap<>();
-        m.put("url", "https://abc.com?param1=<<FORM>>&&param3=<<TICKET>>");
+        m.put("url", "http://127.0.0.1?param1=<<FORM>>&&param3=<<TICKET>>");
         m.put("keyValue", "tokenvalue");
-        ResponseEntity<Map> responseEntity2 = new ResponseEntity<>(m, HttpStatus.OK);
+        ResponseEntity< Map<String, String>> responseEntity2 = new ResponseEntity<>(m, HttpStatus.OK);
 
         // Set up to mock ords response
         when(restTemplate.exchange(
                         Mockito.matches("^((?!tokenvalue).)*$"),
                         Mockito.eq(HttpMethod.GET),
                         Mockito.<HttpEntity<String>>any(),
-                        Mockito.<Class<Map>>any()))
+                        Mockito.<ParameterizedTypeReference<Map<String, String>>>any()))
                 .thenReturn(responseEntity2);
 
         var out = "A";
