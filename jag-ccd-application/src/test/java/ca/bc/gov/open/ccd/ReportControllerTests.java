@@ -14,6 +14,7 @@ import java.util.HashMap;
 import java.util.Map;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import org.mockito.AdditionalMatchers;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -53,9 +54,8 @@ public class ReportControllerTests {
                 new ResponseEntity<>(m, HttpStatus.OK);
 
         // Set up to mock ords response
-        // any uri not containing "tokenvalue" (regex: "^((?!tokenvalue).)*$")
         when(restTemplate.exchange(
-                        Mockito.matches("^((?!tokenvalue).)*$"),
+                        AdditionalMatchers.not(contains("tokenvalue")),
                         Mockito.eq(HttpMethod.GET),
                         Mockito.<HttpEntity<String>>any(),
                         Mockito.<ParameterizedTypeReference<Map<String, String>>>any()))
@@ -101,9 +101,8 @@ public class ReportControllerTests {
                 new ResponseEntity<>(m, HttpStatus.OK);
 
         // Set up to mock ords response
-        // any uri not containing "tokenvalue" (regex: "^((?!tokenvalue).)*$")
         when(restTemplate.exchange(
-                        Mockito.matches("^((?!tokenvalue).)*$"),
+                        AdditionalMatchers.not(contains("tokenvalue")),
                         Mockito.eq(HttpMethod.GET),
                         Mockito.<HttpEntity<String>>any(),
                         Mockito.<ParameterizedTypeReference<Map<String, String>>>any()))
