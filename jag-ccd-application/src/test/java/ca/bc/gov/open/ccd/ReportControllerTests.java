@@ -53,6 +53,7 @@ public class ReportControllerTests {
                 new ResponseEntity<>(m, HttpStatus.OK);
 
         // Set up to mock ords response
+        // any uri not containing "tokenvalue" (regex: "^((?!tokenvalue).)*$")
         when(restTemplate.exchange(
                         Mockito.matches("^((?!tokenvalue).)*$"),
                         Mockito.eq(HttpMethod.GET),
@@ -100,6 +101,7 @@ public class ReportControllerTests {
                 new ResponseEntity<>(m, HttpStatus.OK);
 
         // Set up to mock ords response
+        // any uri not containing "tokenvalue" (regex: "^((?!tokenvalue).)*$")
         when(restTemplate.exchange(
                         Mockito.matches("^((?!tokenvalue).)*$"),
                         Mockito.eq(HttpMethod.GET),
