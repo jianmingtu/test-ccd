@@ -77,11 +77,10 @@ public class ReportController {
 
             String url = resp.getBody() != null ? resp.getBody().get("url") : "";
 
-            String keyValue =
-                    resp.getBody() != null ? resp.getBody().get("keyValue") : "";
+            String keyValue = resp.getBody() != null ? resp.getBody().get("keyValue") : "";
 
             String query = "";
-            if(url.contains("?")) query = url.split("\\?")[1];
+            if (url.contains("?")) query = url.split("\\?")[1];
 
             // build an adobe server uri using its url and parameters being return from ccd and
             // request base64 stream from this adobe server
@@ -91,7 +90,7 @@ public class ReportController {
                             .replace("<<TICKET>>", keyValue);
 
             String rpServerHost = url.length() > 0 ? adobeServerHost : url;
-            String rpServerUri  = rpServerHost + "?" + query;
+            String rpServerUri = rpServerHost + "?" + query;
 
             HttpEntity<byte[]> resp2 =
                     restTemplate.exchange(
@@ -147,19 +146,19 @@ public class ReportController {
 
             // request url and key from ccd Report EndPoint
             HttpEntity<Map<String, String>> resp;
-            resp = restTemplate.exchange(
-                    builder.toUriString(),
-                    HttpMethod.GET,
-                    new HttpEntity<>(new HttpHeaders()),
-                    new ParameterizedTypeReference<Map<String, String>>(){});
+            resp =
+                    restTemplate.exchange(
+                            builder.toUriString(),
+                            HttpMethod.GET,
+                            new HttpEntity<>(new HttpHeaders()),
+                            new ParameterizedTypeReference<Map<String, String>>() {});
 
             String url = resp.getBody() != null ? resp.getBody().get("url") : "";
 
-            String keyValue =
-                    resp.getBody() != null ? resp.getBody().get("keyValue") : "";
+            String keyValue = resp.getBody() != null ? resp.getBody().get("keyValue") : "";
 
             String query = "";
-            if(url.contains("?")) query = url.split("\\?")[1];
+            if (url.contains("?")) query = url.split("\\?")[1];
             query =
                     query.replace("<<FORM>>", inner.getFormCd())
                             .replace("<<APP>>", "justin")
@@ -168,7 +167,7 @@ public class ReportController {
             // build an adobe server uri using its url and parameters being return from ccd and
             // request base64 stream from this adobe server
             String rpServerHost = url.length() > 0 ? adobeServerHost : url;
-            String rpServerUri  = rpServerHost + "?" + query;
+            String rpServerUri = rpServerHost + "?" + query;
 
             HttpEntity<byte[]> resp2 =
                     restTemplate.exchange(

@@ -49,7 +49,8 @@ public class ReportControllerTests {
         Map<String, String> m = new HashMap<>();
         m.put("url", "http://127.0.0.1?param1=<<FORM>>&&param3=<<TICKET>>");
         m.put("keyValue", "tokenvalue");
-        ResponseEntity<Map<String, String>> responseEntity2 = new ResponseEntity<>(m, HttpStatus.OK);
+        ResponseEntity<Map<String, String>> responseEntity2 =
+                new ResponseEntity<>(m, HttpStatus.OK);
 
         // Set up to mock ords response
         when(restTemplate.exchange(
@@ -95,7 +96,8 @@ public class ReportControllerTests {
         Map<String, String> m = new HashMap<>();
         m.put("url", "http://127.0.0.1?param1=<<FORM>>&&param3=<<TICKET>>");
         m.put("keyValue", "tokenvalue");
-        ResponseEntity< Map<String, String>> responseEntity2 = new ResponseEntity<>(m, HttpStatus.OK);
+        ResponseEntity<Map<String, String>> responseEntity2 =
+                new ResponseEntity<>(m, HttpStatus.OK);
 
         // Set up to mock ords response
         when(restTemplate.exchange(
