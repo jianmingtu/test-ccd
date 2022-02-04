@@ -37,7 +37,7 @@ public class ReportController {
     private String oracleServerName = "A";
 
     @Value("${ccd.adobe-host}")
-    private String adobeServerHost;
+    private String adobeServerHost = "https://127.0.0.1/";
 
     private final RestTemplate restTemplate;
     private final ObjectMapper objectMapper;
