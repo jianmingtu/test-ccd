@@ -39,6 +39,9 @@ public class ReportController {
     @Value("${ccd.adobe-host}")
     private String adobeServerHost = "https://127.0.0.1/";
 
+    @Value("${ccd.report-app-name}")
+    private String reportAppName = "";
+
     private final RestTemplate restTemplate;
     private final ObjectMapper objectMapper;
 
@@ -86,7 +89,7 @@ public class ReportController {
             // request base64 stream from this adobe server
             query =
                     query.replace("<<FORM>>", inner.getFormCd())
-                            .replace("<<APP>>", "justin")
+                            .replace("<<APP>>", reportAppName)
                             .replace("<<TICKET>>", keyValue);
 
             String rpServerHost = url.length() > 0 ? adobeServerHost : url;
@@ -151,7 +154,7 @@ public class ReportController {
                             builder.toUriString(),
                             HttpMethod.GET,
                             new HttpEntity<>(new HttpHeaders()),
-                            new ParameterizedTypeReference<Map<String, String>>() {});
+                            new ParameterizedTypeReference<>() {});
 
             String url = resp.getBody() != null ? resp.getBody().get("url") : "";
 
@@ -161,7 +164,7 @@ public class ReportController {
             if (url.contains("?")) query = url.split("\\?")[1];
             query =
                     query.replace("<<FORM>>", inner.getFormCd())
-                            .replace("<<APP>>", "justin")
+                            .replace("<<APP>>", reportAppName)
                             .replace("<<TICKET>>", keyValue);
 
             // build an adobe server uri using its url and parameters being return from ccd and
