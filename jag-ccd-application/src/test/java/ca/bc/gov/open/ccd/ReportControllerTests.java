@@ -4,17 +4,14 @@ import static org.mockito.ArgumentMatchers.contains;
 import static org.mockito.Mockito.when;
 
 import ca.bc.gov.open.ccd.common.rop.report.*;
-import ca.bc.gov.open.ccd.common.rop.report.RopResult;
 import ca.bc.gov.open.ccd.common.rop.report.secure.*;
 import ca.bc.gov.open.ccd.controllers.ReportController;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-
 import java.nio.charset.StandardCharsets;
 import java.time.Instant;
 import java.util.HashMap;
 import java.util.Map;
-
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
@@ -50,15 +47,15 @@ public class ReportControllerTests {
 
         Map<String, String> m = new HashMap<>();
         m.put("url", "https://abc.com?param1=<<FORM>>&&param3=<<TICKET>>");
-        m.put("keyValue","tokenvalue");
+        m.put("keyValue", "tokenvalue");
         ResponseEntity<Map> responseEntity2 = new ResponseEntity<>(m, HttpStatus.OK);
 
         // Set up to mock ords response
         when(restTemplate.exchange(
-                Mockito.matches("^((?!tokenvalue).)*$"),
-                Mockito.eq(HttpMethod.GET),
-                Mockito.<HttpEntity<String>>any(),
-                Mockito.<Class<Map>>any()))
+                        Mockito.matches("^((?!tokenvalue).)*$"),
+                        Mockito.eq(HttpMethod.GET),
+                        Mockito.<HttpEntity<String>>any(),
+                        Mockito.<Class<Map>>any()))
                 .thenReturn(responseEntity2);
 
         var out = "A";
@@ -67,10 +64,10 @@ public class ReportControllerTests {
 
         // Set up to adobe response
         when(restTemplate.exchange(
-                contains("tokenvalue"),
-                Mockito.eq(HttpMethod.GET),
-                Mockito.<HttpEntity<String>>any(),
-                Mockito.<Class<byte[]>>any()))
+                        contains("tokenvalue"),
+                        Mockito.eq(HttpMethod.GET),
+                        Mockito.<HttpEntity<String>>any(),
+                        Mockito.<Class<byte[]>>any()))
                 .thenReturn(responseEntity);
 
         ReportController reportController = new ReportController(restTemplate, objectMapper);
@@ -96,15 +93,15 @@ public class ReportControllerTests {
 
         Map<String, String> m = new HashMap<>();
         m.put("url", "https://abc.com?param1=<<FORM>>&&param3=<<TICKET>>");
-        m.put("keyValue","tokenvalue");
+        m.put("keyValue", "tokenvalue");
         ResponseEntity<Map> responseEntity2 = new ResponseEntity<>(m, HttpStatus.OK);
 
         // Set up to mock ords response
         when(restTemplate.exchange(
-                Mockito.matches("^((?!tokenvalue).)*$"),
-                Mockito.eq(HttpMethod.GET),
-                Mockito.<HttpEntity<String>>any(),
-                Mockito.<Class<Map>>any()))
+                        Mockito.matches("^((?!tokenvalue).)*$"),
+                        Mockito.eq(HttpMethod.GET),
+                        Mockito.<HttpEntity<String>>any(),
+                        Mockito.<Class<Map>>any()))
                 .thenReturn(responseEntity2);
 
         var out = "A";
@@ -113,10 +110,10 @@ public class ReportControllerTests {
 
         // Set up to adobe response
         when(restTemplate.exchange(
-                Mockito.matches("tokenvalue"),
-                Mockito.eq(HttpMethod.GET),
-                Mockito.<HttpEntity<String>>any(),
-                Mockito.<Class<byte[]>>any()))
+                        Mockito.matches("tokenvalue"),
+                        Mockito.eq(HttpMethod.GET),
+                        Mockito.<HttpEntity<String>>any(),
+                        Mockito.<Class<byte[]>>any()))
                 .thenReturn(responseEntity);
 
         ReportController reportController = new ReportController(restTemplate, objectMapper);

@@ -8,10 +8,10 @@ import ca.bc.gov.open.ccd.models.OrdsErrorLog;
 import ca.bc.gov.open.ccd.models.serializers.InstantSerializer;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import java.util.Map;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
@@ -22,8 +22,6 @@ import org.springframework.ws.server.endpoint.annotation.Endpoint;
 import org.springframework.ws.server.endpoint.annotation.PayloadRoot;
 import org.springframework.ws.server.endpoint.annotation.RequestPayload;
 import org.springframework.ws.server.endpoint.annotation.ResponsePayload;
-
-import java.util.Map;
 
 @Endpoint
 @Slf4j
@@ -70,19 +68,28 @@ public class ReportController {
 
             // request url and key from ccd Report EndPoint
             HttpEntity<Map> resp =
-                    restTemplate.exchange(builder.toUriString(), HttpMethod.GET, new HttpEntity<>(new HttpHeaders()), Map.class);
+                    restTemplate.exchange(
+                            builder.toUriString(),
+                            HttpMethod.GET,
+                            new HttpEntity<>(new HttpHeaders()),
+                            Map.class);
 
             String url = resp.getBody() != null ? resp.getBody().get("url").toString() : "";
-            String keyValue = resp.getBody() != null ? resp.getBody().get("keyValue").toString() : "";
+            String keyValue =
+                    resp.getBody() != null ? resp.getBody().get("keyValue").toString() : "";
             String query = url.split("\\?")[1];
 
             // build an adobe server uri using its url and parameters being return from ccd and
             // request base64 stream from this adobe server
-            query = query.replace("<<FORM>>", inner.getFormCd())
-                    .replace("<<APP>>", "justin")
-                    .replace("<<TICKET>>", keyValue);
+            query =
+                    query.replace("<<FORM>>", inner.getFormCd())
+                            .replace("<<APP>>", "justin")
+                            .replace("<<TICKET>>", keyValue);
 
-            String rpServer = (adobeServerHost !=null && adobeServerHost.length() > 0) ? adobeServerHost : (url + "?" + query);
+            String rpServer =
+                    (adobeServerHost != null && adobeServerHost.length() > 0)
+                            ? adobeServerHost
+                            : (url + "?" + query);
             HttpEntity<byte[]> resp2 =
                     restTemplate.exchange(
                             rpServer,
@@ -137,19 +144,28 @@ public class ReportController {
 
             // request url and key from ccd Report EndPoint
             HttpEntity<Map> resp =
-                    restTemplate.exchange(builder.toUriString(), HttpMethod.GET, new HttpEntity<>(new HttpHeaders()), Map.class);
+                    restTemplate.exchange(
+                            builder.toUriString(),
+                            HttpMethod.GET,
+                            new HttpEntity<>(new HttpHeaders()),
+                            Map.class);
 
             String url = resp.getBody() != null ? resp.getBody().get("url").toString() : "";
-            String keyValue = resp.getBody() != null ? resp.getBody().get("keyValue").toString() : "";
+            String keyValue =
+                    resp.getBody() != null ? resp.getBody().get("keyValue").toString() : "";
             String query = url.split("\\?")[1];
 
-            query = query.replace("<<FORM>>", inner.getFormCd())
-                    .replace("<<APP>>", "justin")
-                    .replace("<<TICKET>>", keyValue);
+            query =
+                    query.replace("<<FORM>>", inner.getFormCd())
+                            .replace("<<APP>>", "justin")
+                            .replace("<<TICKET>>", keyValue);
 
             // build an adobe server uri using its url and parameters being return from ccd and
             // request base64 stream from this adobe server
-            String rpServer = (adobeServerHost !=null && adobeServerHost.length() > 0) ? adobeServerHost : (url + "?" + query);
+            String rpServer =
+                    (adobeServerHost != null && adobeServerHost.length() > 0)
+                            ? adobeServerHost
+                            : (url + "?" + query);
             HttpEntity<byte[]> resp2 =
                     restTemplate.exchange(
                             rpServer,
@@ -157,7 +173,8 @@ public class ReportController {
                             new HttpEntity<>(new HttpHeaders()),
                             byte[].class);
 
-            String bs64 = resp2.getBody() != null ? Base64Utils.encodeToString(resp2.getBody()) : "";
+            String bs64 =
+                    resp2.getBody() != null ? Base64Utils.encodeToString(resp2.getBody()) : "";
 
             var out = new GetROPReportSecureResponse();
             var one = new ca.bc.gov.open.ccd.common.rop.report.secure.RopResult();
