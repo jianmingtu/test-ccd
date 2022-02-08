@@ -283,7 +283,7 @@ public class ProcessController {
                         ? process.getCriminalResult()
                         : new CriminalResult();
 
-        UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(host + "appearance");
+        UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(host + "criminal/results");
 
         HttpEntity<CriminalResult> payload = new HttpEntity<>(inner, new HttpHeaders());
 
