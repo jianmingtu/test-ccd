@@ -131,8 +131,8 @@ public class CodeControllerTests {
         String out = objectMapper.writeValueAsString(time);
 
         String expected =
-                DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm:ss")
-                        .withZone(ZoneId.of("GMT-7"))
+                DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")
+                        .withZone(ZoneId.of("UTC"))
                         .withLocale(Locale.US)
                         .format(time);
 
