@@ -1,12 +1,9 @@
 package ca.bc.gov.open.ccd.controllers;
 
-import bcgov.reeks.ccd_source_criminalfilecontent_ws_provider.criminalfilecontentsecure.GetCriminalFileContentSecure;
-import bcgov.reeks.ccd_source_criminalfilecontent_ws_provider.criminalfilecontentsecure.GetCriminalFileContentSecureResponse;
-import ca.bc.gov.ag.courts.ccd_source_civilfilecontent_ws.civilfilecontent.*;
-import ca.bc.gov.ag.courts.ccd_source_criminalfilecontent_ws_provider.criminalfilecontent.FileContentDoc;
-import ca.bc.gov.ag.courts.ccd_source_criminalfilecontent_ws_provider.criminalfilecontent.GetCriminalFileContent;
-import ca.bc.gov.ag.courts.ccd_source_criminalfilecontent_ws_provider.criminalfilecontent.GetCriminalFileContentResponse;
-import ca.bc.gov.open.ccd.configuration.SoapConfig;
+import ca.bc.gov.open.ccd.civil.*;
+import ca.bc.gov.open.ccd.civil.secure.*;
+import ca.bc.gov.open.ccd.common.criminal.file.content.*;
+import ca.bc.gov.open.ccd.common.criminal.file.content.secure.*;
 import ca.bc.gov.open.ccd.exceptions.ORDSException;
 import ca.bc.gov.open.ccd.models.OrdsErrorLog;
 import ca.bc.gov.open.ccd.models.serializers.InstantSerializer;
@@ -41,34 +38,37 @@ public class FileController {
         this.objectMapper = objectMapper;
     }
 
-    @PayloadRoot(namespace = SoapConfig.SOAP_NAMESPACE, localPart = "getCriminalFileContent")
+    @PayloadRoot(
+            namespace =
+                    "http://courts.ag.gov.bc.ca/CCD.Source.CriminalFileContent.ws.provider:CriminalFileContent",
+            localPart = "getCriminalFileContent")
     @ResponsePayload
     public GetCriminalFileContentResponse getCriminalFileContent(
             @RequestPayload GetCriminalFileContent getCriminalFileContent)
             throws JsonProcessingException {
 
         UriComponentsBuilder builder =
-                UriComponentsBuilder.fromHttpUrl(host + "appearance")
+                UriComponentsBuilder.fromHttpUrl(host + "criminal/" + "file")
                         .queryParam(
                                 "agencyIdentifierCd",
                                 getCriminalFileContent.getAgencyIdentifierCd())
                         .queryParam("roomCd", getCriminalFileContent.getRoomCd())
-                        .queryParam("proceedingDate", getCriminalFileContent.getProceedingDate())
-                        .queryParam("appearanceID", getCriminalFileContent.getAppearanceID())
+                        .queryParam(
+                                "proceedingDate",
+                                InstantSerializer.convert(
+                                        getCriminalFileContent.getProceedingDate()))
+                        .queryParam("appearanceId", getCriminalFileContent.getAppearanceID())
                         .queryParam("mdocJustinNo", getCriminalFileContent.getMdocJustinNo());
 
         try {
-            HttpEntity<FileContentDoc> resp =
+            HttpEntity<GetCriminalFileContentResponse> resp =
                     restTemplate.exchange(
-                            builder.toUriString(),
+                            builder.build().toUri(),
                             HttpMethod.GET,
                             new HttpEntity<>(new HttpHeaders()),
-                            FileContentDoc.class);
+                            GetCriminalFileContentResponse.class);
 
-            var out = new GetCriminalFileContentResponse();
-            out.setFileContent(resp.getBody());
-
-            return out;
+            return resp.getBody();
         } catch (Exception ex) {
             log.error(
                     objectMapper.writeValueAsString(
@@ -81,23 +81,29 @@ public class FileController {
         }
     }
 
-    @PayloadRoot(namespace = SoapConfig.SOAP_NAMESPACE, localPart = "getCriminalFileContentSecure")
+    @PayloadRoot(
+            namespace =
+                    "http://reeks.bcgov/CCD.Source.CriminalFileContent.ws.provider:CriminalFileContentSecure",
+            localPart = "getCriminalFileContentSecure")
     @ResponsePayload
     public GetCriminalFileContentSecureResponse getCriminalFileContentSecure(
             @RequestPayload GetCriminalFileContentSecure getCriminalFileContent)
             throws JsonProcessingException {
 
         UriComponentsBuilder builder =
-                UriComponentsBuilder.fromHttpUrl(host + "appearance")
+                UriComponentsBuilder.fromHttpUrl(host + "criminal/" + "file/secure")
                         .queryParam(
                                 "agencyIdentifierCd",
                                 getCriminalFileContent.getAgencyIdentifierCd())
                         .queryParam("roomCd", getCriminalFileContent.getRoomCd())
-                        .queryParam("proceedingDate", getCriminalFileContent.getProceedingDate())
-                        .queryParam("appearanceID", getCriminalFileContent.getAppearanceID())
+                        .queryParam(
+                                "proceedingDate",
+                                InstantSerializer.convert(
+                                        getCriminalFileContent.getProceedingDate()))
+                        .queryParam("appearanceId", getCriminalFileContent.getAppearanceID())
                         .queryParam("mdocJustinNo", getCriminalFileContent.getMdocJustinNo())
                         .queryParam(
-                                "requestAgenId",
+                                "requestAgencyId",
                                 getCriminalFileContent.getRequestAgencyIdentifierId())
                         .queryParam("requestPartId", getCriminalFileContent.getRequestPartId())
                         .queryParam(
@@ -108,7 +114,7 @@ public class FileController {
         try {
             HttpEntity<GetCriminalFileContentSecureResponse> resp =
                     restTemplate.exchange(
-                            builder.toUriString(),
+                            builder.build().toUri(),
                             HttpMethod.GET,
                             new HttpEntity<>(new HttpHeaders()),
                             GetCriminalFileContentSecureResponse.class);
@@ -126,32 +132,35 @@ public class FileController {
         }
     }
 
-    @PayloadRoot(namespace = SoapConfig.SOAP_NAMESPACE, localPart = "getCivilFileContent")
+    @PayloadRoot(
+            namespace =
+                    "http://courts.ag.gov.bc.ca/CCD.Source.CivilFileContent.ws:CivilFileContent",
+            localPart = "getCivilFileContent")
     @ResponsePayload
     public GetCivilFileContentResponse getCivilFileContent(
             @RequestPayload GetCivilFileContent getCivilFileContent)
             throws JsonProcessingException {
 
         UriComponentsBuilder builder =
-                UriComponentsBuilder.fromHttpUrl(host + "appearance")
+                UriComponentsBuilder.fromHttpUrl(host + "civil/" + "file")
                         .queryParam("courtLocaCd", getCivilFileContent.getCourtLocaCd())
                         .queryParam("courtRoomCd", getCivilFileContent.getCourtRoomCd())
                         .queryParam(
-                                "courtProceedingDate", getCivilFileContent.getCourtProceedingDate())
+                                "courtProceedingDate",
+                                InstantSerializer.convert(
+                                        getCivilFileContent.getCourtProceedingDate()))
                         .queryParam("appearanceId", getCivilFileContent.getAppearanceId())
                         .queryParam("physicalFileId", getCivilFileContent.getPhysicalFileId())
                         .queryParam("applicationCd", getCivilFileContent.getApplicationCd());
 
         try {
-            HttpEntity<CivilFileContentDoc> resp =
+            HttpEntity<GetCivilFileContentResponse> resp =
                     restTemplate.exchange(
-                            builder.toUriString(),
+                            builder.build().toUri(),
                             HttpMethod.GET,
                             new HttpEntity<>(new HttpHeaders()),
-                            CivilFileContentDoc.class);
-            var out = new GetCivilFileContentResponse();
-            out.setCivilFileContentDoc(resp.getBody());
-            return out;
+                            GetCivilFileContentResponse.class);
+            return resp.getBody();
         } catch (Exception ex) {
             log.error(
                     objectMapper.writeValueAsString(
@@ -164,22 +173,28 @@ public class FileController {
         }
     }
 
-    @PayloadRoot(namespace = SoapConfig.SOAP_NAMESPACE, localPart = "getCivilFileContentSecure")
+    @PayloadRoot(
+            namespace =
+                    "http://courts.ag.gov.bc.ca/CCD.Source.CivilFileContent.ws:CivilFileContent",
+            localPart = "getCivilFileContentSecure")
     @ResponsePayload
     public GetCivilFileContentSecureResponse getCivilFileContentSecure(
             @RequestPayload GetCivilFileContentSecure getCivilFileContent)
             throws JsonProcessingException {
 
         UriComponentsBuilder builder =
-                UriComponentsBuilder.fromHttpUrl(host + "appearance")
+                UriComponentsBuilder.fromHttpUrl(host + "civil/" + "file/secure")
                         .queryParam("courtLocaCd", getCivilFileContent.getCourtLocaCd())
                         .queryParam("courtRoomCd", getCivilFileContent.getCourtRoomCd())
                         .queryParam(
-                                "courtProceedingDate", getCivilFileContent.getCourtProceedingDate())
+                                "courtProceedingDate",
+                                InstantSerializer.convert(
+                                        getCivilFileContent.getCourtProceedingDate()))
                         .queryParam("appearanceId", getCivilFileContent.getAppearanceId())
                         .queryParam("physicalFileId", getCivilFileContent.getPhysicalFileId())
                         .queryParam(
-                                "requestAgenId", getCivilFileContent.getRequestAgencyIdentifierId())
+                                "requestAgencyId",
+                                getCivilFileContent.getRequestAgencyIdentifierId())
                         .queryParam("requestPartId", getCivilFileContent.getRequestPartId())
                         .queryParam(
                                 "requestDtm",
@@ -187,12 +202,13 @@ public class FileController {
                         .queryParam("applicationCd", getCivilFileContent.getApplicationCd());
 
         try {
-            HttpEntity<GetCivilFileContentSecureResponse> resp =
+            HttpEntity<ca.bc.gov.open.ccd.civil.secure.GetCivilFileContentSecureResponse> resp =
                     restTemplate.exchange(
-                            builder.toUriString(),
+                            builder.build().toUri(),
                             HttpMethod.GET,
                             new HttpEntity<>(new HttpHeaders()),
-                            GetCivilFileContentSecureResponse.class);
+                            ca.bc.gov.open.ccd.civil.secure.GetCivilFileContentSecureResponse
+                                    .class);
             return resp.getBody();
         } catch (Exception ex) {
             log.error(

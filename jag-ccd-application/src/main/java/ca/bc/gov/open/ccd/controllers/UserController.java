@@ -1,14 +1,7 @@
 package ca.bc.gov.open.ccd.controllers;
 
-import brooks.ccd_source_getuserlogin_ws.getuserlogin.GetUserLogin;
-import brooks.ccd_source_getuserlogin_ws.getuserlogin.GetUserLoginRequestType;
-import brooks.ccd_source_getuserlogin_ws.getuserlogin.GetUserLoginResponse;
-import brooks.ccd_source_getuserlogin_ws.getuserlogin.GetUserLoginResponseType;
-import ca.bc.gov.ag.courts.ccd_source_ccdusermapping_ws.ccdusermapping.GetParticipantInfo;
-import ca.bc.gov.ag.courts.ccd_source_ccdusermapping_ws.ccdusermapping.GetParticipantInfoResponse;
-import ca.bc.gov.ag.courts.ccd_source_ccdusermapping_ws.ccdusermapping.MapGuidToParticipant;
-import ca.bc.gov.ag.courts.ccd_source_ccdusermapping_ws.ccdusermapping.MapGuidToParticipantResponse;
-import ca.bc.gov.open.ccd.configuration.SoapConfig;
+import ca.bc.gov.open.ccd.common.user.login.*;
+import ca.bc.gov.open.ccd.common.user.mapping.*;
 import ca.bc.gov.open.ccd.exceptions.ORDSException;
 import ca.bc.gov.open.ccd.models.OrdsErrorLog;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -29,7 +22,7 @@ import org.springframework.ws.server.endpoint.annotation.ResponsePayload;
 @Endpoint
 @Slf4j
 public class UserController {
-    @Value("${ccd.host}")
+    @Value("${ccd.host}" + "common/")
     private String host = "https://127.0.0.1/";
 
     private final RestTemplate restTemplate;
@@ -41,12 +34,14 @@ public class UserController {
         this.objectMapper = objectMapper;
     }
 
-    @PayloadRoot(namespace = SoapConfig.SOAP_NAMESPACE, localPart = "getParticipantInfo")
+    @PayloadRoot(
+            namespace = "http://courts.ag.gov.bc.ca/CCD.Source.CCDUserMapping.ws:ccdUserMapping",
+            localPart = "getParticipantInfo")
     @ResponsePayload
     public GetParticipantInfoResponse getParticipantInfo(
             @RequestPayload GetParticipantInfo getParticipantInfo) throws JsonProcessingException {
         UriComponentsBuilder builder =
-                UriComponentsBuilder.fromHttpUrl(host + "appearance")
+                UriComponentsBuilder.fromHttpUrl(host + "user/mapping/participant-info")
                         .queryParam("guid", getParticipantInfo.getGuid());
 
         try {
@@ -69,13 +64,15 @@ public class UserController {
         }
     }
 
-    @PayloadRoot(namespace = SoapConfig.SOAP_NAMESPACE, localPart = "mapGuidToParticipant")
+    @PayloadRoot(
+            namespace = "http://courts.ag.gov.bc.ca/CCD.Source.CCDUserMapping.ws:ccdUserMapping",
+            localPart = "mapGuidToParticipant")
     @ResponsePayload
     public MapGuidToParticipantResponse mapGuidToParticipant(
             @RequestPayload MapGuidToParticipant mapGuidToParticipant)
             throws JsonProcessingException {
         UriComponentsBuilder builder =
-                UriComponentsBuilder.fromHttpUrl(host + "appearance")
+                UriComponentsBuilder.fromHttpUrl(host + "user/mapping/partid-to-guid")
                         .queryParam("guid", mapGuidToParticipant.getGuid())
                         .queryParam("partId", mapGuidToParticipant.getPartId())
                         .queryParam("idirId", mapGuidToParticipant.getIdirId());
@@ -100,7 +97,9 @@ public class UserController {
         }
     }
 
-    @PayloadRoot(namespace = SoapConfig.SOAP_NAMESPACE, localPart = "getUserLogin")
+    @PayloadRoot(
+            namespace = "http://brooks/CCD.Source.GetUserLogin.WS:getUserLogin",
+            localPart = "GetUserLogin")
     @ResponsePayload
     public GetUserLoginResponse getUserLogin(@RequestPayload GetUserLogin getUserLogin)
             throws JsonProcessingException {
@@ -110,7 +109,7 @@ public class UserController {
                         : new GetUserLoginRequestType();
 
         UriComponentsBuilder builder =
-                UriComponentsBuilder.fromHttpUrl(host + "appearance")
+                UriComponentsBuilder.fromHttpUrl(host + "user/login")
                         .queryParam("temporaryAccessGuid", inner.getTemporaryAccessGuid())
                         .queryParam("domainUserGuid", inner.getDomainUserGuid())
                         .queryParam("domainUserId", inner.getDomainUserId());

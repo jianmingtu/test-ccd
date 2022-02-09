@@ -1,11 +1,8 @@
 package ca.bc.gov.open.ccd.controllers;
 
-import ca.bc.gov.open.ccd.configuration.SoapConfig;
+import ca.bc.gov.open.ccd.court.one.*;
 import ca.bc.gov.open.ccd.court.one.CourtListTypes;
-import ca.bc.gov.open.ccd.court.one.GetCrtList;
-import ca.bc.gov.open.ccd.court.one.GetCrtListResponse;
-import ca.bc.gov.open.ccd.court.secure.one.GetCrtListSecure;
-import ca.bc.gov.open.ccd.court.secure.one.GetCrtListSecureResponse;
+import ca.bc.gov.open.ccd.court.secure.one.*;
 import ca.bc.gov.open.ccd.exceptions.ORDSException;
 import ca.bc.gov.open.ccd.models.OrdsErrorLog;
 import ca.bc.gov.open.ccd.models.serializers.InstantSerializer;
@@ -39,7 +36,9 @@ public class CourtController {
         this.objectMapper = objectMapper;
     }
 
-    @PayloadRoot(namespace = SoapConfig.SOAP_NAMESPACE, localPart = "getCrtList")
+    @PayloadRoot(
+            namespace = "http://brooks/CCD.Source.CourtLists.ws.provider:CourtList",
+            localPart = "getCrtList")
     @ResponsePayload
     public GetCrtListResponse getCrtList(@RequestPayload GetCrtList getCrtList)
             throws JsonProcessingException {
@@ -48,9 +47,6 @@ public class CourtController {
                 UriComponentsBuilder.fromHttpUrl(host + "appearance")
                         .queryParam("agencyIdentifierCd", getCrtList.getAgencyIdentifierCd())
                         .queryParam("roomCd", getCrtList.getRoomCd())
-
-                        //                    TODO This might be a date but not sure confirm with
-                        // ords
                         .queryParam("proceedingDate", getCrtList.getProceedingDate())
                         .queryParam("divisionCd", getCrtList.getDivisionCd())
                         .queryParam("fileNumber", getCrtList.getFileNumber());
@@ -77,7 +73,9 @@ public class CourtController {
         }
     }
 
-    @PayloadRoot(namespace = SoapConfig.SOAP_NAMESPACE, localPart = "getCrtListSecure")
+    @PayloadRoot(
+            namespace = "http://reeks.bcgov/CCD.Source.CourtLists.ws.provider:CourtListSecure",
+            localPart = "getCrtListSecure")
     @ResponsePayload
     public GetCrtListSecureResponse getCrtListSecure(@RequestPayload GetCrtListSecure getCrtList)
             throws JsonProcessingException {
@@ -86,13 +84,10 @@ public class CourtController {
                 UriComponentsBuilder.fromHttpUrl(host + "appearance")
                         .queryParam("agencyIdentifierCd", getCrtList.getAgencyIdentifierCd())
                         .queryParam("roomCd", getCrtList.getRoomCd())
-
-                        //                    TODO This might be a date but not sure confirm with
-                        // ords
                         .queryParam("proceedingDate", getCrtList.getProceedingDate())
                         .queryParam("divisionCd", getCrtList.getDivisionCd())
                         .queryParam("fileNumber", getCrtList.getFileNumber())
-                        .queryParam("requestAgenId", getCrtList.getRequestAgencyIdentifierId())
+                        .queryParam("requestAgencyId", getCrtList.getRequestAgencyIdentifierId())
                         .queryParam("requestPartId", getCrtList.getRequestPartId())
                         .queryParam(
                                 "requestDtm", InstantSerializer.convert(getCrtList.getRequestDtm()))

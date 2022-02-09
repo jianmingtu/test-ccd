@@ -1,22 +1,25 @@
 package ca.bc.gov.open.ccd;
 
+import static org.mockito.ArgumentMatchers.contains;
 import static org.mockito.Mockito.when;
 
-import bcgov.reeks.ccd_source_getropreport_ws.getropreportsecure.GetROPReportSecure;
-import bcgov.reeks.ccd_source_getropreport_ws.getropreportsecure.RopSecureRequest;
-import ca.bc.gov.ag.brooks.ccd_source_getropreport_ws.getropreport.GetROPReport;
-import ca.bc.gov.ag.brooks.ccd_source_getropreport_ws.getropreport.Rop;
-import ca.bc.gov.ag.brooks.ccd_source_getropreport_ws.getropreport.RopResult;
+import ca.bc.gov.open.ccd.common.rop.report.*;
+import ca.bc.gov.open.ccd.common.rop.report.secure.*;
 import ca.bc.gov.open.ccd.controllers.ReportController;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import java.nio.charset.StandardCharsets;
 import java.time.Instant;
+import java.util.HashMap;
+import java.util.Map;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import org.mockito.AdditionalMatchers;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
@@ -34,6 +37,7 @@ public class ReportControllerTests {
 
     @Test
     public void getRopReportTest() throws JsonProcessingException {
+
         var req = new GetROPReport();
         var one = new Rop();
 
@@ -43,29 +47,40 @@ public class ReportControllerTests {
 
         req.setROPRequest(one);
 
-        var out = new RopResult();
-        out.setB64Content("A");
-        out.setResultCd("A");
-        out.setResultMessage("A");
+        Map<String, String> m = new HashMap<>();
+        m.put("url", "http://127.0.0.1?param1=<<FORM>>&&param3=<<TICKET>>");
+        m.put("keyValue", "tokenvalue");
+        ResponseEntity<Map<String, String>> responseEntity2 =
+                new ResponseEntity<>(m, HttpStatus.OK);
 
-        ResponseEntity<RopResult> responseEntity = new ResponseEntity<>(out, HttpStatus.OK);
-
-        //     Set up to mock ords response
+        // Set up to mock ords response
         when(restTemplate.exchange(
-                        Mockito.any(String.class),
+                        AdditionalMatchers.not(contains("tokenvalue")),
                         Mockito.eq(HttpMethod.GET),
                         Mockito.<HttpEntity<String>>any(),
-                        Mockito.<Class<RopResult>>any()))
+                        Mockito.<ParameterizedTypeReference<Map<String, String>>>any()))
+                .thenReturn(responseEntity2);
+
+        var out = "A";
+        ResponseEntity<byte[]> responseEntity =
+                new ResponseEntity<>(out.getBytes(StandardCharsets.UTF_8), HttpStatus.OK);
+
+        // Set up to adobe response
+        when(restTemplate.exchange(
+                        contains("tokenvalue"),
+                        Mockito.eq(HttpMethod.GET),
+                        Mockito.<HttpEntity<String>>any(),
+                        Mockito.<Class<byte[]>>any()))
                 .thenReturn(responseEntity);
 
         ReportController reportController = new ReportController(restTemplate, objectMapper);
         var resp = reportController.getRopReport(req);
-
         Assertions.assertNotNull(resp);
     }
 
     @Test
     public void getRopReportSecureTest() throws JsonProcessingException {
+
         var req = new GetROPReportSecure();
         var one = new RopSecureRequest();
 
@@ -79,24 +94,30 @@ public class ReportControllerTests {
 
         req.setROPSecureRequest(one);
 
-        var out = new bcgov.reeks.ccd_source_getropreport_ws.getropreportsecure.RopResult();
-        out.setB64Content("A");
-        out.setResultCd("A");
-        out.setResultMessage("A");
+        Map<String, String> m = new HashMap<>();
+        m.put("url", "http://127.0.0.1?param1=<<FORM>>&&param3=<<TICKET>>");
+        m.put("keyValue", "tokenvalue");
+        ResponseEntity<Map<String, String>> responseEntity2 =
+                new ResponseEntity<>(m, HttpStatus.OK);
 
-        ResponseEntity<bcgov.reeks.ccd_source_getropreport_ws.getropreportsecure.RopResult>
-                responseEntity = new ResponseEntity<>(out, HttpStatus.OK);
-
-        //     Set up to mock ords response
+        // Set up to mock ords response
         when(restTemplate.exchange(
-                        Mockito.any(String.class),
+                        AdditionalMatchers.not(contains("tokenvalue")),
                         Mockito.eq(HttpMethod.GET),
                         Mockito.<HttpEntity<String>>any(),
-                        Mockito
-                                .<Class<
-                                                bcgov.reeks.ccd_source_getropreport_ws
-                                                        .getropreportsecure.RopResult>>
-                                        any()))
+                        Mockito.<ParameterizedTypeReference<Map<String, String>>>any()))
+                .thenReturn(responseEntity2);
+
+        var out = "A";
+        ResponseEntity<byte[]> responseEntity =
+                new ResponseEntity<>(out.getBytes(StandardCharsets.UTF_8), HttpStatus.OK);
+
+        // Set up to adobe response
+        when(restTemplate.exchange(
+                        Mockito.matches("tokenvalue"),
+                        Mockito.eq(HttpMethod.GET),
+                        Mockito.<HttpEntity<String>>any(),
+                        Mockito.<Class<byte[]>>any()))
                 .thenReturn(responseEntity);
 
         ReportController reportController = new ReportController(restTemplate, objectMapper);

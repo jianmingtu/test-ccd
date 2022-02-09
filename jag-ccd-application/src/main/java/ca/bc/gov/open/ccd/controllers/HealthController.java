@@ -1,10 +1,6 @@
 package ca.bc.gov.open.ccd.controllers;
 
-import ca.bc.gov.ag.court.ccd_source_processresults_ws_provider.processresults.GetHealth;
-import ca.bc.gov.ag.court.ccd_source_processresults_ws_provider.processresults.GetHealthResponse;
-import ca.bc.gov.ag.court.ccd_source_processresults_ws_provider.processresults.GetPing;
-import ca.bc.gov.ag.court.ccd_source_processresults_ws_provider.processresults.GetPingResponse;
-import ca.bc.gov.open.ccd.configuration.SoapConfig;
+import ca.bc.gov.open.ccd.common.process.results.*;
 import ca.bc.gov.open.ccd.exceptions.ORDSException;
 import ca.bc.gov.open.ccd.models.OrdsErrorLog;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -26,8 +22,11 @@ import org.springframework.ws.server.endpoint.annotation.ResponsePayload;
 @Slf4j
 public class HealthController {
 
-    @Value("${cdds.host}")
+    @Value("${ccd.host}" + "common/")
     private String host = "https://127.0.0.1/";
+
+    private static final String PROCESS_NAMESPACE =
+            "http://court.ag.gov.bc.ca/CCD.Source.ProcessResults.ws.provider:ProcessResults";
 
     private final RestTemplate restTemplate;
     private final ObjectMapper objectMapper;
@@ -38,7 +37,7 @@ public class HealthController {
         this.objectMapper = objectMapper;
     }
 
-    @PayloadRoot(namespace = SoapConfig.SOAP_NAMESPACE, localPart = "getHealth")
+    @PayloadRoot(namespace = PROCESS_NAMESPACE, localPart = "getHealth")
     @ResponsePayload
     public GetHealthResponse getHealth(@RequestPayload GetHealth empty)
             throws JsonProcessingException {
@@ -65,7 +64,7 @@ public class HealthController {
         }
     }
 
-    @PayloadRoot(namespace = SoapConfig.SOAP_NAMESPACE, localPart = "getPing")
+    @PayloadRoot(namespace = PROCESS_NAMESPACE, localPart = "getPing")
     @ResponsePayload
     public GetPingResponse getPing(@RequestPayload GetPing empty) throws JsonProcessingException {
         UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(host + "ping");

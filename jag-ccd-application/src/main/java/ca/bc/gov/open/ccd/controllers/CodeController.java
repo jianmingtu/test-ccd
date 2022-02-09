@@ -1,10 +1,7 @@
 package ca.bc.gov.open.ccd.controllers;
 
-import bcgov.reeks.ccd_source_codevalues_ws_provider.codevaluessecure.GetCodeValuesSecure;
-import bcgov.reeks.ccd_source_codevalues_ws_provider.codevaluessecure.GetCodeValuesSecureResponse;
-import brooks.ccd_source_codevalues_ws_provider.codevalues.GetCodeValues;
-import brooks.ccd_source_codevalues_ws_provider.codevalues.GetCodeValuesResponse;
-import ca.bc.gov.open.ccd.configuration.SoapConfig;
+import ca.bc.gov.open.ccd.common.code.values.*;
+import ca.bc.gov.open.ccd.common.code.values.secure.*;
 import ca.bc.gov.open.ccd.exceptions.ORDSException;
 import ca.bc.gov.open.ccd.models.OrdsErrorLog;
 import ca.bc.gov.open.ccd.models.serializers.InstantSerializer;
@@ -26,8 +23,14 @@ import org.springframework.ws.server.endpoint.annotation.ResponsePayload;
 @Slf4j
 @Endpoint
 public class CodeController {
-    @Value("${ccd.host}")
+    @Value("${ccd.host}" + "common/")
     private String host = "https://127.0.0.1/";
+
+    @Value("${ccd.generic-agen-id}")
+    private String genericAgenId;
+
+    @Value("${ccd.generic-part-id}")
+    private String genericPartId;
 
     private final RestTemplate restTemplate;
     private final ObjectMapper objectMapper;
@@ -38,19 +41,23 @@ public class CodeController {
         this.objectMapper = objectMapper;
     }
 
-    @PayloadRoot(namespace = SoapConfig.SOAP_NAMESPACE, localPart = "getCodeValues")
+    @PayloadRoot(
+            namespace = "http://brooks/CCD.Source.CodeValues.ws.provider:CodeValues",
+            localPart = "getCodeValues")
     @ResponsePayload
     public GetCodeValuesResponse getCodeValues(@RequestPayload GetCodeValues getCodeValues)
             throws JsonProcessingException {
 
         UriComponentsBuilder builder =
-                UriComponentsBuilder.fromHttpUrl(host + "appearance")
-                        .queryParam("lastRetrievedDate", getCodeValues.getLastRetrievedDate());
+                UriComponentsBuilder.fromHttpUrl(host + "codevalues")
+                        .queryParam(
+                                "lastRetrievedDate",
+                                InstantSerializer.convert(getCodeValues.getLastRetrievedDate()));
 
         try {
             HttpEntity<GetCodeValuesResponse> resp =
                     restTemplate.exchange(
-                            builder.toUriString(),
+                            builder.build().toUri(),
                             HttpMethod.GET,
                             new HttpEntity<>(new HttpHeaders()),
                             GetCodeValuesResponse.class);
@@ -67,16 +74,22 @@ public class CodeController {
         }
     }
 
-    @PayloadRoot(namespace = SoapConfig.SOAP_NAMESPACE, localPart = "getCodeValuesSecure")
+    @PayloadRoot(
+            namespace = "http://reeks.bcgov/CCD.Source.CodeValues.ws.provider:CodeValuesSecure",
+            localPart = "getCodeValuesSecure")
     @ResponsePayload
     public GetCodeValuesSecureResponse getCodeValuesSecure(
             @RequestPayload GetCodeValuesSecure getCodeValues) throws JsonProcessingException {
 
         UriComponentsBuilder builder =
-                UriComponentsBuilder.fromHttpUrl(host + "appearance")
-                        .queryParam("lastRetrievedDate", getCodeValues.getLastRetrievedDate())
-                        .queryParam("requestAgenId", getCodeValues.getRequestAgencyIdentifierId())
+                UriComponentsBuilder.fromHttpUrl(host + "codevalues/secure")
+                        .queryParam("genericAgenId", genericAgenId)
+                        .queryParam("genericPartId", genericPartId)
+                        .queryParam("requestAgencyId", getCodeValues.getRequestAgencyIdentifierId())
                         .queryParam("requestPartId", getCodeValues.getRequestPartId())
+                        .queryParam(
+                                "lastRetrievedDate",
+                                InstantSerializer.convert(getCodeValues.getLastRetrievedDate()))
                         .queryParam(
                                 "requestDtm",
                                 InstantSerializer.convert(getCodeValues.getRequestDtm()))
@@ -85,7 +98,7 @@ public class CodeController {
         try {
             HttpEntity<GetCodeValuesSecureResponse> resp =
                     restTemplate.exchange(
-                            builder.toUriString(),
+                            builder.build().toUri(),
                             HttpMethod.GET,
                             new HttpEntity<>(new HttpHeaders()),
                             GetCodeValuesSecureResponse.class);

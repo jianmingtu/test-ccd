@@ -7,7 +7,7 @@
             <xsd:sequence>
                 <xsd:element name="CourtLocaCd" type="xsd:string" minOccurs="0"/>
                 <xsd:element name="CourtRoomCd" type="xsd:string" minOccurs="0"/>
-                <xsd:element name="CourtProceedingDate" type="xsd:string" minOccurs="0"/>
+                <xsd:element name="CourtProceedingDate" type="xsd:dateTime" minOccurs="0"/>
                 <xsd:element name="AppearanceId" type="xsd:long" minOccurs="0"/>
                 <xsd:element name="PhysicalFileId" nillable="true" type="xsd:string"/>
                 <xsd:element name="ApplicationCd" nillable="true" type="xsd:string"/>
@@ -27,7 +27,7 @@
         <xsd:sequence>
             <xsd:element name="CourtLocaCd" nillable="true" type="xsd:string"/>
             <xsd:element name="CourtRoomCd" nillable="true" type="xsd:string"/>
-            <xsd:element name="CourtProceedingDate" nillable="true" type="xsd:string"/>
+            <xsd:element name="CourtProceedingDate" nillable="true" type="xsd:dateTime"/>
             <xsd:element name="AppearanceId" nillable="true" type="xsd:string" maxOccurs="unbounded"/>
             <xsd:element name="PhysicalFileId" nillable="true" type="xsd:string"/>
             <xsd:element name="CivilFile" nillable="true" type="tns:CivilFileType" maxOccurs="unbounded"/>
@@ -44,16 +44,16 @@
             <xsd:element name="InfantFileYN" nillable="true" type="xsd:string"/>
             <xsd:element name="CFCSAFileYN" nillable="true" type="xsd:string"/>
             <xsd:element name="MarriagePlaceText" nillable="true" type="xsd:string"/>
-            <xsd:element name="MarriageDate" nillable="true" type="xsd:string"/>
-            <xsd:element name="DivorceDate" nillable="true" type="xsd:string"/>
-            <xsd:element name="FederalClearanceDate" nillable="true" type="xsd:string"/>
+            <xsd:element name="MarriageDate" nillable="true" type="xsd:dateTime"/>
+            <xsd:element name="DivorceDate" nillable="true" type="xsd:dateTime"/>
+            <xsd:element name="FederalClearanceDate" nillable="true" type="xsd:dateTime"/>
             <xsd:element name="CentralRegNumber" nillable="true" type="xsd:string"/>
-            <xsd:element name="CaveatExpiryDate" nillable="true" type="xsd:string"/>
+            <xsd:element name="CaveatExpiryDate" nillable="true" type="xsd:dateTime"/>
             <xsd:element name="ProbateFileNumber" nillable="true" type="xsd:string"/>
             <xsd:element name="CaveatCancelledYN" nillable="true" type="xsd:string"/>
             <xsd:element name="AssetDeclaredAmt" nillable="true" type="xsd:string"/>
             <xsd:element name="ProbateFeeAmt" nillable="true" type="xsd:string"/>
-            <xsd:element name="ProbateEnteredDate" nillable="true" type="xsd:string"/>
+            <xsd:element name="ProbateEnteredDate" nillable="true" type="xsd:dateTime"/>
             <xsd:element name="AdditionalAssetDeclaredAmt" nillable="true" type="xsd:string"/>
             <xsd:element name="AdditionalProbateFeeAmt" nillable="true" type="xsd:string"/>
             <xsd:element name="EstateValueAmt" nillable="true" type="xsd:string"/>
@@ -75,9 +75,9 @@
     <xsd:complexType name="SpecialProgramType">
         <xsd:sequence>
             <xsd:element name="SpecialProgramDsc" nillable="true" type="xsd:string"/>
-            <xsd:element name="ProgramEntryDate" nillable="true" type="xsd:string"/>
+            <xsd:element name="ProgramEntryDate" nillable="true" type="xsd:dateTime"/>
             <xsd:element name="ProgramEntryReasonDsc" nillable="true" type="xsd:string"/>
-            <xsd:element name="ProgramExitDate" nillable="true" type="xsd:string"/>
+            <xsd:element name="ProgramExitDate" nillable="true" type="xsd:dateTime"/>
             <xsd:element name="ProgramExitReasonDsc" nillable="true" type="xsd:string"/>
         </xsd:sequence>
     </xsd:complexType>
@@ -85,7 +85,7 @@
     <xsd:complexType name="PreviousAppearanceType">
         <xsd:sequence>
             <xsd:element name="AppearanceId" nillable="true" type="xsd:string"/>
-            <xsd:element name="AppearanceDate" nillable="true" type="xsd:string"/>
+            <xsd:element name="AppearanceDate" nillable="true" type="xsd:dateTime"/>
             <xsd:element name="CourtAgencyIdentifier" nillable="true" type="xsd:string"/>
             <xsd:element name="CourtRoom" nillable="true" type="xsd:string"/>
             <xsd:element name="AdjudicatorName" nillable="true" type="xsd:string"/>
@@ -158,13 +158,13 @@
             <xsd:element name="DocumentTypeCd" nillable="true" type="xsd:string"/>
             <xsd:element name="DocumentTypeDescription" nillable="true" type="xsd:string"/>
             <xsd:element name="DocumentAccessLevelCd" nillable="true" type="xsd:string"/>
-            <xsd:element name="DocumentSealEndDate" nillable="true" type="xsd:string"/>
-            <xsd:element name="DocumentSealStartDate" nillable="true" type="xsd:string"/>
+            <xsd:element name="DocumentSealEndDate" nillable="true" type="xsd:dateTime"/>
+            <xsd:element name="DocumentSealStartDate" nillable="true" type="xsd:dateTime"/>
             <xsd:element name="DateGranted" nillable="true" type="xsd:string"/>
             <xsd:element name="EstimatedDocumentMinutes" nillable="true" type="xsd:string"/>
-            <xsd:element name="EndedDate" nillable="true" type="xsd:string"/>
+            <xsd:element name="EndedDate" nillable="true" type="xsd:dateTime"/>
             <xsd:element name="DateVaried" nillable="true" type="xsd:string"/>
-            <xsd:element name="CancelledDate" nillable="true" type="xsd:string"/>
+            <xsd:element name="CancelledDate" nillable="true" type="xsd:dateTime"/>
             <xsd:element name="DocumentCommentText" nillable="true" type="xsd:string"/>
             <xsd:element name="OrderDocumentYN" nillable="true" type="xsd:string"/>
             <xsd:element name="POROrderYN" nillable="true" type="xsd:string"/>
@@ -184,7 +184,7 @@
     <xsd:complexType name="AppearanceType">
         <xsd:sequence>
             <xsd:element name="AppearanceId" nillable="true" type="xsd:string"/>
-            <xsd:element name="AppearanceDate" nillable="true" type="xsd:string"/>
+            <xsd:element name="AppearanceDate" nillable="true" type="xsd:dateTime"/>
             <xsd:element name="CourtAgencyIdentifier" nillable="true" type="xsd:string"/>
             <xsd:element name="CourtRoom" nillable="true" type="xsd:string"/>
             <xsd:element name="AppearanceReason" nillable="true" type="xsd:string"/>
@@ -195,7 +195,7 @@
         <xsd:sequence>
             <xsd:element name="OrderRoleTypeDsc" nillable="true" type="xsd:string"/>
             <xsd:element name="PartyName" nillable="true" type="xsd:string"/>
-            <xsd:element name="PartyBirthDate" nillable="true" type="xsd:string"/>
+            <xsd:element name="PartyBirthDate" nillable="true" type="xsd:dateTime"/>
         </xsd:sequence>
     </xsd:complexType>
 
@@ -204,7 +204,7 @@
             <xsd:element name="ReferenceDocumentId" nillable="true" type="xsd:string"/>
             <xsd:element name="ReferenceDocumentNo" nillable="true" type="xsd:string"/>
             <xsd:element name="AppearanceId" nillable="true" type="xsd:string"/>
-            <xsd:element name="AppearanceDate" nillable="true" type="xsd:string"/>
+            <xsd:element name="AppearanceDate" nillable="true" type="xsd:dateTime"/>
             <xsd:element name="ObjectGuid" nillable="true" type="xsd:string"/>
             <xsd:element name="DescriptionText" nillable="true" type="xsd:string"/>
             <xsd:element name="EnterDtm" nillable="true" type="xsd:string"/>

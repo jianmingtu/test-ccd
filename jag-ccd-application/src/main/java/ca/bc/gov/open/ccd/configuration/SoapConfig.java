@@ -7,9 +7,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.databind.module.SimpleModule;
 import java.time.Instant;
-import java.util.HashMap;
-import java.util.Map;
-import javax.xml.soap.SOAPMessage;
 import org.springframework.boot.web.servlet.ServletRegistrationBean;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
@@ -18,10 +15,10 @@ import org.springframework.context.annotation.Primary;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.web.client.RestTemplate;
+import org.springframework.web.context.annotation.RequestScope;
 import org.springframework.ws.config.annotation.EnableWs;
 import org.springframework.ws.config.annotation.WsConfigurerAdapter;
-import org.springframework.ws.soap.SoapVersion;
-import org.springframework.ws.soap.saaj.SaajSoapMessageFactory;
+import org.springframework.ws.soap.SoapMessageFactory;
 import org.springframework.ws.transport.http.MessageDispatcherServlet;
 import org.springframework.ws.wsdl.wsdl11.SimpleWsdl11Definition;
 import org.springframework.ws.wsdl.wsdl11.Wsdl11Definition;
@@ -29,8 +26,6 @@ import org.springframework.ws.wsdl.wsdl11.Wsdl11Definition;
 @EnableWs
 @Configuration
 public class SoapConfig extends WsConfigurerAdapter {
-
-    public static final String SOAP_NAMESPACE = "http://courts.gov.bc.ca/xml/ns/ccd/v1";
 
     @Bean
     public ServletRegistrationBean<MessageDispatcherServlet> messageDispatcherServlet(
@@ -68,12 +63,10 @@ public class SoapConfig extends WsConfigurerAdapter {
     }
 
     @Bean
-    public SaajSoapMessageFactory messageFactory() {
-        Map<String, Object> props = new HashMap<>();
-        props.put(SOAPMessage.WRITE_XML_DECLARATION, "true");
-        SaajSoapMessageFactory messageFactory = new SaajSoapMessageFactory();
-        messageFactory.setMessageProperties(props);
-        messageFactory.setSoapVersion(SoapVersion.SOAP_12);
+    @RequestScope
+    public SoapMessageFactory messageFactory() {
+        SoapMessageFactory messageFactory = new DualProtocolSaajSoapMessageFactory();
+
         return messageFactory;
     }
 
@@ -166,6 +159,27 @@ public class SoapConfig extends WsConfigurerAdapter {
     public Wsdl11Definition processResultsWSDL() {
         SimpleWsdl11Definition wsdl11Definition = new SimpleWsdl11Definition();
         wsdl11Definition.setWsdl(new ClassPathResource("xsdSchemas/processResults.wsdl"));
+        return wsdl11Definition;
+    }
+
+    @Bean(name = "CCD.Source.GetDocument.ws:GetDocument")
+    public Wsdl11Definition getDocumentWSDL() {
+        SimpleWsdl11Definition wsdl11Definition = new SimpleWsdl11Definition();
+        wsdl11Definition.setWsdl(new ClassPathResource("xsdSchemas/getDocument.wsdl"));
+        return wsdl11Definition;
+    }
+
+    @Bean(name = "CCD.Source.GetDocument.ws:GetDocumentSecure")
+    public Wsdl11Definition getDocumentSecureWSDL() {
+        SimpleWsdl11Definition wsdl11Definition = new SimpleWsdl11Definition();
+        wsdl11Definition.setWsdl(new ClassPathResource("xsdSchemas/getDocumentSecure.wsdl"));
+        return wsdl11Definition;
+    }
+
+    @Bean(name = "CCD.Source.DevUtil.ws:DevUtils")
+    public Wsdl11Definition getDevUtilsWSDL() {
+        SimpleWsdl11Definition wsdl11Definition = new SimpleWsdl11Definition();
+        wsdl11Definition.setWsdl(new ClassPathResource("xsdSchemas/getDevUtils.wsdl"));
         return wsdl11Definition;
     }
 }

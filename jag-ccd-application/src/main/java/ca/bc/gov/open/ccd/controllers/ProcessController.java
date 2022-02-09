@@ -1,7 +1,6 @@
 package ca.bc.gov.open.ccd.controllers;
 
-import ca.bc.gov.ag.court.ccd_source_processresults_ws_provider.processresults.*;
-import ca.bc.gov.open.ccd.configuration.SoapConfig;
+import ca.bc.gov.open.ccd.common.process.results.*;
 import ca.bc.gov.open.ccd.exceptions.ORDSException;
 import ca.bc.gov.open.ccd.models.OrdsErrorLog;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -26,6 +25,9 @@ public class ProcessController {
     @Value("${ccd.host}")
     private String host = "https://127.0.0.1/";
 
+    private static final String PROCESS_NAMESPACE =
+            "http://court.ag.gov.bc.ca/CCD.Source.ProcessResults.ws.provider:ProcessResults";
+
     private final RestTemplate restTemplate;
     private final ObjectMapper objectMapper;
 
@@ -35,14 +37,15 @@ public class ProcessController {
         this.objectMapper = objectMapper;
     }
 
-    @PayloadRoot(namespace = SoapConfig.SOAP_NAMESPACE, localPart = "processVariation")
+    @PayloadRoot(namespace = PROCESS_NAMESPACE, localPart = "processVariation")
     @ResponsePayload
     public ProcessVariationResponse processVariation(@RequestPayload ProcessVariation process)
             throws JsonProcessingException {
 
         var inner = process.getVariation() != null ? process.getVariation() : new VariationType();
 
-        UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(host + "appearance");
+        UriComponentsBuilder builder =
+                UriComponentsBuilder.fromHttpUrl(host + "criminal/variation");
 
         HttpEntity<VariationType> payload = new HttpEntity<>(inner, new HttpHeaders());
 
@@ -56,25 +59,26 @@ public class ProcessController {
 
             return resp.getBody();
         } catch (Exception ex) {
+            inner.setEnterUserId("");
             log.error(
                     objectMapper.writeValueAsString(
                             new OrdsErrorLog(
                                     "Error received from ORDS",
                                     "processVariation",
                                     ex.getMessage(),
-                                    null)));
+                                    inner)));
             throw new ORDSException();
         }
     }
 
-    @PayloadRoot(namespace = SoapConfig.SOAP_NAMESPACE, localPart = "processSpeaker")
+    @PayloadRoot(namespace = PROCESS_NAMESPACE, localPart = "processSpeaker")
     @ResponsePayload
     public ProcessSpeakerResponse processSpeaker(@RequestPayload ProcessSpeaker process)
             throws JsonProcessingException {
 
         var inner = process.getSpeaker() != null ? process.getSpeaker() : new Speaker();
 
-        UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(host + "appearance");
+        UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(host + "criminal/speaker");
 
         HttpEntity<Speaker> payload = new HttpEntity<>(inner, new HttpHeaders());
 
@@ -94,12 +98,12 @@ public class ProcessController {
                                     "Error received from ORDS",
                                     "processSpeaker",
                                     ex.getMessage(),
-                                    null)));
+                                    inner)));
             throw new ORDSException();
         }
     }
 
-    @PayloadRoot(namespace = SoapConfig.SOAP_NAMESPACE, localPart = "processCivilResults")
+    @PayloadRoot(namespace = PROCESS_NAMESPACE, localPart = "processCivilResults")
     @ResponsePayload
     public ProcessCivilResultsResponse processCivilResults(
             @RequestPayload ProcessCivilResults process) throws JsonProcessingException {
@@ -107,7 +111,7 @@ public class ProcessController {
         var inner =
                 process.getCivilResult() != null ? process.getCivilResult() : new CivilResultType();
 
-        UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(host + "appearance");
+        UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(host + "civil/results");
 
         HttpEntity<CivilResultType> payload = new HttpEntity<>(inner, new HttpHeaders());
 
@@ -121,18 +125,19 @@ public class ProcessController {
 
             return resp.getBody();
         } catch (Exception ex) {
+            inner.setEnterUserId("");
             log.error(
                     objectMapper.writeValueAsString(
                             new OrdsErrorLog(
                                     "Error received from ORDS",
                                     "processCivilResults",
                                     ex.getMessage(),
-                                    null)));
+                                    inner)));
             throw new ORDSException();
         }
     }
 
-    @PayloadRoot(namespace = SoapConfig.SOAP_NAMESPACE, localPart = "processAppearanceMethod")
+    @PayloadRoot(namespace = PROCESS_NAMESPACE, localPart = "processAppearanceMethod")
     @ResponsePayload
     public ProcessAppearanceMethodResponse processAppearanceMethod(
             @RequestPayload ProcessAppearanceMethod process) throws JsonProcessingException {
@@ -142,7 +147,8 @@ public class ProcessController {
                         ? process.getAppearanceMethod()
                         : new AppearanceMethod();
 
-        UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(host + "appearance");
+        UriComponentsBuilder builder =
+                UriComponentsBuilder.fromHttpUrl(host + "criminal/appearance-method");
 
         HttpEntity<AppearanceMethod> payload = new HttpEntity<>(inner, new HttpHeaders());
 
@@ -156,25 +162,26 @@ public class ProcessController {
 
             return resp.getBody();
         } catch (Exception ex) {
+            inner.setEnterUserId("");
             log.error(
                     objectMapper.writeValueAsString(
                             new OrdsErrorLog(
                                     "Error received from ORDS",
                                     "processAppearanceMethod",
                                     ex.getMessage(),
-                                    null)));
+                                    inner)));
             throw new ORDSException();
         }
     }
 
-    @PayloadRoot(namespace = SoapConfig.SOAP_NAMESPACE, localPart = "processPlea")
+    @PayloadRoot(namespace = PROCESS_NAMESPACE, localPart = "processPlea")
     @ResponsePayload
     public ProcessPleaResponse processPlea(@RequestPayload ProcessPlea process)
             throws JsonProcessingException {
 
         var inner = process.getPlea() != null ? process.getPlea() : new Plea();
 
-        UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(host + "appearance");
+        UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(host + "criminal/plea");
 
         HttpEntity<Plea> payload = new HttpEntity<>(inner, new HttpHeaders());
 
@@ -188,25 +195,26 @@ public class ProcessController {
 
             return resp.getBody();
         } catch (Exception ex) {
+            inner.setEnterUserId("");
             log.error(
                     objectMapper.writeValueAsString(
                             new OrdsErrorLog(
                                     "Error received from ORDS",
                                     "processPlea",
                                     ex.getMessage(),
-                                    null)));
+                                    inner)));
             throw new ORDSException();
         }
     }
 
-    @PayloadRoot(namespace = SoapConfig.SOAP_NAMESPACE, localPart = "processElection")
+    @PayloadRoot(namespace = PROCESS_NAMESPACE, localPart = "processElection")
     @ResponsePayload
     public ProcessElectionResponse processElection(@RequestPayload ProcessElection process)
             throws JsonProcessingException {
 
         var inner = process.getElection() != null ? process.getElection() : new Election();
 
-        UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(host + "appearance");
+        UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(host + "criminal/election");
 
         HttpEntity<Election> payload = new HttpEntity<>(inner, new HttpHeaders());
 
@@ -220,25 +228,26 @@ public class ProcessController {
 
             return resp.getBody();
         } catch (Exception ex) {
+            inner.setEnterUserId("");
             log.error(
                     objectMapper.writeValueAsString(
                             new OrdsErrorLog(
                                     "Error received from ORDS",
                                     "processElection",
                                     ex.getMessage(),
-                                    null)));
+                                    inner)));
             throw new ORDSException();
         }
     }
 
-    @PayloadRoot(namespace = SoapConfig.SOAP_NAMESPACE, localPart = "processBail")
+    @PayloadRoot(namespace = PROCESS_NAMESPACE, localPart = "processBail")
     @ResponsePayload
     public ProcessBailResponse processBail(@RequestPayload ProcessBail process)
             throws JsonProcessingException {
 
         var inner = process.getBailDocInput() != null ? process.getBailDocInput() : new BailDoc();
 
-        UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(host + "appearance");
+        UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(host + "criminal/bail");
 
         HttpEntity<BailDoc> payload = new HttpEntity<>(inner, new HttpHeaders());
 
@@ -252,18 +261,19 @@ public class ProcessController {
 
             return resp.getBody();
         } catch (Exception ex) {
+            inner.setEnterUserId("");
             log.error(
                     objectMapper.writeValueAsString(
                             new OrdsErrorLog(
                                     "Error received from ORDS",
                                     "processBail",
                                     ex.getMessage(),
-                                    null)));
+                                    inner)));
             throw new ORDSException();
         }
     }
 
-    @PayloadRoot(namespace = SoapConfig.SOAP_NAMESPACE, localPart = "processCriminalResult")
+    @PayloadRoot(namespace = PROCESS_NAMESPACE, localPart = "processCriminalResult")
     @ResponsePayload
     public ProcessCriminalResultResponse processCriminalResult(
             @RequestPayload ProcessCriminalResult process) throws JsonProcessingException {
@@ -273,7 +283,7 @@ public class ProcessController {
                         ? process.getCriminalResult()
                         : new CriminalResult();
 
-        UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(host + "appearance");
+        UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(host + "criminal/results");
 
         HttpEntity<CriminalResult> payload = new HttpEntity<>(inner, new HttpHeaders());
 
@@ -287,25 +297,27 @@ public class ProcessController {
 
             return resp.getBody();
         } catch (Exception ex) {
+            inner.setEnterUserId("");
             log.error(
                     objectMapper.writeValueAsString(
                             new OrdsErrorLog(
                                     "Error received from ORDS",
                                     "processCriminalResult",
                                     ex.getMessage(),
-                                    null)));
+                                    inner)));
             throw new ORDSException();
         }
     }
 
-    @PayloadRoot(namespace = SoapConfig.SOAP_NAMESPACE, localPart = "processAgeNotice")
+    @PayloadRoot(namespace = PROCESS_NAMESPACE, localPart = "processAgeNotice")
     @ResponsePayload
     public ProcessAgeNoticeResponse processAgeNotice(@RequestPayload ProcessAgeNotice process)
             throws JsonProcessingException {
 
         var inner = process.getAgeNotice() != null ? process.getAgeNotice() : new AgeNotice();
 
-        UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(host + "appearance");
+        UriComponentsBuilder builder =
+                UriComponentsBuilder.fromHttpUrl(host + "criminal/age-notice");
 
         HttpEntity<AgeNotice> payload = new HttpEntity<>(inner, new HttpHeaders());
 
@@ -319,25 +331,27 @@ public class ProcessController {
 
             return resp.getBody();
         } catch (Exception ex) {
+            inner.setEnterUserId("");
             log.error(
                     objectMapper.writeValueAsString(
                             new OrdsErrorLog(
                                     "Error received from ORDS",
                                     "processAgeNotice",
                                     ex.getMessage(),
-                                    null)));
+                                    inner)));
             throw new ORDSException();
         }
     }
 
-    @PayloadRoot(namespace = SoapConfig.SOAP_NAMESPACE, localPart = "processMatterCall")
+    @PayloadRoot(namespace = PROCESS_NAMESPACE, localPart = "processMatterCall")
     @ResponsePayload
     public ProcessMatterCallResponse processMatterCall(@RequestPayload ProcessMatterCall process)
             throws JsonProcessingException {
 
         var inner = process.getMatterCall() != null ? process.getMatterCall() : new MatterCall();
 
-        UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(host + "appearance");
+        UriComponentsBuilder builder =
+                UriComponentsBuilder.fromHttpUrl(host + "criminal/mattercall");
 
         HttpEntity<MatterCall> payload = new HttpEntity<>(inner, new HttpHeaders());
 
@@ -351,25 +365,26 @@ public class ProcessController {
 
             return resp.getBody();
         } catch (Exception ex) {
+            inner.setEnterUserId("");
             log.error(
                     objectMapper.writeValueAsString(
                             new OrdsErrorLog(
                                     "Error received from ORDS",
                                     "processMatterCall",
                                     ex.getMessage(),
-                                    null)));
+                                    inner)));
             throw new ORDSException();
         }
     }
 
-    @PayloadRoot(namespace = SoapConfig.SOAP_NAMESPACE, localPart = "processSentence")
+    @PayloadRoot(namespace = PROCESS_NAMESPACE, localPart = "processSentence")
     @ResponsePayload
     public ProcessSentenceResponse processSentence(@RequestPayload ProcessSentence process)
             throws JsonProcessingException {
 
         var inner = process.getSentence() != null ? process.getSentence() : new Sentence();
 
-        UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(host + "appearance");
+        UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(host + "criminal/sentence");
 
         HttpEntity<Sentence> payload = new HttpEntity<>(inner, new HttpHeaders());
 
@@ -383,25 +398,26 @@ public class ProcessController {
 
             return resp.getBody();
         } catch (Exception ex) {
+            inner.setEnterUserId("");
             log.error(
                     objectMapper.writeValueAsString(
                             new OrdsErrorLog(
                                     "Error received from ORDS",
                                     "processSentence",
                                     ex.getMessage(),
-                                    null)));
+                                    inner)));
             throw new ORDSException();
         }
     }
 
-    @PayloadRoot(namespace = SoapConfig.SOAP_NAMESPACE, localPart = "processBan")
+    @PayloadRoot(namespace = PROCESS_NAMESPACE, localPart = "processBan")
     @ResponsePayload
     public ProcessBanResponse processBan(@RequestPayload ProcessBan process)
             throws JsonProcessingException {
 
         var inner = process.getBan() != null ? process.getBan() : new Ban();
 
-        UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(host + "appearance");
+        UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(host + "criminal/ban");
 
         HttpEntity<Ban> payload = new HttpEntity<>(inner, new HttpHeaders());
 
@@ -415,25 +431,26 @@ public class ProcessController {
 
             return resp.getBody();
         } catch (Exception ex) {
+            inner.setEnterUserId("");
             log.error(
                     objectMapper.writeValueAsString(
                             new OrdsErrorLog(
                                     "Error received from ORDS",
                                     "processBan",
                                     ex.getMessage(),
-                                    null)));
+                                    inner)));
             throw new ORDSException();
         }
     }
 
-    @PayloadRoot(namespace = SoapConfig.SOAP_NAMESPACE, localPart = "processNote")
+    @PayloadRoot(namespace = PROCESS_NAMESPACE, localPart = "processNote")
     @ResponsePayload
     public ProcessNoteResponse processNote(@RequestPayload ProcessNote process)
             throws JsonProcessingException {
 
         var inner = process.getNote() != null ? process.getNote() : new NoteType();
 
-        UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(host + "appearance");
+        UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(host + "criminal/note");
 
         HttpEntity<NoteType> payload = new HttpEntity<>(inner, new HttpHeaders());
 
@@ -447,25 +464,27 @@ public class ProcessController {
 
             return resp.getBody();
         } catch (Exception ex) {
+            inner.setEnterUserId("");
             log.error(
                     objectMapper.writeValueAsString(
                             new OrdsErrorLog(
                                     "Error received from ORDS",
                                     "processNote",
                                     ex.getMessage(),
-                                    null)));
+                                    inner)));
             throw new ORDSException();
         }
     }
 
-    @PayloadRoot(namespace = SoapConfig.SOAP_NAMESPACE, localPart = "processArraignment")
+    @PayloadRoot(namespace = PROCESS_NAMESPACE, localPart = "processArraignment")
     @ResponsePayload
     public ProcessArraignmentResponse processArraignment(@RequestPayload ProcessArraignment process)
             throws JsonProcessingException {
 
         var inner = process.getArraignment() != null ? process.getArraignment() : new Arraignment();
 
-        UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(host + "appearance");
+        UriComponentsBuilder builder =
+                UriComponentsBuilder.fromHttpUrl(host + "criminal/arraignment");
 
         HttpEntity<Arraignment> payload = new HttpEntity<>(inner, new HttpHeaders());
 
@@ -479,25 +498,26 @@ public class ProcessController {
 
             return resp.getBody();
         } catch (Exception ex) {
+            inner.setEnterUserId("");
             log.error(
                     objectMapper.writeValueAsString(
                             new OrdsErrorLog(
                                     "Error received from ORDS",
                                     "processArraignment",
                                     ex.getMessage(),
-                                    null)));
+                                    inner)));
             throw new ORDSException();
         }
     }
 
-    @PayloadRoot(namespace = SoapConfig.SOAP_NAMESPACE, localPart = "processMove")
+    @PayloadRoot(namespace = PROCESS_NAMESPACE, localPart = "processMove")
     @ResponsePayload
     public ProcessMoveResponse processMove(@RequestPayload ProcessMove process)
             throws JsonProcessingException {
 
         var inner = process.getMove() != null ? process.getMove() : new Move();
 
-        UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(host + "appearance");
+        UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(host + "criminal/move");
 
         HttpEntity<Move> payload = new HttpEntity<>(inner, new HttpHeaders());
 
@@ -511,25 +531,26 @@ public class ProcessController {
 
             return resp.getBody();
         } catch (Exception ex) {
+            inner.setEnterUserId("");
             log.error(
                     objectMapper.writeValueAsString(
                             new OrdsErrorLog(
                                     "Error received from ORDS",
                                     "processMove",
                                     ex.getMessage(),
-                                    null)));
+                                    inner)));
             throw new ORDSException();
         }
     }
 
-    @PayloadRoot(namespace = SoapConfig.SOAP_NAMESPACE, localPart = "processFinding")
+    @PayloadRoot(namespace = PROCESS_NAMESPACE, localPart = "processFinding")
     @ResponsePayload
     public ProcessFindingResponse processFinding(@RequestPayload ProcessFinding process)
             throws JsonProcessingException {
 
         var inner = process.getFinding() != null ? process.getFinding() : new Finding();
 
-        UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(host + "appearance");
+        UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(host + "criminal/finding");
 
         HttpEntity<Finding> payload = new HttpEntity<>(inner, new HttpHeaders());
 
@@ -543,30 +564,27 @@ public class ProcessController {
 
             return resp.getBody();
         } catch (Exception ex) {
+            inner.setEnterUserId("");
             log.error(
                     objectMapper.writeValueAsString(
                             new OrdsErrorLog(
                                     "Error received from ORDS",
                                     "processFinding",
                                     ex.getMessage(),
-                                    null)));
+                                    inner)));
             throw new ORDSException();
         }
     }
 
-    @PayloadRoot(namespace = SoapConfig.SOAP_NAMESPACE, localPart = "processGenericResult")
+    @PayloadRoot(namespace = PROCESS_NAMESPACE, localPart = "processGenericResult")
     @ResponsePayload
     public ProcessGenericResultResponse processGenericResult(
             @RequestPayload ProcessGenericResult process) throws JsonProcessingException {
 
-        var inner =
-                process.getGenericResult() != null
-                        ? process.getGenericResult()
-                        : new GenericResult();
+        UriComponentsBuilder builder =
+                UriComponentsBuilder.fromHttpUrl(host + "common/generic-result");
 
-        UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(host + "appearance");
-
-        HttpEntity<GenericResult> payload = new HttpEntity<>(inner, new HttpHeaders());
+        HttpEntity<ProcessGenericResult> payload = new HttpEntity<>(process, new HttpHeaders());
 
         try {
             HttpEntity<ProcessGenericResultResponse> resp =
@@ -578,18 +596,20 @@ public class ProcessController {
 
             return resp.getBody();
         } catch (Exception ex) {
+            if (process != null && process.getGenericResult() != null)
+                process.getGenericResult().setEnterUserId("");
             log.error(
                     objectMapper.writeValueAsString(
                             new OrdsErrorLog(
                                     "Error received from ORDS",
                                     "processGenericResult",
                                     ex.getMessage(),
-                                    null)));
+                                    process)));
             throw new ORDSException();
         }
     }
 
-    @PayloadRoot(namespace = SoapConfig.SOAP_NAMESPACE, localPart = "ProcessCivilAppearanceMethod")
+    @PayloadRoot(namespace = PROCESS_NAMESPACE, localPart = "ProcessCivilAppearanceMethod")
     @ResponsePayload
     public ProcessCivilAppearanceMethodResponse processCivilAppearanceMethod(
             @RequestPayload ProcessCivilAppearanceMethod process) throws JsonProcessingException {
@@ -599,7 +619,8 @@ public class ProcessController {
                         ? process.getCivilAppearanceMethod()
                         : new CivilAppearanceMethod();
 
-        UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(host + "appearance");
+        UriComponentsBuilder builder =
+                UriComponentsBuilder.fromHttpUrl(host + "civil/" + "appearance-method");
 
         HttpEntity<CivilAppearanceMethod> payload = new HttpEntity<>(inner, new HttpHeaders());
 
@@ -613,25 +634,26 @@ public class ProcessController {
 
             return resp.getBody();
         } catch (Exception ex) {
+            inner.setEnterUserId("");
             log.error(
                     objectMapper.writeValueAsString(
                             new OrdsErrorLog(
                                     "Error received from ORDS",
                                     "ProcessCivilAppearanceMethod",
                                     ex.getMessage(),
-                                    null)));
+                                    inner)));
             throw new ORDSException();
         }
     }
 
-    @PayloadRoot(namespace = SoapConfig.SOAP_NAMESPACE, localPart = "processOrder")
+    @PayloadRoot(namespace = PROCESS_NAMESPACE, localPart = "processOrder")
     @ResponsePayload
     public ProcessOrderResponse processOrder(@RequestPayload ProcessOrder process)
             throws JsonProcessingException {
 
         var inner = process.getOrder() != null ? process.getOrder() : new OrderType();
 
-        UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(host + "appearance");
+        UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(host + "civil/order");
 
         HttpEntity<OrderType> payload = new HttpEntity<>(inner, new HttpHeaders());
 
@@ -645,18 +667,19 @@ public class ProcessController {
 
             return resp.getBody();
         } catch (Exception ex) {
+            inner.setEnterUserId("");
             log.error(
                     objectMapper.writeValueAsString(
                             new OrdsErrorLog(
                                     "Error received from ORDS",
                                     "processOrder",
                                     ex.getMessage(),
-                                    null)));
+                                    inner)));
             throw new ORDSException();
         }
     }
 
-    @PayloadRoot(namespace = SoapConfig.SOAP_NAMESPACE, localPart = "processCivilOrderResult")
+    @PayloadRoot(namespace = PROCESS_NAMESPACE, localPart = "processCivilOrderResult")
     @ResponsePayload
     public ProcessCivilOrderResultResponse processCivilOrderResult(
             @RequestPayload ProcessCivilOrderResult process) throws JsonProcessingException {
@@ -666,7 +689,7 @@ public class ProcessController {
                         ? process.getCivilOrderResult()
                         : new CivilOrderType();
 
-        UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(host + "appearance");
+        UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(host + "civil/order");
 
         HttpEntity<CivilOrderType> payload = new HttpEntity<>(inner, new HttpHeaders());
 
@@ -680,18 +703,19 @@ public class ProcessController {
 
             return resp.getBody();
         } catch (Exception ex) {
+            inner.setEnterUserId("");
             log.error(
                     objectMapper.writeValueAsString(
                             new OrdsErrorLog(
                                     "Error received from ORDS",
                                     "processCivilOrderResult",
                                     ex.getMessage(),
-                                    null)));
+                                    inner)));
             throw new ORDSException();
         }
     }
 
-    @PayloadRoot(namespace = SoapConfig.SOAP_NAMESPACE, localPart = "processExhibit")
+    @PayloadRoot(namespace = PROCESS_NAMESPACE, localPart = "processExhibit")
     @ResponsePayload
     public ProcessExhibitResponse processExhibit(@RequestPayload ProcessExhibit process)
             throws JsonProcessingException {
@@ -699,7 +723,7 @@ public class ProcessController {
         var inner =
                 process.getExhibitRequest() != null ? process.getExhibitRequest() : new Exhibit();
 
-        UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(host + "appearance");
+        UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(host + "criminal/exhibit");
 
         HttpEntity<Exhibit> payload = new HttpEntity<>(inner, new HttpHeaders());
 
@@ -713,18 +737,19 @@ public class ProcessController {
 
             return resp.getBody();
         } catch (Exception ex) {
+            inner.setEnterUserId("");
             log.error(
                     objectMapper.writeValueAsString(
                             new OrdsErrorLog(
                                     "Error received from ORDS",
                                     "processExhibit",
                                     ex.getMessage(),
-                                    null)));
+                                    inner)));
             throw new ORDSException();
         }
     }
 
-    @PayloadRoot(namespace = SoapConfig.SOAP_NAMESPACE, localPart = "processSpecialCourt")
+    @PayloadRoot(namespace = PROCESS_NAMESPACE, localPart = "processSpecialCourt")
     @ResponsePayload
     public ProcessSpecialCourtResponse processSpecialCourt(
             @RequestPayload ProcessSpecialCourt process) throws JsonProcessingException {
@@ -746,13 +771,14 @@ public class ProcessController {
 
             return resp.getBody();
         } catch (Exception ex) {
+            inner.setEnterUserId("");
             log.error(
                     objectMapper.writeValueAsString(
                             new OrdsErrorLog(
                                     "Error received from ORDS",
                                     "processSpecialCourt",
                                     ex.getMessage(),
-                                    null)));
+                                    inner)));
             throw new ORDSException();
         }
     }

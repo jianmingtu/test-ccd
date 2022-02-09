@@ -2,9 +2,15 @@ security:
   basic-auth:
     password: ${BASIC_AUTH_PASS}
     username: ${BASIC_AUTH_USER}
-cdds:
+ccd:
   host: ${ORDS_HOST}
-  namespace: ${CCD_NAMESPACE}
+  generic-agen-id:  ${GENERIC_AGENCY_ID}
+  generic-part-id:  ${GENERIC_PART_ID}
+  oracle-host: ${ORACLE_HOST}
+  oracle-name: ${ORACLE_NAME}
+  adobe-host: ${ADOBE_HOST}
+  report-app-name: ${REPORT_APP_NAME}
+
 
 management:
   trace:
