@@ -44,7 +44,7 @@ public class CourtController {
             throws JsonProcessingException {
 
         UriComponentsBuilder builder =
-                UriComponentsBuilder.fromHttpUrl(host + "appearance")
+                UriComponentsBuilder.fromHttpUrl(host + "/common/courtlist")
                         .queryParam("agencyIdentifierCd", getCrtList.getAgencyIdentifierCd())
                         .queryParam("roomCd", getCrtList.getRoomCd())
                         .queryParam("proceedingDate", getCrtList.getProceedingDate())

@@ -58,6 +58,7 @@ public class ReportController {
     public GetROPReportResponse getRopReport(@RequestPayload GetROPReport getROPReport)
             throws JsonProcessingException {
 
+        HttpEntity<Map<String, String>> resp = null;
         var inner =
                 getROPReport != null && getROPReport.getROPRequest() != null
                         ? getROPReport.getROPRequest()
@@ -71,46 +72,13 @@ public class ReportController {
         try {
 
             // request url and key from ccd Report EndPoint
-            HttpEntity<Map<String, String>> resp =
+            resp =
                     restTemplate.exchange(
                             builder.toUriString(),
                             HttpMethod.GET,
                             new HttpEntity<>(new HttpHeaders()),
                             new ParameterizedTypeReference<>() {});
 
-            String url = resp.getBody() != null ? resp.getBody().get("url") : "";
-
-            String keyValue = resp.getBody() != null ? resp.getBody().get("keyValue") : "";
-
-            String query = "";
-            if (url.contains("?")) query = url.split("\\?")[1];
-
-            // build an adobe server uri using its url and parameters being return from ccd and
-            // request base64 stream from this adobe server
-            query =
-                    query.replace("<<FORM>>", inner.getFormCd())
-                            .replace("<<APP>>", reportAppName)
-                            .replace("<<TICKET>>", keyValue);
-
-            String rpServerHost = url.length() > 0 ? adobeServerHost : url;
-            String rpServerUri = rpServerHost + "?" + query;
-
-            HttpEntity<byte[]> resp2 =
-                    restTemplate.exchange(
-                            rpServerUri,
-                            HttpMethod.GET,
-                            new HttpEntity<>(new HttpHeaders()),
-                            byte[].class);
-
-            String bs64 =
-                    resp2.getBody() != null ? Base64Utils.encodeToString(resp2.getBody()) : "";
-
-            var out = new GetROPReportResponse();
-            var one = new RopResult();
-            one.setB64Content(bs64);
-            one.setResultCd("0");
-            out.setROPResponse(one);
-            return out;
         } catch (Exception ex) {
             log.error(
                     objectMapper.writeValueAsString(
@@ -120,6 +88,80 @@ public class ReportController {
                                     ex.getMessage(),
                                     null)));
             throw new ORDSException();
+        }
+
+        if (resp == null || resp.getBody() == null) {
+            log.error(
+                    objectMapper.writeValueAsString(
+                            new OrdsErrorLog(
+                                    "Error received from ORDS",
+                                    "getROPReport",
+                                    "Either response or its body is null while receiving the request getRopReport's response.",
+                                    null)));
+            throw new ORDSException();
+        } else {
+            // if got response from ORDS's RopReport response
+            var body = resp.getBody();
+            String respCd = body.get("responseCd");
+            if (respCd != null && !respCd.equals("0")) {
+                String errMsg =
+                        body.get("responseMessageTxt") != null
+                                ? body.get("responseMessageTxt")
+                                : "";
+                log.error(
+                        objectMapper.writeValueAsString(
+                                new OrdsErrorLog(
+                                        "Error received from ORDS",
+                                        "getROPReport",
+                                        "Error ("
+                                                + errMsg
+                                                + ") occurred while retrieving the receiving the request getRopReport's response.",
+                                        null)));
+                throw new ORDSException();
+            }
+
+            try {
+                String url = body.get("url") != null ? body.get("url") : "";
+                String keyValue = body.get("keyValue") != null ? body.get("keyValue") : "";
+                String query = "";
+                if (url.contains("?")) query = url.split("\\?")[1];
+
+                // build an adobe server uri using its url and parameters being return from ccd and
+                // request base64 stream from this adobe server
+                query =
+                        query.replace("<<FORM>>", inner.getFormCd())
+                                .replace("<<APP>>", reportAppName)
+                                .replace("<<TICKET>>", keyValue);
+
+                String rpServerHost = url.length() > 0 ? adobeServerHost : url;
+                String rpServerUri = rpServerHost + "?" + query;
+
+                HttpEntity<byte[]> resp2 =
+                        restTemplate.exchange(
+                                rpServerUri,
+                                HttpMethod.GET,
+                                new HttpEntity<>(new HttpHeaders()),
+                                byte[].class);
+
+                String bs64 =
+                        resp2.getBody() != null ? Base64Utils.encodeToString(resp2.getBody()) : "";
+
+                var out = new GetROPReportResponse();
+                var one = new RopResult();
+                one.setB64Content(bs64);
+                one.setResultCd("0");
+                out.setROPResponse(one);
+                return out;
+            } catch (Exception ex) {
+                log.error(
+                        objectMapper.writeValueAsString(
+                                new OrdsErrorLog(
+                                        "Error received from ORDS",
+                                        "getROPReport",
+                                        ex.getMessage(),
+                                        null)));
+                throw new ORDSException();
+            }
         }
     }
 
@@ -145,49 +187,16 @@ public class ReportController {
                         .queryParam("param2", inner.getParam2())
                         .queryParam("formCd", inner.getFormCd());
 
+        HttpEntity<Map<String, String>> resp = null;
         try {
 
             // request url and key from ccd Report EndPoint
-            HttpEntity<Map<String, String>> resp;
             resp =
                     restTemplate.exchange(
                             builder.toUriString(),
                             HttpMethod.GET,
                             new HttpEntity<>(new HttpHeaders()),
                             new ParameterizedTypeReference<>() {});
-
-            String url = resp.getBody() != null ? resp.getBody().get("url") : "";
-
-            String keyValue = resp.getBody() != null ? resp.getBody().get("keyValue") : "";
-
-            String query = "";
-            if (url.contains("?")) query = url.split("\\?")[1];
-            query =
-                    query.replace("<<FORM>>", inner.getFormCd())
-                            .replace("<<APP>>", reportAppName)
-                            .replace("<<TICKET>>", keyValue);
-
-            // build an adobe server uri using its url and parameters being return from ccd and
-            // request base64 stream from this adobe server
-            String rpServerHost = url.length() > 0 ? adobeServerHost : url;
-            String rpServerUri = rpServerHost + "?" + query;
-
-            HttpEntity<byte[]> resp2 =
-                    restTemplate.exchange(
-                            rpServerUri,
-                            HttpMethod.GET,
-                            new HttpEntity<>(new HttpHeaders()),
-                            byte[].class);
-
-            String bs64 =
-                    resp2.getBody() != null ? Base64Utils.encodeToString(resp2.getBody()) : "";
-
-            var out = new GetROPReportSecureResponse();
-            var one = new ca.bc.gov.open.ccd.common.rop.report.secure.RopResult();
-            one.setB64Content(bs64);
-            one.setResultCd("0");
-            out.setROPResponse(one);
-            return out;
         } catch (Exception ex) {
             log.error(
                     objectMapper.writeValueAsString(
@@ -197,6 +206,79 @@ public class ReportController {
                                     ex.getMessage(),
                                     null)));
             throw new ORDSException();
+        }
+
+        if (resp == null || resp.getBody() == null) {
+            log.error(
+                    objectMapper.writeValueAsString(
+                            new OrdsErrorLog(
+                                    "Error received from ORDS",
+                                    "getRopReportSecure",
+                                    "Either response or its body is null while receiving the request getROPReportSecure's response.",
+                                    null)));
+            throw new ORDSException();
+        } else {
+            // if got response from ORDS's getROPReportSecure response
+            var body = resp.getBody();
+            String respCd = body.get("responseCd");
+            if (respCd != null && !respCd.equals("0")) {
+                String errMsg =
+                        body.get("responseMessageTxt") != null
+                                ? body.get("responseMessageTxt")
+                                : "";
+                log.error(
+                        objectMapper.writeValueAsString(
+                                new OrdsErrorLog(
+                                        "Error received from ORDS",
+                                        "getROPReportSecure",
+                                        "Error ("
+                                                + errMsg
+                                                + ") occurred while receiving the request getROPReportSecure's response.",
+                                        null)));
+                throw new ORDSException();
+            }
+
+            try {
+                String url = body.get("url") != null ? body.get("url") : "";
+                String keyValue = body.get("keyValue") != null ? body.get("keyValue") : "";
+                String query = "";
+                if (url.contains("?")) query = url.split("\\?")[1];
+                query =
+                        query.replace("<<FORM>>", inner.getFormCd())
+                                .replace("<<APP>>", reportAppName)
+                                .replace("<<TICKET>>", keyValue);
+
+                // build an adobe server uri using its url and parameters being return from ccd and
+                // request base64 stream from this adobe server
+                String rpServerHost = url.length() > 0 ? adobeServerHost : url;
+                String rpServerUri = rpServerHost + "?" + query;
+
+                HttpEntity<byte[]> resp2 =
+                        restTemplate.exchange(
+                                rpServerUri,
+                                HttpMethod.GET,
+                                new HttpEntity<>(new HttpHeaders()),
+                                byte[].class);
+
+                String bs64 =
+                        resp2.getBody() != null ? Base64Utils.encodeToString(resp2.getBody()) : "";
+
+                var out = new GetROPReportSecureResponse();
+                var one = new ca.bc.gov.open.ccd.common.rop.report.secure.RopResult();
+                one.setB64Content(bs64);
+                one.setResultCd("0");
+                out.setROPResponse(one);
+                return out;
+            } catch (Exception ex) {
+                log.error(
+                        objectMapper.writeValueAsString(
+                                new OrdsErrorLog(
+                                        "Error received from ORDS",
+                                        "getROPReportSecure",
+                                        ex.getMessage(),
+                                        null)));
+                throw new ORDSException();
+            }
         }
     }
 }
