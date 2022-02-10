@@ -36,3 +36,5 @@ build/
 /AutomatedTests/cypress/videos/
 /AutomatedTests/cypress/screenshots/
 cc-test-reporter
+/CCDUserMapping-soapui-project.xml
+CcdUserMapping-*-FAILED.txt

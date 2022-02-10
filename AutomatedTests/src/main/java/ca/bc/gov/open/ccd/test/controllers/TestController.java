@@ -23,9 +23,6 @@ public class TestController {
 
         this.testService = testService;
         this.testService.setAuthentication("CCDUserMapping-soapui-project-template.xml");
-        this.testService.setAuthentication("");
-        this.testService.setAuthentication("");
-        this.testService.setAuthentication("");
     }
 
     @GetMapping(value = "/all")
