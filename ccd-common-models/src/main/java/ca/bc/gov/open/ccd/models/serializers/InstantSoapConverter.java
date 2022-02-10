@@ -3,6 +3,8 @@ package ca.bc.gov.open.ccd.models.serializers;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.Instant;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.Locale;
 import java.util.TimeZone;
@@ -13,9 +15,13 @@ public final class InstantSoapConverter {
 
     private InstantSoapConverter() {}
 
-    public static String print(Instant xml) {
-        String first = xml.toString();
-        return first.substring(0, first.length() - 1);
+    public static String print(Instant value) {
+        String out =
+                DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.0")
+                        .withZone(ZoneId.of("UTC"))
+                        .withLocale(Locale.US)
+                        .format(value);
+        return out;
     }
 
     public static Instant parse(String value) {
@@ -24,14 +30,14 @@ public final class InstantSoapConverter {
             // Try to parse a datetime first then try date only if both fail return null
             try {
                 // Date time parser
-                var sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss.SSSSSS", Locale.US);
-                sdf.setTimeZone(TimeZone.getTimeZone("GMT-7"));
+                var sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSSSSS", Locale.US);
+                sdf.setTimeZone(TimeZone.getTimeZone("UTC"));
                 d = sdf.parse(value);
             } catch (ParseException ex) {
                 // Date only parser
                 try {
                     var sdf = new SimpleDateFormat("dd-MMM-yy", Locale.US);
-                    sdf.setTimeZone(TimeZone.getTimeZone("GMT-7"));
+                    sdf.setTimeZone(TimeZone.getTimeZone("UTC"));
                     d = sdf.parse(value);
                 } catch (ParseException ex2) {
                     return Instant.parse(value + "Z");

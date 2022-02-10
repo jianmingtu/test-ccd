@@ -408,12 +408,15 @@ public class FileControllerTests {
         req.setPhysicalFileId("A");
         req.setApplicationCd("A");
 
-        var out = new CivilFileContentDoc();
-        out.setCourtLocaCd("A");
-        out.setCourtRoomCd("A");
-        out.setCourtProceedingDate(Instant.now());
-        out.setAppearanceId(Collections.singletonList("A"));
-        out.setPhysicalFileId("A");
+        var fileContentDoc = new CivilFileContentDoc();
+        fileContentDoc.setCourtLocaCd("A");
+        fileContentDoc.setCourtRoomCd("A");
+        fileContentDoc.setCourtProceedingDate(Instant.now());
+        fileContentDoc.setAppearanceId(Collections.singletonList("A"));
+        fileContentDoc.setPhysicalFileId("A");
+
+        var out = new GetCivilFileContentResponse();
+        out.setCivilFileContentDoc(fileContentDoc);
 
         var cft = new CivilFileType();
         cft.setPhysicalFileID("A");
@@ -555,9 +558,7 @@ public class FileControllerTests {
         rdi.setNonPartyName("A");
         rd.setReferenceDocumentInterest(Collections.singletonList(rdi));
 
-        out.setCivilFile(Collections.singletonList(cft));
-
-        ResponseEntity<CivilFileContentDoc> responseEntity =
+        ResponseEntity<GetCivilFileContentResponse> responseEntity =
                 new ResponseEntity<>(out, HttpStatus.OK);
 
         // Set up to mock ords response
@@ -565,7 +566,7 @@ public class FileControllerTests {
                         Mockito.any(URI.class),
                         Mockito.eq(HttpMethod.GET),
                         Mockito.<HttpEntity<String>>any(),
-                        Mockito.<Class<CivilFileContentDoc>>any()))
+                        Mockito.<Class<GetCivilFileContentResponse>>any()))
                 .thenReturn(responseEntity);
 
         FileController fileController = new FileController(restTemplate, objectMapper);
@@ -605,7 +606,7 @@ public class FileControllerTests {
 
         // Set up to mock ords response
         when(restTemplate.exchange(
-                        Mockito.any(String.class),
+                        Mockito.any(URI.class),
                         Mockito.eq(HttpMethod.GET),
                         Mockito.<HttpEntity<String>>any(),
                         Mockito.<Class<GetCivilFileContentSecureResponse>>any()))

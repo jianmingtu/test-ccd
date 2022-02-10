@@ -1,7 +1,6 @@
 package ca.bc.gov.open.ccd.controllers;
 
 import ca.bc.gov.open.ccd.civil.*;
-import ca.bc.gov.open.ccd.civil.CivilFileContentDoc;
 import ca.bc.gov.open.ccd.civil.secure.*;
 import ca.bc.gov.open.ccd.common.criminal.file.content.*;
 import ca.bc.gov.open.ccd.common.criminal.file.content.secure.*;
@@ -155,15 +154,13 @@ public class FileController {
                         .queryParam("applicationCd", getCivilFileContent.getApplicationCd());
 
         try {
-            HttpEntity<CivilFileContentDoc> resp =
+            HttpEntity<GetCivilFileContentResponse> resp =
                     restTemplate.exchange(
                             builder.build().toUri(),
                             HttpMethod.GET,
                             new HttpEntity<>(new HttpHeaders()),
-                            CivilFileContentDoc.class);
-            var out = new GetCivilFileContentResponse();
-            out.setCivilFileContentDoc(resp.getBody());
-            return out;
+                            GetCivilFileContentResponse.class);
+            return resp.getBody();
         } catch (Exception ex) {
             log.error(
                     objectMapper.writeValueAsString(
@@ -207,7 +204,7 @@ public class FileController {
         try {
             HttpEntity<ca.bc.gov.open.ccd.civil.secure.GetCivilFileContentSecureResponse> resp =
                     restTemplate.exchange(
-                            builder.toUriString(),
+                            builder.build().toUri(),
                             HttpMethod.GET,
                             new HttpEntity<>(new HttpHeaders()),
                             ca.bc.gov.open.ccd.civil.secure.GetCivilFileContentSecureResponse
