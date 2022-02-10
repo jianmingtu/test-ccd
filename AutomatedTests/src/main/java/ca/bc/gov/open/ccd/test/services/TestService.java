@@ -1,10 +1,8 @@
 package ca.bc.gov.open.ccd.test.services;
 
 import com.eviware.soapui.tools.SoapUITestCaseRunner;
-
 import java.io.*;
 import java.util.Scanner;
-
 import org.apache.commons.io.filefilter.WildcardFileFilter;
 import org.apache.tools.zip.ZipEntry;
 import org.apache.tools.zip.ZipOutputStream;
@@ -19,17 +17,10 @@ public class TestService {
     @Value("${test.password}")
     private String password;
 
-    @Value("${test.api-host-civil}")
-    private String apiHostCivil;
-
-    @Value("${test.api-host-criminal}")
-    private String apiHostCriminal;
-
-    @Value("${test.api-host-common}")
+    @Value("${test.api-host}")
     private String apiHostCommon;
 
-    public TestService() {
-    }
+    public TestService() {}
 
     public void setAuthentication(String filename) throws IOException {
         InputStream template = getClass().getResourceAsStream("/" + filename);
@@ -40,7 +31,8 @@ public class TestService {
             project.delete();
         }
         project.createNewFile();
-        BufferedWriter writer = new BufferedWriter(new FileWriter("./" + filename.replace("-template", "")));
+        BufferedWriter writer =
+                new BufferedWriter(new FileWriter("./" + filename.replace("-template", "")));
         while (scanner.hasNextLine()) {
             String line = scanner.nextLine();
             if (line.contains("{AUTHENTICATION_USERNAME}")) {
@@ -50,16 +42,7 @@ public class TestService {
                 line = line.replaceAll("\\{AUTHENTICATION_PASSWORD}", password);
             }
             if (line.contains("{API_HOST}")) {
-
-                if(filename.contains("Civil")){
-                    line = line.replaceAll("\\{API_HOST}", apiHostCivil);
-                }
-                if(filename.contains("Criminal")){
-                    line = line.replaceAll("\\{API_HOST}", apiHostCriminal);
-                }
-                if(filename.contains("Common")){
-                    line = line.replaceAll("\\{API_HOST}", apiHostCommon);
-                }
+                line = line.replaceAll("\\{API_HOST}", apiHostCommon);
             }
             writer.append(line + "\n");
         }
@@ -96,6 +79,7 @@ public class TestService {
         fos.close();
         return fOut;
     }
+
     public File runAllTests() throws IOException {
 
         SoapUITestCaseRunner runner = new SoapUITestCaseRunner();
@@ -113,4 +97,4 @@ public class TestService {
         }
         return zipAndReturnErrors();
     }
-    }
+}

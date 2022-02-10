@@ -1,7 +1,6 @@
 package ca.bc.gov.open.ccd.test.controllers;
 
 import ca.bc.gov.open.ccd.test.services.TestService;
-
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -49,7 +48,6 @@ public class TestController {
             return new ResponseEntity<String>("{\"status\": \"All tests passed\"}", HttpStatus.OK);
         }
     }
-
 
     @GetMapping("/ping")
     public String ping() {
