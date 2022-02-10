@@ -96,7 +96,7 @@ public class ReportController {
                             new OrdsErrorLog(
                                     "Error received from ORDS",
                                     "getROPReport",
-                                    "Either response or its body is null while retrieving the RopReport request.",
+                                    "Either response or its body is null while receiving the request getRopReport's response.",
                                     null)));
             throw new ORDSException();
         } else {
@@ -115,7 +115,7 @@ public class ReportController {
                                         "getROPReport",
                                         "Error ("
                                                 + errMsg
-                                                + ") occurred while retrieving the RopReport request.",
+                                                + ") occurred while retrieving the receiving the request getRopReport's response.",
                                         null)));
                 throw new ORDSException();
             }
@@ -214,7 +214,7 @@ public class ReportController {
                             new OrdsErrorLog(
                                     "Error received from ORDS",
                                     "getRopReportSecure",
-                                    "Either response or its body is null while retrieving the getRopReportSecure request.",
+                                    "Either response or its body is null while receiving the request getROPReportSecure's response.",
                                     null)));
             throw new ORDSException();
         } else {
@@ -233,7 +233,7 @@ public class ReportController {
                                         "getROPReportSecure",
                                         "Error ("
                                                 + errMsg
-                                                + ") occurred while retrieving the getROPReportSecure request.",
+                                                + ") occurred while receiving the request getROPReportSecure's response.",
                                         null)));
                 throw new ORDSException();
             }
