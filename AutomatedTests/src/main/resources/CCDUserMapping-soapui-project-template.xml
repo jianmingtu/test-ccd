@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project id="27a112dd-7c61-4182-9a61-cf8255afdd6f" activeEnvironment="Default" name="CCDUserMapping" resourceRoot="${projectDir}" soapui-version="5.6.0" abortOnError="false" runType="SEQUENTIAL" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:interface xsi:type="con:WsdlInterface" id="6b92e3f7-9f15-4961-b9e2-4d737a5e0e67" wsaVersion="NONE" name="CCD_Source_CCDUserMapping_ws_ccdUserMapping_Binder" type="wsdl" bindingName="{http://courts.ag.gov.bc.ca/CCD.Source.CCDUserMapping.ws:ccdUserMapping}CCD_Source_CCDUserMapping_ws_ccdUserMapping_Binder" soapVersion="1_1" anonymous="optional" definition="file:/C:/workspace2/jag-ccd/jag-ccd-application/src/main/resources/xsdSchemas/ccdUserMapping.wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="file:\C:\workspace2\jag-ccd\jag-ccd-application\src\main\resources\xsdSchemas\ccdUserMapping.wsdl"><con:part><con:url>file:\C:\workspace2\jag-ccd\jag-ccd-application\src\main\resources\xsdSchemas\ccdUserMapping.wsdl</con:url><con:content><![CDATA[<wsdl:definitions name="ccdUserMapping" targetNamespace="http://courts.ag.gov.bc.ca/CCD.Source.CCDUserMapping.ws:ccdUserMapping" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:soapjms="http://www.w3.org/2008/07/soap/bindings/JMS/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:tns="http://courts.ag.gov.bc.ca/CCD.Source.CCDUserMapping.ws:ccdUserMapping" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://courts.ag.gov.bc.ca/CCD.Source.CCDUserMapping.ws:ccdUserMapping">
+      <xsd:complexType name="getParticipantInfo">
+        <xsd:sequence>
+          <xsd:element name="guid" nillable="true" type="xsd:string"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="getParticipantInfoResponse">
+        <xsd:sequence>
+          <xsd:element name="partId" nillable="true" type="xsd:string"/>
+          <xsd:element name="partyName" nillable="true" type="xsd:string"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="mapGuidToParticipant">
+        <xsd:sequence>
+          <xsd:element name="guid" nillable="true" type="xsd:string"/>
+          <xsd:element name="partId" nillable="true" type="xsd:string"/>
+          <xsd:element name="idirId" nillable="true" type="xsd:string"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="mapGuidToParticipantResponse">
+        <xsd:sequence>
+          <xsd:element name="success" nillable="true" type="xsd:string"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="mapGuidToParticipant" type="tns:mapGuidToParticipant"/>
+      <xsd:element name="mapGuidToParticipantResponse" type="tns:mapGuidToParticipantResponse"/>
+      <xsd:element name="getParticipantInfo" type="tns:getParticipantInfo"/>
+      <xsd:element name="getParticipantInfoResponse" type="tns:getParticipantInfoResponse"/>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="ccdUserMapping_PortType_getParticipantInfo">
+    <wsdl:part name="parameters" element="tns:getParticipantInfo"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="ccdUserMapping_PortType_mapGuidToParticipantResponse">
+    <wsdl:part name="parameters" element="tns:mapGuidToParticipantResponse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="ccdUserMapping_PortType_mapGuidToParticipant">
+    <wsdl:part name="parameters" element="tns:mapGuidToParticipant"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="ccdUserMapping_PortType_getParticipantInfoResponse">
+    <wsdl:part name="parameters" element="tns:getParticipantInfoResponse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="ccdUserMapping_PortType">
+    <wsdl:operation name="mapGuidToParticipant">
+      <wsdl:input message="tns:ccdUserMapping_PortType_mapGuidToParticipant"></wsdl:input>
+      <wsdl:output message="tns:ccdUserMapping_PortType_mapGuidToParticipantResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getParticipantInfo">
+      <wsdl:input message="tns:ccdUserMapping_PortType_getParticipantInfo"></wsdl:input>
+      <wsdl:output message="tns:ccdUserMapping_PortType_getParticipantInfoResponse"></wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="CCD_Source_CCDUserMapping_ws_ccdUserMapping_Binder" type="tns:ccdUserMapping_PortType">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="mapGuidToParticipant">
+      <soap:operation soapAction="CCD_Source_CCDUserMapping_ws_ccdUserMapping_Binder_mapGuidToParticipant" style="document"/>
+      <wsdl:input>
+        <soap:body parts="parameters" use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body parts="parameters" use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getParticipantInfo">
+      <soap:operation soapAction="CCD_Source_CCDUserMapping_ws_ccdUserMapping_Binder_getParticipantInfo" style="document"/>
+      <wsdl:input>
+        <soap:body parts="parameters" use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body parts="parameters" use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ccdUserMapping">
+    <wsdl:port name="CCD_Source_CCDUserMapping_ws_ccdUserMapping_Port" binding="tns:CCD_Source_CCDUserMapping_ws_ccdUserMapping_Binder">
+      <soap:address location="{API_HOST}"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>{API_HOST}</con:endpoint></con:endpoints><con:operation id="b1782eb1-8d93-4e3a-a697-0fbcf80d0851" isOneWay="false" action="CCD_Source_CCDUserMapping_ws_ccdUserMapping_Binder_getParticipantInfo" name="getParticipantInfo" bindingOperationName="getParticipantInfo" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="584506fc-cf7c-4222-990a-f2669fc08898" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>{API_HOST}</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ccd="http://courts.ag.gov.bc.ca/CCD.Source.CCDUserMapping.ws:ccdUserMapping">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <ccd:getParticipantInfo>\r
+         <guid>?</guid>\r
+      </ccd:getParticipantInfo>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="CCD_Source_CCDUserMapping_ws_ccdUserMapping_Binder_getParticipantInfo"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation id="4b719a95-da84-4efd-beee-a44c51fbc21b" isOneWay="false" action="CCD_Source_CCDUserMapping_ws_ccdUserMapping_Binder_mapGuidToParticipant" name="mapGuidToParticipant" bindingOperationName="mapGuidToParticipant" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="7beea889-fac8-4be1-a07f-aa65c8116a31" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>{API_HOST}</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ccd="http://courts.ag.gov.bc.ca/CCD.Source.CCDUserMapping.ws:ccdUserMapping">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <ccd:mapGuidToParticipant>\r
+         <guid>?</guid>\r
+         <partId>?</partId>\r
+         <idirId>?</idirId>\r
+      </ccd:mapGuidToParticipant>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="CCD_Source_CCDUserMapping_ws_ccdUserMapping_Binder_mapGuidToParticipant"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:testSuite id="be75a160-0349-4495-8112-146aadc5afd5" name="CcdUserMapping"><con:settings/><con:runType>SEQUENTIAL</con:runType><con:testCase id="a8fdb0db-b881-4e79-bf9c-8c3af6334130" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="GetParticipantInfo" searchProperties="true"><con:settings/><con:testStep type="request" name="getParticipantInfo" id="64559268-5a1b-4a15-bc8f-7ef4ff8a82b7"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>CCD_Source_CCDUserMapping_ws_ccdUserMapping_Binder</con:interface><con:operation>getParticipantInfo</con:operation><con:request name="getParticipantInfo" id="0779ed40-4f2a-40f6-8d07-a5411e30cb81"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/ws</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ccd="http://courts.ag.gov.bc.ca/CCD.Source.CCDUserMapping.ws:ccdUserMapping">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ccd:getParticipantInfo>
+         <guid>69BE414B57364494915283B0A59A28D5</guid>
+      </ccd:getParticipantInfo>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response" id="c26b31ff-3c12-432d-92cf-099915d98646"/><con:assertion type="Valid HTTP Status Codes" id="5e4c8bee-090b-4998-870e-35fb9132aaff" name="Valid HTTP Status Codes"><con:configuration><codes>200</codes></con:configuration></con:assertion><con:assertion type="Invalid HTTP Status Codes" id="39da1aeb-a3d8-4fc4-ae2e-57e3014858c6" name="Invalid HTTP Status Codes"><con:configuration><codes>401, 403, 404, 500</codes></con:configuration></con:assertion><con:assertion type="Response SLA Assertion" id="39eb3d29-6ad0-46bc-8dc9-905f87f7986f" name="Response SLA"><con:configuration><SLA>1000</SLA></con:configuration></con:assertion><con:assertion type="Simple Contains" id="aa6bb90b-f361-4e1d-9e5e-24659412bccc" name="Contains 1"><con:configuration><token>9456.0001</token><ignoreCase>false</ignoreCase><useRegEx>false</useRegEx></con:configuration></con:assertion><con:credentials><con:username>{AUTHENTICATION_USERNAME}</con:username><con:password>{AUTHENTICATION_PASSWORD}</con:password><con:selectedAuthProfile>Basic</con:selectedAuthProfile><con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:properties><con:property><con:name>guid</con:name><con:value>69BE414B57364494915283B0A59A28D5</con:value></con:property></con:properties></con:testCase><con:testCase id="d3144d4f-a6c0-4aff-87db-a12d09de478c" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="MapGuidToParticipant" searchProperties="true"><con:settings/><con:testStep type="request" name="mapGuidToParticipant" id="ec655125-111d-456c-bc32-5d558fc88d4d"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>CCD_Source_CCDUserMapping_ws_ccdUserMapping_Binder</con:interface><con:operation>getParticipantInfo</con:operation><con:request name="mapGuidToParticipant" id="0ca10fcd-4466-4c92-aa82-61ad058af436"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/ws</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ccd="http://courts.ag.gov.bc.ca/CCD.Source.CCDUserMapping.ws:ccdUserMapping">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ccd:mapGuidToParticipant>
+         <guid>69BE414B57364494915283B0A59A28D5</guid>
+         <partId>11199.0026</partId>
+         <idirId>CCDSOA</idirId>
+      </ccd:mapGuidToParticipant>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response" id="f65f7d14-1f74-4d05-bb57-efd9eaacb8e5"/><con:assertion type="Valid HTTP Status Codes" id="7f0b108b-2453-49f0-95b9-477a04684702" name="Valid HTTP Status Codes"><con:configuration><codes>200</codes></con:configuration></con:assertion><con:assertion type="Invalid HTTP Status Codes" id="cf843266-f9c0-4b39-9086-20cc0e451dbd" name="Invalid HTTP Status Codes"><con:configuration><codes>401, 403, 404, 500</codes></con:configuration></con:assertion><con:assertion type="Response SLA Assertion" id="930498ee-a8f0-4f17-9231-2575a4234c35" name="Response SLA"><con:configuration><SLA>1000</SLA></con:configuration></con:assertion><con:assertion type="Simple Contains" id="d3fed4ff-f216-4d23-9ef2-428e8fd4de31" name="Contains"><con:configuration><token>N</token><ignoreCase>false</ignoreCase><useRegEx>false</useRegEx></con:configuration></con:assertion><con:credentials><con:username>{AUTHENTICATION_USERNAME}</con:username><con:password>{AUTHENTICATION_PASSWORD}</con:password><con:selectedAuthProfile>Basic</con:selectedAuthProfile><con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:properties><con:property><con:name>guid</con:name><con:value>69BE414B57364494915283B0A59A28D5</con:value></con:property><con:property><con:name>partId</con:name><con:value>11199.0026</con:value></con:property><con:property><con:name>idirId</con:name><con:value>CCDSOA</con:value></con:property></con:properties></con:testCase><con:testCase id="cf8257ad-b6d5-47c2-a68f-260730fa5b67" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="AutomationTests" searchProperties="true"><con:settings/><con:testStep type="groovy" name="getParticipantInfo" id="e312003f-e4f2-42fa-bab6-8f4685b86e5c"><con:settings/><con:config><script>import com.eviware.soapui.support.XmlHolder
+import com.eviware.soapui.impl.wsdl.testcase.WsdlTestRunContext
+
+ def getParticipantInfo = testRunner.testCase.testSuite.testCases["GetParticipantInfo"].testSteps["getParticipantInfo"].getPropertyValue("Request")
+ 
+ def guid=testRunner.testCase.testSuite.testCases["GetParticipantInfo"].getPropertyValue("guid")
+ 
+ def xmlAdd= new XmlHolder(getParticipantInfo)
+ xmlAdd.setNodeValue("//ccd:getParticipantInfo/guid",guid)
+ 
+ def newxmlGet= xmlAdd.getXml();
+ //add xml detail
+ testRunner.testCase.testSuite.testCases["GetParticipantInfo"].testSteps["getParticipantInfo"].setPropertyValue("Request",newxmlGet)
+
+ def getTestStep=testRunner.testCase.testSuite.testCases["GetParticipantInfo"].testSteps["getParticipantInfo"]
+ def contextgetParticipantInfo = new WsdlTestRunContext(getTestStep);
+ getTestStep.run(testRunner,contextgetParticipantInfo)
+ //Validation -
+def getRes=testRunner.testCase.testSuite.testCases["GetParticipantInfo"].testSteps["getParticipantInfo"].getPropertyValue("Response")
+def GetParticipantInfo= new XmlHolder(getRes)
+def GetResponse= GetParticipantInfo.getNodeValue("//partId")
+
+log.info GetResponse
+
+assert GetResponse=="9456.0001"
+
+</script></con:config></con:testStep><con:testStep type="groovy" name="mapGuidToParticipantNEGTest" id="ea43466f-fe01-4675-a9ea-6466bff84263"><con:settings/><con:config><script>import com.eviware.soapui.support.XmlHolder
+import com.eviware.soapui.impl.wsdl.testcase.WsdlTestRunContext
+
+ def MapGuidToParticipant = testRunner.testCase.testSuite.testCases["MapGuidToParticipant"].testSteps["mapGuidToParticipant"].getPropertyValue("Request")
+ 
+ def guid=testRunner.testCase.testSuite.testCases["MapGuidToParticipant"].getPropertyValue("guid")
+ def partId=testRunner.testCase.testSuite.testCases["MapGuidToParticipant"].getPropertyValue("partId")
+ def idirId=testRunner.testCase.testSuite.testCases["MapGuidToParticipant"].getPropertyValue("idirId")
+
+ def xmlAdd= new XmlHolder(MapGuidToParticipant)
+ xmlAdd.setNodeValue("//ccd:mapGuidToParticipant/guid",guid)
+ xmlAdd.setNodeValue("//ccd:mapGuidToParticipant/partId",partId)
+ xmlAdd.setNodeValue("//ccd:mapGuidToParticipant/idirId",idirId)
+ 
+ def newxmlGet= xmlAdd.getXml();
+ //add xml detail
+ testRunner.testCase.testSuite.testCases["MapGuidToParticipant"].testSteps["mapGuidToParticipant"].setPropertyValue("Request",newxmlGet)
+
+ def getTestStep=testRunner.testCase.testSuite.testCases["MapGuidToParticipant"].testSteps["mapGuidToParticipant"]
+ def contextMapGuidToParticipant = new WsdlTestRunContext(getTestStep);
+ getTestStep.run(testRunner,contextMapGuidToParticipant)
+ //Validation -
+ def getRes=testRunner.testCase.testSuite.testCases["MapGuidToParticipant"].testSteps["mapGuidToParticipant"].getPropertyValue("Response")
+def GetAppearanceCivilDocument= new XmlHolder(getRes)
+def GetResponse= GetAppearanceCivilDocument.getNodeValue("//success")
+
+
+log.info GetResponse
+
+assert GetResponse=="N"
+
+
+
+</script></con:config></con:testStep><con:properties/></con:testCase><con:properties/></con:testSuite><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/><con:oAuth1ProfileContainer/></con:soapui-project>
