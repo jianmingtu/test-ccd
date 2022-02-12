@@ -52,15 +52,13 @@ public class CourtController {
                         .queryParam("fileNumber", getCrtList.getFileNumber());
 
         try {
-            HttpEntity<CourtListTypes> resp =
+            HttpEntity<GetCrtListResponse> resp =
                     restTemplate.exchange(
-                            builder.toUriString(),
+                            builder.build().toUri(),
                             HttpMethod.GET,
                             new HttpEntity<>(new HttpHeaders()),
-                            CourtListTypes.class);
-            var out = new GetCrtListResponse();
-            out.setCourtLists(resp.getBody());
-            return out;
+                            GetCrtListResponse.class);
+            return  resp.getBody();
         } catch (Exception ex) {
             log.error(
                     objectMapper.writeValueAsString(
@@ -81,22 +79,21 @@ public class CourtController {
             throws JsonProcessingException {
 
         UriComponentsBuilder builder =
-                UriComponentsBuilder.fromHttpUrl(host + "appearance")
-                        .queryParam("agencyIdentifierCd", getCrtList.getAgencyIdentifierCd())
+                UriComponentsBuilder.fromHttpUrl(host + "/common/courtlist/secure")
+                        .queryParam("requestAgencyIdentifierId", getCrtList.getAgencyIdentifierCd())
                         .queryParam("roomCd", getCrtList.getRoomCd())
-                        .queryParam("proceedingDate", getCrtList.getProceedingDate())
+                        .queryParam("proceedingDate", InstantSerializer.convert(getCrtList.getProceedingDate()))
                         .queryParam("divisionCd", getCrtList.getDivisionCd())
                         .queryParam("fileNumber", getCrtList.getFileNumber())
                         .queryParam("requestAgencyId", getCrtList.getRequestAgencyIdentifierId())
                         .queryParam("requestPartId", getCrtList.getRequestPartId())
-                        .queryParam(
-                                "requestDtm", InstantSerializer.convert(getCrtList.getRequestDtm()))
+                        .queryParam("requestDtm", InstantSerializer.convert(getCrtList.getRequestDtm()))
                         .queryParam("applicationCd", getCrtList.getApplicationCd());
 
         try {
             HttpEntity<GetCrtListSecureResponse> resp =
                     restTemplate.exchange(
-                            builder.toUriString(),
+                            builder.build().toUri(),
                             HttpMethod.GET,
                             new HttpEntity<>(new HttpHeaders()),
                             GetCrtListSecureResponse.class);

@@ -26,17 +26,11 @@
     <xsd:element name="getDocumentSecureResponse">
         <xsd:complexType>
             <xsd:sequence>
-                <xsd:element name="DocumentResponse" nillable="true" type="tns:DocumentResult"/>
+                <xsd:element name="B64Content" nillable="true" type="xsd:string"/>
+                <xsd:element name="ResultCd" nillable="true" type="xsd:string"/>
+                <xsd:element name="ResultMessage" nillable="true" type="xsd:string"/>
             </xsd:sequence>
         </xsd:complexType>
     </xsd:element>
-
-    <xsd:complexType name="DocumentResult">
-        <xsd:sequence>
-            <xsd:element name="B64Content" nillable="true" type="xsd:string"/>
-            <xsd:element name="ResultCd" nillable="true" type="xsd:string"/>
-            <xsd:element name="ResultMessage" nillable="true" type="xsd:string"/>
-        </xsd:sequence>
-    </xsd:complexType>
 
 </xsd:schema>
