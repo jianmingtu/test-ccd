@@ -1,7 +1,6 @@
 package ca.bc.gov.open.ccd.controllers;
 
 import ca.bc.gov.open.ccd.court.one.*;
-import ca.bc.gov.open.ccd.court.one.CourtListTypes;
 import ca.bc.gov.open.ccd.court.secure.one.*;
 import ca.bc.gov.open.ccd.exceptions.ORDSException;
 import ca.bc.gov.open.ccd.models.OrdsErrorLog;
@@ -58,7 +57,7 @@ public class CourtController {
                             HttpMethod.GET,
                             new HttpEntity<>(new HttpHeaders()),
                             GetCrtListResponse.class);
-            return  resp.getBody();
+            return resp.getBody();
         } catch (Exception ex) {
             log.error(
                     objectMapper.writeValueAsString(
@@ -82,12 +81,15 @@ public class CourtController {
                 UriComponentsBuilder.fromHttpUrl(host + "/common/courtlist/secure")
                         .queryParam("requestAgencyIdentifierId", getCrtList.getAgencyIdentifierCd())
                         .queryParam("roomCd", getCrtList.getRoomCd())
-                        .queryParam("proceedingDate", InstantSerializer.convert(getCrtList.getProceedingDate()))
+                        .queryParam(
+                                "proceedingDate",
+                                InstantSerializer.convert(getCrtList.getProceedingDate()))
                         .queryParam("divisionCd", getCrtList.getDivisionCd())
                         .queryParam("fileNumber", getCrtList.getFileNumber())
                         .queryParam("requestAgencyId", getCrtList.getRequestAgencyIdentifierId())
                         .queryParam("requestPartId", getCrtList.getRequestPartId())
-                        .queryParam("requestDtm", InstantSerializer.convert(getCrtList.getRequestDtm()))
+                        .queryParam(
+                                "requestDtm", InstantSerializer.convert(getCrtList.getRequestDtm()))
                         .queryParam("applicationCd", getCrtList.getApplicationCd());
 
         try {
