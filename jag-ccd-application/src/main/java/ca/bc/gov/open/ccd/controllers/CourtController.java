@@ -79,7 +79,9 @@ public class CourtController {
 
         UriComponentsBuilder builder =
                 UriComponentsBuilder.fromHttpUrl(host + "/common/courtlist/secure")
-                        .queryParam("requestAgencyIdentifierId", getCrtList.getAgencyIdentifierCd())
+                        .queryParam(
+                                "requestAgencyIdentifierId",
+                                getCrtList.getRequestAgencyIdentifierId())
                         .queryParam("roomCd", getCrtList.getRoomCd())
                         .queryParam(
                                 "proceedingDate",
