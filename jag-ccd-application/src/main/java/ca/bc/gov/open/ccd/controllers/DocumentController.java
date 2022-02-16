@@ -200,8 +200,10 @@ public class DocumentController {
                 // when status is null/or status is not 1, we neither pass the validation nor get a
                 // valid url so that just return errors back
                 var out = new GetDocumentSecureResponse();
-                out.setResultCd(resultCd != null ? resultCd : "");
-                out.setResultMessage(resultMessage != null ? resultMessage : "");
+                var documentResult = new ca.bc.gov.open.ccd.common.document.secure.DocumentResult();
+                out.setDocumentResponse(documentResult);
+                documentResult.setResultCd(resultCd != null ? resultCd : "");
+                documentResult.setResultMessage(resultMessage != null ? resultMessage : "");
                 return out;
             } else {
                 if (resultCd != null && resultMessage != null && url != null) {
@@ -209,8 +211,11 @@ public class DocumentController {
                     // getDocument API
                     if (!resultCd.equals("1")) {
                         var out = new GetDocumentSecureResponse();
-                        out.setResultCd(resultCd);
-                        out.setResultMessage(resultMessage);
+                        var documentResult =
+                                new ca.bc.gov.open.ccd.common.document.secure.DocumentResult();
+                        out.setDocumentResponse(documentResult);
+                        documentResult.setResultCd(resultCd);
+                        documentResult.setResultMessage(resultMessage);
                         return out;
                     }
 
@@ -229,7 +234,10 @@ public class DocumentController {
                                         : "";
 
                         var out = new GetDocumentSecureResponse();
-                        out.setB64Content(bs64);
+                        var documentResult =
+                                new ca.bc.gov.open.ccd.common.document.secure.DocumentResult();
+                        documentResult.setB64Content(bs64);
+                        out.setDocumentResponse(documentResult);
                         return out;
                     } catch (Exception ex) {
                         log.error(

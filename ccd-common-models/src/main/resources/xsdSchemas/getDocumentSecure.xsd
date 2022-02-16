@@ -1,7 +1,6 @@
 <xsd:schema targetNamespace="http://reeks.bcgov/CCD.Source.GetDocument.ws:CCD.Source.GetDocument.ws:GetDocumentSecure"
             xmlns:xsd="http://www.w3.org/2001/XMLSchema"
             xmlns:tns="http://reeks.bcgov/CCD.Source.GetDocument.ws:CCD.Source.GetDocument.ws:GetDocumentSecure">
-
     <xsd:element name="getDocumentSecure">
         <xsd:complexType>
             <xsd:sequence>
@@ -9,7 +8,6 @@
             </xsd:sequence>
         </xsd:complexType>
     </xsd:element>
-
     <xsd:complexType name="DocumentSecureRequest">
         <xsd:sequence>
             <xsd:element name="RequestAgencyIdentifierId" nillable="true" type="xsd:string"/>
@@ -18,19 +16,24 @@
             <xsd:element name="ApplicationCd" nillable="true" type="xsd:string"/>
             <xsd:element name="DocumentId" type="xsd:string"/>
             <xsd:element name="CourtDivisionCd" type="xsd:string"/>
-            <xsd:element name="PhysicalFileId" nillable="true" type="xsd:string" />
-            <xsd:element name="MdocJustinNo" nillable="true" type="xsd:string" />
+            <xsd:element name="PhysicalFileId" nillable="true" type="xsd:string"/>
+            <xsd:element name="MdocJustinNo" nillable="true" type="xsd:string"/>
         </xsd:sequence>
     </xsd:complexType>
-
     <xsd:element name="getDocumentSecureResponse">
         <xsd:complexType>
             <xsd:sequence>
-                <xsd:element name="B64Content" nillable="true" type="xsd:string"/>
-                <xsd:element name="ResultCd" nillable="true" type="xsd:string"/>
-                <xsd:element name="ResultMessage" nillable="true" type="xsd:string"/>
+                <xsd:element name="DocumentResponse" nillable="true" type="tns:DocumentResult"/>
             </xsd:sequence>
         </xsd:complexType>
     </xsd:element>
+
+    <xsd:complexType name="DocumentResult">
+        <xsd:sequence>
+            <xsd:element name="B64Content" nillable="true" type="xsd:string"/>
+            <xsd:element name="ResultCd" nillable="true" type="xsd:string"/>
+            <xsd:element name="ResultMessage" nillable="true" type="xsd:string"/>
+        </xsd:sequence>
+    </xsd:complexType>
 
 </xsd:schema>
