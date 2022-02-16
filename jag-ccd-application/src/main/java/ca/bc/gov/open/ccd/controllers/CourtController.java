@@ -86,7 +86,7 @@ public class CourtController {
                                 InstantSerializer.convert(getCrtList.getProceedingDate()))
                         .queryParam("divisionCd", getCrtList.getDivisionCd())
                         .queryParam("fileNumber", getCrtList.getFileNumber())
-                        .queryParam("requestAgencyId", getCrtList.getRequestAgencyIdentifierId())
+                        .queryParam("requestAgencyId", getCrtList.getAgencyIdentifierCd())
                         .queryParam("requestPartId", getCrtList.getRequestPartId())
                         .queryParam(
                                 "requestDtm", InstantSerializer.convert(getCrtList.getRequestDtm()))
