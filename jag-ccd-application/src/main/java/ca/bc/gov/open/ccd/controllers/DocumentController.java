@@ -183,7 +183,7 @@ public class DocumentController {
                     objectMapper.writeValueAsString(
                             new OrdsErrorLog(
                                     "Error received from ORDS",
-                                    "getDocument",
+                                    "getDocumentSecure",
                                     ex.getMessage(),
                                     null)));
             throw new ORDSException();
