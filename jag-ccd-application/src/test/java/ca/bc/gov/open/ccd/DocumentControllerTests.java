@@ -1,21 +1,26 @@
 package ca.bc.gov.open.ccd;
 
+import static org.mockito.ArgumentMatchers.contains;
 import static org.mockito.Mockito.when;
 
-import ca.bc.gov.open.ccd.common.document.DocumentResult;
+import ca.bc.gov.open.ccd.common.document.Document;
 import ca.bc.gov.open.ccd.common.document.GetDocument;
-import ca.bc.gov.open.ccd.common.document.GetDocumentResponse;
+import ca.bc.gov.open.ccd.common.document.secure.DocumentSecureRequest;
 import ca.bc.gov.open.ccd.common.document.secure.GetDocumentSecure;
-import ca.bc.gov.open.ccd.common.document.secure.GetDocumentSecureResponse;
 import ca.bc.gov.open.ccd.controllers.DocumentController;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import java.net.URI;
+import java.nio.charset.StandardCharsets;
+import java.util.HashMap;
+import java.util.Map;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
@@ -34,23 +39,43 @@ public class DocumentControllerTests {
     public void getDocumentTest() throws JsonProcessingException {
 
         var req = new GetDocument();
-        var out = new GetDocumentResponse();
-        var docR = new DocumentResult();
-        out.setDocumentResponse(docR);
-        ResponseEntity<GetDocumentResponse> responseEntity =
-                new ResponseEntity<>(out, HttpStatus.OK);
+        var one = new Document();
+
+        one.setDocumentId("A");
+        one.setCourtDivisionCd("A");
+
+        req.setDocumentRequest(one);
+
+        Map<String, String> m = new HashMap<>();
+        m.put("url", "http://www.test.com");
+        m.put("resultCd", "1");
+        m.put("resultMessage", "success");
+        m.put("status", "1");
+        ResponseEntity<Map<String, String>> responseEntity2 =
+                new ResponseEntity<>(m, HttpStatus.OK);
 
         // Set up to mock ords response
         when(restTemplate.exchange(
-                        Mockito.any(String.class),
+                        contains("https://127.0.0.1"),
                         Mockito.eq(HttpMethod.GET),
                         Mockito.<HttpEntity<String>>any(),
-                        Mockito.<Class<GetDocumentResponse>>any()))
+                        Mockito.<ParameterizedTypeReference<Map<String, String>>>any()))
+                .thenReturn(responseEntity2);
+
+        var out = "A";
+        ResponseEntity<byte[]> responseEntity =
+                new ResponseEntity<>(out.getBytes(StandardCharsets.UTF_8), HttpStatus.OK);
+
+        // Set up to adobe response
+        when(restTemplate.exchange(
+                        Mockito.any(URI.class),
+                        Mockito.eq(HttpMethod.GET),
+                        Mockito.<HttpEntity<String>>any(),
+                        Mockito.<Class<byte[]>>any()))
                 .thenReturn(responseEntity);
 
         DocumentController documentController = new DocumentController(restTemplate, objectMapper);
         var resp = documentController.getDocument(req);
-
         Assertions.assertNotNull(resp);
     }
 
@@ -58,23 +83,39 @@ public class DocumentControllerTests {
     public void getDocumentSecureTest() throws JsonProcessingException {
 
         var req = new GetDocumentSecure();
-        var out = new GetDocumentSecureResponse();
-        var docR = new ca.bc.gov.open.ccd.common.document.secure.DocumentResult();
-        out.setDocumentResponse(docR);
-        ResponseEntity<GetDocumentSecureResponse> responseEntity =
-                new ResponseEntity<>(out, HttpStatus.OK);
+        var one = new DocumentSecureRequest();
+        req.setDocumentSecureRequest(one);
+
+        Map<String, String> m = new HashMap<>();
+        m.put("url", "http://www.test.com");
+        m.put("resultCd", "1");
+        m.put("resultMessage", "success");
+        m.put("status", "1");
+        ResponseEntity<Map<String, String>> responseEntity2 =
+                new ResponseEntity<>(m, HttpStatus.OK);
 
         // Set up to mock ords response
         when(restTemplate.exchange(
-                        Mockito.any(String.class),
+                        Mockito.any(URI.class),
                         Mockito.eq(HttpMethod.GET),
                         Mockito.<HttpEntity<String>>any(),
-                        Mockito.<Class<GetDocumentSecureResponse>>any()))
+                        Mockito.<ParameterizedTypeReference<Map<String, String>>>any()))
+                .thenReturn(responseEntity2);
+
+        var out = "A";
+        ResponseEntity<byte[]> responseEntity =
+                new ResponseEntity<>(out.getBytes(StandardCharsets.UTF_8), HttpStatus.OK);
+
+        // Set up to adobe response
+        when(restTemplate.exchange(
+                        Mockito.any(URI.class),
+                        Mockito.eq(HttpMethod.GET),
+                        Mockito.<HttpEntity<String>>any(),
+                        Mockito.<Class<byte[]>>any()))
                 .thenReturn(responseEntity);
 
         DocumentController documentController = new DocumentController(restTemplate, objectMapper);
         var resp = documentController.getDocumentSecure(req);
-
         Assertions.assertNotNull(resp);
     }
 }

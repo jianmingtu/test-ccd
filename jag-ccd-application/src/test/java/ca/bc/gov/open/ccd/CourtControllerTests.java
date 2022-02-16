@@ -8,6 +8,7 @@ import ca.bc.gov.open.ccd.court.secure.one.GetCrtListSecure;
 import ca.bc.gov.open.ccd.court.secure.one.GetCrtListSecureResponse;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import java.net.URI;
 import java.time.Instant;
 import java.util.Collections;
 import org.junit.jupiter.api.Assertions;
@@ -39,16 +40,6 @@ public class CourtControllerTests {
         req.setProceedingDate(Instant.now());
         req.setDivisionCd("A");
         req.setFileNumber("A");
-
-        var out = new CourtListTypes();
-        out.setCourtLocationName("A");
-        out.setCourtRoomCode("A");
-        out.setCourtProceedingsDate(Instant.now());
-        var fs = new FileSearchParameter();
-        fs.setFileNumber("A");
-        fs.setCourtDivisionCd("A");
-
-        out.setFileSearchParameter(fs);
 
         var crl = new CriminalCourtList();
         crl.setCriminalAppearanceID("A");
@@ -427,17 +418,29 @@ public class CourtControllerTests {
 
         crl2.setOrderToVary(Collections.singletonList(ov));
 
-        out.setCivilCourtList(Collections.singletonList(crl2));
-        out.setCriminalCourtList(Collections.singletonList(crl));
+        var courtListTypes = new CourtListTypes();
+        courtListTypes.setCourtLocationName("A");
+        courtListTypes.setCourtRoomCode("A");
+        courtListTypes.setCourtProceedingsDate(Instant.now());
+        var fs = new FileSearchParameter();
+        fs.setFileNumber("A");
+        fs.setCourtDivisionCd("A");
+        courtListTypes.setFileSearchParameter(fs);
+        courtListTypes.setCivilCourtList(Collections.singletonList(crl2));
+        courtListTypes.setCriminalCourtList(Collections.singletonList(crl));
 
-        ResponseEntity<CourtListTypes> responseEntity = new ResponseEntity<>(out, HttpStatus.OK);
+        var out = new GetCrtListResponse();
+        out.setCourtLists(courtListTypes);
+
+        ResponseEntity<GetCrtListResponse> responseEntity =
+                new ResponseEntity<>(out, HttpStatus.OK);
 
         // Set up to mock ords response
         when(restTemplate.exchange(
-                        Mockito.any(String.class),
+                        Mockito.any(URI.class),
                         Mockito.eq(HttpMethod.GET),
                         Mockito.<HttpEntity<String>>any(),
-                        Mockito.<Class<CourtListTypes>>any()))
+                        Mockito.<Class<GetCrtListResponse>>any()))
                 .thenReturn(responseEntity);
 
         CourtController courtController = new CourtController(restTemplate, objectMapper);
@@ -860,7 +863,7 @@ public class CourtControllerTests {
 
         // Set up to mock ords response
         when(restTemplate.exchange(
-                        Mockito.any(String.class),
+                        Mockito.any(URI.class),
                         Mockito.eq(HttpMethod.GET),
                         Mockito.<HttpEntity<String>>any(),
                         Mockito.<Class<GetCrtListSecureResponse>>any()))

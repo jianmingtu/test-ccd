@@ -77,7 +77,7 @@ public class DevUtilsController {
             throws JsonProcessingException {
 
         UriComponentsBuilder builder =
-                UriComponentsBuilder.fromHttpUrl(host + "criminal/recreatecourtlist");
+                UriComponentsBuilder.fromHttpUrl(host + "common/courtlist/recreate");
 
         var inner =
                 crtList.getRecreateCourtListDoc() != null
