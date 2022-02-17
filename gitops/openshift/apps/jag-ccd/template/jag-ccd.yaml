@@ -120,16 +120,6 @@ objects:
                 secretKeyRef:
                   name: ccd-application-secrets
                   key: ORDS_HOST
-            - name: ORACLE_HOST
-              valueFrom:
-                secretKeyRef:
-                  name: ccd-application-secrets
-                  key: ORACLE_HOST
-            - name: ORACLE_NAME
-              valueFrom:
-                secretKeyRef:
-                  name: ccd-application-secrets
-                  key: ORACLE_NAME
             - name: GENERIC_AGENCY_ID
               valueFrom:
                 secretKeyRef:
