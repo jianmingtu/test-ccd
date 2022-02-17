@@ -101,7 +101,7 @@ public class TestService {
 
         }
         try {
-            runner.setProjectFile("CCDUserMapping-soapui-project.xml");
+            runner.setProjectFile("CCDCivilFileContent-soapui-project.xml");
             runner.run();
         } catch (Exception Ignore) {
 
