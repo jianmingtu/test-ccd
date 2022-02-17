@@ -30,12 +30,6 @@ public class ReportController {
     @Value("${ccd.host}" + "criminal/")
     private String ordsHost = "https://127.0.0.1/";
 
-    @Value("${ccd.oracle-host}")
-    private String oracleHost = "https://127.0.0.1/";
-
-    @Value("${ccd.oracle-name}")
-    private String oracleServerName = "A";
-
     @Value("${ccd.adobe-host}")
     private String adobeServerHost = "https://127.0.0.1/";
 
