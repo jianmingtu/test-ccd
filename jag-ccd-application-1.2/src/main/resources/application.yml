@@ -1,0 +1,21 @@
+security:
+  basic-auth:
+    password: ${BASIC_AUTH_PASS}
+    username: ${BASIC_AUTH_USER}
+ccd:
+  host: ${ORDS_HOST}
+  generic-agen-id:  ${GENERIC_AGENCY_ID}
+  generic-part-id:  ${GENERIC_PART_ID}
+  adobe-host: ${ADOBE_HOST}
+  report-app-name: ${REPORT_APP_NAME}
+
+
+management:
+  trace:
+    http:
+      include: TIME_TAKEN,RESPONSE_HEADERS
+  endpoints:
+    web:
+      exposure:
+        include: httptrace,metrics,prometheus,health
+

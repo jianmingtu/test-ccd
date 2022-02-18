@@ -9,10 +9,10 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>ca.bc.gov.open</groupId>
-    <artifactId>jag-ccd-application</artifactId>
+    <artifactId>jag-ccd-application-1.1</artifactId>
     <version>1.0</version>
-    <name>jag-ccd-application</name>
-    <description>jag-ccd-application</description>
+    <name>jag-ccd-application-1.1</name>
+    <description>jag-ccd-application-1.1</description>
     <properties>
         <default-package>ca.bc.gov.open.ccd</default-package>
         <java.version>11</java.version>
@@ -228,7 +228,7 @@
     </dependencies>
 
     <build>
-        <finalName>ccd-application</finalName>
+        <finalName>ccd-application-1.1</finalName>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
