@@ -228,7 +228,7 @@
     </dependencies>
 
     <build>
-        <finalName>ccd-application</finalName>
+        <finalName>ccd-application-1.2</finalName>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>

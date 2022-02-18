@@ -77,31 +77,10 @@ public class SoapConfig extends WsConfigurerAdapter {
         return messageFactory;
     }
 
-    @Bean(name = "CCD.Source.CCDUserMapping.ws:ccdUserMapping")
-    public Wsdl11Definition userMappingWSDL() {
-        SimpleWsdl11Definition wsdl11Definition = new SimpleWsdl11Definition();
-        wsdl11Definition.setWsdl(new ClassPathResource("xsdSchemas/ccdUserMapping.wsdl"));
-        return wsdl11Definition;
-    }
-
-    @Bean(name = "CCD.Source.CivilFileContent.ws:CivilFileContent")
-    public Wsdl11Definition civilFileContentWSDL() {
-        SimpleWsdl11Definition wsdl11Definition = new SimpleWsdl11Definition();
-        wsdl11Definition.setWsdl(new ClassPathResource("xsdSchemas/civilFileContent.wsdl"));
-        return wsdl11Definition;
-    }
-
     @Bean(name = "CCD.Source.CivilFileContent.ws:CivilFileContentSecure")
     public Wsdl11Definition civilFileContentSecureWSDL() {
         SimpleWsdl11Definition wsdl11Definition = new SimpleWsdl11Definition();
         wsdl11Definition.setWsdl(new ClassPathResource("xsdSchemas/civilFileContentSecure.wsdl"));
-        return wsdl11Definition;
-    }
-
-    @Bean(name = "CCD.Source.CodeValues.ws.provider:CodeValues")
-    public Wsdl11Definition codeValuesWSDL() {
-        SimpleWsdl11Definition wsdl11Definition = new SimpleWsdl11Definition();
-        wsdl11Definition.setWsdl(new ClassPathResource("xsdSchemas/codeValues.wsdl"));
         return wsdl11Definition;
     }
 
@@ -112,24 +91,10 @@ public class SoapConfig extends WsConfigurerAdapter {
         return wsdl11Definition;
     }
 
-    @Bean(name = "CCD.Source.CourtLists.ws.provider:CourtList")
-    public Wsdl11Definition courtListWSDL() {
-        SimpleWsdl11Definition wsdl11Definition = new SimpleWsdl11Definition();
-        wsdl11Definition.setWsdl(new ClassPathResource("xsdSchemas/courtList.wsdl"));
-        return wsdl11Definition;
-    }
-
     @Bean(name = "CCD.Source.CourtLists.ws.provider:CourtListSecure")
     public Wsdl11Definition courtListSecureWSDL() {
         SimpleWsdl11Definition wsdl11Definition = new SimpleWsdl11Definition();
         wsdl11Definition.setWsdl(new ClassPathResource("xsdSchemas/courtListSecure.wsdl"));
-        return wsdl11Definition;
-    }
-
-    @Bean(name = "CCD.Source.CriminalFileContent.ws.provider:CriminalFileContent")
-    public Wsdl11Definition criminalFileContentWSDL() {
-        SimpleWsdl11Definition wsdl11Definition = new SimpleWsdl11Definition();
-        wsdl11Definition.setWsdl(new ClassPathResource("xsdSchemas/criminalFileContent.wsdl"));
         return wsdl11Definition;
     }
 
@@ -141,24 +106,10 @@ public class SoapConfig extends WsConfigurerAdapter {
         return wsdl11Definition;
     }
 
-    @Bean(name = "CCD.Source.GetROPReport.ws:GetROPReport")
-    public Wsdl11Definition getRopReportWSDL() {
-        SimpleWsdl11Definition wsdl11Definition = new SimpleWsdl11Definition();
-        wsdl11Definition.setWsdl(new ClassPathResource("xsdSchemas/getRopReport.wsdl"));
-        return wsdl11Definition;
-    }
-
     @Bean(name = "CCD.Source.GetROPReport.ws:GetROPReportSecure")
     public Wsdl11Definition getRopReportSecureWSDL() {
         SimpleWsdl11Definition wsdl11Definition = new SimpleWsdl11Definition();
         wsdl11Definition.setWsdl(new ClassPathResource("xsdSchemas/getRopReportSecure.wsdl"));
-        return wsdl11Definition;
-    }
-
-    @Bean(name = "CCD.Source.GetUserLogin.WS:getUserLogin")
-    public Wsdl11Definition getUserLoginWSDL() {
-        SimpleWsdl11Definition wsdl11Definition = new SimpleWsdl11Definition();
-        wsdl11Definition.setWsdl(new ClassPathResource("xsdSchemas/getUserLogin.wsdl"));
         return wsdl11Definition;
     }
 
@@ -169,24 +120,10 @@ public class SoapConfig extends WsConfigurerAdapter {
         return wsdl11Definition;
     }
 
-    @Bean(name = "CCD.Source.GetDocument.ws:GetDocument")
-    public Wsdl11Definition getDocumentWSDL() {
-        SimpleWsdl11Definition wsdl11Definition = new SimpleWsdl11Definition();
-        wsdl11Definition.setWsdl(new ClassPathResource("xsdSchemas/getDocument.wsdl"));
-        return wsdl11Definition;
-    }
-
     @Bean(name = "CCD.Source.GetDocument.ws:GetDocumentSecure")
     public Wsdl11Definition getDocumentSecureWSDL() {
         SimpleWsdl11Definition wsdl11Definition = new SimpleWsdl11Definition();
         wsdl11Definition.setWsdl(new ClassPathResource("xsdSchemas/getDocumentSecure.wsdl"));
-        return wsdl11Definition;
-    }
-
-    @Bean(name = "CCD.Source.DevUtil.ws:DevUtils")
-    public Wsdl11Definition getDevUtilsWSDL() {
-        SimpleWsdl11Definition wsdl11Definition = new SimpleWsdl11Definition();
-        wsdl11Definition.setWsdl(new ClassPathResource("xsdSchemas/getDevUtils.wsdl"));
         return wsdl11Definition;
     }
 }
