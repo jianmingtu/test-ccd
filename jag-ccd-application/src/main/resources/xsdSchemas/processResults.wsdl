@@ -1,17 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" name="ProcessResults"
-                  targetNamespace="http://court.ag.gov.bc.ca/CCD.Source.ProcessResults.ws.provider:ProcessResults"
-                  xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/"
-                  xmlns:soapjms="http://www.w3.org/2008/07/soap/bindings/JMS/"
-                  xmlns:http="http://schemas.xmlsoap.org/wsdl/http/"
-                  xmlns:tns="http://court.ag.gov.bc.ca/CCD.Source.ProcessResults.ws.provider:ProcessResults"
-                  xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
-                  xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/"
-                  xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/">
+<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" name="ProcessResults" targetNamespace="http://court.ag.gov.bc.ca/CCD.Source.ProcessResults.ws.provider:ProcessResults" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:soapjms="http://www.w3.org/2008/07/soap/bindings/JMS/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:tns="http://court.ag.gov.bc.ca/CCD.Source.ProcessResults.ws.provider:ProcessResults" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/">
     <wsdl:types>
-        <xsd:schema targetNamespace="http://court.ag.gov.bc.ca/CCD.Source.ProcessResults.ws.provider:ProcessResults"
-                    xmlns:xsd="http://www.w3.org/2001/XMLSchema"
-                    xmlns:tns="http://court.ag.gov.bc.ca/CCD.Source.ProcessResults.ws.provider:ProcessResults">
+        <xsd:schema targetNamespace="http://court.ag.gov.bc.ca/CCD.Source.ProcessResults.ws.provider:ProcessResults" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://court.ag.gov.bc.ca/CCD.Source.ProcessResults.ws.provider:ProcessResults">
             <xsd:complexType name="processVariation">
                 <xsd:sequence>
                     <xsd:element name="Variation" nillable="true" type="tns:VariationType"/>
@@ -29,8 +19,7 @@
                     <xsd:element name="EventLogText" nillable="true" type="xsd:string"/>
                     <xsd:element name="SourceEventSeqNo" nillable="true" type="xsd:string"/>
                     <xsd:element name="SourcePackageId" nillable="true" type="xsd:string"/>
-                    <xsd:element name="VariationDetail" nillable="true" type="tns:VariationDetailType"
-                                 maxOccurs="unbounded"/>
+                    <xsd:element name="VariationDetail" nillable="true" type="tns:VariationDetailType" maxOccurs="unbounded"/>
                 </xsd:sequence>
             </xsd:complexType>
             <xsd:complexType name="VariationDetailType">
@@ -39,8 +28,7 @@
                     <xsd:element name="DocmId" nillable="true" type="xsd:string"/>
                     <xsd:element name="DocmTypeDsc" nillable="true" type="xsd:string"/>
                     <xsd:element name="VariationDetailText" nillable="true" type="xsd:string"/>
-                    <xsd:element name="ApplyToFile" nillable="true" type="tns:ApplyToFileVariationType"
-                                 maxOccurs="unbounded"/>
+                    <xsd:element name="ApplyToFile" nillable="true" type="tns:ApplyToFileVariationType" maxOccurs="unbounded"/>
                 </xsd:sequence>
             </xsd:complexType>
             <xsd:complexType name="ApplyToFileVariationType">
@@ -64,10 +52,8 @@
             <xsd:complexType name="Speaker">
                 <xsd:sequence>
                     <xsd:element name="TerminateExistingYN" nillable="true" type="xsd:string"/>
-                    <xsd:element name="ApplyToFile" nillable="true" type="tns:ApplyToFileSpeakerType"
-                                 maxOccurs="unbounded"/>
-                    <xsd:element name="SpeakerDetail" nillable="true" type="tns:SpeakerDetailsType"
-                                 maxOccurs="unbounded"/>
+                    <xsd:element name="ApplyToFile" nillable="true" type="tns:ApplyToFileSpeakerType" maxOccurs="unbounded"/>
+                    <xsd:element name="SpeakerDetail" nillable="true" type="tns:SpeakerDetailsType" maxOccurs="unbounded"/>
                 </xsd:sequence>
             </xsd:complexType>
             <xsd:complexType name="ApplyToFileSpeakerType">
@@ -86,8 +72,7 @@
                     <xsd:element name="VoirDireSeqNo" nillable="true" type="xsd:string"/>
                     <xsd:element name="SpeakerStatusDsc" nillable="true" type="xsd:string"/>
                     <xsd:element name="AttendanceMethodCd" nillable="true" type="xsd:string"/>
-                    <xsd:element name="SpeakerEvent" nillable="true" type="tns:SpeakerEventsType"
-                                 maxOccurs="unbounded"/>
+                    <xsd:element name="SpeakerEvent" nillable="true" type="tns:SpeakerEventsType" maxOccurs="unbounded"/>
                 </xsd:sequence>
             </xsd:complexType>
             <xsd:complexType name="SpeakerEventsType">
@@ -119,17 +104,12 @@
                     <xsd:element name="EventLogText" nillable="true" type="xsd:string"/>
                     <xsd:element name="SourceEventSeqNo" nillable="true" type="xsd:string"/>
                     <xsd:element name="SourcePackageId" nillable="true" type="xsd:string"/>
-                    <xsd:element name="CivilResultDetail" nillable="true" type="tns:CivilResultDetailType"
-                                 maxOccurs="unbounded"/>
-                    <xsd:element name="NextAppearance" nillable="true" type="tns:NextAppearanceType"
-                                 maxOccurs="unbounded"/>
-                    <xsd:element name="NewDocumentFiled" nillable="true" type="tns:NewDocumentFiledType"
-                                 maxOccurs="unbounded"/>
-                    <xsd:element name="OralApplication" nillable="true" type="tns:OralApplicationType"
-                                 maxOccurs="unbounded"/>
+                    <xsd:element name="CivilResultDetail" nillable="true" type="tns:CivilResultDetailType" maxOccurs="unbounded"/>
+                    <xsd:element name="NextAppearance" nillable="true" type="tns:NextAppearanceType" maxOccurs="unbounded"/>
+                    <xsd:element name="NewDocumentFiled" nillable="true" type="tns:NewDocumentFiledType" maxOccurs="unbounded"/>
+                    <xsd:element name="OralApplication" nillable="true" type="tns:OralApplicationType" maxOccurs="unbounded"/>
                     <xsd:element name="JudgeComment" nillable="true" type="tns:JudgeCommentType" maxOccurs="unbounded"/>
-                    <xsd:element name="HearingRestriction" nillable="true" type="tns:HearingRestrictionType"
-                                 maxOccurs="unbounded"/>
+                    <xsd:element name="HearingRestriction" nillable="true" type="tns:HearingRestrictionType" maxOccurs="unbounded"/>
                 </xsd:sequence>
             </xsd:complexType>
             <xsd:complexType name="CivilResultDetailType">
@@ -162,8 +142,7 @@
                     <xsd:element name="CourtAgencyIdentifier" nillable="true" type="xsd:string"/>
                     <xsd:element name="CourtRoom" nillable="true" type="xsd:string"/>
                     <xsd:element name="AppearanceId" nillable="true" type="xsd:string"/>
-                    <xsd:element name="ApplyToFile" nillable="true" type="tns:ApplyToFileCivilResultType"
-                                 maxOccurs="unbounded"/>
+                    <xsd:element name="ApplyToFile" nillable="true" type="tns:ApplyToFileCivilResultType" maxOccurs="unbounded"/>
                     <xsd:element name="Party" nillable="true" type="tns:PartyType" maxOccurs="unbounded"/>
                 </xsd:sequence>
             </xsd:complexType>
@@ -217,8 +196,7 @@
                 <xsd:sequence>
                     <xsd:element name="HearingRestrictionType" nillable="true" type="xsd:string"/>
                     <xsd:element name="JudgePartId" nillable="true" type="xsd:string"/>
-                    <xsd:element name="ApplyToFile" nillable="true" type="tns:ApplyToFileCivilResultType"
-                                 maxOccurs="unbounded"/>
+                    <xsd:element name="ApplyToFile" nillable="true" type="tns:ApplyToFileCivilResultType" maxOccurs="unbounded"/>
                 </xsd:sequence>
             </xsd:complexType>
             <xsd:complexType name="processCivilResultsResponse">
@@ -242,17 +220,14 @@
                     <xsd:element name="EventTypeCode" nillable="true" type="xsd:string"/>
                     <xsd:element name="EventLogText" nillable="true" type="xsd:string"/>
                     <xsd:element name="SourceEventSeqNo" nillable="true" type="xsd:string"/>
-                    <xsd:element name="AppearanceMethodDetail" nillable="true" type="tns:AppearanceMethodDetailType"
-                                 maxOccurs="unbounded"/>
+                    <xsd:element name="AppearanceMethodDetail" nillable="true" type="tns:AppearanceMethodDetailType" maxOccurs="unbounded"/>
                     <xsd:element name="SourcePackageId" nillable="true" type="xsd:string"/>
                 </xsd:sequence>
             </xsd:complexType>
             <xsd:complexType name="AppearanceMethodDetailType">
                 <xsd:sequence>
-                    <xsd:element name="ApplyToFileAppearanceMethod" nillable="true"
-                                 type="tns:ApplyToFileAppearanceMethodType" maxOccurs="unbounded"/>
-                    <xsd:element name="PartyAppearanceMethod" nillable="true" type="tns:partyAppearanceMethodType"
-                                 maxOccurs="unbounded"/>
+                    <xsd:element name="ApplyToFileAppearanceMethod" nillable="true" type="tns:ApplyToFileAppearanceMethodType" maxOccurs="unbounded"/>
+                    <xsd:element name="PartyAppearanceMethod" nillable="true" type="tns:partyAppearanceMethodType" maxOccurs="unbounded"/>
                     <xsd:element name="JuryTrialYN" nillable="true" type="xsd:string"/>
                 </xsd:sequence>
             </xsd:complexType>
@@ -303,8 +278,7 @@
             </xsd:complexType>
             <xsd:complexType name="PleaDetails">
                 <xsd:sequence>
-                    <xsd:element name="ApplyToFile" nillable="true" type="tns:ApplyToFilePleaType"
-                                 maxOccurs="unbounded"/>
+                    <xsd:element name="ApplyToFile" nillable="true" type="tns:ApplyToFilePleaType" maxOccurs="unbounded"/>
                     <xsd:element name="ActionCd" nillable="true" type="xsd:string"/>
                     <xsd:element name="PleaCd" nillable="true" type="xsd:string"/>
                     <xsd:element name="SectionOtherStatuteId" nillable="true" type="xsd:string"/>
@@ -341,8 +315,7 @@
                     <xsd:element name="EventTypeCode" nillable="true" type="xsd:string"/>
                     <xsd:element name="EventLogText" nillable="true" type="xsd:string"/>
                     <xsd:element name="SourceEventSeqNo" nillable="true" type="xsd:string"/>
-                    <xsd:element name="ElectionDetails" nillable="true" type="tns:ElectionDetailType"
-                                 maxOccurs="unbounded"/>
+                    <xsd:element name="ElectionDetails" nillable="true" type="tns:ElectionDetailType" maxOccurs="unbounded"/>
                     <xsd:element name="SourcePackageId" nillable="true" type="xsd:string"/>
                 </xsd:sequence>
             </xsd:complexType>
@@ -350,8 +323,7 @@
                 <xsd:sequence>
                     <xsd:element name="CrownProceed" nillable="true" type="xsd:string"/>
                     <xsd:element name="Election" nillable="true" type="xsd:string"/>
-                    <xsd:element name="ApplyToFileElection" nillable="true" type="tns:ApplyToFileElectionType"
-                                 maxOccurs="unbounded"/>
+                    <xsd:element name="ApplyToFileElection" nillable="true" type="tns:ApplyToFileElectionType" maxOccurs="unbounded"/>
                 </xsd:sequence>
             </xsd:complexType>
             <xsd:complexType name="ApplyToFileElectionType">
@@ -400,8 +372,7 @@
                     <xsd:element name="SuretyQty" nillable="true" type="xsd:string"/>
                     <xsd:element name="MoreSuretiesAllowedYn" nillable="true" type="xsd:string"/>
                     <xsd:element name="Surety" nillable="true" type="tns:SuretyType" maxOccurs="unbounded"/>
-                    <xsd:element name="ApplyToFile" nillable="true" type="tns:ApplyToFileBailType"
-                                 maxOccurs="unbounded"/>
+                    <xsd:element name="ApplyToFile" nillable="true" type="tns:ApplyToFileBailType" maxOccurs="unbounded"/>
                 </xsd:sequence>
             </xsd:complexType>
             <xsd:complexType name="SuretyType">
@@ -442,8 +413,7 @@
                     <xsd:element name="EventTypeCode" nillable="true" type="xsd:string"/>
                     <xsd:element name="EventLogText" nillable="true" type="xsd:string"/>
                     <xsd:element name="SourceEventSeqNo" nillable="true" type="xsd:string"/>
-                    <xsd:element name="CriminalResultsDetail" nillable="true" type="tns:CriminalResultsDetail"
-                                 maxOccurs="unbounded"/>
+                    <xsd:element name="CriminalResultsDetail" nillable="true" type="tns:CriminalResultsDetail" maxOccurs="unbounded"/>
                     <xsd:element name="SourcePackageId" nillable="true" type="xsd:string"/>
                 </xsd:sequence>
             </xsd:complexType>
@@ -456,10 +426,8 @@
                     <xsd:element name="JudgeDisqualifiedName" nillable="true" type="xsd:string"/>
                     <xsd:element name="TrialProceededYN" nillable="true" type="xsd:string"/>
                     <xsd:element name="ApplyToFile" nillable="true" type="tns:ApplyToFileCRType" maxOccurs="unbounded"/>
-                    <xsd:element name="NextAppearance" nillable="true" type="tns:NextAppearanceCRType"
-                                 maxOccurs="unbounded"/>
-                    <xsd:element name="GenerateDocument" nillable="true" type="tns:GenerateDocumentCRType"
-                                 maxOccurs="unbounded"/>
+                    <xsd:element name="NextAppearance" nillable="true" type="tns:NextAppearanceCRType" maxOccurs="unbounded"/>
+                    <xsd:element name="GenerateDocument" nillable="true" type="tns:GenerateDocumentCRType" maxOccurs="unbounded"/>
                 </xsd:sequence>
             </xsd:complexType>
             <xsd:complexType name="ApplyToFileCRType">
@@ -482,8 +450,7 @@
                     <xsd:element name="Language" nillable="true" type="xsd:string"/>
                     <xsd:element name="AppearanceId" nillable="true" type="xsd:string"/>
                     <xsd:element name="NotifySchedulerOnlyYN" nillable="true" type="xsd:string"/>
-                    <xsd:element name="NextAppMethod" nillable="true" type="tns:NextAppearanceMethodCRType"
-                                 maxOccurs="unbounded"/>
+                    <xsd:element name="NextAppMethod" nillable="true" type="tns:NextAppearanceMethodCRType" maxOccurs="unbounded"/>
                 </xsd:sequence>
             </xsd:complexType>
             <xsd:complexType name="NextAppearanceMethodCRType">
@@ -526,17 +493,14 @@
                     <xsd:element name="EventTypeCode" nillable="true" type="xsd:string"/>
                     <xsd:element name="EventLogText" nillable="true" type="xsd:string"/>
                     <xsd:element name="SourceEventSeqNo" nillable="true" type="xsd:string"/>
-                    <xsd:element name="AgeNoticeDetail" nillable="true" type="tns:AgeNoticeDetailType"
-                                 maxOccurs="unbounded"/>
+                    <xsd:element name="AgeNoticeDetail" nillable="true" type="tns:AgeNoticeDetailType" maxOccurs="unbounded"/>
                     <xsd:element name="SourcePackageId" nillable="true" type="xsd:string"/>
                 </xsd:sequence>
             </xsd:complexType>
             <xsd:complexType name="AgeNoticeDetailType">
                 <xsd:sequence>
-                    <xsd:element name="ApplyToFileAgeNotice" nillable="true" type="tns:ApplyToFileTypeAgeNotice"
-                                 maxOccurs="unbounded"/>
-                    <xsd:element name="AgeNoticeEvent" nillable="true" type="tns:AgeNoticeEventType"
-                                 maxOccurs="unbounded"/>
+                    <xsd:element name="ApplyToFileAgeNotice" nillable="true" type="tns:ApplyToFileTypeAgeNotice" maxOccurs="unbounded"/>
+                    <xsd:element name="AgeNoticeEvent" nillable="true" type="tns:AgeNoticeEventType" maxOccurs="unbounded"/>
                 </xsd:sequence>
             </xsd:complexType>
             <xsd:complexType name="ApplyToFileTypeAgeNotice">
@@ -577,8 +541,7 @@
                     <xsd:element name="EventLogText" nillable="true" type="xsd:string"/>
                     <xsd:element name="SourceEventSeqNo" nillable="true" type="xsd:string"/>
                     <xsd:element name="SourcePackageId" nillable="true" type="xsd:string"/>
-                    <xsd:element name="MatterCallDetails" nillable="true" type="tns:MatterCallDetails"
-                                 maxOccurs="unbounded"/>
+                    <xsd:element name="MatterCallDetails" nillable="true" type="tns:MatterCallDetails" maxOccurs="unbounded"/>
                 </xsd:sequence>
             </xsd:complexType>
             <xsd:complexType name="MatterCallDetails">
@@ -620,18 +583,15 @@
                     <xsd:element name="EventTypeCode" nillable="true" type="xsd:string"/>
                     <xsd:element name="EventLogText" nillable="true" type="xsd:string"/>
                     <xsd:element name="SourceEventSeqNo" nillable="true" type="xsd:string"/>
-                    <xsd:element name="SentencetDetail" nillable="true" type="tns:SentencetDetailType"
-                                 maxOccurs="unbounded"/>
+                    <xsd:element name="SentencetDetail" nillable="true" type="tns:SentencetDetailType" maxOccurs="unbounded"/>
                     <xsd:element name="SourcePackageId" nillable="true" type="xsd:string"/>
                 </xsd:sequence>
             </xsd:complexType>
             <xsd:complexType name="SentencetDetailType">
                 <xsd:sequence>
-                    <xsd:element name="ApplyToFile" nillable="true" type="tns:SentenceApplyToFileType"
-                                 maxOccurs="unbounded"/>
+                    <xsd:element name="ApplyToFile" nillable="true" type="tns:SentenceApplyToFileType" maxOccurs="unbounded"/>
                     <xsd:element name="MonetaryTerm" nillable="true" type="tns:MonetaryTermType" maxOccurs="unbounded"/>
-                    <xsd:element name="NonMonetaryTerm" nillable="true" type="tns:NonMonetaryTermType"
-                                 maxOccurs="unbounded"/>
+                    <xsd:element name="NonMonetaryTerm" nillable="true" type="tns:NonMonetaryTermType" maxOccurs="unbounded"/>
                 </xsd:sequence>
             </xsd:complexType>
             <xsd:complexType name="SentenceApplyToFileType">
@@ -710,8 +670,7 @@
             </xsd:complexType>
             <xsd:complexType name="BanDetailType">
                 <xsd:sequence>
-                    <xsd:element name="ApplyToFileBan" nillable="true" type="tns:ApplyToFileBanType"
-                                 maxOccurs="unbounded"/>
+                    <xsd:element name="ApplyToFileBan" nillable="true" type="tns:ApplyToFileBanType" maxOccurs="unbounded"/>
                     <xsd:element name="BanInfo" nillable="true" type="tns:BanInfoType" maxOccurs="unbounded"/>
                 </xsd:sequence>
             </xsd:complexType>
@@ -786,17 +745,14 @@
                     <xsd:element name="EventTypeCode" nillable="true" type="xsd:string"/>
                     <xsd:element name="EventLogText" nillable="true" type="xsd:string"/>
                     <xsd:element name="SourceEventSeqNo" nillable="true" type="xsd:string"/>
-                    <xsd:element name="ArraignmentDetail" nillable="true" type="tns:ArraignmentDetailType"
-                                 maxOccurs="unbounded"/>
+                    <xsd:element name="ArraignmentDetail" nillable="true" type="tns:ArraignmentDetailType" maxOccurs="unbounded"/>
                     <xsd:element name="SourcePackageId" nillable="true" type="xsd:string"/>
                 </xsd:sequence>
             </xsd:complexType>
             <xsd:complexType name="ArraignmentDetailType">
                 <xsd:sequence>
-                    <xsd:element name="ApplyToFileArraignment" nillable="true" type="tns:ApplyToFileArraignmentType"
-                                 maxOccurs="unbounded"/>
-                    <xsd:element name="ArraignmentEvent" nillable="true" type="tns:ArraignmentEventType"
-                                 maxOccurs="unbounded"/>
+                    <xsd:element name="ApplyToFileArraignment" nillable="true" type="tns:ApplyToFileArraignmentType" maxOccurs="unbounded"/>
+                    <xsd:element name="ArraignmentEvent" nillable="true" type="tns:ArraignmentEventType" maxOccurs="unbounded"/>
                 </xsd:sequence>
             </xsd:complexType>
             <xsd:complexType name="ApplyToFileArraignmentType">
@@ -839,8 +795,7 @@
                 <xsd:sequence>
                     <xsd:element name="CourtAgencyIdentifier" nillable="true" type="xsd:string"/>
                     <xsd:element name="CourtRoom" nillable="true" type="xsd:string"/>
-                    <xsd:element name="ApplyToFileMove" nillable="true" type="tns:ApplyToFileMoveType"
-                                 maxOccurs="unbounded"/>
+                    <xsd:element name="ApplyToFileMove" nillable="true" type="tns:ApplyToFileMoveType" maxOccurs="unbounded"/>
                 </xsd:sequence>
             </xsd:complexType>
             <xsd:complexType name="ApplyToFileMoveType">
@@ -872,8 +827,7 @@
                     <xsd:element name="SourcePackageId" nillable="true" type="xsd:string"/>
                     <xsd:element name="EventLogText" nillable="true" type="xsd:string"/>
                     <xsd:element name="SourceEventSeqNo" nillable="true" type="xsd:string"/>
-                    <xsd:element name="FindingDetails" nillable="true" type="tns:FindingDetailType"
-                                 maxOccurs="unbounded"/>
+                    <xsd:element name="FindingDetails" nillable="true" type="tns:FindingDetailType" maxOccurs="unbounded"/>
                 </xsd:sequence>
             </xsd:complexType>
             <xsd:complexType name="FindingDetailType">
@@ -881,8 +835,7 @@
                     <xsd:element name="Finding" nillable="true" type="xsd:string"/>
                     <xsd:element name="SectionOtherStatuteId" nillable="true" type="xsd:string"/>
                     <xsd:element name="SectionOther" nillable="true" type="xsd:string"/>
-                    <xsd:element name="ApplyToFileFinding" nillable="true" type="tns:ApplyToFileFindingType"
-                                 maxOccurs="unbounded"/>
+                    <xsd:element name="ApplyToFileFinding" nillable="true" type="tns:ApplyToFileFindingType" maxOccurs="unbounded"/>
                 </xsd:sequence>
             </xsd:complexType>
             <xsd:complexType name="ApplyToFileFindingType">
@@ -920,8 +873,7 @@
             </xsd:complexType>
             <xsd:complexType name="ResultDetail">
                 <xsd:sequence>
-                    <xsd:element name="ApplyToFileGenericResults" nillable="true" type="tns:ApplyToFileGenericResults"
-                                 maxOccurs="unbounded"/>
+                    <xsd:element name="ApplyToFileGenericResults" nillable="true" type="tns:ApplyToFileGenericResults" maxOccurs="unbounded"/>
                     <xsd:element name="EventSubType" nillable="true" type="xsd:string"/>
                     <xsd:element name="EventValue" nillable="true" type="xsd:string"/>
                 </xsd:sequence>
@@ -956,16 +908,13 @@
                     <xsd:element name="EventLogText" nillable="true" type="xsd:string"/>
                     <xsd:element name="SourceEventSeqNo" nillable="true" type="xsd:string"/>
                     <xsd:element name="SourcePackageId" nillable="true" type="xsd:string"/>
-                    <xsd:element name="CivilAppearanceMethodDetail" nillable="true"
-                                 type="tns:CivilAppearanceMethodDetailType" maxOccurs="unbounded"/>
+                    <xsd:element name="CivilAppearanceMethodDetail" nillable="true" type="tns:CivilAppearanceMethodDetailType" maxOccurs="unbounded"/>
                 </xsd:sequence>
             </xsd:complexType>
             <xsd:complexType name="CivilAppearanceMethodDetailType">
                 <xsd:sequence>
-                    <xsd:element name="ApplyToFile" nillable="true" type="tns:ApplyToFileCivilAppMethodType"
-                                 maxOccurs="unbounded"/>
-                    <xsd:element name="PartyAppearanceMethod" nillable="true" type="tns:CivilPartyAppearanceMethodType"
-                                 maxOccurs="unbounded"/>
+                    <xsd:element name="ApplyToFile" nillable="true" type="tns:ApplyToFileCivilAppMethodType" maxOccurs="unbounded"/>
+                    <xsd:element name="PartyAppearanceMethod" nillable="true" type="tns:CivilPartyAppearanceMethodType" maxOccurs="unbounded"/>
                     <xsd:element name="JuryTrialYN" nillable="true" type="xsd:string"/>
                 </xsd:sequence>
             </xsd:complexType>
@@ -982,9 +931,12 @@
                     <xsd:element name="PartyId" nillable="true" type="xsd:string"/>
                     <xsd:element name="PartyTypeCd" nillable="true" type="xsd:string"/>
                     <xsd:element name="PartyAppearanceMethod" nillable="true" type="xsd:string"/>
+                    <xsd:element name="RemoteAttendanceYN" nillable="true" type="xsd:string"/>
+                    <xsd:element name="RemoteAgencyIdentifierId" nillable="true" type="xsd:string"/>
+                    <xsd:element name="RemoteCourtRoomAgencyIdentifierId" nillable="true" type="xsd:string"/>
+                    <xsd:element name="RemoteCourtRoomCd" nillable="true" type="xsd:string"/>
                     <xsd:element name="Counsel" nillable="true" type="tns:CounselType" maxOccurs="unbounded"/>
-                    <xsd:element name="Representative" nillable="true" type="tns:RepresentativeType"
-                                 maxOccurs="unbounded"/>
+                    <xsd:element name="Representative" nillable="true" type="tns:RepresentativeType" maxOccurs="unbounded"/>
                 </xsd:sequence>
             </xsd:complexType>
             <xsd:complexType name="CounselType">
@@ -1028,8 +980,7 @@
             </xsd:complexType>
             <xsd:complexType name="OrderDetailType">
                 <xsd:sequence>
-                    <xsd:element name="ApplyToFile" nillable="true" type="tns:ApplyToFileOrderType"
-                                 maxOccurs="unbounded"/>
+                    <xsd:element name="ApplyToFile" nillable="true" type="tns:ApplyToFileOrderType" maxOccurs="unbounded"/>
                     <xsd:element name="OrderEvent" nillable="true" type="tns:OrderEventType" maxOccurs="unbounded"/>
                 </xsd:sequence>
             </xsd:complexType>
@@ -1077,12 +1028,9 @@
                     <xsd:element name="EventLogText" nillable="true" type="xsd:string"/>
                     <xsd:element name="SourceEventSeqNo" nillable="true" type="xsd:string"/>
                     <xsd:element name="SourcePackageId" nillable="true" type="xsd:string"/>
-                    <xsd:element name="CivilOrderDetail" nillable="true" type="tns:CivilOrderDetailType"
-                                 maxOccurs="unbounded"/>
-                    <xsd:element name="AdminOrderDetail" nillable="true" type="tns:AdminOrderDetailType"
-                                 maxOccurs="unbounded"/>
-                    <xsd:element name="JudgeComment" nillable="true" type="tns:JudgeCommentType2"
-                                 maxOccurs="unbounded"/>
+                    <xsd:element name="CivilOrderDetail" nillable="true" type="tns:CivilOrderDetailType" maxOccurs="unbounded"/>
+                    <xsd:element name="AdminOrderDetail" nillable="true" type="tns:AdminOrderDetailType" maxOccurs="unbounded"/>
+                    <xsd:element name="JudgeComment" nillable="true" type="tns:JudgeCommentType2" maxOccurs="unbounded"/>
                 </xsd:sequence>
             </xsd:complexType>
             <xsd:complexType name="CivilOrderDetailType">
@@ -1104,8 +1052,7 @@
                     <xsd:element name="FirearmYN" nillable="true" type="xsd:string"/>
                     <xsd:element name="VaryDocumentId" nillable="true" type="xsd:string"/>
                     <xsd:element name="CancelDocumentId" nillable="true" type="xsd:string"/>
-                    <xsd:element name="ApplyToFile" nillable="true" type="tns:ApplyToFileCivilOrderType"
-                                 maxOccurs="unbounded"/>
+                    <xsd:element name="ApplyToFile" nillable="true" type="tns:ApplyToFileCivilOrderType" maxOccurs="unbounded"/>
                     <xsd:element name="OrderTerm" nillable="true" type="tns:OrderTermType" maxOccurs="unbounded"/>
                     <xsd:element name="Party" nillable="true" type="tns:CivilOrderPartyType" maxOccurs="unbounded"/>
                 </xsd:sequence>
@@ -1136,8 +1083,7 @@
             </xsd:complexType>
             <xsd:complexType name="AdminOrderDetailType">
                 <xsd:sequence>
-                    <xsd:element name="ApplyToFile" nillable="true" type="tns:ApplyToFileCivilOrderType"
-                                 maxOccurs="unbounded"/>
+                    <xsd:element name="ApplyToFile" nillable="true" type="tns:ApplyToFileCivilOrderType" maxOccurs="unbounded"/>
                     <xsd:element name="OrderTerm" nillable="true" type="tns:OrderTermType" maxOccurs="unbounded"/>
                 </xsd:sequence>
             </xsd:complexType>
@@ -1595,8 +1541,7 @@
     <wsdl:binding name="CCD_Source_ProcessResults_ws_provider_ProcessResults_Binder" type="tns:ProcessResults_PortType">
         <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
         <wsdl:operation name="processFinding">
-            <soap:operation soapAction="CCD_Source_ProcessResults_ws_provider_ProcessResults_Binder_processFinding"
-                            style="document"/>
+            <soap:operation soapAction="CCD_Source_ProcessResults_ws_provider_ProcessResults_Binder_processFinding" style="document"/>
             <wsdl:input>
                 <soap:body parts="parameters" use="literal"/>
             </wsdl:input>
@@ -1605,8 +1550,7 @@
             </wsdl:output>
         </wsdl:operation>
         <wsdl:operation name="processMove">
-            <soap:operation soapAction="CCD_Source_ProcessResults_ws_provider_ProcessResults_Binder_processMove"
-                            style="document"/>
+            <soap:operation soapAction="CCD_Source_ProcessResults_ws_provider_ProcessResults_Binder_processMove" style="document"/>
             <wsdl:input>
                 <soap:body parts="parameters" use="literal"/>
             </wsdl:input>
@@ -1615,8 +1559,7 @@
             </wsdl:output>
         </wsdl:operation>
         <wsdl:operation name="processVariation">
-            <soap:operation soapAction="CCD_Source_ProcessResults_ws_provider_ProcessResults_Binder_processVariation"
-                            style="document"/>
+            <soap:operation soapAction="CCD_Source_ProcessResults_ws_provider_ProcessResults_Binder_processVariation" style="document"/>
             <wsdl:input>
                 <soap:body parts="parameters" use="literal"/>
             </wsdl:input>
@@ -1625,8 +1568,7 @@
             </wsdl:output>
         </wsdl:operation>
         <wsdl:operation name="processSpecialCourt">
-            <soap:operation soapAction="CCD_Source_ProcessResults_ws_provider_ProcessResults_Binder_processSpecialCourt"
-                            style="document"/>
+            <soap:operation soapAction="CCD_Source_ProcessResults_ws_provider_ProcessResults_Binder_processSpecialCourt" style="document"/>
             <wsdl:input>
                 <soap:body parts="parameters" use="literal"/>
             </wsdl:input>
@@ -1635,8 +1577,7 @@
             </wsdl:output>
         </wsdl:operation>
         <wsdl:operation name="processBail">
-            <soap:operation soapAction="CCD_Source_ProcessResults_ws_provider_ProcessResults_Binder_processBail"
-                            style="document"/>
+            <soap:operation soapAction="CCD_Source_ProcessResults_ws_provider_ProcessResults_Binder_processBail" style="document"/>
             <wsdl:input>
                 <soap:body parts="parameters" use="literal"/>
             </wsdl:input>
@@ -1645,8 +1586,7 @@
             </wsdl:output>
         </wsdl:operation>
         <wsdl:operation name="processAgeNotice">
-            <soap:operation soapAction="CCD_Source_ProcessResults_ws_provider_ProcessResults_Binder_processAgeNotice"
-                            style="document"/>
+            <soap:operation soapAction="CCD_Source_ProcessResults_ws_provider_ProcessResults_Binder_processAgeNotice" style="document"/>
             <wsdl:input>
                 <soap:body parts="parameters" use="literal"/>
             </wsdl:input>
@@ -1655,8 +1595,7 @@
             </wsdl:output>
         </wsdl:operation>
         <wsdl:operation name="processSpeaker">
-            <soap:operation soapAction="CCD_Source_ProcessResults_ws_provider_ProcessResults_Binder_processSpeaker"
-                            style="document"/>
+            <soap:operation soapAction="CCD_Source_ProcessResults_ws_provider_ProcessResults_Binder_processSpeaker" style="document"/>
             <wsdl:input>
                 <soap:body parts="parameters" use="literal"/>
             </wsdl:input>
@@ -1665,9 +1604,7 @@
             </wsdl:output>
         </wsdl:operation>
         <wsdl:operation name="processAppearanceMethod">
-            <soap:operation
-                    soapAction="CCD_Source_ProcessResults_ws_provider_ProcessResults_Binder_processAppearanceMethod"
-                    style="document"/>
+            <soap:operation soapAction="CCD_Source_ProcessResults_ws_provider_ProcessResults_Binder_processAppearanceMethod" style="document"/>
             <wsdl:input>
                 <soap:body parts="parameters" use="literal"/>
             </wsdl:input>
@@ -1676,9 +1613,7 @@
             </wsdl:output>
         </wsdl:operation>
         <wsdl:operation name="ProcessCivilAppearanceMethod">
-            <soap:operation
-                    soapAction="CCD_Source_ProcessResults_ws_provider_ProcessResults_Binder_ProcessCivilAppearanceMethod"
-                    style="document"/>
+            <soap:operation soapAction="CCD_Source_ProcessResults_ws_provider_ProcessResults_Binder_ProcessCivilAppearanceMethod" style="document"/>
             <wsdl:input>
                 <soap:body parts="parameters" use="literal"/>
             </wsdl:input>
@@ -1687,8 +1622,7 @@
             </wsdl:output>
         </wsdl:operation>
         <wsdl:operation name="processPlea">
-            <soap:operation soapAction="CCD_Source_ProcessResults_ws_provider_ProcessResults_Binder_processPlea"
-                            style="document"/>
+            <soap:operation soapAction="CCD_Source_ProcessResults_ws_provider_ProcessResults_Binder_processPlea" style="document"/>
             <wsdl:input>
                 <soap:body parts="parameters" use="literal"/>
             </wsdl:input>
@@ -1697,9 +1631,7 @@
             </wsdl:output>
         </wsdl:operation>
         <wsdl:operation name="processCriminalResult">
-            <soap:operation
-                    soapAction="CCD_Source_ProcessResults_ws_provider_ProcessResults_Binder_processCriminalResult"
-                    style="document"/>
+            <soap:operation soapAction="CCD_Source_ProcessResults_ws_provider_ProcessResults_Binder_processCriminalResult" style="document"/>
             <wsdl:input>
                 <soap:body parts="parameters" use="literal"/>
             </wsdl:input>
@@ -1708,8 +1640,7 @@
             </wsdl:output>
         </wsdl:operation>
         <wsdl:operation name="processExhibit">
-            <soap:operation soapAction="CCD_Source_ProcessResults_ws_provider_ProcessResults_Binder_processExhibit"
-                            style="document"/>
+            <soap:operation soapAction="CCD_Source_ProcessResults_ws_provider_ProcessResults_Binder_processExhibit" style="document"/>
             <wsdl:input>
                 <soap:body parts="parameters" use="literal"/>
             </wsdl:input>
@@ -1718,9 +1649,7 @@
             </wsdl:output>
         </wsdl:operation>
         <wsdl:operation name="processCivilOrderResult">
-            <soap:operation
-                    soapAction="CCD_Source_ProcessResults_ws_provider_ProcessResults_Binder_processCivilOrderResult"
-                    style="document"/>
+            <soap:operation soapAction="CCD_Source_ProcessResults_ws_provider_ProcessResults_Binder_processCivilOrderResult" style="document"/>
             <wsdl:input>
                 <soap:body parts="parameters" use="literal"/>
             </wsdl:input>
@@ -1729,8 +1658,7 @@
             </wsdl:output>
         </wsdl:operation>
         <wsdl:operation name="processArraignment">
-            <soap:operation soapAction="CCD_Source_ProcessResults_ws_provider_ProcessResults_Binder_processArraignment"
-                            style="document"/>
+            <soap:operation soapAction="CCD_Source_ProcessResults_ws_provider_ProcessResults_Binder_processArraignment" style="document"/>
             <wsdl:input>
                 <soap:body parts="parameters" use="literal"/>
             </wsdl:input>
@@ -1739,9 +1667,7 @@
             </wsdl:output>
         </wsdl:operation>
         <wsdl:operation name="processGenericResult">
-            <soap:operation
-                    soapAction="CCD_Source_ProcessResults_ws_provider_ProcessResults_Binder_processGenericResult"
-                    style="document"/>
+            <soap:operation soapAction="CCD_Source_ProcessResults_ws_provider_ProcessResults_Binder_processGenericResult" style="document"/>
             <wsdl:input>
                 <soap:body parts="parameters" use="literal"/>
             </wsdl:input>
@@ -1750,8 +1676,7 @@
             </wsdl:output>
         </wsdl:operation>
         <wsdl:operation name="processNote">
-            <soap:operation soapAction="CCD_Source_ProcessResults_ws_provider_ProcessResults_Binder_processNote"
-                            style="document"/>
+            <soap:operation soapAction="CCD_Source_ProcessResults_ws_provider_ProcessResults_Binder_processNote" style="document"/>
             <wsdl:input>
                 <soap:body parts="parameters" use="literal"/>
             </wsdl:input>
@@ -1760,8 +1685,7 @@
             </wsdl:output>
         </wsdl:operation>
         <wsdl:operation name="processOrder">
-            <soap:operation soapAction="CCD_Source_ProcessResults_ws_provider_ProcessResults_Binder_processOrder"
-                            style="document"/>
+            <soap:operation soapAction="CCD_Source_ProcessResults_ws_provider_ProcessResults_Binder_processOrder" style="document"/>
             <wsdl:input>
                 <soap:body parts="parameters" use="literal"/>
             </wsdl:input>
@@ -1770,8 +1694,7 @@
             </wsdl:output>
         </wsdl:operation>
         <wsdl:operation name="processCivilResults">
-            <soap:operation soapAction="CCD_Source_ProcessResults_ws_provider_ProcessResults_Binder_processCivilResults"
-                            style="document"/>
+            <soap:operation soapAction="CCD_Source_ProcessResults_ws_provider_ProcessResults_Binder_processCivilResults" style="document"/>
             <wsdl:input>
                 <soap:body parts="parameters" use="literal"/>
             </wsdl:input>
@@ -1780,8 +1703,7 @@
             </wsdl:output>
         </wsdl:operation>
         <wsdl:operation name="processSentence">
-            <soap:operation soapAction="CCD_Source_ProcessResults_ws_provider_ProcessResults_Binder_processSentence"
-                            style="document"/>
+            <soap:operation soapAction="CCD_Source_ProcessResults_ws_provider_ProcessResults_Binder_processSentence" style="document"/>
             <wsdl:input>
                 <soap:body parts="parameters" use="literal"/>
             </wsdl:input>
@@ -1790,8 +1712,7 @@
             </wsdl:output>
         </wsdl:operation>
         <wsdl:operation name="processBan">
-            <soap:operation soapAction="CCD_Source_ProcessResults_ws_provider_ProcessResults_Binder_processBan"
-                            style="document"/>
+            <soap:operation soapAction="CCD_Source_ProcessResults_ws_provider_ProcessResults_Binder_processBan" style="document"/>
             <wsdl:input>
                 <soap:body parts="parameters" use="literal"/>
             </wsdl:input>
@@ -1800,8 +1721,7 @@
             </wsdl:output>
         </wsdl:operation>
         <wsdl:operation name="processElection">
-            <soap:operation soapAction="CCD_Source_ProcessResults_ws_provider_ProcessResults_Binder_processElection"
-                            style="document"/>
+            <soap:operation soapAction="CCD_Source_ProcessResults_ws_provider_ProcessResults_Binder_processElection" style="document"/>
             <wsdl:input>
                 <soap:body parts="parameters" use="literal"/>
             </wsdl:input>
@@ -1810,8 +1730,7 @@
             </wsdl:output>
         </wsdl:operation>
         <wsdl:operation name="processMatterCall">
-            <soap:operation soapAction="CCD_Source_ProcessResults_ws_provider_ProcessResults_Binder_processMatterCall"
-                            style="document"/>
+            <soap:operation soapAction="CCD_Source_ProcessResults_ws_provider_ProcessResults_Binder_processMatterCall" style="document"/>
             <wsdl:input>
                 <soap:body parts="parameters" use="literal"/>
             </wsdl:input>
@@ -1821,10 +1740,8 @@
         </wsdl:operation>
     </wsdl:binding>
     <wsdl:service name="ProcessResults">
-        <wsdl:port name="CCD_Source_ProcessResults_ws_provider_ProcessResults_Port"
-                   binding="tns:CCD_Source_ProcessResults_ws_provider_ProcessResults_Binder">
-            <soap:address
-                    location="http://reeks.bcgov:5555/ws/CCD.Source.ProcessResults.ws.provider:ProcessResults/CCD_Source_ProcessResults_ws_provider_ProcessResults_Port"/>
+        <wsdl:port name="CCD_Source_ProcessResults_ws_provider_ProcessResults_Port" binding="tns:CCD_Source_ProcessResults_ws_provider_ProcessResults_Binder">
+            <soap:address location="http://reeks.bcgov:5555/ws/CCD.Source.ProcessResults.ws.provider:ProcessResults/CCD_Source_ProcessResults_ws_provider_ProcessResults_Port"/>
         </wsdl:port>
     </wsdl:service>
 </wsdl:definitions>
