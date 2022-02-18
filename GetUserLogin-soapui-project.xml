@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project id="590ae46c-a7c7-4c2d-9b30-4a995417cadb" activeEnvironment="Default" name="GetUserLogin" resourceRoot="${projectDir}" soapui-version="5.6.0" abortOnError="false" runType="SEQUENTIAL" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:interface xsi:type="con:WsdlInterface" id="deaa3b39-83d5-4a1c-9168-2e1f9da0681b" wsaVersion="NONE" name="CCD_Source_GetUserLogin_WS_getUserLogin_Binder" type="wsdl" bindingName="{http://brooks/CCD.Source.GetUserLogin.WS:getUserLogin}CCD_Source_GetUserLogin_WS_getUserLogin_Binder" soapVersion="1_1" anonymous="optional" definition="file:/C:/workspace2/jag-ccd/jag-ccd-application/src/main/resources/xsdSchemas/getUserLogin.wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="file:\C:\workspace2\jag-ccd\jag-ccd-application\src\main\resources\xsdSchemas\getUserLogin.wsdl"><con:part><con:url>file:\C:\workspace2\jag-ccd\jag-ccd-application\src\main\resources\xsdSchemas\getUserLogin.wsdl</con:url><con:content><![CDATA[<wsdl:definitions name="getUserLogin" targetNamespace="http://brooks/CCD.Source.GetUserLogin.WS:getUserLogin" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:soapjms="http://www.w3.org/2008/07/soap/bindings/JMS/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:tns="http://brooks/CCD.Source.GetUserLogin.WS:getUserLogin" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://brooks/CCD.Source.GetUserLogin.WS:getUserLogin">
+      <xsd:complexType name="GetUserLogin">
+        <xsd:sequence>
+          <xsd:element name="Request" nillable="true" type="tns:GetUserLoginRequestType"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="GetUserLoginRequestType">
+        <xsd:sequence>
+          <xsd:element name="DomainNm" nillable="true" type="xsd:string"/>
+          <xsd:element name="DomainUserGuid" nillable="true" type="xsd:string"/>
+          <xsd:element name="DomainUserId" nillable="true" type="xsd:string"/>
+          <xsd:element name="LoginDtm" nillable="true" type="xsd:string"/>
+          <xsd:element name="DeviceNm" nillable="true" type="xsd:string"/>
+          <xsd:element name="IpAddressTxt" nillable="true" type="xsd:string"/>
+          <xsd:element name="TemporaryAccessGuid" nillable="true" type="xsd:string"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="GetUserLoginResponse">
+        <xsd:sequence>
+          <xsd:element name="Response" nillable="true" type="tns:GetUserLoginResponseType"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="GetUserLoginResponseType">
+        <xsd:sequence>
+          <xsd:element name="ResponseCd" nillable="true" type="xsd:string"/>
+          <xsd:element name="ResponseMessageTxt" nillable="true" type="xsd:string"/>
+          <xsd:element name="UserPartId" nillable="true" type="xsd:string"/>
+          <xsd:element name="UserDefaultAgencyCd" nillable="true" type="xsd:string"/>
+          <xsd:element name="UserNm" nillable="true" type="xsd:string"/>
+          <xsd:element name="LoginHistory" nillable="true" type="tns:LoginHistoryType" maxOccurs="unbounded"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="LoginHistoryType">
+        <xsd:sequence>
+          <xsd:element name="LoginDtm" nillable="true" type="xsd:string"/>
+          <xsd:element name="LoginDayOfWeek" nillable="true" type="xsd:string"/>
+          <xsd:element name="DeviceNm" nillable="true" type="xsd:string"/>
+          <xsd:element name="IpAddressTxt" nillable="true" type="xsd:string"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="GetUserLogin" type="tns:GetUserLogin"/>
+      <xsd:element name="GetUserLoginResponse" type="tns:GetUserLoginResponse"/>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="getUserLogin_PortType_GetUserLoginResponse">
+    <wsdl:part name="parameters" element="tns:GetUserLoginResponse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getUserLogin_PortType_GetUserLogin">
+    <wsdl:part name="parameters" element="tns:GetUserLogin"></wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="getUserLogin_PortType">
+    <wsdl:operation name="GetUserLogin">
+      <wsdl:input message="tns:getUserLogin_PortType_GetUserLogin"></wsdl:input>
+      <wsdl:output message="tns:getUserLogin_PortType_GetUserLoginResponse"></wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="CCD_Source_GetUserLogin_WS_getUserLogin_Binder" type="tns:getUserLogin_PortType">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="GetUserLogin">
+      <soap:operation soapAction="CCD_Source_GetUserLogin_WS_getUserLogin_Binder_GetUserLogin" style="document"/>
+      <wsdl:input>
+        <soap:body parts="parameters" use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body parts="parameters" use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="getUserLogin">
+    <wsdl:port name="CCD_Source_GetUserLogin_WS_getUserLogin_Port" binding="tns:CCD_Source_GetUserLogin_WS_getUserLogin_Binder">
+      <soap:address location="http://localhost:8080/ws"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://localhost:8080/ws</con:endpoint></con:endpoints><con:operation id="481177f3-1e10-46bf-a369-ee7f0896d842" isOneWay="false" action="CCD_Source_GetUserLogin_WS_getUserLogin_Binder_GetUserLogin" name="GetUserLogin" bindingOperationName="GetUserLogin" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="8dd2c77f-d106-4a51-892d-e087913fd5a8" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/ws</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ccd="http://brooks/CCD.Source.GetUserLogin.WS:getUserLogin">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <ccd:GetUserLogin>\r
+         <Request>\r
+            <DomainNm>?</DomainNm>\r
+            <DomainUserGuid>?</DomainUserGuid>\r
+            <DomainUserId>?</DomainUserId>\r
+            <LoginDtm>?</LoginDtm>\r
+            <DeviceNm>?</DeviceNm>\r
+            <IpAddressTxt>?</IpAddressTxt>\r
+            <TemporaryAccessGuid>?</TemporaryAccessGuid>\r
+         </Request>\r
+      </ccd:GetUserLogin>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="CCD_Source_GetUserLogin_WS_getUserLogin_Binder_GetUserLogin"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:testSuite id="5388d074-5625-402c-8838-c0fc85eee9c8" name="GetUserLoginTestSuite"><con:settings/><con:runType>SEQUENTIAL</con:runType><con:testCase id="175630a6-2216-4dfb-b060-a1e6dcb1cfe4" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="GetUserLoginNegTest" searchProperties="true"><con:settings/><con:testStep type="request" name="getUserLoginNegTest" id="151ea54b-6eb9-4f99-812b-d29ebf02fe55"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>CCD_Source_GetUserLogin_WS_getUserLogin_Binder</con:interface><con:operation>GetUserLogin</con:operation><con:request name="getUserLoginNegTest" id="81e25ec8-c905-44df-8568-e548052e1bcc"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/ws</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ccd="http://brooks/CCD.Source.GetUserLogin.WS:getUserLogin">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ccd:GetUserLogin>
+         <Request>
+            <DomainNm>IDIR</DomainNm>
+            <DomainUserGuid/>
+            <DomainUserId>3</DomainUserId>
+            <LoginDtm/>
+            <DeviceNm/>
+            <IpAddressTxt/>
+            <TemporaryAccessGuid>69BE414B57364494915283B0A59A28D5</TemporaryAccessGuid>
+         </Request>
+      </ccd:GetUserLogin>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response" id="e2b99a13-acc3-4b2a-9f7d-943ad11f1824"/><con:assertion type="Valid HTTP Status Codes" id="d1a0cc24-d13b-47c5-aad7-266b3a832c7b" name="Valid HTTP Status Codes"><con:configuration><codes>200</codes></con:configuration></con:assertion><con:assertion type="Invalid HTTP Status Codes" id="366baf18-440d-4256-b4c9-09e8b6c1460f" name="Invalid HTTP Status Codes"><con:configuration><codes>401, 403, 500</codes></con:configuration></con:assertion><con:assertion type="Response SLA Assertion" id="a0e1d60a-6c70-4410-af9d-32339ddddfc6" name="Response SLA"><con:configuration><SLA>1000</SLA></con:configuration></con:assertion><con:credentials><con:username>1</con:username><con:password>2</con:password><con:selectedAuthProfile>Basic</con:selectedAuthProfile><con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:properties><con:property><con:name>DomainNm</con:name><con:value>IDIR</con:value></con:property><con:property><con:name>DomainUserId</con:name><con:value>3</con:value></con:property><con:property><con:name>TemporaryAccessGuid</con:name><con:value>69BE414B57364494915283B0A59A28D5</con:value></con:property></con:properties></con:testCase><con:testCase id="6ac58b55-0d75-43b3-bedd-50134d9f2dab" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="GetUserLoginPosTest" searchProperties="true"><con:settings/><con:testStep type="request" name="getUserLoginPosTest" id="d7424563-9726-496d-8013-e7620e77c842"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>CCD_Source_GetUserLogin_WS_getUserLogin_Binder</con:interface><con:operation>GetUserLogin</con:operation><con:request name="getUserLoginPosTest" id="d44cca1e-f0fc-48e9-9dfd-76bebab03309"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/ws</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ccd="http://brooks/CCD.Source.GetUserLogin.WS:getUserLogin">
+
+   <soapenv:Header/>
+
+   <soapenv:Body>
+
+      <ccd:GetUserLogin>
+
+         <Request>
+
+            <DomainNm/>
+
+            <DomainUserGuid>E314BB26E2E4461DAF5B617FEA0A9132</DomainUserGuid>
+
+            <DomainUserId/>
+
+            <LoginDtm/>
+
+            <DeviceNm/>
+
+            <IpAddressTxt/>
+
+            <TemporaryAccessGuid/>
+
+         </Request>
+
+      </ccd:GetUserLogin>
+
+   </soapenv:Body>
+
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response" id="29ae2302-a16e-446f-8d58-c998c5be4c05"/><con:assertion type="Valid HTTP Status Codes" id="9d1878c4-255b-448e-bedd-8fb10f7fb8c8" name="Valid HTTP Status Codes"><con:configuration><codes>200</codes></con:configuration></con:assertion><con:assertion type="Response SLA Assertion" id="c0916e65-2933-44d6-80d0-36bdd9465f4d" name="Response SLA"><con:configuration><SLA>1000</SLA></con:configuration></con:assertion><con:assertion type="Invalid HTTP Status Codes" id="be0cb8da-33d0-4b0c-84ee-76c287187fd8" name="Invalid HTTP Status Codes"><con:configuration><codes>401, 403, 500</codes></con:configuration></con:assertion><con:credentials><con:username>1</con:username><con:password>2</con:password><con:selectedAuthProfile>Basic</con:selectedAuthProfile><con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:properties><con:property><con:name>DomainUserGuid</con:name><con:value>E314BB26E2E4461DAF5B617FEA0A9132</con:value></con:property></con:properties></con:testCase><con:testCase id="3ec90e7d-4f14-4a77-8dd4-5b397507754c" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="AutomationTests" searchProperties="true"><con:settings/><con:testStep type="groovy" name="getUserLoginNegTest" id="ed1bf6d1-2deb-4d16-acb9-141ae2d4c404"><con:settings/><con:config><script>import com.eviware.soapui.support.XmlHolder
+import com.eviware.soapui.impl.wsdl.testcase.WsdlTestRunContext
+
+ def GetUserLoginNegTest = testRunner.testCase.testSuite.testCases["GetUserLoginNegTest"].testSteps["getUserLoginNegTest"].getPropertyValue("Request")
+ 
+ def DomainNm=testRunner.testCase.testSuite.testCases["GetUserLoginNegTest"].getPropertyValue("DomainNm")
+ def DomainUserId=testRunner.testCase.testSuite.testCases["GetUserLoginNegTest"].getPropertyValue("DomainUserId")
+ def TemporaryAccessGuid=testRunner.testCase.testSuite.testCases["GetUserLoginNegTest"].getPropertyValue("TemporaryAccessGuid")
+ 
+ def xmlAdd= new XmlHolder(GetUserLoginNegTest)
+ xmlAdd.setNodeValue("//ccd:GetUserLogin/Request/DomainNm",DomainNm)
+ xmlAdd.setNodeValue("//ccd:GetUserLogin/Request/DomainUserId",DomainUserId)
+ xmlAdd.setNodeValue("//ccd:GetUserLogin/Request/TemporaryAccessGuid",TemporaryAccessGuid)
+
+ 
+ def newxmlGet= xmlAdd.getXml();
+ //add xml detail
+ testRunner.testCase.testSuite.testCases["GetUserLoginNegTest"].testSteps["getUserLoginNegTest"].setPropertyValue("Request",newxmlGet)
+
+ def getTestStep=testRunner.testCase.testSuite.testCases["GetUserLoginNegTest"].testSteps["getUserLoginNegTest"]
+ def contextGetUserLoginNegTest = new WsdlTestRunContext(getTestStep);
+ getTestStep.run(testRunner,contextGetUserLoginNegTest)
+ //Validation -
+ def getRes=testRunner.testCase.testSuite.testCases["GetUserLoginNegTest"].testSteps["getUserLoginNegTest"].getPropertyValue("Response")
+def Response= new XmlHolder(getRes)
+def GetResponse= Response.getNodeValue("//ResponseCd")
+def GetResponse1= Response.getNodeValue("//ResponseMessageTxt")
+def GetResponse2= Response.getNodeValue("//UserPartId")
+
+log.info GetResponse
+log.info GetResponse1
+log.info GetResponse2
+
+assert GetResponse=="-1"
+assert GetResponse1=="Failed to map DomainUserGuid to PartId."
+assert GetResponse2=="9456.0001"
+
+</script></con:config></con:testStep><con:testStep type="groovy" name="getUserLoginPosTest" id="229d5b01-f106-427f-807b-ff28445e2562"><con:settings/><con:config><script>import com.eviware.soapui.support.XmlHolder
+import com.eviware.soapui.impl.wsdl.testcase.WsdlTestRunContext
+
+ def GetUserLoginPosTest = testRunner.testCase.testSuite.testCases["GetUserLoginPosTest"].testSteps["getUserLoginPosTest"].getPropertyValue("Request")
+ 
+ def DomainUserGuid=testRunner.testCase.testSuite.testCases["GetUserLoginPosTest"].getPropertyValue("DomainUserGuid")
+
+ def xmlAdd= new XmlHolder(GetUserLoginPosTest)
+ xmlAdd.setNodeValue("//ccd:GetUserLogin/Request/DomainUserGuid",DomainUserGuid)
+ 
+ def newxmlGet= xmlAdd.getXml();
+ //add xml detail
+ testRunner.testCase.testSuite.testCases["GetUserLoginPosTest"].testSteps["getUserLoginPosTest"].setPropertyValue("Request",newxmlGet)
+
+ def getTestStep=testRunner.testCase.testSuite.testCases["GetUserLoginPosTest"].testSteps["getUserLoginPosTest"]
+ def contextGetUserLoginPosTest = new WsdlTestRunContext(getTestStep);
+ getTestStep.run(testRunner,contextGetUserLoginPosTest)
+ //Validation -
+ def getRes=testRunner.testCase.testSuite.testCases["GetUserLoginPosTest"].testSteps["getUserLoginPosTest"].getPropertyValue("Response")
+def Response= new XmlHolder(getRes)
+def GetResponse= Response.getNodeValue("//ResponseCd")
+def GetResponse1= Response.getNodeValue("//UserPartId")
+
+log.info GetResponse
+log.info GetResponse1
+
+assert GetResponse=="0"
+assert GetResponse1=="85148.0734"
+
+</script></con:config></con:testStep><con:properties/></con:testCase><con:properties/></con:testSuite><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/><con:oAuth1ProfileContainer/></con:soapui-project>
