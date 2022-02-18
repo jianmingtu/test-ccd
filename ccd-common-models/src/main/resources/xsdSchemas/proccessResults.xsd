@@ -1164,6 +1164,10 @@
             <xsd:element name="PartyId" nillable="true" type="xsd:string"/>
             <xsd:element name="PartyTypeCd" nillable="true" type="xsd:string"/>
             <xsd:element name="PartyAppearanceMethod" nillable="true" type="xsd:string"/>
+            <xsd:element name="RemoteAttendanceYN" nillable="true" type="xsd:string"/>
+            <xsd:element name="RemoteAgencyIdentifierId" nillable="true" type="xsd:string"/>
+            <xsd:element name="RemoteCourtRoomAgencyIdentifierId" nillable="true" type="xsd:string"/>
+            <xsd:element name="RemoteCourtRoomCd" nillable="true" type="xsd:string"/>
             <xsd:element name="Counsel" nillable="true" type="tns:CounselType" maxOccurs="unbounded"/>
             <xsd:element name="Representative" nillable="true" type="tns:RepresentativeType" maxOccurs="unbounded"/>
         </xsd:sequence>
