@@ -124,6 +124,12 @@ public class TestService {
         } catch (Exception Ignore) {
 
         }
+        try {
+            runner.setProjectFile("CCDGetROPReport-soapui-project.xml");
+            runner.run();
+        } catch (Exception Ignore) {
+
+        }
         return zipAndReturnErrors();
     }
 }
