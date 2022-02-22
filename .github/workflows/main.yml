@@ -85,7 +85,7 @@ jobs:
           DOCKER_BUILDKIT: 1
           CONTEXT: ./jag-ccd-application-1.1
         run: |
-          docker build -t ${{github.event.inputs.app1}}:${{env.gitsha} ${CONTEXT}
+          docker build -t ${{github.event.inputs.app1}}:${{env.gitsha}} ${CONTEXT}
       
       #Build image jag-ccd-1.2
       - name: Build image jag-ccd-1.2
@@ -94,7 +94,7 @@ jobs:
           DOCKER_BUILDKIT: 1
           CONTEXT: ./jag-ccd-application-1.2
         run: |
-          docker build -t ${{github.event.inputs.app2}}:${{env.gitsha} ${CONTEXT}
+          docker build -t ${{github.event.inputs.app2}}:${{env.gitsha}} ${CONTEXT}
       
        #Login to OpenShift Container Repository - Silver
       - name: Login to OpenShift Container Repository - Silver
@@ -109,7 +109,7 @@ jobs:
         env:
           IMAGE: ${{secrets.OPENSHIFT_EXTERNAL_REPOSITORY_SILVER}}/${{secrets.OPENSHIFT_TOOLS_NAMESPACE_SILVER}}/${{github.event.inputs.app1}}:${{secrets.OPENSHIFT_ENV_TAG}}
         run: |
-          docker tag ${{github.event.inputs.app1}}:${{env.gitsha} ${IMAGE}
+          docker tag ${{github.event.inputs.app1}}:${{env.gitsha}} ${IMAGE}
           docker push ${IMAGE}
       
       #Push image jag-ccd-1.2 to OpenShift Image stream - Silver
@@ -117,7 +117,7 @@ jobs:
         env:
           IMAGE: ${{secrets.OPENSHIFT_EXTERNAL_REPOSITORY_SILVER}}/${{secrets.OPENSHIFT_TOOLS_NAMESPACE_SILVER}}/${{github.event.inputs.app2}}:${{secrets.OPENSHIFT_ENV_TAG}}
         run: |
-          docker tag ${{github.event.inputs.app2}}:${{env.gitsha} ${IMAGE}
+          docker tag ${{github.event.inputs.app2}}:${{env.gitsha}} ${IMAGE}
           docker push ${IMAGE}
 
       #Login to OpenShift Container Repository - Kamloops (OC PROD)
@@ -133,7 +133,7 @@ jobs:
         env:
           IMAGE: ${{secrets.OPENSHIFT_EXTERNAL_REPOSITORY}}/${{secrets.OPENSHIFT_TOOLS_NAMESPACE}}/${{github.event.inputs.app1}}:${{secrets.OPENSHIFT_ENV_TAG}}
         run: |
-          docker tag ${{github.event.inputs.app1}}:${{env.gitsha} ${IMAGE}
+          docker tag ${{github.event.inputs.app1}}:${{env.gitsha}} ${IMAGE}
           docker push ${IMAGE}
       
       #Push image jag-ccd-1.2 to OpenShift Image stream - Kamloops (OC Prod)
@@ -141,7 +141,7 @@ jobs:
         env:
           IMAGE: ${{secrets.OPENSHIFT_EXTERNAL_REPOSITORY}}/${{secrets.OPENSHIFT_TOOLS_NAMESPACE}}/${{github.event.inputs.app2}}:${{secrets.OPENSHIFT_ENV_TAG}}
         run: |
-          docker tag ${{github.event.inputs.app2}}:${{env.gitsha} ${IMAGE}
+          docker tag ${{github.event.inputs.app2}}:${{env.gitsha}} ${IMAGE}
           docker push ${IMAGE}
       
       #Login to OpenShift Container Repository - Calgary (OC DR)
@@ -157,7 +157,7 @@ jobs:
         env:
           IMAGE: ${{secrets.OPENSHIFT_EXTERNAL_REPOSITORY_DR}}/${{secrets.OPENSHIFT_TOOLS_NAMESPACE}}/${{github.event.inputs.app1}}:${{secrets.OPENSHIFT_ENV_TAG}}
         run: |
-          docker tag ${{github.event.inputs.app1}}:${{env.gitsha} ${IMAGE}
+          docker tag ${{github.event.inputs.app1}}:${{env.gitsha}} ${IMAGE}
           docker push ${IMAGE}
       
       #Push image jag-ccd-1.2 to OpenShift Image stream - Calgary (OC DR)
@@ -165,7 +165,7 @@ jobs:
         env:
           IMAGE: ${{secrets.OPENSHIFT_EXTERNAL_REPOSITORY_DR}}/${{secrets.OPENSHIFT_TOOLS_NAMESPACE}}/${{github.event.inputs.app2}}:${{secrets.OPENSHIFT_ENV_TAG}}
         run: |
-          docker tag ${{github.event.inputs.app2}}:${{env.gitsha} ${IMAGE}
+          docker tag ${{github.event.inputs.app2}}:${{env.gitsha}} ${IMAGE}
           docker push ${IMAGE}
       
       #Login to Openshift using OC SA and Token of respective env. for Pod labelling - Silver
