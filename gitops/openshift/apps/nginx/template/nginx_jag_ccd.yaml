@@ -76,7 +76,7 @@ objects:
         return 302 /api/actuator/health;
       }
 
-      location /api/actuator/health {
+      location /api11/actuator/health {
         client_max_body_size 100m;
         proxy_read_timeout 240s;
         proxy_send_timeout 80s;
@@ -89,10 +89,10 @@ objects:
         proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
         proxy_set_header X-Forwarded-Host $server_name;
         proxy_pass_request_headers on;
-        proxy_pass http://splitter/actuator/health;
+        proxy_pass http://splitter-ccd-11/actuator/health;
       }
-      
-      location /api/ws {
+
+      location /api12/actuator/health {
         client_max_body_size 100m;
         proxy_read_timeout 240s;
         proxy_send_timeout 80s;
@@ -105,7 +105,279 @@ objects:
         proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
         proxy_set_header X-Forwarded-Host $server_name;
         proxy_pass_request_headers on;
-        proxy_pass http://splitter/ws;
+        proxy_pass http://splitter-ccd-12/actuator/health;
+      }
+
+      location /internal/ws {
+        client_max_body_size 100m;
+        proxy_read_timeout 240s;
+        proxy_send_timeout 80s;
+        proxy_redirect off;
+        port_in_redirect off;
+        proxy_http_version 1.1;
+        proxy_set_header Host $host;
+        proxy_set_header X-Forwarded-Proto $scheme;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Host $server_name;
+        proxy_pass_request_headers on;
+        proxy_pass http://jag-ccd-1-1/ws;
+      }
+
+      location /internal/secure/ws {
+        client_max_body_size 100m;
+        proxy_read_timeout 240s;
+        proxy_send_timeout 80s;
+        proxy_redirect off;
+        port_in_redirect off;
+        proxy_http_version 1.1;
+        proxy_set_header Host $host;
+        proxy_set_header X-Forwarded-Proto $scheme;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Host $server_name;
+        proxy_pass_request_headers on;
+        proxy_pass http://jag-ccd-1-2/ws;
+      }
+
+      location /api/CivilFileContent {
+        client_max_body_size 100m;
+        proxy_read_timeout 240s;
+        proxy_send_timeout 80s;
+        proxy_redirect off;
+        port_in_redirect off;
+        proxy_http_version 1.1;
+        proxy_set_header Host $host;
+        proxy_set_header X-Forwarded-Proto $scheme;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Host $server_name;
+        proxy_pass_request_headers on;
+        proxy_pass http://splitter-ccd-11/CivilFileContent;
+      }
+
+      location /api/CivilFileContent/secure {
+        client_max_body_size 100m;
+        proxy_read_timeout 240s;
+        proxy_send_timeout 80s;
+        proxy_redirect off;
+        port_in_redirect off;
+        proxy_http_version 1.1;
+        proxy_set_header Host $host;
+        proxy_set_header X-Forwarded-Proto $scheme;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Host $server_name;
+        proxy_pass_request_headers on;
+        proxy_pass http://splitter-ccd-12/CivilFileContent/secure;
+      }
+
+      location /api/CodeValues {
+        client_max_body_size 100m;
+        proxy_read_timeout 240s;
+        proxy_send_timeout 80s;
+        proxy_redirect off;
+        port_in_redirect off;
+        proxy_http_version 1.1;
+        proxy_set_header Host $host;
+        proxy_set_header X-Forwarded-Proto $scheme;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Host $server_name;
+        proxy_pass_request_headers on;
+        proxy_pass http://splitter-ccd-11/CodeValues;
+      }
+
+      location /api/CodeValues/secure {
+        client_max_body_size 100m;
+        proxy_read_timeout 240s;
+        proxy_send_timeout 80s;
+        proxy_redirect off;
+        port_in_redirect off;
+        proxy_http_version 1.1;
+        proxy_set_header Host $host;
+        proxy_set_header X-Forwarded-Proto $scheme;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Host $server_name;
+        proxy_pass_request_headers on;
+        proxy_pass http://splitter-ccd-12/CodeValues/secure;
+      }
+
+      location /api/CourtList {
+        client_max_body_size 100m;
+        proxy_read_timeout 240s;
+        proxy_send_timeout 80s;
+        proxy_redirect off;
+        port_in_redirect off;
+        proxy_http_version 1.1;
+        proxy_set_header Host $host;
+        proxy_set_header X-Forwarded-Proto $scheme;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Host $server_name;
+        proxy_pass_request_headers on;
+        proxy_pass http://splitter-ccd-11/CourtList;
+      }
+
+      location /api/CourtList/secure {
+        client_max_body_size 100m;
+        proxy_read_timeout 240s;
+        proxy_send_timeout 80s;
+        proxy_redirect off;
+        port_in_redirect off;
+        proxy_http_version 1.1;
+        proxy_set_header Host $host;
+        proxy_set_header X-Forwarded-Proto $scheme;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Host $server_name;
+        proxy_pass_request_headers on;
+        proxy_pass http://splitter-ccd-12/CourtList/secure;
+      }
+
+      location /api/CriminalFileContent {
+        client_max_body_size 100m;
+        proxy_read_timeout 240s;
+        proxy_send_timeout 80s;
+        proxy_redirect off;
+        port_in_redirect off;
+        proxy_http_version 1.1;
+        proxy_set_header Host $host;
+        proxy_set_header X-Forwarded-Proto $scheme;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Host $server_name;
+        proxy_pass_request_headers on;
+        proxy_pass http://splitter-ccd-11/CriminalFileContent;
+      }
+
+      location /api/CriminalFileContent/secure {
+        client_max_body_size 100m;
+        proxy_read_timeout 240s;
+        proxy_send_timeout 80s;
+        proxy_redirect off;
+        port_in_redirect off;
+        proxy_http_version 1.1;
+        proxy_set_header Host $host;
+        proxy_set_header X-Forwarded-Proto $scheme;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Host $server_name;
+        proxy_pass_request_headers on;
+        proxy_pass http://splitter-ccd-12/CriminalFileContent/secure;
+      }
+
+      location /api/GetROPReport {
+        client_max_body_size 100m;
+        proxy_read_timeout 240s;
+        proxy_send_timeout 80s;
+        proxy_redirect off;
+        port_in_redirect off;
+        proxy_http_version 1.1;
+        proxy_set_header Host $host;
+        proxy_set_header X-Forwarded-Proto $scheme;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Host $server_name;
+        proxy_pass_request_headers on;
+        proxy_pass http://splitter-ccd-11/GetROPReport;
+      }
+
+      location /api/GetROPReport/secure {
+        client_max_body_size 100m;
+        proxy_read_timeout 240s;
+        proxy_send_timeout 80s;
+        proxy_redirect off;
+        port_in_redirect off;
+        proxy_http_version 1.1;
+        proxy_set_header Host $host;
+        proxy_set_header X-Forwarded-Proto $scheme;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Host $server_name;
+        proxy_pass_request_headers on;
+        proxy_pass http://splitter-ccd-12/GetROPReport/secure;
+      }
+
+      location /api/DevUtils {
+        client_max_body_size 100m;
+        proxy_read_timeout 240s;
+        proxy_send_timeout 80s;
+        proxy_redirect off;
+        port_in_redirect off;
+        proxy_http_version 1.1;
+        proxy_set_header Host $host;
+        proxy_set_header X-Forwarded-Proto $scheme;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Host $server_name;
+        proxy_pass_request_headers on;
+        proxy_pass http://splitter-ccd-11/DevUtils;
+      }
+
+      location /api/GetDocument {
+        client_max_body_size 100m;
+        proxy_read_timeout 240s;
+        proxy_send_timeout 80s;
+        proxy_redirect off;
+        port_in_redirect off;
+        proxy_http_version 1.1;
+        proxy_set_header Host $host;
+        proxy_set_header X-Forwarded-Proto $scheme;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Host $server_name;
+        proxy_pass_request_headers on;
+        proxy_pass http://splitter-ccd-11/GetDocument;
+      }
+
+      location /api/getUserLogin {
+        client_max_body_size 100m;
+        proxy_read_timeout 240s;
+        proxy_send_timeout 80s;
+        proxy_redirect off;
+        port_in_redirect off;
+        proxy_http_version 1.1;
+        proxy_set_header Host $host;
+        proxy_set_header X-Forwarded-Proto $scheme;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Host $server_name;
+        proxy_pass_request_headers on;
+        proxy_pass http://splitter-ccd-11/getUserLogin;
+      }
+
+      location /api/ProcessResults {
+        client_max_body_size 100m;
+        proxy_read_timeout 240s;
+        proxy_send_timeout 80s;
+        proxy_redirect off;
+        port_in_redirect off;
+        proxy_http_version 1.1;
+        proxy_set_header Host $host;
+        proxy_set_header X-Forwarded-Proto $scheme;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Host $server_name;
+        proxy_pass_request_headers on;
+        proxy_pass http://splitter-ccd-11/ProcessResults;
+      }
+
+      location /api/UserMapping {
+        client_max_body_size 100m;
+        proxy_read_timeout 240s;
+        proxy_send_timeout 80s;
+        proxy_redirect off;
+        port_in_redirect off;
+        proxy_http_version 1.1;
+        proxy_set_header Host $host;
+        proxy_set_header X-Forwarded-Proto $scheme;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Host $server_name;
+        proxy_pass_request_headers on;
+        proxy_pass http://splitter-ccd-11/UserMapping;
       }
 
 - kind: ConfigMap
@@ -115,10 +387,16 @@ objects:
     namespace: ${OC_NAMESPACE}-${OC_ENV}
   data:
     nginx-upstream.conf: |-
-      upstream splitter {
-        server jag-ccd;
+      upstream splitter-ccd-11 {
+        #server jag-ccd-1-1;
         # Tured off for now
-        # server nginx-jag-ccd-oldwm;
+        server nginx-jag-ccd-oldwm;
+      }
+
+      upstream splitter-ccd-12 {
+        #server jag-ccd-1-2;
+        # Tured off for now
+        server nginx-jag-ccd-oldwm;
       }
 
 - kind: DeploymentConfig
