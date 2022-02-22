@@ -39,12 +39,12 @@ parameters:
 - name: ENDPOINT1
   description: The target endpoint
   required: false
-  value: jag-ccd-1.1
+  value: jag-ccd-1-1
 
 - name: ENDPOINT2
   description: The target endpoint
   required: false
-  value: jag-ccd-1.2
+  value: jag-ccd-1-2
 
 - name: ENDPOINT3
   description: The target endpoint
