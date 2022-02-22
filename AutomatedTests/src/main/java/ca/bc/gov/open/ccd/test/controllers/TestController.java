@@ -24,9 +24,10 @@ public class TestController {
         this.testService = testService;
         this.testService.setAuthentication("CCDUserMapping-soapui-project-template.xml");
         this.testService.setAuthentication("CCDCivilFileContent-soapui-project-template.xml");
-        this.testService.setAuthentication("CodeValues-soapui-project-template.xml");
-        this.testService.setAuthentication("CriminalFileContent-soapui-project-template.xml");
-        this.testService.setAuthentication("GetUserLogin-soapui-project-template.xml");
+        this.testService.setAuthentication("CCDCodeValues-soapui-project-template.xml");
+        this.testService.setAuthentication("CCDCriminalFileContent-soapui-project-template.xml");
+        this.testService.setAuthentication("CCDGetUserLogin-soapui-project-template.xml");
+        this.testService.setAuthentication("CCDGetROPReport-soapui-project-template.xml");
     }
 
     @GetMapping(value = "/all")

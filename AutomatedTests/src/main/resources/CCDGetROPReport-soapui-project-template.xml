@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project id="d949bed8-fd0e-4914-90a7-dff299d63956" activeEnvironment="Default" name="CCDGetROPReport" resourceRoot="${projectDir}" soapui-version="5.6.0" abortOnError="false" runType="SEQUENTIAL" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:interface xsi:type="con:WsdlInterface" id="7919dad3-6771-471a-a856-f6ec767e974d" wsaVersion="NONE" name="CCD_Source_GetROPReport_ws_GetROPReport_Binder" type="wsdl" bindingName="{http://brooks.ag.gov.bc.ca/CCD.Source.GetROPReport.ws:GetROPReport}CCD_Source_GetROPReport_ws_GetROPReport_Binder" soapVersion="1_1" anonymous="optional" definition="file:/C:/workspace2/jag-ccd/jag-ccd-application/src/main/resources/xsdSchemas/getRopReport.wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="file:\C:\workspace2\jag-ccd\jag-ccd-application\src\main\resources\xsdSchemas\getRopReport.wsdl"><con:part><con:url>file:\C:\workspace2\jag-ccd\jag-ccd-application\src\main\resources\xsdSchemas\getRopReport.wsdl</con:url><con:content><![CDATA[<wsdl:definitions name="GetROPReport" targetNamespace="http://brooks.ag.gov.bc.ca/CCD.Source.GetROPReport.ws:GetROPReport" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:soapjms="http://www.w3.org/2008/07/soap/bindings/JMS/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:tns="http://brooks.ag.gov.bc.ca/CCD.Source.GetROPReport.ws:GetROPReport" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://brooks.ag.gov.bc.ca/CCD.Source.GetROPReport.ws:GetROPReport">
+      <xsd:complexType name="getROPReport">
+        <xsd:sequence>
+          <xsd:element name="ROPRequest" nillable="true" type="tns:Rop"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="Rop">
+        <xsd:sequence>
+          <xsd:element name="Param1" nillable="true" type="xsd:string"/>
+          <xsd:element name="Param2" nillable="true" type="xsd:string"/>
+          <xsd:element name="FormCd" nillable="true" type="xsd:string"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="getROPReportResponse">
+        <xsd:sequence>
+          <xsd:element name="ROPResponse" nillable="true" type="tns:RopResult"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="RopResult">
+        <xsd:sequence>
+          <xsd:element name="B64Content" nillable="true" type="xsd:string"/>
+          <xsd:element name="ResultCd" nillable="true" type="xsd:string"/>
+          <xsd:element name="ResultMessage" nillable="true" type="xsd:string"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="getROPReport" type="tns:getROPReport"/>
+      <xsd:element name="getROPReportResponse" type="tns:getROPReportResponse"/>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="GetROPReport_PortType_getROPReport">
+    <wsdl:part name="parameters" element="tns:getROPReport"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="GetROPReport_PortType_getROPReportResponse">
+    <wsdl:part name="parameters" element="tns:getROPReportResponse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="GetROPReport_PortType">
+    <wsdl:operation name="getROPReport">
+      <wsdl:input message="tns:GetROPReport_PortType_getROPReport"></wsdl:input>
+      <wsdl:output message="tns:GetROPReport_PortType_getROPReportResponse"></wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="CCD_Source_GetROPReport_ws_GetROPReport_Binder" type="tns:GetROPReport_PortType">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="getROPReport">
+      <soap:operation soapAction="CCD_Source_GetROPReport_ws_GetROPReport_Binder_getROPReport" style="document"/>
+      <wsdl:input>
+        <soap:body parts="parameters" use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body parts="parameters" use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="GetROPReport">
+    <wsdl:port name="CCD_Source_GetROPReport_ws_GetROPReport_Port" binding="tns:CCD_Source_GetROPReport_ws_GetROPReport_Binder">
+      <soap:address location="{API_HOST}"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>{API_HOST}</con:endpoint></con:endpoints><con:operation id="e09d4ec2-c450-47d3-9bd5-a1076705727f" isOneWay="false" action="CCD_Source_GetROPReport_ws_GetROPReport_Binder_getROPReport" name="getROPReport" bindingOperationName="getROPReport" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="7cbaac08-685b-4a1c-893f-8670bff3a35c" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>{API_HOST}</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ccd="http://brooks.ag.gov.bc.ca/CCD.Source.GetROPReport.ws:GetROPReport">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <ccd:getROPReport>\r
+         <ROPRequest>\r
+            <Param1>?</Param1>\r
+            <Param2>?</Param2>\r
+            <FormCd>?</FormCd>\r
+         </ROPRequest>\r
+      </ccd:getROPReport>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="CCD_Source_GetROPReport_ws_GetROPReport_Binder_getROPReport"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:testSuite id="b81e2cb8-c67b-484e-b97b-7f441c8c1b7d" name="CCDGetROPReportTestSuite"><con:settings/><con:runType>SEQUENTIAL</con:runType><con:testCase id="5cd80361-9854-428c-947f-12942b4e4407" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="GetROPReport" searchProperties="true"><con:settings/><con:testStep type="request" name="getROPReport" id="0f5ed3ba-e99c-48b8-9a5f-8dad3ef43cb0"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>CCD_Source_GetROPReport_ws_GetROPReport_Binder</con:interface><con:operation>getROPReport</con:operation><con:request name="getROPReport" id="42fe9ad5-2c1f-4a58-8337-144a4a6108a9"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>https://nginx-jag-ccd-52e74e-dev.apps.silver.devops.gov.bc.ca/api/GetROPReport</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ccd="http://brooks.ag.gov.bc.ca/CCD.Source.GetROPReport.ws:GetROPReport">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ccd:getROPReport>
+         <ROPRequest>
+            <Param1>15774.0026</Param1>
+            <Param2>2</Param2>
+            <FormCd>CCD</FormCd>
+         </ROPRequest>
+      </ccd:getROPReport>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response" id="5db3e92f-b64e-4c10-864c-adf84190ed7a"/><con:assertion type="Valid HTTP Status Codes" id="8622d4a6-99a9-488f-951d-3c4fc10b46af" name="Valid HTTP Status Codes"><con:configuration><codes>200</codes></con:configuration></con:assertion><con:assertion type="Response SLA Assertion" id="f13bec32-e3a0-49bc-ad7b-9d64047143c4" name="Response SLA"><con:configuration><SLA>1000</SLA></con:configuration></con:assertion><con:assertion type="Invalid HTTP Status Codes" id="b356feeb-504f-4ade-a35b-470e2f62ea18" name="Invalid HTTP Status Codes"><con:configuration><codes>401, 403, 500</codes></con:configuration></con:assertion><con:assertion type="Simple Contains" id="5ad7205f-4a8d-4903-b970-39a807f1a19e" name="Contains"><con:configuration><token>1</token><ignoreCase>false</ignoreCase><useRegEx>false</useRegEx></con:configuration></con:assertion><con:assertion type="Simple Contains" id="918e1664-0d50-4b0b-b004-79cc67fb1495" name="Contains 1"><con:configuration><token>success</token><ignoreCase>false</ignoreCase><useRegEx>false</useRegEx></con:configuration></con:assertion><con:credentials><con:username>{AUTHENTICATION_USERNAME}</con:username><con:password>{AUTHENTICATION_PASSWORD}</con:password><con:selectedAuthProfile>Basic</con:selectedAuthProfile><con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:properties><con:property><con:name>Param1</con:name><con:value>15774.0026</con:value></con:property><con:property><con:name>Param2</con:name><con:value>2</con:value></con:property><con:property><con:name>FormCd</con:name><con:value>CCD</con:value></con:property></con:properties></con:testCase><con:testCase id="b735b605-ddea-4c0d-87dd-b1ab586833ca" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="AutomationTest" searchProperties="true"><con:settings/><con:testStep type="groovy" name="getROPReport" id="b47b70da-ca97-4990-973e-3c171a2bbd43"><con:settings/><con:config><script>import com.eviware.soapui.support.XmlHolder
+import com.eviware.soapui.impl.wsdl.testcase.WsdlTestRunContext
+
+ def GetROPReport = testRunner.testCase.testSuite.testCases["GetROPReport"].testSteps["getROPReport"].getPropertyValue("Request")
+ 
+ def Param1=testRunner.testCase.testSuite.testCases["GetROPReport"].getPropertyValue("Param1")
+ def Param2=testRunner.testCase.testSuite.testCases["GetROPReport"].getPropertyValue("Param2")
+ def FormCd=testRunner.testCase.testSuite.testCases["GetROPReport"].getPropertyValue("FormCd")
+ 
+ def xmlAdd= new XmlHolder(GetROPReport)
+ xmlAdd.setNodeValue("//ccd:getROPReport/ROPRequest/Param1",Param1)
+ xmlAdd.setNodeValue("//ccd:getROPReport/ROPRequest/Param2",Param2)
+ xmlAdd.setNodeValue("//ccd:getROPReport/ROPRequest/FormCd",FormCd)
+ 
+ def newxmlGet= xmlAdd.getXml();
+ //add xml detail
+ testRunner.testCase.testSuite.testCases["GetROPReport"].testSteps["getROPReport"].setPropertyValue("Request",newxmlGet)
+
+ def getTestStep=testRunner.testCase.testSuite.testCases["GetROPReport"].testSteps["getROPReport"]
+ def contextGetROPReport = new WsdlTestRunContext(getTestStep);
+ getTestStep.run(testRunner,contextGetROPReport)
+ //Validation -
+def getRes=testRunner.testCase.testSuite.testCases["GetROPReport"].testSteps["getROPReport"].getPropertyValue("Response")
+def GetROPReportResp= new XmlHolder(getRes)
+def GetResponse= GetROPReportResp.getNodeValue("//B64Content")
+def GetResponse1= GetROPReportResp.getNodeValue("//ResultCd")
+def GetResponse2= GetROPReportResp.getNodeValue("//ResultMessage")
+
+log.info GetResponse
+log.info GetResponse1
+log.info GetResponse2
+
+assert GetResponse,isString()
+assert GetResponse1=="1"
+assert GetResponse2=="success"
+
+
+</script></con:config></con:testStep><con:properties/></con:testCase><con:properties><con:property><con:name>Param1</con:name><con:value>15774.0026</con:value></con:property><con:property><con:name>Param2</con:name><con:value>2</con:value></con:property><con:property><con:name>FormCd</con:name><con:value>CCD</con:value></con:property></con:properties></con:testSuite><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/><con:oAuth1ProfileContainer/></con:soapui-project>
