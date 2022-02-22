@@ -79,43 +79,4 @@ public class DocumentControllerTests {
         Assertions.assertNotNull(resp);
     }
 
-    @Test
-    public void getDocumentSecureTest() throws JsonProcessingException {
-
-        var req = new GetDocumentSecure();
-        var one = new DocumentSecureRequest();
-        req.setDocumentSecureRequest(one);
-
-        Map<String, String> m = new HashMap<>();
-        m.put("url", "http://www.test.com");
-        m.put("resultCd", "1");
-        m.put("resultMessage", "success");
-        m.put("status", "1");
-        ResponseEntity<Map<String, String>> responseEntity2 =
-                new ResponseEntity<>(m, HttpStatus.OK);
-
-        // Set up to mock ords response
-        when(restTemplate.exchange(
-                        Mockito.any(URI.class),
-                        Mockito.eq(HttpMethod.GET),
-                        Mockito.<HttpEntity<String>>any(),
-                        Mockito.<ParameterizedTypeReference<Map<String, String>>>any()))
-                .thenReturn(responseEntity2);
-
-        var out = "A";
-        ResponseEntity<byte[]> responseEntity =
-                new ResponseEntity<>(out.getBytes(StandardCharsets.UTF_8), HttpStatus.OK);
-
-        // Set up to adobe response
-        when(restTemplate.exchange(
-                        Mockito.any(URI.class),
-                        Mockito.eq(HttpMethod.GET),
-                        Mockito.<HttpEntity<String>>any(),
-                        Mockito.<Class<byte[]>>any()))
-                .thenReturn(responseEntity);
-
-        DocumentController documentController = new DocumentController(restTemplate, objectMapper);
-        var resp = documentController.getDocumentSecure(req);
-        Assertions.assertNotNull(resp);
-    }
 }

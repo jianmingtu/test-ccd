@@ -261,29 +261,11 @@ public class OrdsErrorTests {
     }
 
     @Test
-    public void testGetCodeValuesSecureOrdsFail() {
-        CodeController codeController = new CodeController(restTemplate, objectMapper);
-
-        Assertions.assertThrows(
-                ORDSException.class,
-                () -> codeController.getCodeValuesSecure(new GetCodeValuesSecure()));
-    }
-
-    @Test
     public void testGetCrtListOrdsFail() {
         CourtController courtController = new CourtController(restTemplate, objectMapper);
 
         Assertions.assertThrows(
                 ORDSException.class, () -> courtController.getCrtList(new GetCrtList()));
-    }
-
-    @Test
-    public void testGetCrtListSecureOrdsFail() {
-        CourtController courtController = new CourtController(restTemplate, objectMapper);
-
-        Assertions.assertThrows(
-                ORDSException.class,
-                () -> courtController.getCrtListSecure(new GetCrtListSecure()));
     }
 
     @Test
@@ -296,32 +278,12 @@ public class OrdsErrorTests {
     }
 
     @Test
-    public void testGetCriminalFileContentSecureOrdsFail() {
-        FileController fileController = new FileController(restTemplate, objectMapper);
-
-        Assertions.assertThrows(
-                ORDSException.class,
-                () ->
-                        fileController.getCriminalFileContentSecure(
-                                new GetCriminalFileContentSecure()));
-    }
-
-    @Test
     public void testGetCivilFileContentOrdsFail() {
         FileController fileController = new FileController(restTemplate, objectMapper);
 
         Assertions.assertThrows(
                 ORDSException.class,
                 () -> fileController.getCivilFileContent(new GetCivilFileContent()));
-    }
-
-    @Test
-    public void testGetCivilFileContentSecureOrdsFail() {
-        FileController fileController = new FileController(restTemplate, objectMapper);
-
-        Assertions.assertThrows(
-                ORDSException.class,
-                () -> fileController.getCivilFileContentSecure(new GetCivilFileContentSecure()));
     }
 
     @Test
@@ -359,15 +321,6 @@ public class OrdsErrorTests {
     }
 
     @Test
-    public void testGetROPReportSecureOrdsFail() {
-        ReportController reportController = new ReportController(restTemplate, objectMapper);
-
-        Assertions.assertThrows(
-                ORDSException.class,
-                () -> reportController.getRopReportSecure(new GetROPReportSecure()));
-    }
-
-    @Test
     public void testGetClearAppearanceResultsOrdsFail() {
         DevUtilsController devUtilsController = new DevUtilsController(restTemplate, objectMapper);
 
@@ -391,15 +344,6 @@ public class OrdsErrorTests {
 
         Assertions.assertThrows(
                 ORDSException.class, () -> documentController.getDocument(new GetDocument()));
-    }
-
-    @Test
-    public void testGetDocumentSecureOrdsFail() {
-        DocumentController documentController = new DocumentController(restTemplate, objectMapper);
-
-        Assertions.assertThrows(
-                ORDSException.class,
-                () -> documentController.getDocumentSecure(new GetDocumentSecure()));
     }
 
     @Test
