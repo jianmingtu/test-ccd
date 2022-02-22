@@ -73,45 +73,4 @@ public class CodeController {
             throw new ORDSException();
         }
     }
-
-    @PayloadRoot(
-            namespace = "http://reeks.bcgov/CCD.Source.CodeValues.ws.provider:CodeValuesSecure",
-            localPart = "getCodeValuesSecure")
-    @ResponsePayload
-    public GetCodeValuesSecureResponse getCodeValuesSecure(
-            @RequestPayload GetCodeValuesSecure getCodeValues) throws JsonProcessingException {
-
-        UriComponentsBuilder builder =
-                UriComponentsBuilder.fromHttpUrl(host + "codevalues/secure")
-                        .queryParam("genericAgenId", genericAgenId)
-                        .queryParam("genericPartId", genericPartId)
-                        .queryParam("requestAgencyId", getCodeValues.getRequestAgencyIdentifierId())
-                        .queryParam("requestPartId", getCodeValues.getRequestPartId())
-                        .queryParam(
-                                "lastRetrievedDate",
-                                InstantSerializer.convert(getCodeValues.getLastRetrievedDate()))
-                        .queryParam(
-                                "requestDtm",
-                                InstantSerializer.convert(getCodeValues.getRequestDtm()))
-                        .queryParam("applicationCd", getCodeValues.getApplicationCd());
-
-        try {
-            HttpEntity<GetCodeValuesSecureResponse> resp =
-                    restTemplate.exchange(
-                            builder.build().toUri(),
-                            HttpMethod.GET,
-                            new HttpEntity<>(new HttpHeaders()),
-                            GetCodeValuesSecureResponse.class);
-            return resp.getBody();
-        } catch (Exception ex) {
-            log.error(
-                    objectMapper.writeValueAsString(
-                            new OrdsErrorLog(
-                                    "Error received from ORDS",
-                                    "getCodeValuesSecure",
-                                    ex.getMessage(),
-                                    null)));
-            throw new ORDSException();
-        }
-    }
 }

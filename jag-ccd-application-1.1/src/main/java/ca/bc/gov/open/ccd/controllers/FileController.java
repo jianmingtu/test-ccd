@@ -83,57 +83,6 @@ public class FileController {
 
     @PayloadRoot(
             namespace =
-                    "http://reeks.bcgov/CCD.Source.CriminalFileContent.ws.provider:CriminalFileContentSecure",
-            localPart = "getCriminalFileContentSecure")
-    @ResponsePayload
-    public GetCriminalFileContentSecureResponse getCriminalFileContentSecure(
-            @RequestPayload GetCriminalFileContentSecure getCriminalFileContent)
-            throws JsonProcessingException {
-
-        UriComponentsBuilder builder =
-                UriComponentsBuilder.fromHttpUrl(host + "criminal/" + "file/secure")
-                        .queryParam(
-                                "agencyIdentifierCd",
-                                getCriminalFileContent.getAgencyIdentifierCd())
-                        .queryParam("roomCd", getCriminalFileContent.getRoomCd())
-                        .queryParam(
-                                "proceedingDate",
-                                InstantSerializer.convert(
-                                        getCriminalFileContent.getProceedingDate()))
-                        .queryParam("appearanceId", getCriminalFileContent.getAppearanceID())
-                        .queryParam("mdocJustinNo", getCriminalFileContent.getMdocJustinNo())
-                        .queryParam(
-                                "requestAgencyId",
-                                getCriminalFileContent.getRequestAgencyIdentifierId())
-                        .queryParam("requestPartId", getCriminalFileContent.getRequestPartId())
-                        .queryParam(
-                                "requestDtm",
-                                InstantSerializer.convert(getCriminalFileContent.getRequestDtm()))
-                        .queryParam("applicationCd", getCriminalFileContent.getApplicationCd());
-
-        try {
-            HttpEntity<GetCriminalFileContentSecureResponse> resp =
-                    restTemplate.exchange(
-                            builder.build().toUri(),
-                            HttpMethod.GET,
-                            new HttpEntity<>(new HttpHeaders()),
-                            GetCriminalFileContentSecureResponse.class);
-
-            return resp.getBody();
-        } catch (Exception ex) {
-            log.error(
-                    objectMapper.writeValueAsString(
-                            new OrdsErrorLog(
-                                    "Error received from ORDS",
-                                    "getCriminalFileContentSecure",
-                                    ex.getMessage(),
-                                    null)));
-            throw new ORDSException();
-        }
-    }
-
-    @PayloadRoot(
-            namespace =
                     "http://courts.ag.gov.bc.ca/CCD.Source.CivilFileContent.ws:CivilFileContent",
             localPart = "getCivilFileContent")
     @ResponsePayload
@@ -167,55 +116,6 @@ public class FileController {
                             new OrdsErrorLog(
                                     "Error received from ORDS",
                                     "getCivilFileContent",
-                                    ex.getMessage(),
-                                    null)));
-            throw new ORDSException();
-        }
-    }
-
-    @PayloadRoot(
-            namespace =
-                    "http://courts.ag.gov.bc.ca/CCD.Source.CivilFileContent.ws:CivilFileContent",
-            localPart = "getCivilFileContentSecure")
-    @ResponsePayload
-    public GetCivilFileContentSecureResponse getCivilFileContentSecure(
-            @RequestPayload GetCivilFileContentSecure getCivilFileContent)
-            throws JsonProcessingException {
-
-        UriComponentsBuilder builder =
-                UriComponentsBuilder.fromHttpUrl(host + "civil/" + "file/secure")
-                        .queryParam("courtLocaCd", getCivilFileContent.getCourtLocaCd())
-                        .queryParam("courtRoomCd", getCivilFileContent.getCourtRoomCd())
-                        .queryParam(
-                                "courtProceedingDate",
-                                InstantSerializer.convert(
-                                        getCivilFileContent.getCourtProceedingDate()))
-                        .queryParam("appearanceId", getCivilFileContent.getAppearanceId())
-                        .queryParam("physicalFileId", getCivilFileContent.getPhysicalFileId())
-                        .queryParam(
-                                "requestAgencyId",
-                                getCivilFileContent.getRequestAgencyIdentifierId())
-                        .queryParam("requestPartId", getCivilFileContent.getRequestPartId())
-                        .queryParam(
-                                "requestDtm",
-                                InstantSerializer.convert(getCivilFileContent.getRequestDtm()))
-                        .queryParam("applicationCd", getCivilFileContent.getApplicationCd());
-
-        try {
-            HttpEntity<ca.bc.gov.open.ccd.civil.secure.GetCivilFileContentSecureResponse> resp =
-                    restTemplate.exchange(
-                            builder.build().toUri(),
-                            HttpMethod.GET,
-                            new HttpEntity<>(new HttpHeaders()),
-                            ca.bc.gov.open.ccd.civil.secure.GetCivilFileContentSecureResponse
-                                    .class);
-            return resp.getBody();
-        } catch (Exception ex) {
-            log.error(
-                    objectMapper.writeValueAsString(
-                            new OrdsErrorLog(
-                                    "Error received from ORDS",
-                                    "getCivilFileContentSecure",
                                     ex.getMessage(),
                                     null)));
             throw new ORDSException();

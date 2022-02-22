@@ -4,7 +4,6 @@ import ca.bc.gov.open.ccd.court.one.*;
 import ca.bc.gov.open.ccd.court.secure.one.*;
 import ca.bc.gov.open.ccd.exceptions.ORDSException;
 import ca.bc.gov.open.ccd.models.OrdsErrorLog;
-import ca.bc.gov.open.ccd.models.serializers.InstantSerializer;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
@@ -64,50 +63,6 @@ public class CourtController {
                             new OrdsErrorLog(
                                     "Error received from ORDS",
                                     "getCrtList",
-                                    ex.getMessage(),
-                                    null)));
-            throw new ORDSException();
-        }
-    }
-
-    @PayloadRoot(
-            namespace = "http://reeks.bcgov/CCD.Source.CourtLists.ws.provider:CourtListSecure",
-            localPart = "getCrtListSecure")
-    @ResponsePayload
-    public GetCrtListSecureResponse getCrtListSecure(@RequestPayload GetCrtListSecure getCrtList)
-            throws JsonProcessingException {
-
-        UriComponentsBuilder builder =
-                UriComponentsBuilder.fromHttpUrl(host + "/common/courtlist/secure")
-                        .queryParam(
-                                "requestAgencyIdentifierId",
-                                getCrtList.getRequestAgencyIdentifierId())
-                        .queryParam("roomCd", getCrtList.getRoomCd())
-                        .queryParam(
-                                "proceedingDate",
-                                InstantSerializer.convert(getCrtList.getProceedingDate()))
-                        .queryParam("divisionCd", getCrtList.getDivisionCd())
-                        .queryParam("fileNumber", getCrtList.getFileNumber())
-                        .queryParam("agencyIdentifierCd", getCrtList.getAgencyIdentifierCd())
-                        .queryParam("requestPartId", getCrtList.getRequestPartId())
-                        .queryParam(
-                                "requestDtm", InstantSerializer.convert(getCrtList.getRequestDtm()))
-                        .queryParam("applicationCd", getCrtList.getApplicationCd());
-
-        try {
-            HttpEntity<GetCrtListSecureResponse> resp =
-                    restTemplate.exchange(
-                            builder.build().toUri(),
-                            HttpMethod.GET,
-                            new HttpEntity<>(new HttpHeaders()),
-                            GetCrtListSecureResponse.class);
-            return resp.getBody();
-        } catch (Exception ex) {
-            log.error(
-                    objectMapper.writeValueAsString(
-                            new OrdsErrorLog(
-                                    "Error received from ORDS",
-                                    "getCrtListSecure",
                                     ex.getMessage(),
                                     null)));
             throw new ORDSException();
