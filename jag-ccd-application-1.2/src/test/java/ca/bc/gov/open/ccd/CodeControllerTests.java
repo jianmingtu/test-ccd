@@ -3,8 +3,6 @@ package ca.bc.gov.open.ccd;
 import static org.mockito.Mockito.when;
 
 import ca.bc.gov.open.ccd.common.code.values.*;
-import ca.bc.gov.open.ccd.common.code.values.CodeValue;
-import ca.bc.gov.open.ccd.common.code.values.CodeValues;
 import ca.bc.gov.open.ccd.common.code.values.secure.*;
 import ca.bc.gov.open.ccd.controllers.CodeController;
 import ca.bc.gov.open.ccd.models.serializers.InstantDeserializer;
@@ -43,16 +41,21 @@ public class CodeControllerTests {
     @Mock private RestTemplate restTemplate = new RestTemplate();
 
     @Test
-    public void getCodeValuesTest() throws JsonProcessingException {
-
-        var req = new GetCodeValues();
+    public void getCodeValuesSecureTest() throws JsonProcessingException {
+        var req = new GetCodeValuesSecure();
+        req.setApplicationCd("A");
         req.setLastRetrievedDate(Instant.now());
+        req.setRequestDtm(Instant.now());
+        req.setRequestPartId("A");
+        req.setRequestAgencyIdentifierId("A");
 
-        var out = new GetCodeValuesResponse();
-        var cvs = new CodeValues();
+        var out = new GetCodeValuesSecureResponse();
+        var cvs = new ca.bc.gov.open.ccd.common.code.values.secure.CodeValues();
         out.setCeisCodeValues(cvs);
         out.setJustinCodeValues(cvs);
-        var cv = new CodeValue();
+        out.setResultCd("A");
+        out.setResultMessage("A");
+        var cv = new ca.bc.gov.open.ccd.common.code.values.secure.CodeValue();
         cvs.setCodeValue(Collections.singletonList(cv));
         cv.setCode("A");
         cv.setCodeType("A");
@@ -60,7 +63,7 @@ public class CodeControllerTests {
         cv.setLongDesc("A");
         cv.setShortDesc("A");
 
-        ResponseEntity<GetCodeValuesResponse> responseEntity =
+        ResponseEntity<GetCodeValuesSecureResponse> responseEntity =
                 new ResponseEntity<>(out, HttpStatus.OK);
 
         // Set up to mock ords response
@@ -68,11 +71,11 @@ public class CodeControllerTests {
                         Mockito.any(URI.class),
                         Mockito.eq(HttpMethod.GET),
                         Mockito.<HttpEntity<String>>any(),
-                        Mockito.<Class<GetCodeValuesResponse>>any()))
+                        Mockito.<Class<GetCodeValuesSecureResponse>>any()))
                 .thenReturn(responseEntity);
 
         CodeController codeController = new CodeController(restTemplate, objectMapper);
-        var resp = codeController.getCodeValues(req);
+        var resp = codeController.getCodeValuesSecure(req);
 
         Assertions.assertNotNull(resp);
     }
