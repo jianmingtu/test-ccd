@@ -45,7 +45,13 @@
         </dependency>
         <dependency>
             <groupId>ca.bc.gov.open</groupId>
-            <artifactId>jag-ccd-application</artifactId>
+            <artifactId>jag-ccd-application-1.1</artifactId>
+            <version>1.0</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>ca.bc.gov.open</groupId>
+            <artifactId>jag-ccd-application-1.2</artifactId>
             <version>1.0</version>
             <scope>compile</scope>
         </dependency>

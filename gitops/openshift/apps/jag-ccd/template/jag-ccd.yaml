@@ -17,6 +17,11 @@ parameters:
   required: false
   value: jag-ccd
 
+- name: AUTH_HEADER
+  description: The application name that each component is part of
+  required: false
+  value: auth
+
 - name: COMPONENT_NAME
   description: The application name that each component is part of
   required: false
@@ -115,6 +120,26 @@ objects:
                 secretKeyRef:
                   name: ccd-application-secrets
                   key: ORDS_HOST
+            - name: GENERIC_AGENCY_ID
+              valueFrom:
+                secretKeyRef:
+                  name: ccd-application-secrets
+                  key: GENERIC_AGENCY_ID
+            - name: GENERIC_PART_ID
+              valueFrom:
+                secretKeyRef:
+                  name: ccd-application-secrets
+                  key: GENERIC_PART_ID
+            - name: ADOBE_HOST
+              valueFrom:
+                secretKeyRef:
+                  name: ccd-application-secrets
+                  key: ADOBE_HOST
+            - name: REPORT_APP_NAME
+              valueFrom:
+                secretKeyRef:
+                  name: ccd-application-secrets
+                  key: REPORT_APP_NAME
             resources:
               limits:
                 cpu: 1000m
@@ -122,26 +147,32 @@ objects:
               requests:
                 cpu: 500m
                 memory: 512Mi
-              livenessProbe:
-                httpGet:
-                  path: "/actuator/health"
-                  port: 8080
-                  scheme: HTTP
-                initialDelaySeconds: 30
-                timeoutSeconds: 60
-                periodSeconds: 10
-                successThreshold: 1
-                failureThreshold: 3
-              readinessProbe:
-                httpGet:
-                  path: "/actuator/health"
-                  port: 8080
-                  scheme: HTTP
-                initialDelaySeconds: 10
-                timeoutSeconds: 60
-                periodSeconds: 10
-                successThreshold: 1
-                failureThreshold: 3
+            livenessProbe:
+              httpGet:
+                path: "/actuator/health"
+                port: 8080
+                scheme: HTTP
+                httpHeaders:
+                  - name: Authorization
+                    value: ${AUTH_HEADER}
+              initialDelaySeconds: 30
+              timeoutSeconds: 60
+              periodSeconds: 10
+              successThreshold: 1
+              failureThreshold: 3
+            readinessProbe:
+              httpGet:
+                path: "/actuator/health"
+                port: 8080
+                scheme: HTTP
+                httpHeaders:
+                  - name: Authorization
+                    value: ${AUTH_HEADER}
+              initialDelaySeconds: 10
+              timeoutSeconds: 60
+              periodSeconds: 10
+              successThreshold: 1
+              failureThreshold: 3
     triggers:
       - type: ConfigChange
       - type: ImageChange
