@@ -9,7 +9,6 @@ import ca.bc.gov.open.ccd.controllers.ReportController;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.nio.charset.StandardCharsets;
-import java.time.Instant;
 import java.util.HashMap;
 import java.util.Map;
 import org.junit.jupiter.api.Assertions;
@@ -77,5 +76,4 @@ public class ReportControllerTests {
         var resp = reportController.getRopReport(req);
         Assertions.assertNotNull(resp);
     }
-
 }

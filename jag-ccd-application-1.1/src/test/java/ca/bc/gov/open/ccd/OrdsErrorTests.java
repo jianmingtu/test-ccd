@@ -4,24 +4,18 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import ca.bc.gov.open.ccd.civil.GetCivilFileContent;
-import ca.bc.gov.open.ccd.civil.secure.GetCivilFileContentSecure;
 import ca.bc.gov.open.ccd.common.code.values.GetCodeValues;
-import ca.bc.gov.open.ccd.common.code.values.secure.GetCodeValuesSecure;
 import ca.bc.gov.open.ccd.common.criminal.file.content.GetCriminalFileContent;
-import ca.bc.gov.open.ccd.common.criminal.file.content.secure.GetCriminalFileContentSecure;
 import ca.bc.gov.open.ccd.common.dev.utils.ClearAppearanceResults;
 import ca.bc.gov.open.ccd.common.dev.utils.RecreateCourtList;
 import ca.bc.gov.open.ccd.common.document.GetDocument;
-import ca.bc.gov.open.ccd.common.document.secure.GetDocumentSecure;
 import ca.bc.gov.open.ccd.common.process.results.*;
 import ca.bc.gov.open.ccd.common.rop.report.GetROPReport;
-import ca.bc.gov.open.ccd.common.rop.report.secure.GetROPReportSecure;
 import ca.bc.gov.open.ccd.common.user.login.GetUserLogin;
 import ca.bc.gov.open.ccd.common.user.mapping.GetParticipantInfo;
 import ca.bc.gov.open.ccd.common.user.mapping.MapGuidToParticipant;
 import ca.bc.gov.open.ccd.controllers.*;
 import ca.bc.gov.open.ccd.court.one.GetCrtList;
-import ca.bc.gov.open.ccd.court.secure.one.GetCrtListSecure;
 import ca.bc.gov.open.ccd.exceptions.ORDSException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Assertions;

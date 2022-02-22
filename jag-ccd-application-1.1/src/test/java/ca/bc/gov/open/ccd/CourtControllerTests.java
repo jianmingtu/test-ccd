@@ -4,8 +4,6 @@ import static org.mockito.Mockito.when;
 
 import ca.bc.gov.open.ccd.controllers.CourtController;
 import ca.bc.gov.open.ccd.court.one.*;
-import ca.bc.gov.open.ccd.court.secure.one.GetCrtListSecure;
-import ca.bc.gov.open.ccd.court.secure.one.GetCrtListSecureResponse;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.net.URI;
@@ -448,5 +446,4 @@ public class CourtControllerTests {
 
         Assertions.assertNotNull(resp);
     }
-
 }

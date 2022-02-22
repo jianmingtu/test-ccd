@@ -199,7 +199,6 @@ public class FileControllerTests {
         Assertions.assertNotNull(resp);
     }
 
-
     @Test
     public void getCivilFileContentTest() throws JsonProcessingException {
         var req = new GetCivilFileContent();

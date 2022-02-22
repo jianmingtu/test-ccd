@@ -5,8 +5,6 @@ import static org.mockito.Mockito.when;
 
 import ca.bc.gov.open.ccd.common.document.Document;
 import ca.bc.gov.open.ccd.common.document.GetDocument;
-import ca.bc.gov.open.ccd.common.document.secure.DocumentSecureRequest;
-import ca.bc.gov.open.ccd.common.document.secure.GetDocumentSecure;
 import ca.bc.gov.open.ccd.controllers.DocumentController;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -78,5 +76,4 @@ public class DocumentControllerTests {
         var resp = documentController.getDocument(req);
         Assertions.assertNotNull(resp);
     }
-
 }
