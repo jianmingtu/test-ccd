@@ -39,9 +39,14 @@ parameters:
 - name: ENDPOINT1
   description: The target endpoint
   required: false
-  value: jag-ccd
+  value: jag-ccd-1.1
 
 - name: ENDPOINT2
+  description: The target endpoint
+  required: false
+  value: jag-ccd-1.2
+
+- name: ENDPOINT3
   description: The target endpoint
   required: false
   value: jag-ccd-oldwm
@@ -122,7 +127,7 @@ objects:
     name: ${COMPONENT_NAME}
     namespace: ${OC_NAMESPACE}-${OC_ENV}
     annotations:
-      app.openshift.io/connects-to: ${ENDPOINT1}, ${ENDPOINT2}
+      app.openshift.io/connects-to: ${ENDPOINT1}, ${ENDPOINT2}, ${ENDPOINT3}
   spec:
     strategy:
       type: Rolling

@@ -1,11 +1,11 @@
 apiVersion: template.openshift.io/v1
 kind: Template
 metadata:
-  name: ${APP_NAME}
-  description: Deployment template for the JAG-CCD
+  name: ${COMPONENT_NAME}
+  description: Deployment template for the JAG-CCD-1.2
   
 labels:
-  app: ${APP_NAME}
+  app: ${COMPONENT_NAME}
   app.kubernetes.io/name: ${COMPONENT_NAME}
   app.kubernetes.io/part-of: ${APP_NAME}
   app.openshift.io/runtime: ${RUNTIME}
@@ -18,14 +18,14 @@ parameters:
   value: jag-ccd
 
 - name: AUTH_HEADER
-  description: The application name that each component is part of
+  description: Basic http auth header
   required: false
   value: auth
 
 - name: COMPONENT_NAME
-  description: The application name that each component is part of
+  description: The application name
   required: false
-  value: jag-ccd
+  value: jag-ccd-1.2
   
 - name: OC_NAMESPACE
   description: The OpenShift namespace prefix
@@ -38,24 +38,24 @@ parameters:
   required: true
 
 - name: RUNTIME
-  description: The application name that each component is part of
+  description: Runtime of the application
   required: false
   value: java
 
 - name: API_NAME
-  description: The application name that each component is part of
+  description: The api/application name
   required: false
-  value: jag-ccd
+  value: jag-ccd-1.2
 
 - name: DNS
-  description: The application name that each component is part of
+  description: DNS of the application route
   required: false
   # Below value must be changed as per the DNS of openshift cluster used.
   value: apps.silver.devops.gov.bc.ca
   
 objects:
 
-### JAG-CCD Deployment Config ###
+### JAG-CCD-1.2 Deployment Config ###
 - apiVersion: apps.openshift.io/v1
   kind: DeploymentConfig
   metadata:
@@ -186,7 +186,7 @@ objects:
             name: ${COMPONENT_NAME}:${OC_ENV}
   status: {}
 
-### JAG-CCD Service ###
+### JAG-CCD-1.2 Service ###
 - apiVersion: v1
   kind: Service
   metadata:
@@ -203,7 +203,7 @@ objects:
     sessionAffinity: None
     type: ClusterIP
 
-### JAG-CCD Route ###
+### JAG-CCD-1.2 Route ###
 - apiVersion: route.openshift.io/v1
   kind: Route
   metadata:
