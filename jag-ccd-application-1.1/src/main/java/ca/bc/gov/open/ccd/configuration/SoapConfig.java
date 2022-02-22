@@ -18,7 +18,6 @@ import org.springframework.context.annotation.Primary;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.web.client.RestTemplate;
-import org.springframework.web.context.annotation.RequestScope;
 import org.springframework.ws.config.annotation.EnableWs;
 import org.springframework.ws.config.annotation.WsConfigurerAdapter;
 import org.springframework.ws.soap.SoapVersion;
@@ -67,7 +66,6 @@ public class SoapConfig extends WsConfigurerAdapter {
     }
 
     @Bean
-    @RequestScope
     public SaajSoapMessageFactory messageFactory() {
         Map<String, Object> props = new HashMap<>();
         props.put(SOAPMessage.WRITE_XML_DECLARATION, "true");
