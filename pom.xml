@@ -27,7 +27,8 @@
     </repositories>
 
     <modules>
-        <module>jag-ccd-application</module>
+        <module>jag-ccd-application-1.1</module>
+        <module>jag-ccd-application-1.2</module>
         <module>ccd-code-coverage</module>
         <module>ccd-court-list-models</module>
         <module>ccd-civil-models</module>
