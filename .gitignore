@@ -38,3 +38,8 @@ build/
 cc-test-reporter
 /CCDUserMapping-soapui-project.xml
 CcdUserMapping-*-FAILED.txt
+/CCDCivilFileContent-soapui-project.xml
+/CCDCodeValues-soapui-project.xml
+/CCDCriminalFileContent-soapui-project.xml
+/CCDGetROPReport-soapui-project.xml
+/CCDGetUserLogin-soapui-project.xml
