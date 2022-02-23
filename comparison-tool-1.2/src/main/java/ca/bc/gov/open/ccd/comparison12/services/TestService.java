@@ -116,7 +116,7 @@ public class TestService {
 
         DualProtocolSaajSoapMessageFactory saajSoapMessageFactory =
                 new DualProtocolSaajSoapMessageFactory();
-        saajSoapMessageFactory.setSoapVersion(SoapVersion.SOAP_11);
+        saajSoapMessageFactory.setSoapVersion(SoapVersion.SOAP_12);
         saajSoapMessageFactory.afterPropertiesSet();
 
         webServiceTemplate.setMessageSender(webServiceSenderWithAuth);
