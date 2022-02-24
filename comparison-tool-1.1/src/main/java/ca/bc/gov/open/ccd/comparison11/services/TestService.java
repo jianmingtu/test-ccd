@@ -2,6 +2,7 @@ package ca.bc.gov.open.ccd.comparison11.services;
 
 import ca.bc.gov.open.ccd.common.criminal.file.content.GetCriminalFileContent;
 import ca.bc.gov.open.ccd.common.criminal.file.content.GetCriminalFileContentResponse;
+import ca.bc.gov.open.ccd.comparison11.config.DualProtocolSaajSoapMessageFactory;
 import ca.bc.gov.open.ccd.comparison11.config.WebServiceSenderWithAuth;
 import java.io.IOException;
 import java.io.InputStream;
@@ -10,8 +11,8 @@ import java.nio.charset.StandardCharsets;
 import java.time.Instant;
 import java.util.*;
 import java.util.stream.Stream;
-import javax.xml.soap.MessageFactory;
 import javax.xml.soap.SOAPException;
+import org.apache.http.auth.UsernamePasswordCredentials;
 import org.javers.core.Javers;
 import org.javers.core.JaversBuilder;
 import org.javers.core.diff.Change;
@@ -23,7 +24,8 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.oxm.jaxb.Jaxb2Marshaller;
 import org.springframework.stereotype.Service;
 import org.springframework.ws.client.core.WebServiceTemplate;
-import org.springframework.ws.soap.saaj.SaajSoapMessageFactory;
+import org.springframework.ws.soap.SoapVersion;
+import org.springframework.ws.transport.http.HttpComponentsMessageSender;
 
 @Service
 public class TestService {
@@ -112,12 +114,18 @@ public class TestService {
 
         Jaxb2Marshaller jaxb2Marshaller = new Jaxb2Marshaller();
 
-        SaajSoapMessageFactory messageFactory =
-                new SaajSoapMessageFactory(MessageFactory.newInstance("SOAP 1.1 Protocol"));
-        messageFactory.afterPropertiesSet();
+        DualProtocolSaajSoapMessageFactory saajSoapMessageFactory =
+                new DualProtocolSaajSoapMessageFactory();
+        saajSoapMessageFactory.setSoapVersion(SoapVersion.SOAP_11);
+        saajSoapMessageFactory.afterPropertiesSet();
+
+        HttpComponentsMessageSender httpComponentsMessageSender = new HttpComponentsMessageSender();
+        httpComponentsMessageSender.setCredentials(
+                new UsernamePasswordCredentials(username, password));
 
         webServiceTemplate.setMessageSender(webServiceSenderWithAuth);
-        webServiceTemplate.setMessageFactory(messageFactory);
+        webServiceTemplate.setMessageFactory(saajSoapMessageFactory);
+
         jaxb2Marshaller.setContextPaths(
                 "ca.bc.gov.open.ccd.common.code.values",
                 "ca.bc.gov.open.ccd.common.code.values.secure",
@@ -141,18 +149,13 @@ public class TestService {
         T resultObjectAPI = null;
 
         try {
-            resultObjectWM = (T) webServiceTemplate.marshalSendAndReceive(wmHost+wsdl, request);
+            resultObjectWM = (T) webServiceTemplate.marshalSendAndReceive(wmHost + wsdl, request);
             resultObjectAPI = (T) webServiceTemplate.marshalSendAndReceive(apiHost, request);
             Thread.sleep(5000);
 
         } catch (Exception e) {
             System.out.println("ERROR: Failed to send request... " + e);
             fileOutput.println("ERROR: Failed to send request... " + e);
-
-            try {
-                Thread.sleep(5000);
-            } catch (Exception e1) {
-            }
         }
 
         Diff diff = javers.compare(resultObjectAPI, resultObjectWM);
