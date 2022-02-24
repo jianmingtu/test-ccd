@@ -128,16 +128,11 @@ public class TestService {
 
         jaxb2Marshaller.setContextPaths(
                 "ca.bc.gov.open.ccd.common.code.values",
-                "ca.bc.gov.open.ccd.common.code.values.secure",
-                "ca.bc.gov.open.ccd.common.code.values.secure",
                 "ca.bc.gov.open.ccd.common.criminal.file.content",
-                "ca.bc.gov.open.ccd.common.criminal.file.content.secure",
                 "ca.bc.gov.open.ccd.common.dev.utils",
                 "ca.bc.gov.open.ccd.common.document",
-                "ca.bc.gov.open.ccd.common.document.secure",
                 "ca.bc.gov.open.ccd.common.process.results",
                 "ca.bc.gov.open.ccd.common.rop.report",
-                "ca.bc.gov.open.ccd.common.rop.report.secure",
                 "ca.bc.gov.open.ccd.common.user.login",
                 "ca.bc.gov.open.ccd.common.user.mapping");
 
