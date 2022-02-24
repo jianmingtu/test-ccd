@@ -1,7 +1,7 @@
 package ca.bc.gov.open.ccd.comparison12.services;
 
-import ca.bc.gov.open.ccd.common.criminal.file.content.GetCriminalFileContent;
-import ca.bc.gov.open.ccd.common.criminal.file.content.GetCriminalFileContentResponse;
+import ca.bc.gov.open.ccd.common.criminal.file.content.secure.GetCriminalFileContentSecure;
+import ca.bc.gov.open.ccd.common.criminal.file.content.secure.GetCriminalFileContentSecureResponse;
 import ca.bc.gov.open.ccd.comparison12.config.DualProtocolSaajSoapMessageFactory;
 import ca.bc.gov.open.ccd.comparison12.config.WebServiceSenderWithAuth;
 import java.io.IOException;
@@ -61,47 +61,52 @@ public class TestService {
     public void runCompares() throws IOException {
         System.out.println("INFO: CCD Diff testing started");
 
-        getCriminalFileContentCompare();
+        getCriminalFileContentSecureCompare();
     }
 
-    private void getCriminalFileContentCompare() throws IOException {
+    private void getCriminalFileContentSecureCompare() throws IOException {
         int diffCounter = 0;
 
         wmHost = "https://wsgw.dev.jag.gov.bc.ca/ccdapp/ocp/api/CriminalFileContent";
-        apiHost = "https://jag-ccd-52e74e-dev.apps.silver.devops.gov.bc.ca/ws";
+        apiHost = "https://jag-ccd-1-2-52e74e-dev.apps.silver.devops.gov.bc.ca/ws";
 
-        GetCriminalFileContent request = new GetCriminalFileContent();
+        GetCriminalFileContentSecure request = new GetCriminalFileContentSecure();
+        request.setRequestAgencyIdentifierId(RAID);
+        request.setRequestPartId("19014.0001");
+        request.setRequestDtm(dtm);
+        request.setApplicationCd("CCD");
         request.setAgencyIdentifierCd(RAID);
+        request.setRoomCd("A");
         request.setProceedingDate(dtm);
-        request.setRoomCd("009");
-        request.setAppearanceID("83.0001");
+        request.setAppearanceID("14886");
 
-        InputStream inputIds = getClass().getResourceAsStream("/getCriminalFileContent.csv");
+        InputStream inputIds = getClass().getResourceAsStream("/getCriminalFileContentSecure.csv");
         assert inputIds != null;
         Scanner scanner = new Scanner(inputIds);
         fileOutput =
-                new PrintWriter(outputDir + " getCriminalFileContent.txt", StandardCharsets.UTF_8);
+                new PrintWriter(
+                        outputDir + " getCriminalFileContentSecure.txt", StandardCharsets.UTF_8);
 
         while (scanner.hasNextLine()) {
             String line = scanner.nextLine();
-            System.out.println("\nINFO: getCriminalFileContent with CCD Mdoc: " + line);
+            System.out.println("\nINFO: getCriminalFileContentSecure with CCD Mdoc: " + line);
             request.setMdocJustinNo(line);
-            if (!compare(new GetCriminalFileContentResponse(), request)) {
-                fileOutput.println("\nINFO: getCriminalFileContent with CCD Mdoc: " + line);
+            if (!compare(new GetCriminalFileContentSecureResponse(), request)) {
+                fileOutput.println("\nINFO: getCriminalFileContentSecure with CCD Mdoc: " + line);
                 ++diffCounter;
             }
         }
 
         System.out.println(
                 "########################################################\n"
-                        + "INFO: getFileDetailCriminal Completed there are "
+                        + "INFO: getCriminalFileContentSecure Completed there are "
                         + diffCounter
                         + " diffs\n"
                         + "########################################################");
 
         fileOutput.println(
                 "########################################################\n"
-                        + "INFO: getFileDetailCriminal Completed there are "
+                        + "INFO: getCriminalFileContentSecure Completed there are "
                         + diffCounter
                         + " diffs\n"
                         + "########################################################");
@@ -144,7 +149,7 @@ public class TestService {
         T resultObjectAPI = null;
 
         try {
-            // resultObjectWM = (T) webServiceTemplate.marshalSendAndReceive(wmHost, request);
+            resultObjectWM = (T) webServiceTemplate.marshalSendAndReceive(wmHost, request);
             resultObjectAPI = (T) webServiceTemplate.marshalSendAndReceive(apiHost, request);
             Thread.sleep(5000);
 

@@ -144,7 +144,7 @@ public class TestService {
         T resultObjectAPI = null;
 
         try {
-            // resultObjectWM = (T) webServiceTemplate.marshalSendAndReceive(wmHost, request);
+            resultObjectWM = (T) webServiceTemplate.marshalSendAndReceive(wmHost, request);
             resultObjectAPI = (T) webServiceTemplate.marshalSendAndReceive(apiHost, request);
             Thread.sleep(5000);
 
