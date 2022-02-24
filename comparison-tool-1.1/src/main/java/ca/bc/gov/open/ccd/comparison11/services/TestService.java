@@ -2,7 +2,6 @@ package ca.bc.gov.open.ccd.comparison11.services;
 
 import ca.bc.gov.open.ccd.common.criminal.file.content.GetCriminalFileContent;
 import ca.bc.gov.open.ccd.common.criminal.file.content.GetCriminalFileContentResponse;
-import ca.bc.gov.open.ccd.comparison11.config.DualProtocolSaajSoapMessageFactory;
 import ca.bc.gov.open.ccd.comparison11.config.WebServiceSenderWithAuth;
 import java.io.IOException;
 import java.io.InputStream;
@@ -11,7 +10,8 @@ import java.nio.charset.StandardCharsets;
 import java.time.Instant;
 import java.util.*;
 import java.util.stream.Stream;
-import org.apache.http.auth.UsernamePasswordCredentials;
+import javax.xml.soap.MessageFactory;
+import javax.xml.soap.SOAPException;
 import org.javers.core.Javers;
 import org.javers.core.JaversBuilder;
 import org.javers.core.diff.Change;
@@ -23,8 +23,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.oxm.jaxb.Jaxb2Marshaller;
 import org.springframework.stereotype.Service;
 import org.springframework.ws.client.core.WebServiceTemplate;
-import org.springframework.ws.soap.SoapVersion;
-import org.springframework.ws.transport.http.HttpComponentsMessageSender;
+import org.springframework.ws.soap.saaj.SaajSoapMessageFactory;
 
 @Service
 public class TestService {
@@ -60,17 +59,17 @@ public class TestService {
 
     private int overallDiff = 0;
 
-    public void runCompares() throws IOException {
+    public void runCompares() throws IOException, SOAPException {
         System.out.println("INFO: CCD Diff testing started");
 
         getCriminalFileContentCompare();
     }
 
-    private void getCriminalFileContentCompare() throws IOException {
+    private void getCriminalFileContentCompare() throws IOException, SOAPException {
         int diffCounter = 0;
 
         wmHost = "https://wsgw.dev.jag.gov.bc.ca/ccdapp/ocp/api/CriminalFileContent";
-        apiHost = "https://jag-ccd-52e74e-dev.apps.silver.devops.gov.bc.ca/ws";
+        apiHost = "https://jag-ccd-1-1-52e74e-dev.apps.silver.devops.gov.bc.ca/ws";
 
         GetCriminalFileContent request = new GetCriminalFileContent();
         request.setAgencyIdentifierCd(RAID);
@@ -112,21 +111,16 @@ public class TestService {
         fileOutput.close();
     }
 
-    public <T, G> boolean compare(T response, G request) {
+    public <T, G> boolean compare(T response, G request) throws SOAPException {
 
         Jaxb2Marshaller jaxb2Marshaller = new Jaxb2Marshaller();
 
-        DualProtocolSaajSoapMessageFactory saajSoapMessageFactory =
-                new DualProtocolSaajSoapMessageFactory();
-        saajSoapMessageFactory.setSoapVersion(SoapVersion.SOAP_11);
-        saajSoapMessageFactory.afterPropertiesSet();
-
-        HttpComponentsMessageSender httpComponentsMessageSender = new HttpComponentsMessageSender();
-        httpComponentsMessageSender.setCredentials(
-                new UsernamePasswordCredentials(username, password));
+        SaajSoapMessageFactory messageFactory =
+                new SaajSoapMessageFactory(MessageFactory.newInstance("SOAP 1.1 Protocol"));
+        messageFactory.afterPropertiesSet();
 
         webServiceTemplate.setMessageSender(webServiceSenderWithAuth);
-        webServiceTemplate.setMessageFactory(saajSoapMessageFactory);
+        webServiceTemplate.setMessageFactory(messageFactory);
         jaxb2Marshaller.setContextPaths(
                 "ca.bc.gov.open.ccd.common.code.values",
                 "ca.bc.gov.open.ccd.common.code.values.secure",
@@ -150,7 +144,7 @@ public class TestService {
         T resultObjectAPI = null;
 
         try {
-            resultObjectWM = (T) webServiceTemplate.marshalSendAndReceive(wmHost, request);
+            // resultObjectWM = (T) webServiceTemplate.marshalSendAndReceive(wmHost, request);
             resultObjectAPI = (T) webServiceTemplate.marshalSendAndReceive(apiHost, request);
             Thread.sleep(5000);
 
