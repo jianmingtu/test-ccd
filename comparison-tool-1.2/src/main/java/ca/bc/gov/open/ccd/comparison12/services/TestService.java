@@ -67,7 +67,7 @@ public class TestService {
     private void getCriminalFileContentSecureCompare() throws IOException {
         int diffCounter = 0;
 
-        wmHost = "https://wsgw.dev.jag.gov.bc.ca/ccdapp/ocp/api/CriminalFileContent";
+        wmHost = "https://wsgw.dev.jag.gov.bc.ca/ccdapp/CriminalFileContent";
         apiHost = "https://jag-ccd-1-2-52e74e-dev.apps.silver.devops.gov.bc.ca/ws";
 
         GetCriminalFileContentSecure request = new GetCriminalFileContentSecure();

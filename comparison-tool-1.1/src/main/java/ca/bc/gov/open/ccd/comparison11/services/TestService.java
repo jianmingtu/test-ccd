@@ -68,9 +68,6 @@ public class TestService {
     private void getCriminalFileContentCompare() throws IOException, SOAPException {
         int diffCounter = 0;
 
-        wmHost = "https://wsgw.dev.jag.gov.bc.ca/ccdapp/ocp/api/CriminalFileContent";
-        apiHost = "https://jag-ccd-1-1-52e74e-dev.apps.silver.devops.gov.bc.ca/ws";
-
         GetCriminalFileContent request = new GetCriminalFileContent();
         request.setAgencyIdentifierCd(RAID);
         request.setProceedingDate(dtm);
@@ -87,7 +84,7 @@ public class TestService {
             String line = scanner.nextLine();
             System.out.println("\nINFO: getCriminalFileContent with CCD Mdoc: " + line);
             request.setMdocJustinNo(line);
-            if (!compare(new GetCriminalFileContentResponse(), request)) {
+            if (!compare(new GetCriminalFileContentResponse(), request, "CriminalFileContent")) {
                 fileOutput.println("\nINFO: getCriminalFileContent with CCD Mdoc: " + line);
                 ++diffCounter;
             }
@@ -111,7 +108,7 @@ public class TestService {
         fileOutput.close();
     }
 
-    public <T, G> boolean compare(T response, G request) throws SOAPException {
+    public <T, G> boolean compare(T response, G request, String wsdl) throws SOAPException {
 
         Jaxb2Marshaller jaxb2Marshaller = new Jaxb2Marshaller();
 
@@ -144,7 +141,7 @@ public class TestService {
         T resultObjectAPI = null;
 
         try {
-            resultObjectWM = (T) webServiceTemplate.marshalSendAndReceive(wmHost, request);
+            resultObjectWM = (T) webServiceTemplate.marshalSendAndReceive(wmHost+wsdl, request);
             resultObjectAPI = (T) webServiceTemplate.marshalSendAndReceive(apiHost, request);
             Thread.sleep(5000);
 
