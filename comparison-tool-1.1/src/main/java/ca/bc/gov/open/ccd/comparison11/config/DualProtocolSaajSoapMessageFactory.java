@@ -109,7 +109,7 @@ public class DualProtocolSaajSoapMessageFactory implements SoapMessageFactory, I
         MimeHeaders mimeHeaders = this.parseMimeHeaders(inputStream);
         try {
             inputStream = checkForUtf8ByteOrderMark(inputStream);
-            SOAPMessage saajMessage = messageFactory12.createMessage(mimeHeaders, inputStream);
+            SOAPMessage saajMessage = messageFactory.createMessage(mimeHeaders, inputStream);
             saajMessage.getSOAPPart().getEnvelope();
             this.postProcess(saajMessage);
             return new SaajSoapMessage(
