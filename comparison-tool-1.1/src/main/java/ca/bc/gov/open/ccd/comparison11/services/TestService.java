@@ -3,6 +3,7 @@ package ca.bc.gov.open.ccd.comparison11.services;
 import ca.bc.gov.open.ccd.common.criminal.file.content.GetCriminalFileContent;
 import ca.bc.gov.open.ccd.common.criminal.file.content.GetCriminalFileContentResponse;
 import ca.bc.gov.open.ccd.comparison11.config.WebServiceSenderWithAuth;
+import ca.bc.gov.open.ccd.models.serializers.InstantSoapConverter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintWriter;
@@ -52,33 +53,39 @@ public class TestService {
 
     private String RAID = "83.0001";
     private String partId = RAID;
+    private String AGENCY_IDENT_CD = "C504";
     private Instant dtm = Instant.now();
 
     private PrintWriter fileOutput;
     private static String outputDir = "comparison-tool-1.1/results/";
 
     private int overallDiff = 0;
+    private int diffCounter = 0;
+
+    enum RoomCodeCompare {
+        COURT_ROOM_CODE,
+        COURT_PROCEEDING_DATE
+    }
 
     public void runCompares() throws IOException, SOAPException {
         System.out.println("INFO: CCD Diff testing started");
 
-        getCriminalFileContentCompare();
+        getCriminalFileContentMdocCompare();
+        getCriminalFileContentApprIdCompare();
+        getCriminalFileContentRoomCodeCompare();
     }
 
-    private void getCriminalFileContentCompare() throws IOException, SOAPException {
-        int diffCounter = 0;
+    private void getCriminalFileContentMdocCompare() throws IOException, SOAPException {
+        diffCounter = 0;
 
         GetCriminalFileContent request = new GetCriminalFileContent();
-        request.setAgencyIdentifierCd(RAID);
-        request.setProceedingDate(dtm);
-        request.setRoomCd("009");
-        request.setAppearanceID("83.0001");
 
-        InputStream inputIds = getClass().getResourceAsStream("/getCriminalFileContent.csv");
+        InputStream inputIds = getClass().getResourceAsStream("/getCriminalFileContentMdoc.csv");
         assert inputIds != null;
         Scanner scanner = new Scanner(inputIds);
         fileOutput =
-                new PrintWriter(outputDir + " getCriminalFileContent.txt", StandardCharsets.UTF_8);
+                new PrintWriter(
+                        outputDir + "getCriminalFileContentMdoc.txt", StandardCharsets.UTF_8);
 
         while (scanner.hasNextLine()) {
             String line = scanner.nextLine();
@@ -90,6 +97,78 @@ public class TestService {
             }
         }
 
+        printCompletion();
+    }
+
+    private void getCriminalFileContentApprIdCompare() throws IOException, SOAPException {
+        diffCounter = 0;
+
+        GetCriminalFileContent request = new GetCriminalFileContent();
+
+        InputStream inputIds = getClass().getResourceAsStream("/getCriminalFileContentApprId.csv");
+        assert inputIds != null;
+        Scanner scanner = new Scanner(inputIds);
+        fileOutput =
+                new PrintWriter(
+                        outputDir + " getCriminalFileContentApprId.txt", StandardCharsets.UTF_8);
+
+        while (scanner.hasNextLine()) {
+            String line = scanner.nextLine();
+            System.out.println("\nINFO: getCriminalFileContent with CCD Mdoc: " + line);
+            request.setAppearanceID(line);
+            if (!compare(new GetCriminalFileContentResponse(), request, "CriminalFileContent")) {
+                fileOutput.println("\nINFO: getCriminalFileContent with CCD Mdoc: " + line);
+                ++diffCounter;
+            }
+        }
+
+        printCompletion();
+    }
+
+    private void getCriminalFileContentRoomCodeCompare() throws IOException, SOAPException {
+        diffCounter = 0;
+
+        GetCriminalFileContent request = new GetCriminalFileContent();
+        request.setAgencyIdentifierCd(AGENCY_IDENT_CD);
+
+        InputStream inputIds =
+                getClass().getResourceAsStream("/getCriminalFileContentRoomCode.csv");
+        assert inputIds != null;
+        Scanner scanner = new Scanner(inputIds);
+        fileOutput =
+                new PrintWriter(
+                        outputDir + " getCriminalFileContentRoomCode.txt", StandardCharsets.UTF_8);
+
+        while (scanner.hasNextLine()) {
+            String[] line = scanner.nextLine().split(",");
+            String roomCode = "", procDate = "";
+            for (int i = 0; i < line.length; i++) {
+                if (line[i] != null) {
+                    if (RoomCodeCompare.COURT_ROOM_CODE.ordinal() == i) roomCode = line[i];
+                    else if (RoomCodeCompare.COURT_PROCEEDING_DATE.ordinal() == i)
+                        procDate = line[i];
+                }
+            }
+
+            if (!roomCode.isBlank()) request.setRoomCd(roomCode);
+            if (!procDate.isBlank())
+                request.setProceedingDate(InstantSoapConverter.parse(procDate));
+
+            System.out.format(
+                    "\nINFO: getCriminalFileContent with room code : %s and proceding date: %s \n",
+                    roomCode, procDate);
+            if (!compare(new GetCriminalFileContentResponse(), request, "CriminalFileContent")) {
+                fileOutput.format(
+                        "\nINFO: getCriminalFileContent with room code : %s and proceding date: %s \n",
+                        roomCode, procDate);
+                ++diffCounter;
+            }
+        }
+
+        printCompletion();
+    }
+
+    private void printCompletion() {
         System.out.println(
                 "########################################################\n"
                         + "INFO: getFileDetailCriminal Completed there are "
@@ -105,6 +184,7 @@ public class TestService {
                         + "########################################################");
 
         overallDiff += diffCounter;
+
         fileOutput.close();
     }
 

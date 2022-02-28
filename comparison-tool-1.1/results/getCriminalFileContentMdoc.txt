@@ -1,0 +1,10 @@
+================================================================================================
+|                                       Property |         API Response |          WM Response |
+| fileContent/accusedFile/0/document/0.issueDate | 1998-08-18T00:00:00Z | 1998-08-18T10:00:10Z |
+|            fileContent/accusedFile/0.filedDate | 1998-08-18T00:00:00Z | 1998-08-18T10:00:10Z |
+================================================================================================
+
+INFO: getCriminalFileContent with CCD Mdoc: 1963
+########################################################
+INFO: getFileDetailCriminal Completed there are 1 diffs
+########################################################
