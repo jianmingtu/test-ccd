@@ -64,14 +64,15 @@ public class TestService {
 
     enum RoomCodeCompare {
         COURT_ROOM_CODE,
-        COURT_PROCEEDING_DATE
+        COURT_PROCEEDING_DATE,
+        IDENT_CD
     }
 
     public void runCompares() throws IOException, SOAPException {
         System.out.println("INFO: CCD Diff testing started");
 
-        getCriminalFileContentMdocCompare();
-        getCriminalFileContentApprIdCompare();
+        // getCriminalFileContentMdocCompare();
+        // getCriminalFileContentApprIdCompare();
         getCriminalFileContentRoomCodeCompare();
     }
 
@@ -129,7 +130,6 @@ public class TestService {
         diffCounter = 0;
 
         GetCriminalFileContent request = new GetCriminalFileContent();
-        request.setAgencyIdentifierCd(AGENCY_IDENT_CD);
 
         InputStream inputIds =
                 getClass().getResourceAsStream("/getCriminalFileContentRoomCode.csv");
@@ -141,26 +141,28 @@ public class TestService {
 
         while (scanner.hasNextLine()) {
             String[] line = scanner.nextLine().split(",");
-            String roomCode = "", procDate = "";
+            String roomCode = "", procDate = "", identCd = "";
             for (int i = 0; i < line.length; i++) {
                 if (line[i] != null) {
                     if (RoomCodeCompare.COURT_ROOM_CODE.ordinal() == i) roomCode = line[i];
                     else if (RoomCodeCompare.COURT_PROCEEDING_DATE.ordinal() == i)
                         procDate = line[i];
+                    else if (RoomCodeCompare.IDENT_CD.ordinal() == i) identCd = line[i];
                 }
             }
 
             if (!roomCode.isBlank()) request.setRoomCd(roomCode);
             if (!procDate.isBlank())
                 request.setProceedingDate(InstantSoapConverter.parse(procDate));
+            if (!identCd.isBlank()) request.setAgencyIdentifierCd(identCd);
 
             System.out.format(
-                    "\nINFO: getCriminalFileContent with room code : %s and proceding date: %s \n",
-                    roomCode, procDate);
+                    "\nINFO: getCriminalFileContent with room code : %s,  proceding date: %s, identifier Code: %s \n",
+                    roomCode, procDate, identCd);
             if (!compare(new GetCriminalFileContentResponse(), request, "CriminalFileContent")) {
                 fileOutput.format(
-                        "\nINFO: getCriminalFileContent with room code : %s and proceding date: %s \n",
-                        roomCode, procDate);
+                        "\nINFO: getCriminalFileContent with room code : %s,  proceding date: %s, identifier Code: %s \n",
+                        roomCode, procDate, identCd);
                 ++diffCounter;
             }
         }
@@ -256,6 +258,20 @@ public class TestService {
         actualChanges.removeIf(
                 c -> {
                     if (c instanceof ValueChange) {
+
+                        if (((ValueChange) c).getPropertyName() == "appearanceNote") {
+                            String left =
+                                    ((ValueChange) c).getLeft() != null
+                                            ? ((ValueChange) c).getLeft().toString()
+                                            : "";
+                            String right =
+                                    ((ValueChange) c).getRight() != null
+                                            ? ((ValueChange) c).getRight().toString()
+                                            : "";
+
+                            return left.replace("\n", "").equals(right.replace("\n", ""));
+                        }
+
                         return ((ValueChange) c).getLeft() == null
                                 && ((ValueChange) c).getRight().toString().isBlank();
                     } else if (c instanceof ListChange) {

@@ -59,8 +59,10 @@ select distinct
 ```
 we use this selection statement 1) instead of 2) because the below could not output results and throw error 'ORA-01652: unable to extend temp segment by 128 in tablespace TEMP' due to system memory limitation                       
 
-1) select distinct clst.ctrm_room_cd, TO_char(clst.clst_court_dt,'YYYY-MM-DD HH24:MI:SS') || '.0'
-     from justin_court_lists clst where clst.ctrm_agen_id = '83.0001'
+1) select distinct clst.ctrm_room_cd, TO_char(clst.clst_court_dt,'YYYY-MM-DD HH24:MI:SS') || '.0', agen.AGEN_AGENCY_IDENTIFIER_CD
+     from justin_court_lists clst, JUSTIN.justin_agencies agen
+     where clst.ctrm_agen_id = agen.agen_id
+     FETCH FIRST 5000 ROWS ONLY
 
 2) select distinct clst.clst_court_dt, clst.ctrm_agen_id, clst.ctrm_room_cd
     from justin_court_lists clst,
