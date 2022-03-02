@@ -43,3 +43,5 @@ CcdUserMapping-*-FAILED.txt
 /CCDCriminalFileContent-soapui-project.xml
 /CCDGetROPReport-soapui-project.xml
 /CCDGetUserLogin-soapui-project.xml
+/comparison-tool1.1/results/*.txt
+/comparison-tool1.2/results/*.txt
