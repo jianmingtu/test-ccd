@@ -36,6 +36,7 @@
         <module>ccd-common-models</module>
         <module>ccd-court-list-secure-models</module>
         <module>AutomatedTests</module>
+        <module>comparison-tool-1.1</module>
     </modules>
 
 
