@@ -37,7 +37,6 @@
         <module>ccd-court-list-secure-models</module>
         <module>AutomatedTests</module>
         <module>comparison-tool-1.1</module>
-        <module>comparison-tool-1.2</module>
     </modules>
 
 

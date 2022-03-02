@@ -4,4 +4,4 @@ host:
   api-host: ${API_HOST}
   wm-host: ${WM_HOST}
 server:
-  port: 8081
+  port: 8082
