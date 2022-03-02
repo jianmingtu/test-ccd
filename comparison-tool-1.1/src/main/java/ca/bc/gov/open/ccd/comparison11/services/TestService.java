@@ -65,14 +65,14 @@ public class TestService {
     enum RoomCodeCompare {
         COURT_ROOM_CODE,
         COURT_PROCEEDING_DATE,
-        IDENT_CD
+        IDENTIFIER_CD
     }
 
     public void runCompares() throws IOException, SOAPException {
         System.out.println("INFO: CCD Diff testing started");
 
-        // getCriminalFileContentMdocCompare();
-        // getCriminalFileContentApprIdCompare();
+        getCriminalFileContentMdocCompare();
+        getCriminalFileContentApprIdCompare();
         getCriminalFileContentRoomCodeCompare();
     }
 
@@ -115,10 +115,10 @@ public class TestService {
 
         while (scanner.hasNextLine()) {
             String line = scanner.nextLine();
-            System.out.println("\nINFO: getCriminalFileContent with CCD Mdoc: " + line);
+            System.out.println("\nINFO: getCriminalFileContent with CCD Appearance Id: " + line);
             request.setAppearanceID(line);
             if (!compare(new GetCriminalFileContentResponse(), request, "CriminalFileContent")) {
-                fileOutput.println("\nINFO: getCriminalFileContent with CCD Mdoc: " + line);
+                fileOutput.println("\nINFO: getCriminalFileContent with CCD Appearance Id: " + line);
                 ++diffCounter;
             }
         }
@@ -147,7 +147,7 @@ public class TestService {
                     if (RoomCodeCompare.COURT_ROOM_CODE.ordinal() == i) roomCode = line[i];
                     else if (RoomCodeCompare.COURT_PROCEEDING_DATE.ordinal() == i)
                         procDate = line[i];
-                    else if (RoomCodeCompare.IDENT_CD.ordinal() == i) identCd = line[i];
+                    else if (RoomCodeCompare.IDENTIFIER_CD.ordinal() == i) identCd = line[i];
                 }
             }
 
