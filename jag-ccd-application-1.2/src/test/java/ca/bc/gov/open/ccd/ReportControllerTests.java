@@ -1,6 +1,5 @@
 package ca.bc.gov.open.ccd;
 
-import static org.mockito.ArgumentMatchers.contains;
 import static org.mockito.Mockito.when;
 
 import ca.bc.gov.open.ccd.common.rop.report.secure.GetROPReportSecure;
@@ -8,13 +7,13 @@ import ca.bc.gov.open.ccd.common.rop.report.secure.RopSecureRequest;
 import ca.bc.gov.open.ccd.controllers.ReportController;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import java.net.URI;
 import java.nio.charset.StandardCharsets;
 import java.time.Instant;
 import java.util.HashMap;
 import java.util.Map;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import org.mockito.AdditionalMatchers;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -59,7 +58,7 @@ public class ReportControllerTests {
 
         // Set up to mock ords response
         when(restTemplate.exchange(
-                        AdditionalMatchers.not(contains("tokenvalue")),
+                        Mockito.any(URI.class),
                         Mockito.eq(HttpMethod.GET),
                         Mockito.<HttpEntity<String>>any(),
                         Mockito.<ParameterizedTypeReference<Map<String, String>>>any()))
