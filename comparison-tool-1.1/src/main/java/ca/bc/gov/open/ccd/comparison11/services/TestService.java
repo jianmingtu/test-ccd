@@ -255,7 +255,7 @@ public class TestService {
                 System.out.println(
                         "INFO: "
                                 + responseClassName.substring(
-                                responseClassName.lastIndexOf('.') + 1)
+                                        responseClassName.lastIndexOf('.') + 1)
                                 + ": No Diff Detected");
             }
             return true;
