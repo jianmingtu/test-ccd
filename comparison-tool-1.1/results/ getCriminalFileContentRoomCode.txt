@@ -1,0 +1,5 @@
+
+INFO: getCriminalFileContent with room code : 001,  proceding date: 1999-07-20 00:00:00.0, identifier Code: 4801 
+########################################################
+INFO: getFileDetailCriminal Completed there are 1 diffs
+########################################################
