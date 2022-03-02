@@ -1,9 +1,5 @@
 package ca.bc.gov.open.ccd.comparison11.services;
 
-import ca.bc.gov.open.ccd.common.criminal.file.content.GetCriminalFileContent;
-import ca.bc.gov.open.ccd.common.criminal.file.content.GetCriminalFileContentResponse;
-import ca.bc.gov.open.ccd.comparison11.config.WebServiceSenderWithAuth;
-import ca.bc.gov.open.ccd.models.serializers.InstantSoapConverter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintWriter;
@@ -13,6 +9,11 @@ import java.util.*;
 import java.util.stream.Stream;
 import javax.xml.soap.MessageFactory;
 import javax.xml.soap.SOAPException;
+
+import ca.bc.gov.open.ccd.common.criminal.file.content.GetCriminalFileContent;
+import ca.bc.gov.open.ccd.common.criminal.file.content.GetCriminalFileContentResponse;
+import ca.bc.gov.open.ccd.comparison11.config.WebServiceSenderWithAuth;
+import ca.bc.gov.open.ccd.models.serializers.InstantSoapConverter;
 import org.javers.core.Javers;
 import org.javers.core.JaversBuilder;
 import org.javers.core.diff.Change;
@@ -53,7 +54,6 @@ public class TestService {
 
     private String RAID = "83.0001";
     private String partId = RAID;
-    private String AGENCY_IDENT_CD = "C504";
     private Instant dtm = Instant.now();
 
     private PrintWriter fileOutput;
@@ -145,17 +145,29 @@ public class TestService {
             String roomCode = "", procDate = "", identCd = "";
             for (int i = 0; i < line.length; i++) {
                 if (line[i] != null) {
-                    if (RoomCodeCompare.COURT_ROOM_CODE.ordinal() == i) roomCode = line[i];
-                    else if (RoomCodeCompare.COURT_PROCEEDING_DATE.ordinal() == i)
+                    if (RoomCodeCompare.COURT_ROOM_CODE.ordinal() == i) {
+                        roomCode = line[i];
+                    }
+                    else if (RoomCodeCompare.COURT_PROCEEDING_DATE.ordinal() == i) {
                         procDate = line[i];
-                    else if (RoomCodeCompare.IDENTIFIER_CD.ordinal() == i) identCd = line[i];
+                    }
+                    else if (RoomCodeCompare.IDENTIFIER_CD.ordinal() == i) {
+                        identCd = line[i];
+                    }
                 }
             }
 
-            if (!roomCode.isBlank()) request.setRoomCd(roomCode);
-            if (!procDate.isBlank())
+            if (!roomCode.isBlank()) {
+                request.setRoomCd(roomCode);
+            }
+
+            if (!procDate.isBlank()) {
                 request.setProceedingDate(InstantSoapConverter.parse(procDate));
-            if (!identCd.isBlank()) request.setAgencyIdentifierCd(identCd);
+            }
+
+            if (!identCd.isBlank()) {
+                request.setAgencyIdentifierCd(identCd);
+            }
 
             System.out.format(
                     "\nINFO: getCriminalFileContent with room code : %s,  proceding date: %s, identifier Code: %s \n",
@@ -236,19 +248,20 @@ public class TestService {
             printDiff(diff);
             return false;
         } else {
-            if (resultObjectAPI == null && resultObjectWM == null)
+            if (resultObjectAPI == null && resultObjectWM == null) {
                 System.out.println(
                         "WARN: "
                                 + responseClassName.substring(
-                                        responseClassName.lastIndexOf('.') + 1)
+                                responseClassName.lastIndexOf('.') + 1)
                                 + ": NULL responses");
-            else
+            } else {
                 System.out.println(
                         "INFO: "
                                 + responseClassName.substring(
-                                        responseClassName.lastIndexOf('.') + 1)
+                                responseClassName.lastIndexOf('.') + 1)
                                 + ": No Diff Detected");
-            return true;
+                return true;
+            }
         }
     }
 
@@ -259,20 +272,6 @@ public class TestService {
         actualChanges.removeIf(
                 c -> {
                     if (c instanceof ValueChange) {
-
-                        if (((ValueChange) c).getPropertyName() == "appearanceNote") {
-                            String left =
-                                    ((ValueChange) c).getLeft() != null
-                                            ? ((ValueChange) c).getLeft().toString()
-                                            : "";
-                            String right =
-                                    ((ValueChange) c).getRight() != null
-                                            ? ((ValueChange) c).getRight().toString()
-                                            : "";
-
-                            return left.replace("\n", "").equals(right.replace("\n", ""));
-                        }
-
                         return ((ValueChange) c).getLeft() == null
                                 && ((ValueChange) c).getRight().toString().isBlank();
                     } else if (c instanceof ListChange) {
