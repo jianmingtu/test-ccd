@@ -631,4 +631,318 @@ INFO: getCriminalFileContent with CCD Mdoc: 35312
 
 INFO: getCriminalFileContent with CCD Mdoc: 35319
 
-INFO: getCriminalFi
+INFO: getCriminalFileContent with CCD Mdoc: 35330
+
+INFO: getCriminalFileContent with CCD Mdoc: 35336
+
+INFO: getCriminalFileContent with CCD Mdoc: 35353
+
+INFO: getCriminalFileContent with CCD Mdoc: 35357
+
+INFO: getCriminalFileContent with CCD Mdoc: 35358
+
+INFO: getCriminalFileContent with CCD Mdoc: 35370
+
+INFO: getCriminalFileContent with CCD Mdoc: 35372
+
+INFO: getCriminalFileContent with CCD Mdoc: 35377
+
+INFO: getCriminalFileContent with CCD Mdoc: 35383
+
+INFO: getCriminalFileContent with CCD Mdoc: 35406
+
+INFO: getCriminalFileContent with CCD Mdoc: 35407
+
+INFO: getCriminalFileContent with CCD Mdoc: 35428
+
+INFO: getCriminalFileContent with CCD Mdoc: 35469
+
+INFO: getCriminalFileContent with CCD Mdoc: 35480
+
+INFO: getCriminalFileContent with CCD Mdoc: 35482
+
+INFO: getCriminalFileContent with CCD Mdoc: 35487
+
+INFO: getCriminalFileContent with CCD Mdoc: 35492
+
+INFO: getCriminalFileContent with CCD Mdoc: 35498
+
+INFO: getCriminalFileContent with CCD Mdoc: 35504
+
+INFO: getCriminalFileContent with CCD Mdoc: 35516
+
+INFO: getCriminalFileContent with CCD Mdoc: 35519
+
+INFO: getCriminalFileContent with CCD Mdoc: 35525
+
+INFO: getCriminalFileContent with CCD Mdoc: 35556
+
+INFO: getCriminalFileContent with CCD Mdoc: 35557
+
+INFO: getCriminalFileContent with CCD Mdoc: 35561
+
+INFO: getCriminalFileContent with CCD Mdoc: 35565
+
+INFO: getCriminalFileContent with CCD Mdoc: 35570
+
+INFO: getCriminalFileContent with CCD Mdoc: 35579
+
+INFO: getCriminalFileContent with CCD Mdoc: 35582
+
+INFO: getCriminalFileContent with CCD Mdoc: 35586
+
+INFO: getCriminalFileContent with CCD Mdoc: 35589
+
+INFO: getCriminalFileContent with CCD Mdoc: 35595
+
+INFO: getCriminalFileContent with CCD Mdoc: 35596
+
+INFO: getCriminalFileContent with CCD Mdoc: 35626
+
+INFO: getCriminalFileContent with CCD Mdoc: 35631
+
+INFO: getCriminalFileContent with CCD Mdoc: 35633
+
+INFO: getCriminalFileContent with CCD Mdoc: 35636
+
+INFO: getCriminalFileContent with CCD Mdoc: 35637
+
+INFO: getCriminalFileContent with CCD Mdoc: 35638
+
+INFO: getCriminalFileContent with CCD Mdoc: 35655
+
+INFO: getCriminalFileContent with CCD Mdoc: 35659
+
+INFO: getCriminalFileContent with CCD Mdoc: 35660
+
+INFO: getCriminalFileContent with CCD Mdoc: 35680
+
+INFO: getCriminalFileContent with CCD Mdoc: 35697
+
+INFO: getCriminalFileContent with CCD Mdoc: 35732
+
+INFO: getCriminalFileContent with CCD Mdoc: 35735
+
+INFO: getCriminalFileContent with CCD Mdoc: 35744
+
+INFO: getCriminalFileContent with CCD Mdoc: 35798
+
+INFO: getCriminalFileContent with CCD Mdoc: 35802
+
+INFO: getCriminalFileContent with CCD Mdoc: 35808
+
+INFO: getCriminalFileContent with CCD Mdoc: 35829
+
+INFO: getCriminalFileContent with CCD Mdoc: 35847
+
+INFO: getCriminalFileContent with CCD Mdoc: 35848
+
+INFO: getCriminalFileContent with CCD Mdoc: 35852
+
+INFO: getCriminalFileContent with CCD Mdoc: 35857
+
+INFO: getCriminalFileContent with CCD Mdoc: 35872
+
+INFO: getCriminalFileContent with CCD Mdoc: 35884
+
+INFO: getCriminalFileContent with CCD Mdoc: 35901
+
+INFO: getCriminalFileContent with CCD Mdoc: 35902
+
+INFO: getCriminalFileContent with CCD Mdoc: 35903
+
+INFO: getCriminalFileContent with CCD Mdoc: 35904
+
+INFO: getCriminalFileContent with CCD Mdoc: 35908
+
+INFO: getCriminalFileContent with CCD Mdoc: 35909
+
+INFO: getCriminalFileContent with CCD Mdoc: 35915
+
+INFO: getCriminalFileContent with CCD Mdoc: 35918
+
+INFO: getCriminalFileContent with CCD Mdoc: 35922
+
+INFO: getCriminalFileContent with CCD Mdoc: 35924
+
+INFO: getCriminalFileContent with CCD Mdoc: 35927
+
+INFO: getCriminalFileContent with CCD Mdoc: 35933
+
+INFO: getCriminalFileContent with CCD Mdoc: 35943
+
+INFO: getCriminalFileContent with CCD Mdoc: 35963
+
+INFO: getCriminalFileContent with CCD Mdoc: 35982
+
+INFO: getCriminalFileContent with CCD Mdoc: 35984
+
+INFO: getCriminalFileContent with CCD Mdoc: 36004
+
+INFO: getCriminalFileContent with CCD Mdoc: 36009
+
+INFO: getCriminalFileContent with CCD Mdoc: 36020
+
+INFO: getCriminalFileContent with CCD Mdoc: 36021
+
+INFO: getCriminalFileContent with CCD Mdoc: 36023
+
+INFO: getCriminalFileContent with CCD Mdoc: 36024
+
+INFO: getCriminalFileContent with CCD Mdoc: 36050
+
+INFO: getCriminalFileContent with CCD Mdoc: 36063
+
+INFO: getCriminalFileContent with CCD Mdoc: 36069
+
+INFO: getCriminalFileContent with CCD Mdoc: 36070
+
+INFO: getCriminalFileContent with CCD Mdoc: 36100
+
+INFO: getCriminalFileContent with CCD Mdoc: 36104
+
+INFO: getCriminalFileContent with CCD Mdoc: 36122
+
+INFO: getCriminalFileContent with CCD Mdoc: 36135
+
+INFO: getCriminalFileContent with CCD Mdoc: 36138
+
+INFO: getCriminalFileContent with CCD Mdoc: 36149
+
+INFO: getCriminalFileContent with CCD Mdoc: 36150
+
+INFO: getCriminalFileContent with CCD Mdoc: 36153
+
+INFO: getCriminalFileContent with CCD Mdoc: 36154
+
+INFO: getCriminalFileContent with CCD Mdoc: 36169
+
+INFO: getCriminalFileContent with CCD Mdoc: 36173
+
+INFO: getCriminalFileContent with CCD Mdoc: 36175
+
+INFO: getCriminalFileContent with CCD Mdoc: 36191
+
+INFO: getCriminalFileContent with CCD Mdoc: 36204
+
+INFO: getCriminalFileContent with CCD Mdoc: 36210
+
+INFO: getCriminalFileContent with CCD Mdoc: 36219
+
+INFO: getCriminalFileContent with CCD Mdoc: 36222
+
+INFO: getCriminalFileContent with CCD Mdoc: 36235
+
+INFO: getCriminalFileContent with CCD Mdoc: 36236
+
+INFO: getCriminalFileContent with CCD Mdoc: 36238
+
+INFO: getCriminalFileContent with CCD Mdoc: 36246
+
+INFO: getCriminalFileContent with CCD Mdoc: 36247
+
+INFO: getCriminalFileContent with CCD Mdoc: 36259
+
+INFO: getCriminalFileContent with CCD Mdoc: 36333
+
+INFO: getCriminalFileContent with CCD Mdoc: 36334
+
+INFO: getCriminalFileContent with CCD Mdoc: 36357
+
+INFO: getCriminalFileContent with CCD Mdoc: 36364
+
+INFO: getCriminalFileContent with CCD Mdoc: 36368
+
+INFO: getCriminalFileContent with CCD Mdoc: 36392
+
+INFO: getCriminalFileContent with CCD Mdoc: 36426
+
+INFO: getCriminalFileContent with CCD Mdoc: 36434
+
+INFO: getCriminalFileContent with CCD Mdoc: 36442
+
+INFO: getCriminalFileContent with CCD Mdoc: 36486
+
+INFO: getCriminalFileContent with CCD Mdoc: 36496
+
+INFO: getCriminalFileContent with CCD Mdoc: 36533
+
+INFO: getCriminalFileContent with CCD Mdoc: 36536
+
+INFO: getCriminalFileContent with CCD Mdoc: 36542
+
+INFO: getCriminalFileContent with CCD Mdoc: 36566
+
+INFO: getCriminalFileContent with CCD Mdoc: 36574
+
+INFO: getCriminalFileContent with CCD Mdoc: 36578
+
+INFO: getCriminalFileContent with CCD Mdoc: 36606
+
+INFO: getCriminalFileContent with CCD Mdoc: 36639
+
+INFO: getCriminalFileContent with CCD Mdoc: 36681
+
+INFO: getCriminalFileContent with CCD Mdoc: 36690
+
+INFO: getCriminalFileContent with CCD Mdoc: 36697
+
+INFO: getCriminalFileContent with CCD Mdoc: 36731
+
+INFO: getCriminalFileContent with CCD Mdoc: 36735
+
+INFO: getCriminalFileContent with CCD Mdoc: 36737
+
+INFO: getCriminalFileContent with CCD Mdoc: 36752
+
+INFO: getCriminalFileContent with CCD Mdoc: 36765
+
+INFO: getCriminalFileContent with CCD Mdoc: 36776
+
+INFO: getCriminalFileContent with CCD Mdoc: 36788
+
+INFO: getCriminalFileContent with CCD Mdoc: 36790
+
+INFO: getCriminalFileContent with CCD Mdoc: 36792
+
+INFO: getCriminalFileContent with CCD Mdoc: 37772
+
+INFO: getCriminalFileContent with CCD Mdoc: 37784
+
+INFO: getCriminalFileContent with CCD Mdoc: 37788
+
+INFO: getCriminalFileContent with CCD Mdoc: 37819
+
+INFO: getCriminalFileContent with CCD Mdoc: 37863
+
+INFO: getCriminalFileContent with CCD Mdoc: 37866
+
+INFO: getCriminalFileContent with CCD Mdoc: 37870
+
+INFO: getCriminalFileContent with CCD Mdoc: 37872
+
+INFO: getCriminalFileContent with CCD Mdoc: 37873
+
+INFO: getCriminalFileContent with CCD Mdoc: 37881
+
+INFO: getCriminalFileContent with CCD Mdoc: 37882
+
+INFO: getCriminalFileContent with CCD Mdoc: 37913
+
+INFO: getCriminalFileContent with CCD Mdoc: 37918
+
+INFO: getCriminalFileContent with CCD Mdoc: 37038
+
+INFO: getCriminalFileContent with CCD Mdoc: 37057
+
+INFO: getCriminalFileContent with CCD Mdoc: 37071
+
+INFO: getCriminalFileContent with CCD Mdoc: 37092
+
+INFO: getCriminalFileContent with CCD Mdoc: 37094
+
+INFO: getCriminalFileContent with CCD Mdoc: 37125
+
+INFO: getCriminalFileContent with CCD Mdoc: 37130
+
+INFO: getCriminalFileContent with CCD Mdoc: 371

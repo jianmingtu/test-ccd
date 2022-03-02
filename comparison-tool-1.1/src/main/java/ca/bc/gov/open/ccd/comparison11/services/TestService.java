@@ -118,7 +118,8 @@ public class TestService {
             System.out.println("\nINFO: getCriminalFileContent with CCD Appearance Id: " + line);
             request.setAppearanceID(line);
             if (!compare(new GetCriminalFileContentResponse(), request, "CriminalFileContent")) {
-                fileOutput.println("\nINFO: getCriminalFileContent with CCD Appearance Id: " + line);
+                fileOutput.println(
+                        "\nINFO: getCriminalFileContent with CCD Appearance Id: " + line);
                 ++diffCounter;
             }
         }
