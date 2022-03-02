@@ -1,5 +1,9 @@
 package ca.bc.gov.open.ccd.comparison11.services;
 
+import ca.bc.gov.open.ccd.common.criminal.file.content.GetCriminalFileContent;
+import ca.bc.gov.open.ccd.common.criminal.file.content.GetCriminalFileContentResponse;
+import ca.bc.gov.open.ccd.comparison11.config.WebServiceSenderWithAuth;
+import ca.bc.gov.open.ccd.models.serializers.InstantSoapConverter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintWriter;
@@ -9,11 +13,6 @@ import java.util.*;
 import java.util.stream.Stream;
 import javax.xml.soap.MessageFactory;
 import javax.xml.soap.SOAPException;
-
-import ca.bc.gov.open.ccd.common.criminal.file.content.GetCriminalFileContent;
-import ca.bc.gov.open.ccd.common.criminal.file.content.GetCriminalFileContentResponse;
-import ca.bc.gov.open.ccd.comparison11.config.WebServiceSenderWithAuth;
-import ca.bc.gov.open.ccd.models.serializers.InstantSoapConverter;
 import org.javers.core.Javers;
 import org.javers.core.JaversBuilder;
 import org.javers.core.diff.Change;
@@ -147,11 +146,9 @@ public class TestService {
                 if (line[i] != null) {
                     if (RoomCodeCompare.COURT_ROOM_CODE.ordinal() == i) {
                         roomCode = line[i];
-                    }
-                    else if (RoomCodeCompare.COURT_PROCEEDING_DATE.ordinal() == i) {
+                    } else if (RoomCodeCompare.COURT_PROCEEDING_DATE.ordinal() == i) {
                         procDate = line[i];
-                    }
-                    else if (RoomCodeCompare.IDENTIFIER_CD.ordinal() == i) {
+                    } else if (RoomCodeCompare.IDENTIFIER_CD.ordinal() == i) {
                         identCd = line[i];
                     }
                 }
@@ -252,13 +249,13 @@ public class TestService {
                 System.out.println(
                         "WARN: "
                                 + responseClassName.substring(
-                                responseClassName.lastIndexOf('.') + 1)
+                                        responseClassName.lastIndexOf('.') + 1)
                                 + ": NULL responses");
             } else {
                 System.out.println(
                         "INFO: "
                                 + responseClassName.substring(
-                                responseClassName.lastIndexOf('.') + 1)
+                                        responseClassName.lastIndexOf('.') + 1)
                                 + ": No Diff Detected");
                 return true;
             }
