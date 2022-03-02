@@ -117,12 +117,16 @@ public class ReportController {
                 String url = body.get("url") != null ? body.get("url") : "";
                 String keyValue = body.get("keyValue") != null ? body.get("keyValue") : "";
                 String query = "";
-                if (url.contains("?")) query = url.split("\\?")[1];
+                if (url.contains("?")) {
+                    query = url.split("\\?")[1];
+                }
 
                 // build an adobe server uri using its url and parameters being return from ccd and
                 // request base64 stream from this adobe server
                 query =
-                        query.replace("<<FORM>>", inner.getFormCd())
+                        query.replace(
+                                        "<<FORM>>",
+                                        inner.getFormCd() == null ? "" : inner.getFormCd())
                                 .replace("<<APP>>", reportAppName)
                                 .replace("<<TICKET>>", keyValue);
 
