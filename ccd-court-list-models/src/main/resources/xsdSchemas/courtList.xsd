@@ -353,7 +353,7 @@
             <xsd:element name="DocumentTypeDescription" nillable="true" type="xsd:string"/>
             <xsd:element name="EstimatedDocumentMinutes" nillable="true" type="xsd:string"/>
             <xsd:element name="DocumentTypeCd" nillable="true" type="xsd:string"/>
-            <xsd:element name="DateGranted" nillable="true" type="xsd:string"/>
+            <xsd:element name="DateGranted" nillable="true" type="xsd:dateTime"/>
             <xsd:element name="DateVaried" nillable="true" type="xsd:string"/>
             <xsd:element name="CancelledDate" nillable="true" type="xsd:dateTime"/>
             <xsd:element name="AdjudicatorPartId" nillable="true" type="xsd:string"/>
@@ -512,7 +512,7 @@
             <xsd:element name="DocumentId" nillable="true" type="xsd:string"/>
             <xsd:element name="DocumentTypeDsc" nillable="true" type="xsd:string"/>
             <xsd:element name="AdjudicatorName" nillable="true" type="xsd:string"/>
-            <xsd:element name="DateGranted" nillable="true" type="xsd:string"/>
+            <xsd:element name="DateGranted" nillable="true" type="xsd:dateTime"/>
         </xsd:sequence>
     </xsd:complexType>
 

@@ -1,5 +1,7 @@
 package ca.bc.gov.open.ccd.comparison11.services;
 
+import ca.bc.gov.open.ccd.civil.GetCivilFileContent;
+import ca.bc.gov.open.ccd.civil.GetCivilFileContentResponse;
 import ca.bc.gov.open.ccd.common.criminal.file.content.GetCriminalFileContent;
 import ca.bc.gov.open.ccd.common.criminal.file.content.GetCriminalFileContentResponse;
 import ca.bc.gov.open.ccd.comparison11.config.WebServiceSenderWithAuth;
@@ -73,6 +75,113 @@ public class TestService {
         getCriminalFileContentMdocCompare();
         getCriminalFileContentApprIdCompare();
         getCriminalFileContentRoomCodeCompare();
+
+        getCivilFileContentFileIdCompare();
+        getCivilFileContentApprIdCompare();
+        getCivilFileContentRoomCodeCompare();
+    }
+
+    private void getCivilFileContentFileIdCompare() throws IOException, SOAPException {
+        diffCounter = 0;
+
+        GetCivilFileContent request = new GetCivilFileContent();
+
+        InputStream inputIds = getClass().getResourceAsStream("/getCivilFileContentFileId.csv");
+        assert inputIds != null;
+        Scanner scanner = new Scanner(inputIds);
+        fileOutput =
+                new PrintWriter(
+                        outputDir + "getCivilFileContentFileId.txt", StandardCharsets.UTF_8);
+
+        while (scanner.hasNextLine()) {
+            String line = scanner.nextLine();
+            System.out.println("\nINFO: getCivilFileContent with CCD File Id: " + line);
+            request.setPhysicalFileId(line);
+            if (!compare(new GetCriminalFileContentResponse(), request, "CivilFileContent")) {
+                fileOutput.println("\nINFO: getCivilFileContent with CCD File Id: " + line);
+                ++diffCounter;
+            }
+        }
+
+        printCompletion();
+    }
+
+    private void getCivilFileContentApprIdCompare() throws IOException, SOAPException {
+        diffCounter = 0;
+
+        GetCivilFileContent request = new GetCivilFileContent();
+
+        InputStream inputIds = getClass().getResourceAsStream("/getCivilFileContentApprId.csv");
+        assert inputIds != null;
+        Scanner scanner = new Scanner(inputIds);
+        fileOutput =
+                new PrintWriter(
+                        outputDir + " getCivilFileContentApprId.txt", StandardCharsets.UTF_8);
+
+        while (scanner.hasNextLine()) {
+            String line = scanner.nextLine();
+            System.out.println("\nINFO: getCivilFileContent with CCD Appearance Id: " + line);
+            request.setAppearanceId(Long.parseLong(line));
+            if (!compare(new GetCivilFileContentResponse(), request, "CivilFileContent")) {
+                fileOutput.println("\nINFO: getCivilFileContent with CCD Appearance Id: " + line);
+                ++diffCounter;
+            }
+        }
+
+        printCompletion();
+    }
+
+    private void getCivilFileContentRoomCodeCompare() throws IOException, SOAPException {
+        diffCounter = 0;
+
+        GetCivilFileContent request = new GetCivilFileContent();
+
+        InputStream inputIds = getClass().getResourceAsStream("/getCivilFileContentRoomCode.csv");
+        assert inputIds != null;
+        Scanner scanner = new Scanner(inputIds);
+        fileOutput =
+                new PrintWriter(
+                        outputDir + " getCivilFileContentRoomCode.txt", StandardCharsets.UTF_8);
+
+        while (scanner.hasNextLine()) {
+            String[] line = scanner.nextLine().split(",");
+            String roomCode = "", procDate = "", identCd = "";
+            for (int i = 0; i < line.length; i++) {
+                if (line[i] != null) {
+                    if (RoomCodeCompare.COURT_ROOM_CODE.ordinal() == i) {
+                        roomCode = line[i];
+                    } else if (RoomCodeCompare.COURT_PROCEEDING_DATE.ordinal() == i) {
+                        procDate = line[i];
+                    } else if (RoomCodeCompare.IDENTIFIER_CD.ordinal() == i) {
+                        identCd = line[i];
+                    }
+                }
+            }
+
+            if (!roomCode.isBlank()) {
+                request.setCourtRoomCd(roomCode);
+            }
+
+            if (!procDate.isBlank()) {
+                request.setCourtProceedingDate(InstantSoapConverter.parse(procDate));
+            }
+
+            if (!identCd.isBlank()) {
+                request.setCourtLocaCd(identCd);
+            }
+
+            System.out.format(
+                    "\nINFO: getCivilFileContent with room code : %s,  proceding date: %s, Application Code: %s \n",
+                    roomCode, procDate, identCd);
+            if (!compare(new GetCriminalFileContentResponse(), request, "CivilFileContent")) {
+                fileOutput.format(
+                        "\nINFO: getCivilFileContent with room code : %s,  proceding date: %s, Application Code: %s \n",
+                        roomCode, procDate, identCd);
+                ++diffCounter;
+            }
+        }
+
+        printCompletion();
     }
 
     private void getCriminalFileContentMdocCompare() throws IOException, SOAPException {
@@ -219,7 +328,8 @@ public class TestService {
                 "ca.bc.gov.open.ccd.common.process.results",
                 "ca.bc.gov.open.ccd.common.rop.report",
                 "ca.bc.gov.open.ccd.common.user.login",
-                "ca.bc.gov.open.ccd.common.user.mapping");
+                "ca.bc.gov.open.ccd.common.user.mapping",
+                "ca.bc.gov.open.ccd.civil");
 
         webServiceTemplate.setMarshaller(jaxb2Marshaller);
         webServiceTemplate.setUnmarshaller(jaxb2Marshaller);
