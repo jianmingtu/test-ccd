@@ -169,7 +169,7 @@
             <xsd:element name="DateGranted" nillable="true" type="xsd:dateTime"/>
             <xsd:element name="EstimatedDocumentMinutes" nillable="true" type="xsd:string"/>
             <xsd:element name="EndedDate" nillable="true" type="xsd:dateTime"/>
-            <xsd:element name="DateVaried" nillable="true" type="xsd:string"/>
+            <xsd:element name="DateVaried" nillable="true" type="xsd:dateTime"/>
             <xsd:element name="CancelledDate" nillable="true" type="xsd:dateTime"/>
             <xsd:element name="DocumentCommentText" nillable="true" type="xsd:string"/>
             <xsd:element name="OrderDocumentYN" nillable="true" type="xsd:string"/>
@@ -210,7 +210,7 @@
             <xsd:element name="ReferenceDocumentId" nillable="true" type="xsd:string"/>
             <xsd:element name="ReferenceDocumentNo" nillable="true" type="xsd:string"/>
             <xsd:element name="AppearanceId" nillable="true" type="xsd:string"/>
-            <xsd:element name="AppearanceDate" nillable="true" type="xsd:string"/>
+            <xsd:element name="AppearanceDate" nillable="true" type="xsd:dateTime"/>
             <xsd:element name="ObjectGuid" nillable="true" type="xsd:string"/>
             <xsd:element name="DescriptionText" nillable="true" type="xsd:string"/>
             <xsd:element name="EnterDtm" nillable="true" type="xsd:dateTime"/>

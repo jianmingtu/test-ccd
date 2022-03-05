@@ -72,11 +72,11 @@ public class TestService {
     public void runCompares() throws IOException, SOAPException {
         System.out.println("INFO: CCD Diff testing started");
 
-        getCriminalFileContentMdocCompare();
-        getCriminalFileContentApprIdCompare();
-        getCriminalFileContentRoomCodeCompare();
+        //        getCriminalFileContentMdocCompare();
+        //        getCriminalFileContentApprIdCompare();
+        //        getCriminalFileContentRoomCodeCompare();
 
-        getCivilFileContentFileIdCompare();
+        //        getCivilFileContentFileIdCompare();
         getCivilFileContentApprIdCompare();
         getCivilFileContentRoomCodeCompare();
     }

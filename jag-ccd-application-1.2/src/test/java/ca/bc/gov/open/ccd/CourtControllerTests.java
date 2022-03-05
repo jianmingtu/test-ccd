@@ -294,7 +294,7 @@ public class CourtControllerTests {
         dt.setDocumentSealStartDate(Instant.now());
         dt.setDateGranted(Instant.now());
         dt.setEstimatedDocumentMinutes("A");
-        dt.setDateVaried("A");
+        dt.setDateVaried(Instant.now());
         dt.setCancelledDate(Instant.now());
         dt.setOrderDocumentYN("A");
         dt.setAdjudicatorPartId("A");

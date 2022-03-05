@@ -317,7 +317,7 @@ public class FileControllerTests {
         dt.setDateGranted(Instant.now());
         dt.setEstimatedDocumentMinutes("A");
         dt.setEndedDate(Instant.now());
-        dt.setDateVaried("A");
+        dt.setDateVaried(Instant.now());
         dt.setCancelledDate(Instant.now());
         dt.setDocumentCommentText("A");
         dt.setOrderDocumentYN("A");

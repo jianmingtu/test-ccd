@@ -518,7 +518,7 @@ public class ProcessControllerTests {
 
         var gd = new GenerateDocumentCRType();
         gd.setFormTypeCd("A");
-        gd.setNextAppearanceDate("A");
+        gd.setNextAppearanceDate(Instant.now());
         gd.setRegistryToCreateYN("A");
         gd.setReferralTo("A");
         gd.setReferralReason("A");
