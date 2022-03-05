@@ -480,7 +480,7 @@
             <xsd:element name="DocumentId" nillable="true" type="xsd:string"/>
             <xsd:element name="DocumentTypeDsc" nillable="true" type="xsd:string"/>
             <xsd:element name="AdjudicatorName" nillable="true" type="xsd:string"/>
-            <xsd:element name="DateGranted" nillable="true" type="xsd:DateGranted"/>
+            <xsd:element name="DateGranted" nillable="true" type="xsd:dateTime"/>
         </xsd:sequence>
     </xsd:complexType>
 </xsd:schema>
