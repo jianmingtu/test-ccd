@@ -314,10 +314,10 @@ public class FileControllerTests {
         dt.setDocumentAccessLevelCd("A");
         dt.setDocumentSealEndDate(Instant.now());
         dt.setDocumentSealStartDate(Instant.now());
-        dt.setDateGranted("A");
+        dt.setDateGranted(Instant.now());
         dt.setEstimatedDocumentMinutes("A");
         dt.setEndedDate(Instant.now());
-        dt.setDateVaried("A");
+        dt.setDateVaried(Instant.now());
         dt.setCancelledDate(Instant.now());
         dt.setDocumentCommentText("A");
         dt.setOrderDocumentYN("A");

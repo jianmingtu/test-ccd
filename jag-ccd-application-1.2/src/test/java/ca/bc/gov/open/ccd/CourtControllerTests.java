@@ -292,9 +292,9 @@ public class CourtControllerTests {
         dt.setDocumentAccessLevelCd("A");
         dt.setDocumentSealEndDate(Instant.now());
         dt.setDocumentSealStartDate(Instant.now());
-        dt.setDateGranted("A");
+        dt.setDateGranted(Instant.now());
         dt.setEstimatedDocumentMinutes("A");
-        dt.setDateVaried("A");
+        dt.setDateVaried(Instant.now());
         dt.setCancelledDate(Instant.now());
         dt.setOrderDocumentYN("A");
         dt.setAdjudicatorPartId("A");
@@ -431,7 +431,7 @@ public class CourtControllerTests {
 
         var ov = new ca.bc.gov.open.ccd.court.secure.one.OrderToVaryType();
         ov.setAdjudicatorName("A");
-        ov.setDateGranted("A");
+        ov.setDateGranted(Instant.now());
         ov.setDocumentId("A");
         ov.setDocumentTypeDsc("A");
 
