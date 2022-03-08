@@ -45,7 +45,9 @@ public final class InstantSoapConverter {
             }
             return d.toInstant();
         } catch (Exception ex) {
-            log.warn("Bad date received from soap request");
+            if (!value.isEmpty()) {
+                log.warn("Bad date received from soap request: " + value);
+            }
             return null;
         }
     }
