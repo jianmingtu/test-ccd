@@ -8,5 +8,4 @@ test:
   username: ${BASIC_AUTH_USER}
   api-host: ${API_HOST}
   api-host-secure: ${API_HOST_SECURE}
-server:
-  port: 8081
+
