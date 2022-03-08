@@ -127,7 +127,7 @@
     <xsd:complexType name="SpeakerEventsType">
         <xsd:sequence>
             <xsd:element name="SpeakerEventDate" nillable="true" type="xsd:dateTime"/>
-            <xsd:element name="SpeakerEventTime" nillable="true" type="xsd:dateTime"/>
+            <xsd:element name="SpeakerEventTime" nillable="true" type="xsd:string"/>
             <xsd:element name="SpeakerEventText" nillable="true" type="xsd:string"/>
         </xsd:sequence>
     </xsd:complexType>

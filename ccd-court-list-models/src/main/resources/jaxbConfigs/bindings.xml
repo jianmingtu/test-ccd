@@ -16,15 +16,5 @@
             <namespace:prefix name="xsi" namespaceURI="http://www.w3.org/2001/XMLSchema-instance"/>
         </jxb:bindings>
     </jxb:bindings>
-    <jxb:bindings schemaLocation="../xsdSchemas/courtList-2.xsd">
-        <jxb:schemaBindings>
-            <jxb:package name="ca.bc.gov.open.ccd.court.two"/>
-        </jxb:schemaBindings>
-        <jxb:bindings>
-            <namespace:prefix name="ser-root"/>
-            <!-- Additional @XmlNs prefix declarations to take effect for this schema/package -->
-            <namespace:prefix name="xsi" namespaceURI="http://www.w3.org/2001/XMLSchema-instance"/>
-        </jxb:bindings>
-    </jxb:bindings>
 
 </jxb:bindings>

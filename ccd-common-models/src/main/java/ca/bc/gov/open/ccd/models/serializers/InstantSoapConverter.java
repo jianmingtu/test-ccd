@@ -40,7 +40,14 @@ public final class InstantSoapConverter {
                     sdf.setTimeZone(TimeZone.getTimeZone("UTC"));
                     d = sdf.parse(value);
                 } catch (ParseException ex2) {
-                    return Instant.parse(value + "Z");
+
+                    try {
+                        var sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
+                        sdf.setTimeZone(TimeZone.getTimeZone("UTC"));
+                        d = sdf.parse(value);
+                    } catch (ParseException ex3) {
+                        return Instant.parse(value + "Z");
+                    }
                 }
             }
             return d.toInstant();
