@@ -2,8 +2,13 @@ package ca.bc.gov.open.ccd.comparison11.services;
 
 import ca.bc.gov.open.ccd.civil.GetCivilFileContent;
 import ca.bc.gov.open.ccd.civil.GetCivilFileContentResponse;
+import ca.bc.gov.open.ccd.common.code.values.GetCodeValues;
+import ca.bc.gov.open.ccd.common.code.values.GetCodeValuesResponse;
 import ca.bc.gov.open.ccd.common.criminal.file.content.GetCriminalFileContent;
 import ca.bc.gov.open.ccd.common.criminal.file.content.GetCriminalFileContentResponse;
+import ca.bc.gov.open.ccd.common.document.Document;
+import ca.bc.gov.open.ccd.common.document.GetDocument;
+import ca.bc.gov.open.ccd.common.document.GetDocumentResponse;
 import ca.bc.gov.open.ccd.comparison11.config.WebServiceSenderWithAuth;
 import ca.bc.gov.open.ccd.court.one.GetCrtList;
 import ca.bc.gov.open.ccd.court.one.GetCrtListResponse;
@@ -13,6 +18,7 @@ import java.io.InputStream;
 import java.io.PrintWriter;
 import java.nio.charset.StandardCharsets;
 import java.time.Instant;
+import java.time.ZonedDateTime;
 import java.util.*;
 import java.util.stream.Stream;
 import javax.xml.soap.MessageFactory;
@@ -82,9 +88,12 @@ public class TestService {
         //        getCivilFileContentApprIdCompare();
         //        getCivilFileContentRoomCodeCompare();
         //
-        getCourtListRoomCodeCompare();
+        //       getCourtListRoomCodeCompare();
         //        getCourtListFileRCompare();
         //        getCourtListFileNoRCompare();
+        // getCodeValuesCompare();
+        getDocumentGUIDCompare();
+        getDocumentFileCompare();
     }
 
     private void getCivilFileContentFileIdCompare() throws IOException, SOAPException {
@@ -420,6 +429,91 @@ public class TestService {
                         "\nINFO: getCourtListFileNo with division code : %s,  file number: %s\n",
                         divisionCd, fileNumber);
                 ++diffCounter;
+            }
+        }
+
+        printCompletion();
+    }
+
+    private void getCodeValuesCompare() throws IOException, SOAPException {
+        diffCounter = 0;
+
+        fileOutput = new PrintWriter(outputDir + "getCourtListFileNoR.txt", StandardCharsets.UTF_8);
+
+        GetCodeValues request = new GetCodeValues();
+        request.setLastRetrievedDate(ZonedDateTime.now().minusYears(20).toInstant());
+        if (!compare(new GetCodeValuesResponse(), request, "CodeValues")) {
+            fileOutput.println(
+                    "\nINFO: getCodeValues with CCD lastRetrievedDate: "
+                            + ZonedDateTime.now().minusYears(20).toInstant().toString());
+            ++diffCounter;
+        }
+
+        printCompletion();
+    }
+
+    private void getDocumentGUIDCompare() throws IOException, SOAPException {
+        diffCounter = 0;
+        String divisionCds[] = {"R", "I"};
+
+        GetDocument request = new GetDocument();
+        Document document = new Document();
+
+        InputStream inputIds = getClass().getResourceAsStream("/getDocumentGUID.csv");
+        assert inputIds != null;
+        Scanner scanner = new Scanner(inputIds);
+        fileOutput = new PrintWriter(outputDir + "getDocumentGUID.txt", StandardCharsets.UTF_8);
+
+        for (var cd : divisionCds) {
+            document.setCourtDivisionCd(cd);
+            while (scanner.hasNextLine()) {
+                String line = scanner.nextLine();
+                System.out.format(
+                        "\nINFO: getDocumentGUID with CCD division code: %s and GUID Id: %s\n",
+                        cd, line);
+                document.setDocumentId(line);
+                request.setDocumentRequest(document);
+
+                if (!compare(new GetDocumentResponse(), request, "GetDocument")) {
+                    fileOutput.format(
+                            "\nINFO: getDocumentGUID with CCD division code: %s and GUID Id: %s\n",
+                            cd, line);
+                    ++diffCounter;
+                }
+            }
+        }
+
+        printCompletion();
+    }
+
+    private void getDocumentFileCompare() throws IOException, SOAPException {
+        diffCounter = 0;
+        String divisionCds[] = {"R", "I"};
+
+        GetDocument request = new GetDocument();
+        Document document = new Document();
+
+        InputStream inputIds = getClass().getResourceAsStream("/getDocumentFile.csv");
+        assert inputIds != null;
+        Scanner scanner = new Scanner(inputIds);
+        fileOutput = new PrintWriter(outputDir + "getDocumentFile.txt", StandardCharsets.UTF_8);
+
+        for (var cd : divisionCds) {
+            document.setCourtDivisionCd(cd);
+            while (scanner.hasNextLine()) {
+                String line = scanner.nextLine();
+                System.out.format(
+                        "\nINFO: getDocumentFile with CCD division code: %s and File Id: %s\n",
+                        cd, line);
+                document.setDocumentId(line);
+                request.setDocumentRequest(document);
+
+                if (!compare(new GetDocumentResponse(), request, "GetDocument")) {
+                    fileOutput.format(
+                            "\nINFO: getDocumentFile with CCD division code: %s and File Id: %s\n",
+                            cd, line);
+                    ++diffCounter;
+                }
             }
         }
 
