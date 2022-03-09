@@ -200,7 +200,7 @@ public class CourtControllerTests {
         st.setSpeakerStatusDsc("A");
         var se = new ca.bc.gov.open.ccd.court.secure.one.SpeakerEvent();
         se.setSpeakerEventDate(Instant.now());
-        se.setSpeakerEventTime(Instant.now());
+        se.setSpeakerEventTime("A");
         se.setSpeakerEventText("A");
 
         st.setSpeakerEvent(Collections.singletonList(se));
@@ -377,7 +377,7 @@ public class CourtControllerTests {
         var se2 = new ca.bc.gov.open.ccd.court.secure.one.SpeakerEvent();
         se2.setSpeakerEventText("A");
         se2.setSpeakerEventDate(Instant.now());
-        se2.setSpeakerEventTime(Instant.now());
+        se2.setSpeakerEventTime("A");
         st2.setSpeakerEvent(Collections.singletonList(se2));
 
         var pot = new ca.bc.gov.open.ccd.court.secure.one.ProtectionOrderType();
