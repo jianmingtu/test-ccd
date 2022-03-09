@@ -9,6 +9,9 @@ import ca.bc.gov.open.ccd.common.criminal.file.content.GetCriminalFileContentRes
 import ca.bc.gov.open.ccd.common.document.Document;
 import ca.bc.gov.open.ccd.common.document.GetDocument;
 import ca.bc.gov.open.ccd.common.document.GetDocumentResponse;
+import ca.bc.gov.open.ccd.common.rop.report.GetROPReport;
+import ca.bc.gov.open.ccd.common.rop.report.GetROPReportResponse;
+import ca.bc.gov.open.ccd.common.rop.report.Rop;
 import ca.bc.gov.open.ccd.comparison11.config.WebServiceSenderWithAuth;
 import ca.bc.gov.open.ccd.court.one.GetCrtList;
 import ca.bc.gov.open.ccd.court.one.GetCrtListResponse;
@@ -80,20 +83,30 @@ public class TestService {
     public void runCompares() throws IOException, SOAPException {
         System.out.println("INFO: CCD Diff testing started");
 
-        //        getCriminalFileContentMdocCompare();
-        //        getCriminalFileContentApprIdCompare();
-        //        getCriminalFileContentRoomCodeCompare();
-        //
-        //        getCivilFileContentFileIdCompare();
-        //        getCivilFileContentApprIdCompare();
-        //        getCivilFileContentRoomCodeCompare();
-        //
-        //       getCourtListRoomCodeCompare();
-        //        getCourtListFileRCompare();
-        //        getCourtListFileNoRCompare();
-        // getCodeValuesCompare();
+        // criminal file content
+        getCriminalFileContentMdocCompare();
+        getCriminalFileContentApprIdCompare();
+        getCriminalFileContentRoomCodeCompare();
+
+        // civil file content
+        getCivilFileContentFileIdCompare();
+        getCivilFileContentApprIdCompare();
+        getCivilFileContentRoomCodeCompare();
+
+        // court list
+        getCourtListRoomCodeCompare();
+        getCourtListFileRCompare();
+        getCourtListFileNoRCompare();
+
+        // code values
+        getCodeValuesCompare();
+
+        // document
         getDocumentGUIDCompare();
         getDocumentFileCompare();
+
+        // ropreport
+        getRopReportCompare();
     }
 
     private void getCivilFileContentFileIdCompare() throws IOException, SOAPException {
@@ -520,6 +533,51 @@ public class TestService {
         printCompletion();
     }
 
+    private void getRopReportCompare() throws IOException, SOAPException {
+        diffCounter = 0;
+
+        GetROPReport request = new GetROPReport();
+        Rop rop = new Rop();
+        request.setROPRequest(rop);
+
+        InputStream inputIds = getClass().getResourceAsStream("/getRopReport.csv");
+        assert inputIds != null;
+        Scanner scanner = new Scanner(inputIds);
+        fileOutput = new PrintWriter(outputDir + "getRopReport.txt", StandardCharsets.UTF_8);
+
+        while (scanner.hasNextLine()) {
+            String[] line = scanner.nextLine().split(",");
+            String Param1 = "", Param2 = "", FormCd = "";
+            for (int i = 0; i < line.length; i++) {
+                if (line[i] != null) {
+                    if (i == 0) {
+                        Param1 = line[i];
+                        rop.setParam1(Param1);
+                    } else if (i == 1) {
+                        Param2 = line[i];
+                        rop.setParam2(Param2);
+                    } else if (i == 2) {
+                        FormCd = line[i];
+                        rop.setFormCd(FormCd);
+                    }
+                }
+            }
+
+            System.out.format(
+                    "\nINFO: getRopReport with Param1 : %s,  Param2: %s, FormCd %s\n",
+                    Param1, Param1, FormCd);
+
+            if (!compare(new GetROPReportResponse(), request, "GetROPReport")) {
+                fileOutput.format(
+                        "\nINFO: getRopReport with Param1 : %s,  Param2: %s, FormCd %s\n",
+                        Param1, Param1, FormCd);
+                ++diffCounter;
+            }
+        }
+
+        printCompletion();
+    }
+
     private void printCompletion() {
         System.out.println(
                 "########################################################\n"
@@ -579,7 +637,7 @@ public class TestService {
         }
 
         try {
-            Thread.sleep(1000);
+            Thread.sleep(5000);
         } catch (Exception e) {
         }
 
