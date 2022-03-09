@@ -253,9 +253,9 @@
     </xsd:complexType>
     <xsd:complexType name="HearingRestrictionType">
         <xsd:sequence>
-            <xsd:element ref="dx:HearingRestrictiontype"/>
-            <xsd:element ref="dx:JudgeName"/>
-            <xsd:element ref="dx:HearingRestrictionDate"/>
+git s            <xsd:element name="HearingRestrictiontype" type="xsd:string" nillable="true"/>
+            <xsd:element name="JudgeName" type="xsd:string" nillable="true"/>
+            <xsd:element name="HearingRestrictionDate" type="xsd:dateTime" nillable="true"/>
         </xsd:sequence>
     </xsd:complexType>
     <xsd:complexType name="CFCOrderType">
