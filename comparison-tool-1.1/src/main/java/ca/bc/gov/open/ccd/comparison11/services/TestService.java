@@ -631,14 +631,10 @@ public class TestService {
         try {
             resultObjectWM = (T) webServiceTemplate.marshalSendAndReceive(wmHost + wsdl, request);
             resultObjectAPI = (T) webServiceTemplate.marshalSendAndReceive(apiHost, request);
+            Thread.sleep(5000);
         } catch (Exception e) {
             System.out.println("ERROR: Failed to send request... " + e);
             fileOutput.println("ERROR: Failed to send request... " + e);
-        }
-
-        try {
-            Thread.sleep(5000);
-        } catch (Exception e) {
         }
 
         Diff diff = javers.compare(resultObjectAPI, resultObjectWM);
