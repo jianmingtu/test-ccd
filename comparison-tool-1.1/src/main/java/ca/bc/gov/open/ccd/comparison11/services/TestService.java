@@ -16,7 +16,6 @@ import ca.bc.gov.open.ccd.comparison11.config.WebServiceSenderWithAuth;
 import ca.bc.gov.open.ccd.court.one.GetCrtList;
 import ca.bc.gov.open.ccd.court.one.GetCrtListResponse;
 import ca.bc.gov.open.ccd.models.serializers.InstantSoapConverter;
-import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintWriter;
 import java.nio.charset.StandardCharsets;
@@ -80,7 +79,7 @@ public class TestService {
         IDENTIFIER_CD
     }
 
-    public void runCompares() throws IOException, SOAPException {
+    public void runCompares() throws Exception {
         System.out.println("INFO: CCD Diff testing started");
 
         // criminal file content
@@ -109,7 +108,7 @@ public class TestService {
         getRopReportCompare();
     }
 
-    private void getCivilFileContentFileIdCompare() throws IOException, SOAPException {
+    private void getCivilFileContentFileIdCompare() throws Exception {
         diffCounter = 0;
 
         GetCivilFileContent request = new GetCivilFileContent();
@@ -134,7 +133,7 @@ public class TestService {
         printCompletion();
     }
 
-    private void getCivilFileContentApprIdCompare() throws IOException, SOAPException {
+    private void getCivilFileContentApprIdCompare() throws Exception {
         diffCounter = 0;
 
         GetCivilFileContent request = new GetCivilFileContent();
@@ -159,7 +158,7 @@ public class TestService {
         printCompletion();
     }
 
-    private void getCivilFileContentRoomCodeCompare() throws IOException, SOAPException {
+    private void getCivilFileContentRoomCodeCompare() throws Exception {
         diffCounter = 0;
 
         GetCivilFileContent request = new GetCivilFileContent();
@@ -212,7 +211,7 @@ public class TestService {
         printCompletion();
     }
 
-    private void getCriminalFileContentMdocCompare() throws IOException, SOAPException {
+    private void getCriminalFileContentMdocCompare() throws Exception {
         diffCounter = 0;
 
         GetCriminalFileContent request = new GetCriminalFileContent();
@@ -237,7 +236,7 @@ public class TestService {
         printCompletion();
     }
 
-    private void getCriminalFileContentApprIdCompare() throws IOException, SOAPException {
+    private void getCriminalFileContentApprIdCompare() throws Exception {
         diffCounter = 0;
 
         GetCriminalFileContent request = new GetCriminalFileContent();
@@ -263,7 +262,7 @@ public class TestService {
         printCompletion();
     }
 
-    private void getCriminalFileContentRoomCodeCompare() throws IOException, SOAPException {
+    private void getCriminalFileContentRoomCodeCompare() throws Exception {
         diffCounter = 0;
 
         GetCriminalFileContent request = new GetCriminalFileContent();
@@ -317,7 +316,7 @@ public class TestService {
         printCompletion();
     }
 
-    private void getCourtListRoomCodeCompare() throws IOException, SOAPException {
+    private void getCourtListRoomCodeCompare() throws Exception {
         diffCounter = 0;
 
         GetCrtList request = new GetCrtList();
@@ -368,7 +367,7 @@ public class TestService {
         printCompletion();
     }
 
-    private void getCourtListFileRCompare() throws IOException, SOAPException {
+    private void getCourtListFileRCompare() throws Exception {
         diffCounter = 0;
 
         GetCrtList request = new GetCrtList();
@@ -398,7 +397,7 @@ public class TestService {
         printCompletion();
     }
 
-    private void getCourtListFileNoRCompare() throws IOException, SOAPException {
+    private void getCourtListFileNoRCompare() throws Exception {
         diffCounter = 0;
 
         GetCrtList request = new GetCrtList();
@@ -448,7 +447,7 @@ public class TestService {
         printCompletion();
     }
 
-    private void getCodeValuesCompare() throws IOException, SOAPException {
+    private void getCodeValuesCompare() throws Exception {
         diffCounter = 0;
 
         fileOutput = new PrintWriter(outputDir + "getCourtListFileNoR.txt", StandardCharsets.UTF_8);
@@ -465,7 +464,7 @@ public class TestService {
         printCompletion();
     }
 
-    private void getDocumentGUIDCompare() throws IOException, SOAPException {
+    private void getDocumentGUIDCompare() throws Exception {
         diffCounter = 0;
         String divisionCds[] = {"R", "I"};
 
@@ -499,7 +498,7 @@ public class TestService {
         printCompletion();
     }
 
-    private void getDocumentFileCompare() throws IOException, SOAPException {
+    private void getDocumentFileCompare() throws Exception {
         diffCounter = 0;
         String divisionCds[] = {"R", "I"};
 
@@ -533,7 +532,7 @@ public class TestService {
         printCompletion();
     }
 
-    private void getRopReportCompare() throws IOException, SOAPException {
+    private void getRopReportCompare() throws Exception {
         diffCounter = 0;
 
         GetROPReport request = new GetROPReport();
@@ -598,7 +597,8 @@ public class TestService {
         fileOutput.close();
     }
 
-    public <T, G> boolean compare(T response, G request, String wsdl) throws SOAPException, Exception {
+    public <T, G> boolean compare(T response, G request, String wsdl)
+            throws SOAPException, Exception {
 
         Jaxb2Marshaller jaxb2Marshaller = new Jaxb2Marshaller();
 
