@@ -101,7 +101,7 @@ public class ProcessControllerTests {
         sd.setAttendanceMethodCd("A");
         var se = new SpeakerEventsType();
         se.setSpeakerEventDate(Instant.now());
-        se.setSpeakerEventTime(Instant.now());
+        se.setSpeakerEventTime("A");
         se.setSpeakerEventText("A");
 
         sd.setSpeakerEvent(Collections.singletonList(se));

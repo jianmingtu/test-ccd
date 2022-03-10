@@ -2,15 +2,25 @@ package ca.bc.gov.open.ccd.comparison11.services;
 
 import ca.bc.gov.open.ccd.civil.GetCivilFileContent;
 import ca.bc.gov.open.ccd.civil.GetCivilFileContentResponse;
+import ca.bc.gov.open.ccd.common.code.values.GetCodeValues;
+import ca.bc.gov.open.ccd.common.code.values.GetCodeValuesResponse;
 import ca.bc.gov.open.ccd.common.criminal.file.content.GetCriminalFileContent;
 import ca.bc.gov.open.ccd.common.criminal.file.content.GetCriminalFileContentResponse;
+import ca.bc.gov.open.ccd.common.document.Document;
+import ca.bc.gov.open.ccd.common.document.GetDocument;
+import ca.bc.gov.open.ccd.common.document.GetDocumentResponse;
+import ca.bc.gov.open.ccd.common.rop.report.GetROPReport;
+import ca.bc.gov.open.ccd.common.rop.report.GetROPReportResponse;
+import ca.bc.gov.open.ccd.common.rop.report.Rop;
 import ca.bc.gov.open.ccd.comparison11.config.WebServiceSenderWithAuth;
+import ca.bc.gov.open.ccd.court.one.GetCrtList;
+import ca.bc.gov.open.ccd.court.one.GetCrtListResponse;
 import ca.bc.gov.open.ccd.models.serializers.InstantSoapConverter;
-import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintWriter;
 import java.nio.charset.StandardCharsets;
 import java.time.Instant;
+import java.time.ZonedDateTime;
 import java.util.*;
 import java.util.stream.Stream;
 import javax.xml.soap.MessageFactory;
@@ -69,19 +79,36 @@ public class TestService {
         IDENTIFIER_CD
     }
 
-    public void runCompares() throws IOException, SOAPException {
+    public void runCompares() throws Exception {
         System.out.println("INFO: CCD Diff testing started");
 
-        //        getCriminalFileContentMdocCompare();
-        //        getCriminalFileContentApprIdCompare();
-        //        getCriminalFileContentRoomCodeCompare();
+        // criminal file content
+        getCriminalFileContentMdocCompare();
+        getCriminalFileContentApprIdCompare();
+        getCriminalFileContentRoomCodeCompare();
 
-        //        getCivilFileContentFileIdCompare();
+        // civil file content
+        getCivilFileContentFileIdCompare();
         getCivilFileContentApprIdCompare();
         getCivilFileContentRoomCodeCompare();
+
+        // court list
+        getCourtListRoomCodeCompare();
+        getCourtListFileRCompare();
+        getCourtListFileNoRCompare();
+
+        // code values
+        getCodeValuesCompare();
+
+        // document
+        getDocumentGUIDCompare();
+        getDocumentFileCompare();
+
+        // ropreport
+        getRopReportCompare();
     }
 
-    private void getCivilFileContentFileIdCompare() throws IOException, SOAPException {
+    private void getCivilFileContentFileIdCompare() throws Exception {
         diffCounter = 0;
 
         GetCivilFileContent request = new GetCivilFileContent();
@@ -106,7 +133,7 @@ public class TestService {
         printCompletion();
     }
 
-    private void getCivilFileContentApprIdCompare() throws IOException, SOAPException {
+    private void getCivilFileContentApprIdCompare() throws Exception {
         diffCounter = 0;
 
         GetCivilFileContent request = new GetCivilFileContent();
@@ -131,7 +158,7 @@ public class TestService {
         printCompletion();
     }
 
-    private void getCivilFileContentRoomCodeCompare() throws IOException, SOAPException {
+    private void getCivilFileContentRoomCodeCompare() throws Exception {
         diffCounter = 0;
 
         GetCivilFileContent request = new GetCivilFileContent();
@@ -184,7 +211,7 @@ public class TestService {
         printCompletion();
     }
 
-    private void getCriminalFileContentMdocCompare() throws IOException, SOAPException {
+    private void getCriminalFileContentMdocCompare() throws Exception {
         diffCounter = 0;
 
         GetCriminalFileContent request = new GetCriminalFileContent();
@@ -209,7 +236,7 @@ public class TestService {
         printCompletion();
     }
 
-    private void getCriminalFileContentApprIdCompare() throws IOException, SOAPException {
+    private void getCriminalFileContentApprIdCompare() throws Exception {
         diffCounter = 0;
 
         GetCriminalFileContent request = new GetCriminalFileContent();
@@ -235,7 +262,7 @@ public class TestService {
         printCompletion();
     }
 
-    private void getCriminalFileContentRoomCodeCompare() throws IOException, SOAPException {
+    private void getCriminalFileContentRoomCodeCompare() throws Exception {
         diffCounter = 0;
 
         GetCriminalFileContent request = new GetCriminalFileContent();
@@ -289,6 +316,267 @@ public class TestService {
         printCompletion();
     }
 
+    private void getCourtListRoomCodeCompare() throws Exception {
+        diffCounter = 0;
+
+        GetCrtList request = new GetCrtList();
+
+        InputStream inputIds = getClass().getResourceAsStream("/getCourtListRoomCode.csv");
+        assert inputIds != null;
+        Scanner scanner = new Scanner(inputIds);
+        fileOutput = new PrintWriter(outputDir + " getCourtListRoom.txt", StandardCharsets.UTF_8);
+
+        while (scanner.hasNextLine()) {
+            String[] line = scanner.nextLine().split(",");
+            String roomCode = "", procDate = "", identCd = "";
+            for (int i = 0; i < line.length; i++) {
+                if (line[i] != null) {
+                    if (RoomCodeCompare.COURT_ROOM_CODE.ordinal() == i) {
+                        roomCode = line[i];
+                    } else if (RoomCodeCompare.COURT_PROCEEDING_DATE.ordinal() == i) {
+                        procDate = line[i];
+                    } else if (RoomCodeCompare.IDENTIFIER_CD.ordinal() == i) {
+                        identCd = line[i];
+                    }
+                }
+            }
+
+            if (!roomCode.isBlank()) {
+                request.setRoomCd(roomCode);
+            }
+
+            if (!procDate.isBlank()) {
+                request.setProceedingDate(InstantSoapConverter.parse(procDate));
+            }
+
+            if (!identCd.isBlank()) {
+                request.setAgencyIdentifierCd(identCd);
+            }
+
+            System.out.format(
+                    "\nINFO: getCourtList with room code : %s,  proceding date: %s, Identifier Code: %s \n",
+                    roomCode, procDate, identCd);
+            if (!compare(new GetCrtListResponse(), request, "CourtList")) {
+                fileOutput.format(
+                        "\nINFO: getCourtList with room code : %s,  proceding date: %s, Identifier Code: %s \n",
+                        roomCode, procDate, identCd);
+                ++diffCounter;
+            }
+        }
+
+        printCompletion();
+    }
+
+    private void getCourtListFileRCompare() throws Exception {
+        diffCounter = 0;
+
+        GetCrtList request = new GetCrtList();
+
+        InputStream inputIds = getClass().getResourceAsStream("/getCourtListFileR.csv");
+        assert inputIds != null;
+        Scanner scanner = new Scanner(inputIds);
+        fileOutput = new PrintWriter(outputDir + "getCourtListFileR.txt", StandardCharsets.UTF_8);
+
+        request.setAgencyIdentifierCd("4681");
+        request.setProceedingDate(Instant.now());
+        request.setRoomCd("001");
+        request.setDivisionCd("R");
+
+        while (scanner.hasNextLine()) {
+            String line = scanner.nextLine();
+            System.out.println(
+                    "\nINFO: getCourtList with CCD division code: 'R' and File Id: " + line);
+            request.setFileNumber(line);
+
+            if (!compare(new GetCrtListResponse(), request, "CourtList")) {
+                fileOutput.println("\nINFO: getCourtList with CCD File Id: " + line);
+                ++diffCounter;
+            }
+        }
+
+        printCompletion();
+    }
+
+    private void getCourtListFileNoRCompare() throws Exception {
+        diffCounter = 0;
+
+        GetCrtList request = new GetCrtList();
+
+        InputStream inputIds = getClass().getResourceAsStream("/getCourtListFileNoR.csv");
+        assert inputIds != null;
+        Scanner scanner = new Scanner(inputIds);
+        fileOutput = new PrintWriter(outputDir + "getCourtListFileNoR.txt", StandardCharsets.UTF_8);
+
+        request.setAgencyIdentifierCd("4681");
+        request.setProceedingDate(Instant.now());
+        request.setRoomCd("001");
+
+        while (scanner.hasNextLine()) {
+            String[] line = scanner.nextLine().split(",");
+            String divisionCd = "", fileNumber = "";
+            for (int i = 0; i < line.length; i++) {
+                if (line[i] != null) {
+                    if (i == 0) {
+                        divisionCd = line[i];
+                    } else if (i == 1) {
+                        fileNumber = line[i];
+                    }
+                }
+            }
+
+            if (!divisionCd.isBlank()) {
+                request.setDivisionCd(divisionCd);
+            }
+
+            if (!fileNumber.isBlank()) {
+                request.setFileNumber(fileNumber);
+            }
+
+            System.out.format(
+                    "\nINFO: getCourtListFileNo with division code : %s,  file number: %s\n",
+                    divisionCd, fileNumber);
+
+            if (!compare(new GetCrtListResponse(), request, "CourtList")) {
+                fileOutput.format(
+                        "\nINFO: getCourtListFileNo with division code : %s,  file number: %s\n",
+                        divisionCd, fileNumber);
+                ++diffCounter;
+            }
+        }
+
+        printCompletion();
+    }
+
+    private void getCodeValuesCompare() throws Exception {
+        diffCounter = 0;
+
+        fileOutput = new PrintWriter(outputDir + "getCourtListFileNoR.txt", StandardCharsets.UTF_8);
+
+        GetCodeValues request = new GetCodeValues();
+        request.setLastRetrievedDate(ZonedDateTime.now().minusYears(20).toInstant());
+        if (!compare(new GetCodeValuesResponse(), request, "CodeValues")) {
+            fileOutput.println(
+                    "\nINFO: getCodeValues with CCD lastRetrievedDate: "
+                            + ZonedDateTime.now().minusYears(20).toInstant().toString());
+            ++diffCounter;
+        }
+
+        printCompletion();
+    }
+
+    private void getDocumentGUIDCompare() throws Exception {
+        diffCounter = 0;
+        String divisionCds[] = {"R", "I"};
+
+        GetDocument request = new GetDocument();
+        Document document = new Document();
+
+        InputStream inputIds = getClass().getResourceAsStream("/getDocumentGUID.csv");
+        assert inputIds != null;
+        Scanner scanner = new Scanner(inputIds);
+        fileOutput = new PrintWriter(outputDir + "getDocumentGUID.txt", StandardCharsets.UTF_8);
+
+        for (var cd : divisionCds) {
+            document.setCourtDivisionCd(cd);
+            while (scanner.hasNextLine()) {
+                String line = scanner.nextLine();
+                System.out.format(
+                        "\nINFO: getDocumentGUID with CCD division code: %s and GUID Id: %s\n",
+                        cd, line);
+                document.setDocumentId(line);
+                request.setDocumentRequest(document);
+
+                if (!compare(new GetDocumentResponse(), request, "GetDocument")) {
+                    fileOutput.format(
+                            "\nINFO: getDocumentGUID with CCD division code: %s and GUID Id: %s\n",
+                            cd, line);
+                    ++diffCounter;
+                }
+            }
+        }
+
+        printCompletion();
+    }
+
+    private void getDocumentFileCompare() throws Exception {
+        diffCounter = 0;
+        String divisionCds[] = {"R", "I"};
+
+        GetDocument request = new GetDocument();
+        Document document = new Document();
+
+        InputStream inputIds = getClass().getResourceAsStream("/getDocumentFile.csv");
+        assert inputIds != null;
+        Scanner scanner = new Scanner(inputIds);
+        fileOutput = new PrintWriter(outputDir + "getDocumentFile.txt", StandardCharsets.UTF_8);
+
+        for (var cd : divisionCds) {
+            document.setCourtDivisionCd(cd);
+            while (scanner.hasNextLine()) {
+                String line = scanner.nextLine();
+                System.out.format(
+                        "\nINFO: getDocumentFile with CCD division code: %s and File Id: %s\n",
+                        cd, line);
+                document.setDocumentId(line);
+                request.setDocumentRequest(document);
+
+                if (!compare(new GetDocumentResponse(), request, "GetDocument")) {
+                    fileOutput.format(
+                            "\nINFO: getDocumentFile with CCD division code: %s and File Id: %s\n",
+                            cd, line);
+                    ++diffCounter;
+                }
+            }
+        }
+
+        printCompletion();
+    }
+
+    private void getRopReportCompare() throws Exception {
+        diffCounter = 0;
+
+        GetROPReport request = new GetROPReport();
+        Rop rop = new Rop();
+        request.setROPRequest(rop);
+
+        InputStream inputIds = getClass().getResourceAsStream("/getRopReport.csv");
+        assert inputIds != null;
+        Scanner scanner = new Scanner(inputIds);
+        fileOutput = new PrintWriter(outputDir + "getRopReport.txt", StandardCharsets.UTF_8);
+
+        while (scanner.hasNextLine()) {
+            String[] line = scanner.nextLine().split(",");
+            String Param1 = "", Param2 = "", FormCd = "";
+            for (int i = 0; i < line.length; i++) {
+                if (line[i] != null) {
+                    if (i == 0) {
+                        Param1 = line[i];
+                        rop.setParam1(Param1);
+                    } else if (i == 1) {
+                        Param2 = line[i];
+                        rop.setParam2(Param2);
+                    } else if (i == 2) {
+                        FormCd = line[i];
+                        rop.setFormCd(FormCd);
+                    }
+                }
+            }
+
+            System.out.format(
+                    "\nINFO: getRopReport with Param1 : %s,  Param2: %s, FormCd %s\n",
+                    Param1, Param1, FormCd);
+
+            if (!compare(new GetROPReportResponse(), request, "GetROPReport")) {
+                fileOutput.format(
+                        "\nINFO: getRopReport with Param1 : %s,  Param2: %s, FormCd %s\n",
+                        Param1, Param1, FormCd);
+                ++diffCounter;
+            }
+        }
+
+        printCompletion();
+    }
+
     private void printCompletion() {
         System.out.println(
                 "########################################################\n"
@@ -309,7 +597,8 @@ public class TestService {
         fileOutput.close();
     }
 
-    public <T, G> boolean compare(T response, G request, String wsdl) throws SOAPException {
+    public <T, G> boolean compare(T response, G request, String wsdl)
+            throws SOAPException, Exception {
 
         Jaxb2Marshaller jaxb2Marshaller = new Jaxb2Marshaller();
 
@@ -329,7 +618,8 @@ public class TestService {
                 "ca.bc.gov.open.ccd.common.rop.report",
                 "ca.bc.gov.open.ccd.common.user.login",
                 "ca.bc.gov.open.ccd.common.user.mapping",
-                "ca.bc.gov.open.ccd.civil");
+                "ca.bc.gov.open.ccd.civil",
+                "ca.bc.gov.open.ccd.court.one");
 
         webServiceTemplate.setMarshaller(jaxb2Marshaller);
         webServiceTemplate.setUnmarshaller(jaxb2Marshaller);
@@ -341,11 +631,11 @@ public class TestService {
         try {
             resultObjectWM = (T) webServiceTemplate.marshalSendAndReceive(wmHost + wsdl, request);
             resultObjectAPI = (T) webServiceTemplate.marshalSendAndReceive(apiHost, request);
-            Thread.sleep(5000);
-
         } catch (Exception e) {
             System.out.println("ERROR: Failed to send request... " + e);
             fileOutput.println("ERROR: Failed to send request... " + e);
+        } finally {
+            Thread.sleep(5000);
         }
 
         Diff diff = javers.compare(resultObjectAPI, resultObjectWM);
