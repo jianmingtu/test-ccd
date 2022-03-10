@@ -1,0 +1,353 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project id="6d073097-cba7-424b-9abb-464dfb0ddb2b" activeEnvironment="Default" name="CCDCriminalFileContentSecure" resourceRoot="${projectDir}" soapui-version="5.6.0" abortOnError="false" runType="SEQUENTIAL" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:interface xsi:type="con:WsdlInterface" id="d3c6002d-6e38-47ea-9908-07cd704b5e44" wsaVersion="NONE" name="CCD_Source_CriminalFileContent_ws_provider_CriminalFileContentSecure_Binder" type="wsdl" bindingName="{http://reeks.bcgov/CCD.Source.CriminalFileContent.ws.provider:CriminalFileContentSecure}CCD_Source_CriminalFileContent_ws_provider_CriminalFileContentSecure_Binder" soapVersion="1_2" anonymous="optional" definition="file:/C:/workspace2/jag-ccd/jag-ccd-application-1.2/src/main/resources/xsdSchemas/criminalFileContentSecure.wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="file:\C:\workspace2\jag-ccd\jag-ccd-application-1.2\src\main\resources\xsdSchemas\criminalFileContentSecure.wsdl"><con:part><con:url>file:\C:\workspace2\jag-ccd\jag-ccd-application-1.2\src\main\resources\xsdSchemas\criminalFileContentSecure.wsdl</con:url><con:content><![CDATA[<wsdl:definitions name="CriminalFileContentSecure" targetNamespace="http://reeks.bcgov/CCD.Source.CriminalFileContent.ws.provider:CriminalFileContentSecure" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:soapjms="http://www.w3.org/2010/soapjms/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:tns="http://reeks.bcgov/CCD.Source.CriminalFileContent.ws.provider:CriminalFileContentSecure" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://reeks.bcgov/CCD.Source.CriminalFileContent.ws.provider:CriminalFileContentSecure">
+      <xsd:element name="getCriminalFileContentSecure" type="tns:getCriminalFileContentSecure"/>
+      <xsd:element name="getCriminalFileContentSecureResponse" type="tns:getCriminalFileContentSecureResponse"/>
+      <xsd:complexType name="getCriminalFileContentSecure">
+        <xsd:sequence>
+          <xsd:element name="RequestAgencyIdentifierId" nillable="true" type="xsd:string"/>
+          <xsd:element name="RequestPartId" nillable="true" type="xsd:string"/>
+          <xsd:element name="RequestDtm" nillable="true" type="xsd:string"/>
+          <xsd:element name="ApplicationCd" nillable="true" type="xsd:string"/>
+          <xsd:element name="agency_identifier_cd" nillable="true" type="xsd:string"/>
+          <xsd:element name="room_cd" nillable="true" type="xsd:string"/>
+          <xsd:element name="proceeding_date" nillable="true" type="xsd:string"/>
+          <xsd:element name="appearanceID" nillable="true" type="xsd:string" minOccurs="0"/>
+          <xsd:element name="MdocJustinNo" nillable="true" type="xsd:string"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="getCriminalFileContentSecureResponse">
+        <xsd:sequence>
+          <xsd:element name="ResultCd" nillable="true" type="xsd:string"/>
+          <xsd:element name="ResultMessage" nillable="true" type="xsd:string"/>
+          <xsd:element name="fileContent" nillable="true" type="tns:FileContentDoc"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="FileContentDoc">
+        <xsd:sequence>
+          <xsd:element name="CourtLocaCd" form="qualified" type="xsd:string" minOccurs="0"/>
+          <xsd:element name="CourtRoomCd" form="qualified" type="xsd:string" minOccurs="0"/>
+          <xsd:element name="CourtProceedingDate" form="qualified" type="xsd:string" minOccurs="0"/>
+          <xsd:element name="AppearanceId" form="qualified" type="xsd:string" minOccurs="0" maxOccurs="unbounded"/>
+          <xsd:element name="MdocJustinNo" nillable="true" type="xsd:string"/>
+          <xsd:element name="AccusedFile" type="tns:AccusedFileType" minOccurs="0" maxOccurs="unbounded"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="AccusedFileType">
+        <xsd:sequence>
+          <xsd:element name="FileNumber" form="qualified" type="xsd:string"/>
+          <xsd:element name="FileLocaAgencyIdentifierCd" form="qualified" type="xsd:string"/>
+          <xsd:element name="MdocJustinNo" form="qualified" type="xsd:string"/>
+          <xsd:element name="MDocInfoSeqNo" form="qualified" type="xsd:string"/>
+          <xsd:element name="PhysTicketSeriesTxt" form="qualified" type="xsd:string" minOccurs="0"/>
+          <xsd:element name="PhyFileFolderNo" form="qualified" type="xsd:string"/>
+          <xsd:element name="CourtClassCd" form="qualified" type="xsd:string"/>
+          <xsd:element name="CourtLevelCd" form="qualified" type="xsd:string"/>
+          <xsd:element name="PartId" form="qualified" type="xsd:string"/>
+          <xsd:element name="ProfSeqNo" form="qualified" type="xsd:string"/>
+          <xsd:element name="SealTypeCd" nillable="true" type="xsd:string"/>
+          <xsd:element name="FiledDate" nillable="true" type="xsd:string"/>
+          <xsd:element name="ArrestWarrant" nillable="true" type="tns:ArrestWarrantType" maxOccurs="unbounded"/>
+          <xsd:element name="Ban" nillable="true" type="tns:BanTypes" maxOccurs="unbounded"/>
+          <xsd:element name="ProtectionOrder" nillable="true" type="tns:ProtectionOrderType" maxOccurs="unbounded"/>
+          <xsd:element name="CFCOrder" nillable="true" type="tns:CFCOrderType" maxOccurs="unbounded"/>
+          <xsd:element name="HearingRestriction" nillable="true" type="tns:HearingRestrictionType" maxOccurs="unbounded"/>
+          <xsd:element name="Document" nillable="true" type="tns:DocumentType" maxOccurs="unbounded"/>
+          <xsd:element name="Appearance" nillable="true" type="tns:AppearanceTypes" maxOccurs="unbounded"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="ArrestWarrantType">
+        <xsd:sequence>
+          <xsd:element name="FileNumberText" form="qualified" type="xsd:string"/>
+          <xsd:element name="WarrantDate" form="qualified" type="xsd:string"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="BanTypes">
+        <xsd:sequence>
+          <xsd:element name="BanTypeCd" form="qualified" type="xsd:string"/>
+          <xsd:element name="BanTypeDescription" form="qualified" type="xsd:string"/>
+          <xsd:element name="BanTypeAct" form="qualified" type="xsd:string"/>
+          <xsd:element name="BanTypeSection" form="qualified" type="xsd:string"/>
+          <xsd:element name="BanTypeSubSection" form="qualified" type="xsd:string"/>
+          <xsd:element name="BanStatuteId" form="qualified" type="xsd:string" minOccurs="0"/>
+          <xsd:element name="BanCommentText" form="qualified" type="xsd:string" minOccurs="0"/>
+          <xsd:element name="BanOrderedDate" form="qualified" type="xsd:string"/>
+          <xsd:element name="BanSeqNo" form="qualified" type="xsd:string"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="ProtectionOrderType">
+        <xsd:sequence>
+          <xsd:element name="POROrderIssueDate" form="qualified" type="xsd:string"/>
+          <xsd:element name="OrderTypeDsc" form="qualified" type="xsd:string"/>
+          <xsd:element name="PORConditionText" form="qualified" type="xsd:string" minOccurs="0"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="CFCOrderType">
+        <xsd:sequence>
+          <xsd:element name="CFCOrderIssueDate" form="qualified" type="xsd:string"/>
+          <xsd:element name="OrderTypeDsc" form="qualified" type="xsd:string"/>
+          <xsd:element name="CFCConditionText" form="qualified" type="xsd:string" minOccurs="0"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="HearingRestrictionType">
+        <xsd:sequence>
+          <xsd:element name="HearingRestrictiontype" form="qualified" type="xsd:string"/>
+          <xsd:element name="JudgeName" form="qualified" type="xsd:string"/>
+          <xsd:element name="HearingRestrictionDate" form="qualified" type="xsd:string"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="DocumentType">
+        <xsd:sequence>
+          <xsd:element name="DocmClassification" form="qualified" type="xsd:string"/>
+          <xsd:element name="DocmId" form="qualified" type="xsd:string"/>
+          <xsd:element name="IssueDate" form="qualified" type="xsd:string"/>
+          <xsd:element name="DocmFormId" form="qualified" type="xsd:string"/>
+          <xsd:element name="DocmFormDsc" form="qualified" type="xsd:string"/>
+          <xsd:element name="DocmDispositionDsc" form="qualified" type="xsd:string" minOccurs="0"/>
+          <xsd:element name="DocmDispositionDate" form="qualified" type="xsd:string" minOccurs="0"/>
+          <xsd:element name="ImageId" form="qualified" type="xsd:string" minOccurs="0"/>
+          <xsd:element name="DocumentPageCount" nillable="true" type="xsd:string"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="AppearanceTypes">
+        <xsd:sequence>
+          <xsd:element name="AppearanceId" form="qualified" type="xsd:string"/>
+          <xsd:element name="AppearanceDate" form="qualified" type="xsd:string"/>
+          <xsd:element name="CourtAgencyIdentifier" form="qualified" type="xsd:string"/>
+          <xsd:element name="CourtRoom" form="qualified" type="xsd:string"/>
+          <xsd:element name="AppearanceNote" form="qualified" type="xsd:string" minOccurs="0"/>
+          <xsd:element name="EstimatedTimeHour" form="qualified" type="xsd:string" minOccurs="0"/>
+          <xsd:element name="EstimatedTimeMin" form="qualified" type="xsd:string" minOccurs="0"/>
+          <xsd:element name="ConfirmStatusDsc" form="qualified" type="xsd:string" minOccurs="0"/>
+          <xsd:element name="JudgesRecommendation" nillable="true" type="xsd:string"/>
+          <xsd:element name="AppearanceCount" nillable="true" type="tns:AppearanceCountTypes" maxOccurs="unbounded"/>
+          <xsd:element name="PartyAppearanceMethod" nillable="true" type="tns:PartyAppearanceMethodType" maxOccurs="unbounded"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="AppearanceCountTypes">
+        <xsd:sequence>
+          <xsd:element name="AppcId" form="qualified" type="xsd:string"/>
+          <xsd:element name="CountNumber" form="qualified" type="xsd:string"/>
+          <xsd:element name="AppearanceReason" form="qualified" type="xsd:string"/>
+          <xsd:element name="AppearanceResult" form="qualified" type="xsd:string" minOccurs="0"/>
+          <xsd:element name="Finding" nillable="true" type="xsd:string"/>
+          <xsd:element name="SectionTxt" nillable="true" type="xsd:string"/>
+          <xsd:element name="SectionDscTxt" nillable="true" type="xsd:string"/>
+          <xsd:element name="Sentence" nillable="true" type="tns:SentenceType" maxOccurs="unbounded"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="SentenceType">
+        <xsd:sequence>
+          <xsd:element name="SntpCd" nillable="true" type="xsd:string"/>
+          <xsd:element name="SentTermPeriodQty" nillable="true" type="xsd:string"/>
+          <xsd:element name="SentTermCd" nillable="true" type="xsd:string"/>
+          <xsd:element name="SentSubtermPeriodQty" nillable="true" type="xsd:string"/>
+          <xsd:element name="SentSubtermCd" nillable="true" type="xsd:string"/>
+          <xsd:element name="SentTertiaryTermPeriodQty" nillable="true" type="xsd:string"/>
+          <xsd:element name="SentTertiaryTermCd" nillable="true" type="xsd:string"/>
+          <xsd:element name="SentIntermittentYn" nillable="true" type="xsd:string"/>
+          <xsd:element name="SentMonetaryAmt" nillable="true" type="xsd:string"/>
+          <xsd:element name="SentDueTtpDt" nillable="true" type="xsd:string"/>
+          <xsd:element name="SentEffectiveDt" nillable="true" type="xsd:string"/>
+          <xsd:element name="SentDetailTxt" nillable="true" type="xsd:string"/>
+          <xsd:element name="SentYcjaAdultYouthCd" nillable="true" type="xsd:string"/>
+          <xsd:element name="SentCustodySecureYn" nillable="true" type="xsd:string"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="PartyAppearanceMethodType">
+        <xsd:sequence>
+          <xsd:element name="PartyName" nillable="true" form="qualified" type="xsd:string"/>
+          <xsd:element name="PartyRole" nillable="true" form="qualified" type="xsd:string"/>
+          <xsd:element name="PartId" nillable="true" form="qualified" type="xsd:string"/>
+          <xsd:element name="PartyAppearanceMethod" nillable="true" form="qualified" type="xsd:string"/>
+        </xsd:sequence>
+      </xsd:complexType>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="CriminalFileContentSecure_PortType_getCriminalFileContentSecureResponse">
+    <wsdl:part name="parameters" element="tns:getCriminalFileContentSecureResponse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="CriminalFileContentSecure_PortType_getCriminalFileContentSecure">
+    <wsdl:part name="parameters" element="tns:getCriminalFileContentSecure"></wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="CriminalFileContentSecure_PortType">
+    <wsdl:operation name="getCriminalFileContentSecure">
+      <wsdl:input message="tns:CriminalFileContentSecure_PortType_getCriminalFileContentSecure"></wsdl:input>
+      <wsdl:output message="tns:CriminalFileContentSecure_PortType_getCriminalFileContentSecureResponse"></wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="CCD_Source_CriminalFileContent_ws_provider_CriminalFileContentSecure_Binder" type="tns:CriminalFileContentSecure_PortType">
+    <soap12:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="getCriminalFileContentSecure">
+      <soap12:operation soapAction="CCD_Source_CriminalFileContent_ws_provider_CriminalFileContentSecure_Binder_getCriminalFileContentSecure" style="document"/>
+      <wsdl:input>
+        <soap12:body parts="parameters" use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body parts="parameters" use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="CriminalFileContentSecure">
+    <wsdl:port name="CCD_Source_CriminalFileContent_ws_provider_CriminalFileContentSecure_Port" binding="tns:CCD_Source_CriminalFileContent_ws_provider_CriminalFileContentSecure_Binder">
+      <soap12:address location="http://reeks.bcgov:5555/ws/CCD.Source.CriminalFileContent.ws.provider:CriminalFileContentSecure/CCD_Source_CriminalFileContent_ws_provider_CriminalFileContentSecure_Port"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://reeks.bcgov:5555/ws/CCD.Source.CriminalFileContent.ws.provider:CriminalFileContentSecure/CCD_Source_CriminalFileContent_ws_provider_CriminalFileContentSecure_Port</con:endpoint></con:endpoints><con:operation id="65c41ff1-584a-4864-948e-6dcbfaa74434" isOneWay="false" action="CCD_Source_CriminalFileContent_ws_provider_CriminalFileContentSecure_Binder_getCriminalFileContentSecure" name="getCriminalFileContentSecure" bindingOperationName="getCriminalFileContentSecure" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="bc20598b-3cf3-46fc-8b7f-74ecbc9ac737" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://reeks.bcgov:5555/ws/CCD.Source.CriminalFileContent.ws.provider:CriminalFileContentSecure/CCD_Source_CriminalFileContent_ws_provider_CriminalFileContentSecure_Port</con:endpoint><con:request><![CDATA[<soap:Envelope xmlns:soap="http://www.w3.org/2003/05/soap-envelope" xmlns:ccd="http://reeks.bcgov/CCD.Source.CriminalFileContent.ws.provider:CriminalFileContentSecure">\r
+   <soap:Header/>\r
+   <soap:Body>\r
+      <ccd:getCriminalFileContentSecure>\r
+         <RequestAgencyIdentifierId>?</RequestAgencyIdentifierId>\r
+         <RequestPartId>?</RequestPartId>\r
+         <RequestDtm>?</RequestDtm>\r
+         <ApplicationCd>?</ApplicationCd>\r
+         <agency_identifier_cd>?</agency_identifier_cd>\r
+         <room_cd>?</room_cd>\r
+         <proceeding_date>?</proceeding_date>\r
+         <!--Optional:-->\r
+         <appearanceID>?</appearanceID>\r
+         <MdocJustinNo>?</MdocJustinNo>\r
+      </ccd:getCriminalFileContentSecure>\r
+   </soap:Body>\r
+</soap:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://reeks.bcgov/CCD.Source.CriminalFileContent.ws.provider:CriminalFileContentSecure/CriminalFileContentSecure_PortType/getCriminalFileContentSecureRequest"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:testSuite id="00edd71d-5de6-4fc1-9fb1-566b1c490249" name="CCDCriminalFileContentSecure"><con:settings/><con:runType>SEQUENTIAL</con:runType><con:testCase id="af376232-7026-4733-8207-015e37b9f678" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="GetCriminalFileContentSecure" searchProperties="true"><con:settings/><con:testStep type="request" name="getCriminalFileContentSecure" id="fcec252e-e928-4ebe-9478-a811d4378eb2"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>CCD_Source_CriminalFileContent_ws_provider_CriminalFileContentSecure_Binder</con:interface><con:operation>getCriminalFileContentSecure</con:operation><con:request name="getCriminalFileContentSecure" id="32b45bd1-e97f-470b-ab12-0e3c8528f7d1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>https://jag-ccd-1-2-52e74e-dev.apps.silver.devops.gov.bc.ca/ws</con:endpoint><con:request><![CDATA[<soap:Envelope xmlns:soap="http://www.w3.org/2003/05/soap-envelope" xmlns:ccd="http://reeks.bcgov/CCD.Source.CriminalFileContent.ws.provider:CriminalFileContentSecure">
+   <soap:Header/>
+   <soap:Body>
+      <ccd:getCriminalFileContentSecure>
+         <RequestAgencyIdentifierId>83.0001</RequestAgencyIdentifierId>
+         <RequestPartId>19014.0001</RequestPartId>
+         <RequestDtm>2021-11-12 09:09:09.1</RequestDtm>
+         <ApplicationCd>CCD</ApplicationCd>
+         <agency_identifier_cd>83.0001</agency_identifier_cd>
+         <room_cd>001</room_cd>
+         <proceeding_date>2021-12-12 09:09:09.1</proceeding_date>
+         <!--Optional:-->
+         <appearanceID>14886</appearanceID>
+         <MdocJustinNo>37852</MdocJustinNo>
+      </ccd:getCriminalFileContentSecure>
+   </soap:Body>
+</soap:Envelope>]]></con:request><con:assertion type="SOAP Response" id="0ca98073-91fb-45a2-855a-42d65f0d4424"/><con:assertion type="Valid HTTP Status Codes" id="e7b29b3f-b849-4514-bd4b-608181f40613" name="Valid HTTP Status Codes"><con:configuration><codes>200</codes></con:configuration></con:assertion><con:assertion type="Invalid HTTP Status Codes" id="b87cb5b0-b170-44bc-b9fb-91470b0d57fa" name="Invalid HTTP Status Codes"><con:configuration><codes>401, 403, 404, 500</codes></con:configuration></con:assertion><con:assertion type="Response SLA Assertion" id="b38240cb-cf08-4986-8139-d91f13d17b79" name="Response SLA"><con:configuration><SLA>1500</SLA></con:configuration></con:assertion><con:assertion type="Simple Contains" id="ab74a960-0740-4f3f-b712-1ec8bc9224ee" name="Contains"><con:configuration><token>A</token><ignoreCase>false</ignoreCase><useRegEx>false</useRegEx></con:configuration></con:assertion><con:assertion type="Simple Contains" id="9ac8ad4d-90f1-4d99-91c8-f320f2bc7b69" name="Contains 1"><con:configuration><token>16224.0026</token><ignoreCase>false</ignoreCase><useRegEx>false</useRegEx></con:configuration></con:assertion><con:assertion type="Simple Contains" id="3dc44bad-762b-432f-a0d9-0449602278b4" name="Contains 2"><con:configuration><token>Initiating</token><ignoreCase>false</ignoreCase><useRegEx>false</useRegEx></con:configuration></con:assertion><con:assertion type="Simple Contains" id="c04a219a-0537-4c9e-a8ff-6c64365cdd46" name="Contains 3"><con:configuration><token>2014-10-29 00:00:00.0</token><ignoreCase>false</ignoreCase><useRegEx>false</useRegEx></con:configuration></con:assertion><con:assertion type="Simple Contains" id="72e3b972-93a0-4d6b-af38-ace2e833ad0b" name="Contains 4"><con:configuration><token>Information</token><ignoreCase>false</ignoreCase><useRegEx>false</useRegEx></con:configuration></con:assertion><con:assertion type="Simple Contains" id="603c4e67-f9a1-4beb-b9fb-cc2c97ee426e" name="Contains 5"><con:configuration><token>N</token><ignoreCase>false</ignoreCase><useRegEx>false</useRegEx></con:configuration></con:assertion><con:assertion type="Simple Contains" id="ae3dca1c-2ba2-41a8-8b51-53ae8eec1604" name="Contains 6"><con:configuration><token>67710.0734</token><ignoreCase>false</ignoreCase><useRegEx>false</useRegEx></con:configuration></con:assertion><con:assertion type="Simple Contains" id="435185b0-5e44-40f9-ba46-54bee1685863" name="Contains 7"><con:configuration><token>1</token><ignoreCase>false</ignoreCase><useRegEx>false</useRegEx></con:configuration></con:assertion><con:assertion type="Simple Contains" id="56cbc2c4-e04e-4b6f-86e3-8e2cbe42aa12" name="Contains 8"><con:configuration><token>ASC</token><ignoreCase>false</ignoreCase><useRegEx>false</useRegEx></con:configuration></con:assertion><con:assertion type="Simple Contains" id="02de68da-2dbb-45d8-953d-02bc86d9c103" name="Contains 9"><con:configuration><token>MVA - 100(2)</token><ignoreCase>false</ignoreCase><useRegEx>false</useRegEx></con:configuration></con:assertion><con:assertion type="Simple Contains" id="58ed79bd-f1d3-428c-be4a-5f4b1f8b60b5" name="Contains 10"><con:configuration><token>Failing to stop for peace officer</token><ignoreCase>false</ignoreCase><useRegEx>false</useRegEx></con:configuration></con:assertion><con:assertion type="Simple Contains" id="3cb7b219-7704-4b18-b704-286b65d89658" name="Contains 11"><con:configuration><token>67711.0734</token><ignoreCase>false</ignoreCase><useRegEx>false</useRegEx></con:configuration></con:assertion><con:assertion type="Simple Contains" id="2a640a8f-6f14-487b-a1ae-5f4f9c9180ce" name="Contains 12"><con:configuration><token>2</token><ignoreCase>false</ignoreCase><useRegEx>false</useRegEx></con:configuration></con:assertion><con:assertion type="Simple Contains" id="804f8bde-5808-4d35-b584-49496470003f" name="Contains 13"><con:configuration><token>CCC - 356(1)(b)</token><ignoreCase>false</ignoreCase><useRegEx>false</useRegEx></con:configuration></con:assertion><con:assertion type="Simple Contains" id="e56abc9f-3f49-4c54-8e03-cb0e4f73c56e" name="Contains 14"><con:configuration><token>Theft from mail: possession of article stolen from</token><ignoreCase>false</ignoreCase><useRegEx>false</useRegEx></con:configuration></con:assertion><con:assertion type="Simple Contains" id="1f3ab07c-13d1-4534-a303-d6f03305dff2" name="Contains 15"><con:configuration><token>ACC</token><ignoreCase>false</ignoreCase><useRegEx>false</useRegEx></con:configuration></con:assertion><con:assertion type="Simple Contains" id="3355d6d2-6610-4d38-a113-7e0f4a79f9ab" name="Contains 16"><con:configuration><token>ADJ</token><ignoreCase>false</ignoreCase><useRegEx>false</useRegEx></con:configuration></con:assertion><con:assertion type="Simple Contains" id="6a321c23-efe8-4966-8db5-16f74fa031d3" name="Contains 17"><con:configuration><token>CON</token><ignoreCase>false</ignoreCase><useRegEx>false</useRegEx></con:configuration></con:assertion><con:assertion type="Simple Contains" id="2562ba52-d4bc-4748-9e1d-8daaedf9d96e" name="Contains 18"><con:configuration><token>Confirmed</token><ignoreCase>false</ignoreCase><useRegEx>false</useRegEx></con:configuration></con:assertion><con:assertion type="Simple Contains" id="4765f1f7-fdb5-4c8a-9e3d-b3256f712580" name="Contains 19"><con:configuration><token>4801</token><ignoreCase>false</ignoreCase><useRegEx>false</useRegEx></con:configuration></con:assertion><con:assertion type="Simple Contains" id="a647e506-4bca-4f68-bc7e-f117619005a7" name="Contains 20"><con:configuration><token>63043.0734</token><ignoreCase>false</ignoreCase><useRegEx>false</useRegEx></con:configuration></con:assertion><con:assertion type="Simple Contains" id="51bfbcca-2728-4cd7-82ca-04816be10ce4" name="Contains 21"><con:configuration><token>FT</token><ignoreCase>false</ignoreCase><useRegEx>false</useRegEx></con:configuration></con:assertion><con:assertion type="Simple Contains" id="f9b16d1d-dad7-432e-bc2f-cd59b0228d8f" name="Contains 22"><con:configuration><token>CCC - 356(1)(b)</token><ignoreCase>false</ignoreCase><useRegEx>false</useRegEx></con:configuration></con:assertion><con:assertion type="Simple Contains" id="953b1797-776f-4a5c-8c5f-93736ca9979b" name="Contains 23"><con:configuration><token>Theft from mail: possession of article stolen from</token><ignoreCase>false</ignoreCase><useRegEx>false</useRegEx></con:configuration></con:assertion><con:assertion type="Simple Contains" id="f72a283c-b36c-4d27-9298-99603ef63e9d" name="Contains 24"><con:configuration><token>42907.0734</token><ignoreCase>false</ignoreCase><useRegEx>false</useRegEx></con:configuration></con:assertion><con:assertion type="Simple Contains" id="62fd284d-25e5-486b-841f-018fc7b67c5e" name="Contains 25"><con:configuration><token>67779.0734</token><ignoreCase>false</ignoreCase><useRegEx>false</useRegEx></con:configuration></con:assertion><con:assertion type="Simple Contains" id="36f164a8-2e25-4abb-a9ad-5a6991dcd955" name="Contains 26"><con:configuration><token>43635.0734</token><ignoreCase>false</ignoreCase><useRegEx>false</useRegEx></con:configuration></con:assertion><con:assertion type="Simple Contains" id="3cd3f4fb-f07e-44a8-ae47-d73e568aff9d" name="Contains 27"><con:configuration><token>68975.0734</token><ignoreCase>false</ignoreCase><useRegEx>false</useRegEx></con:configuration></con:assertion><con:credentials><con:username>{AUTHENTICATION_USERNAME}</con:username><con:password>{AUTHENTICATION_PASSWORD}</con:password><con:selectedAuthProfile>Basic</con:selectedAuthProfile><con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" name="getCriminalFileContentSecureNegativeTest" id="580d83cc-ac5d-4533-af0a-d3583f4409d6"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>CCD_Source_CriminalFileContent_ws_provider_CriminalFileContentSecure_Binder</con:interface><con:operation>getCriminalFileContentSecure</con:operation><con:request name="getCriminalFileContentSecureNegativeTest" id="d9eeeab5-187f-4cd6-b83a-7b2b0801579a"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>https://jag-ccd-1-2-52e74e-dev.apps.silver.devops.gov.bc.ca/ws</con:endpoint><con:request><![CDATA[<soap:Envelope xmlns:soap="http://www.w3.org/2003/05/soap-envelope" xmlns:ccd="http://reeks.bcgov/CCD.Source.CriminalFileContent.ws.provider:CriminalFileContentSecure">
+   <soap:Header/>
+   <soap:Body>
+      <ccd:getCriminalFileContentSecure>
+         <RequestAgencyIdentifierId></RequestAgencyIdentifierId>
+         <RequestPartId></RequestPartId>
+         <RequestDtm></RequestDtm>
+         <ApplicationCd>CCD</ApplicationCd>
+         <agency_identifier_cd>83.0001</agency_identifier_cd>
+         <room_cd>001</room_cd>
+         <proceeding_date>2021-12-12 09:09:09.1</proceeding_date>
+         <!--Optional:-->
+         <appearanceID>14886</appearanceID>
+         <MdocJustinNo>37852</MdocJustinNo>
+      </ccd:getCriminalFileContentSecure>
+   </soap:Body>
+</soap:Envelope>]]></con:request><con:assertion type="SOAP Response" id="9e578c64-58f2-4d0a-84e1-da4981ec27da"/><con:assertion type="Valid HTTP Status Codes" id="645822fe-2660-4790-94a5-eb4e260382c9" name="Valid HTTP Status Codes"><con:configuration><codes>200</codes></con:configuration></con:assertion><con:assertion type="Invalid HTTP Status Codes" id="8d811e3a-1c3d-413a-9960-5300eb52fb70" name="Invalid HTTP Status Codes"><con:configuration><codes>400, 401, 403, 404, 500</codes></con:configuration></con:assertion><con:assertion type="Simple Contains" id="d16c5f61-6a6a-463d-bafe-a659168f82ce" name="Contains"><con:configuration><token>-2</token><ignoreCase>false</ignoreCase><useRegEx>false</useRegEx></con:configuration></con:assertion><con:assertion type="Simple Contains" id="ff70219f-215f-4455-ab0b-ef16c10d392c" name="Contains 1"><con:configuration><token>Not all mandatory parameters provided</token><ignoreCase>false</ignoreCase><useRegEx>false</useRegEx></con:configuration></con:assertion><con:credentials><con:username>{AUTHENTICATION_USERNAME}</con:username><con:password>{AUTHENTICATION_PASSWORD}</con:password><con:selectedAuthProfile>Basic</con:selectedAuthProfile><con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:properties><con:property><con:name>RequestAgencyIdentifierId</con:name><con:value>83.0001</con:value></con:property><con:property><con:name>RequestPartId</con:name><con:value>19014.0001</con:value></con:property><con:property><con:name>RequestDtm</con:name><con:value>2021-11-12 09:09:09.1</con:value></con:property><con:property><con:name>ApplicationCd</con:name><con:value>CCD</con:value></con:property><con:property><con:name>agency_identifier_cd</con:name><con:value>83.0001</con:value></con:property><con:property><con:name>room_cd</con:name><con:value>001</con:value></con:property><con:property><con:name>proceeding_date</con:name><con:value>2021-12-12 09:09:09.1</con:value></con:property><con:property><con:name>appearanceID</con:name><con:value>14886</con:value></con:property><con:property><con:name>MdocJustinNo</con:name><con:value>37852</con:value></con:property></con:properties></con:testCase><con:testCase id="8f6975dd-60f0-4c3d-be26-db84edc17c2a" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="AutomationTest" searchProperties="true"><con:settings/><con:testStep type="groovy" name="getCriminalFileContentSecure" id="2cfe9900-66f2-48da-bc3a-3061dc75b8e7"><con:settings/><con:config><script>import com.eviware.soapui.support.XmlHolder
+import com.eviware.soapui.impl.wsdl.testcase.WsdlTestRunContext
+
+ def GetCriminalFileContentSecure = testRunner.testCase.testSuite.testCases["GetCriminalFileContentSecure"].testSteps["getCriminalFileContentSecure"].getPropertyValue("Request")
+ 
+ def RequestAgencyIdentifierId=testRunner.testCase.testSuite.testCases["GetCriminalFileContentSecure"].getPropertyValue("RequestAgencyIdentifierId")
+ def RequestPartId=testRunner.testCase.testSuite.testCases["GetCriminalFileContentSecure"].getPropertyValue("RequestPartId")
+ def RequestDtm=testRunner.testCase.testSuite.testCases["GetCriminalFileContentSecure"].getPropertyValue("RequestDtm")
+ def ApplicationCd=testRunner.testCase.testSuite.testCases["GetCriminalFileContentSecure"].getPropertyValue("ApplicationCd")
+ def agency_identifier_cd=testRunner.testCase.testSuite.testCases["GetCriminalFileContentSecure"].getPropertyValue("agency_identifier_cd")
+ def room_cd=testRunner.testCase.testSuite.testCases["GetCriminalFileContentSecure"].getPropertyValue("room_cd")
+ def proceeding_date=testRunner.testCase.testSuite.testCases["GetCriminalFileContentSecure"].getPropertyValue("proceeding_date")
+ def appearanceID=testRunner.testCase.testSuite.testCases["GetCriminalFileContentSecure"].getPropertyValue("appearanceID")
+ def MdocJustinNo=testRunner.testCase.testSuite.testCases["GetCriminalFileContentSecure"].getPropertyValue("MdocJustinNo")
+
+ 
+ def xmlAdd= new XmlHolder(GetCriminalFileContentSecure)
+ xmlAdd.setNodeValue("//ccd:getCriminalFileContentSecure/RequestAgencyIdentifierId",RequestAgencyIdentifierId)
+ xmlAdd.setNodeValue("//ccd:GetCriminalFileContentSecure/RequestPartId",RequestPartId)
+ xmlAdd.setNodeValue("//ccd:GetCriminalFileContentSecure/RequestDtm",RequestDtm)
+ xmlAdd.setNodeValue("//ccd:GetCriminalFileContentSecure/ApplicationCd",ApplicationCd)
+ xmlAdd.setNodeValue("//ccd:GetCriminalFileContentSecure/agency_identifier_cd",agency_identifier_cd)
+ xmlAdd.setNodeValue("//ccd:GetCriminalFileContentSecure/room_cd",room_cd)
+ xmlAdd.setNodeValue("//ccd:GetCriminalFileContentSecure/proceeding_date",proceeding_date)
+ xmlAdd.setNodeValue("//ccd:GetCriminalFileContentSecure/appearanceID",appearanceID)
+ xmlAdd.setNodeValue("//ccd:GetCriminalFileContentSecure/MdocJustinNo",MdocJustinNo)
+ 
+ def newxmlGet= xmlAdd.getXml();
+ //add xml detail
+ testRunner.testCase.testSuite.testCases["GetCriminalFileContentSecure"].testSteps["getCriminalFileContentSecure"].setPropertyValue("Request",newxmlGet)
+
+ def getTestStep=testRunner.testCase.testSuite.testCases["GetCriminalFileContentSecure"].testSteps["getCriminalFileContentSecure"]
+ def contextGetCriminalFileContentSecure = new WsdlTestRunContext(getTestStep);
+ getTestStep.run(testRunner,contextGetCriminalFileContentSecure)
+ //Validation -
+ def getRes=testRunner.testCase.testSuite.testCases["GetCriminalFileContentSecure"].testSteps["getCriminalFileContentSecure"].getPropertyValue("Response")
+def Response= new XmlHolder(getRes)
+def GetResponse= Response.getNodeValue("//CourtLocaCd")
+def GetResponse1= Response.getNodeValue("//CourtRoomCd")
+def GetResponse2= Response.getNodeValue("//CourtProceedingDate")
+def GetResponse3= Response.getNodeValue("//AppearanceId")
+def GetResponse4= Response.getNodeValue("//MdocJustinNo")
+def GetResponse5= Response.getNodeValue("//FileNumber")
+def GetResponse6= Response.getNodeValue("//FileLocaAgencyIdentifierCd")
+def GetResponse7= Response.getNodeValue("//MDocInfoSeqNo")
+def GetResponse8= Response.getNodeValue("//PhyFileFolderNo")
+def GetResponse9= Response.getNodeValue("//CourtClassCd")
+def GetResponse10= Response.getNodeValue("//CourtLevelCd")
+def GetResponse11= Response.getNodeValue("//PartId")
+def GetResponse12= Response.getNodeValue("//ProfSeqNo")
+def GetResponse13= Response.getNodeValue("//FiledDate")
+def GetResponse14= Response.getNodeValue("//DocmClassification")
+def GetResponse15= Response.getNodeValue("//IssueDate")
+def GetResponse16= Response.getNodeValue("//DocmFormDsc")
+def GetResponse17= Response.getNodeValue("//DocmDispositionDsc")
+def GetResponse18= Response.getNodeValue("//FileNumber")
+def GetResponse19= Response.getNodeValue("//FileLocaAgencyIdentifierCd")
+def GetResponse20= Response.getNodeValue("//MdocJustinNo")
+def GetResponse21= Response.getNodeValue("//MDocInfoSeqNo")
+def GetResponse22= Response.getNodeValue("//PhyFileFolderNo")
+def GetResponse23= Response.getNodeValue("//CourtClassCd")
+def GetResponse24= Response.getNodeValue("//CourtLevelCd")
+def GetResponse25= Response.getNodeValue("//PartId")
+def GetResponse26= Response.getNodeValue("//ProfSeqNo")
+def GetResponse27= Response.getNodeValue("//FiledDate")
+
+log.info GetResponse
+log.info GetResponse1
+log.info GetResponse2
+log.info GetResponse3
+log.info GetResponse4
+log.info GetResponse5
+log.info GetResponse6
+log.info GetResponse7
+log.info GetResponse8
+log.info GetResponse9
+log.info GetResponse10
+log.info GetResponse11
+log.info GetResponse12
+
+assert GetResponse=="83.0001"
+assert GetResponse1=="001"
+assert GetResponse2=="2021-12-12 09:09:09.0"
+assert GetResponse3=="14886"
+assert GetResponse4=="37852"
+assert GetResponse5=="2201-33-K"
+assert GetResponse6=="4801"
+assert GetResponse7=="33"
+assert GetResponse8=="2201"
+assert GetResponse9=="A"
+assert GetResponse10=="P"
+assert GetResponse11=="16224.0026"
+assert GetResponse12=="70"
+assert GetResponse13=="2014-10-29 00:00:00.0"
+assert GetResponse14=="Initiating"
+assert GetResponse15=="2014-10-29 00:00:00.0"
+assert GetResponse16=="Information"
+assert GetResponse17=="N" 
+assert GetResponse18=="2201-33-K"
+assert GetResponse19=="4801"
+assert GetResponse20=="37852"
+assert GetResponse21=="33"
+assert GetResponse22=="2201"
+assert GetResponse23=="A"
+assert GetResponse24=="P"
+assert GetResponse25=="16224.0026"
+assert GetResponse26=="70"
+assert GetResponse27=="2014-10-29 00:00:00.0"
+</script></con:config></con:testStep><con:properties/></con:testCase><con:properties/></con:testSuite><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/><con:oAuth1ProfileContainer/></con:soapui-project>
