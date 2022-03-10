@@ -1,6 +1,5 @@
 package ca.bc.gov.open.ccd;
 
-import static org.mockito.ArgumentMatchers.contains;
 import static org.mockito.Mockito.when;
 
 import ca.bc.gov.open.ccd.common.document.Document;
@@ -54,7 +53,7 @@ public class DocumentControllerTests {
 
         // Set up to mock ords response
         when(restTemplate.exchange(
-                        contains("https://127.0.0.1"),
+                        Mockito.any(URI.class),
                         Mockito.eq(HttpMethod.GET),
                         Mockito.<HttpEntity<String>>any(),
                         Mockito.<ParameterizedTypeReference<Map<String, String>>>any()))

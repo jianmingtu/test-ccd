@@ -8,6 +8,7 @@ import ca.bc.gov.open.ccd.common.code.values.GetCodeValues;
 import ca.bc.gov.open.ccd.common.criminal.file.content.GetCriminalFileContent;
 import ca.bc.gov.open.ccd.common.dev.utils.ClearAppearanceResults;
 import ca.bc.gov.open.ccd.common.dev.utils.RecreateCourtList;
+import ca.bc.gov.open.ccd.common.document.Document;
 import ca.bc.gov.open.ccd.common.document.GetDocument;
 import ca.bc.gov.open.ccd.common.process.results.*;
 import ca.bc.gov.open.ccd.common.rop.report.GetROPReport;
@@ -336,8 +337,12 @@ public class OrdsErrorTests {
     public void testGetDocumentOrdsFail() {
         DocumentController documentController = new DocumentController(restTemplate, objectMapper);
 
+        GetDocument getDocument = new GetDocument();
+        Document document = new Document();
+        getDocument.setDocumentRequest(document);
+        document.setDocumentId("123");
         Assertions.assertThrows(
-                ORDSException.class, () -> documentController.getDocument(new GetDocument()));
+                ORDSException.class, () -> documentController.getDocument(getDocument));
     }
 
     @Test

@@ -160,10 +160,10 @@
             <xsd:element name="DocumentAccessLevelCd" nillable="true" type="xsd:string"/>
             <xsd:element name="DocumentSealEndDate" nillable="true" type="xsd:dateTime"/>
             <xsd:element name="DocumentSealStartDate" nillable="true" type="xsd:dateTime"/>
-            <xsd:element name="DateGranted" nillable="true" type="xsd:string"/>
+            <xsd:element name="DateGranted" nillable="true" type="xsd:dateTime"/>
             <xsd:element name="EstimatedDocumentMinutes" nillable="true" type="xsd:string"/>
             <xsd:element name="EndedDate" nillable="true" type="xsd:dateTime"/>
-            <xsd:element name="DateVaried" nillable="true" type="xsd:string"/>
+            <xsd:element name="DateVaried" nillable="true" type="xsd:dateTime"/>
             <xsd:element name="CancelledDate" nillable="true" type="xsd:dateTime"/>
             <xsd:element name="DocumentCommentText" nillable="true" type="xsd:string"/>
             <xsd:element name="OrderDocumentYN" nillable="true" type="xsd:string"/>
