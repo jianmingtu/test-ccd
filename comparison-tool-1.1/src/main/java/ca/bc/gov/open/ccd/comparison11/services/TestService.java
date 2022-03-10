@@ -598,7 +598,7 @@ public class TestService {
         fileOutput.close();
     }
 
-    public <T, G> boolean compare(T response, G request, String wsdl) throws SOAPException {
+    public <T, G> boolean compare(T response, G request, String wsdl) throws SOAPException, Exception {
 
         Jaxb2Marshaller jaxb2Marshaller = new Jaxb2Marshaller();
 
@@ -631,10 +631,11 @@ public class TestService {
         try {
             resultObjectWM = (T) webServiceTemplate.marshalSendAndReceive(wmHost + wsdl, request);
             resultObjectAPI = (T) webServiceTemplate.marshalSendAndReceive(apiHost, request);
-            Thread.sleep(5000);
         } catch (Exception e) {
             System.out.println("ERROR: Failed to send request... " + e);
             fileOutput.println("ERROR: Failed to send request... " + e);
+        } finally {
+            Thread.sleep(5000);
         }
 
         Diff diff = javers.compare(resultObjectAPI, resultObjectWM);
