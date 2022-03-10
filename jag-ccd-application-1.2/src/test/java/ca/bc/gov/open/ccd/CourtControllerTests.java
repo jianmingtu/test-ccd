@@ -244,7 +244,7 @@ public class CourtControllerTests {
 
         var crl2 = new ca.bc.gov.open.ccd.court.secure.one.CivilCourtListType();
         crl2.setAppearanceId("A");
-        crl2.setAppearanceTime(Instant.now());
+        crl2.setAppearanceTime("A");
         crl2.setBinderText("A");
         crl2.setCourtListPrintSortNumber("A");
         crl2.setCivilDocumentsAvailable("A");
