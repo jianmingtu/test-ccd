@@ -82,7 +82,7 @@ public class DocumentController {
                                     "Error received from ORDS",
                                     "getDocumentSecure",
                                     ex.getMessage(),
-                                    null)));
+                                    document)));
             throw new ORDSException();
         }
 
@@ -143,7 +143,7 @@ public class DocumentController {
                                                 "Error occurred while requesting an uri to get base64 document",
                                                 "getDocumentSecure",
                                                 ex.getMessage(),
-                                                null)));
+                                                inner)));
                         throw new ORDSException();
                     }
                 }
@@ -157,7 +157,7 @@ public class DocumentController {
                                 "Error received from ORDS",
                                 "getDocument",
                                 "Either response or its body is null while receiving the request getDocumentSecure's response.",
-                                null)));
+                                document)));
         throw new ORDSException();
     }
 }

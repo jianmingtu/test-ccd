@@ -84,7 +84,7 @@ public class FileController {
                                     "Error received from ORDS",
                                     "getCriminalFileContentSecure",
                                     ex.getMessage(),
-                                    null)));
+                                    getCriminalFileContent)));
             throw new ORDSException();
         }
     }
@@ -133,7 +133,7 @@ public class FileController {
                                     "Error received from ORDS",
                                     "getCivilFileContentSecure",
                                     ex.getMessage(),
-                                    null)));
+                                    getCivilFileContent)));
             throw new ORDSException();
         }
     }
