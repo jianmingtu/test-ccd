@@ -3,6 +3,7 @@ package ca.bc.gov.open.ccd.controllers;
 import ca.bc.gov.open.ccd.common.dev.utils.*;
 import ca.bc.gov.open.ccd.exceptions.ORDSException;
 import ca.bc.gov.open.ccd.models.OrdsErrorLog;
+import ca.bc.gov.open.ccd.models.RequestSuccessLog;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
@@ -55,7 +56,9 @@ public class DevUtilsController {
                             HttpMethod.POST,
                             payload,
                             ClearAppearanceResultsResponse.class);
-
+            log.info(
+                    objectMapper.writeValueAsString(
+                            new RequestSuccessLog("Request Success", "clearAppearanceResults")));
             return resp.getBody();
         } catch (Exception ex) {
             log.error(
@@ -92,7 +95,9 @@ public class DevUtilsController {
                             HttpMethod.POST,
                             payload,
                             RecreateCourtListResponse.class);
-
+            log.info(
+                    objectMapper.writeValueAsString(
+                            new RequestSuccessLog("Request Success", "reCreateCourtList")));
             return resp.getBody();
         } catch (Exception ex) {
             log.error(

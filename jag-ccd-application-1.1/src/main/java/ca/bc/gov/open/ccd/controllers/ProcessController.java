@@ -3,6 +3,7 @@ package ca.bc.gov.open.ccd.controllers;
 import ca.bc.gov.open.ccd.common.process.results.*;
 import ca.bc.gov.open.ccd.exceptions.ORDSException;
 import ca.bc.gov.open.ccd.models.OrdsErrorLog;
+import ca.bc.gov.open.ccd.models.RequestSuccessLog;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
@@ -56,7 +57,9 @@ public class ProcessController {
                             HttpMethod.POST,
                             payload,
                             ProcessVariationResponse.class);
-
+            log.info(
+                    objectMapper.writeValueAsString(
+                            new RequestSuccessLog("Request Success", "processVariation")));
             return resp.getBody();
         } catch (Exception ex) {
             inner.setEnterUserId("");
@@ -89,7 +92,9 @@ public class ProcessController {
                             HttpMethod.POST,
                             payload,
                             ProcessSpeakerResponse.class);
-
+            log.info(
+                    objectMapper.writeValueAsString(
+                            new RequestSuccessLog("Request Success", "processSpeaker")));
             return resp.getBody();
         } catch (Exception ex) {
             log.error(
@@ -122,7 +127,9 @@ public class ProcessController {
                             HttpMethod.POST,
                             payload,
                             ProcessCivilResultsResponse.class);
-
+            log.info(
+                    objectMapper.writeValueAsString(
+                            new RequestSuccessLog("Request Success", "processCivilResults")));
             return resp.getBody();
         } catch (Exception ex) {
             inner.setEnterUserId("");
@@ -159,7 +166,9 @@ public class ProcessController {
                             HttpMethod.POST,
                             payload,
                             ProcessAppearanceMethodResponse.class);
-
+            log.info(
+                    objectMapper.writeValueAsString(
+                            new RequestSuccessLog("Request Success", "processAppearanceMethod")));
             return resp.getBody();
         } catch (Exception ex) {
             inner.setEnterUserId("");
@@ -192,7 +201,9 @@ public class ProcessController {
                             HttpMethod.POST,
                             payload,
                             ProcessPleaResponse.class);
-
+            log.info(
+                    objectMapper.writeValueAsString(
+                            new RequestSuccessLog("Request Success", "processPlea")));
             return resp.getBody();
         } catch (Exception ex) {
             inner.setEnterUserId("");
@@ -225,7 +236,9 @@ public class ProcessController {
                             HttpMethod.POST,
                             payload,
                             ProcessElectionResponse.class);
-
+            log.info(
+                    objectMapper.writeValueAsString(
+                            new RequestSuccessLog("Request Success", "processElection")));
             return resp.getBody();
         } catch (Exception ex) {
             inner.setEnterUserId("");
@@ -258,7 +271,9 @@ public class ProcessController {
                             HttpMethod.POST,
                             payload,
                             ProcessBailResponse.class);
-
+            log.info(
+                    objectMapper.writeValueAsString(
+                            new RequestSuccessLog("Request Success", "processBail")));
             return resp.getBody();
         } catch (Exception ex) {
             inner.setEnterUserId("");
@@ -294,7 +309,9 @@ public class ProcessController {
                             HttpMethod.POST,
                             payload,
                             ProcessCriminalResultResponse.class);
-
+            log.info(
+                    objectMapper.writeValueAsString(
+                            new RequestSuccessLog("Request Success", "processCriminalResult")));
             return resp.getBody();
         } catch (Exception ex) {
             inner.setEnterUserId("");
@@ -328,7 +345,9 @@ public class ProcessController {
                             HttpMethod.POST,
                             payload,
                             ProcessAgeNoticeResponse.class);
-
+            log.info(
+                    objectMapper.writeValueAsString(
+                            new RequestSuccessLog("Request Success", "processAgeNotice")));
             return resp.getBody();
         } catch (Exception ex) {
             inner.setEnterUserId("");
@@ -362,7 +381,9 @@ public class ProcessController {
                             HttpMethod.POST,
                             payload,
                             ProcessMatterCallResponse.class);
-
+            log.info(
+                    objectMapper.writeValueAsString(
+                            new RequestSuccessLog("Request Success", "processMatterCall")));
             return resp.getBody();
         } catch (Exception ex) {
             inner.setEnterUserId("");
@@ -395,7 +416,9 @@ public class ProcessController {
                             HttpMethod.POST,
                             payload,
                             ProcessSentenceResponse.class);
-
+            log.info(
+                    objectMapper.writeValueAsString(
+                            new RequestSuccessLog("Request Success", "processSentence")));
             return resp.getBody();
         } catch (Exception ex) {
             inner.setEnterUserId("");
@@ -428,7 +451,9 @@ public class ProcessController {
                             HttpMethod.POST,
                             payload,
                             ProcessBanResponse.class);
-
+            log.info(
+                    objectMapper.writeValueAsString(
+                            new RequestSuccessLog("Request Success", "processBan")));
             return resp.getBody();
         } catch (Exception ex) {
             inner.setEnterUserId("");
@@ -461,7 +486,9 @@ public class ProcessController {
                             HttpMethod.POST,
                             payload,
                             ProcessNoteResponse.class);
-
+            log.info(
+                    objectMapper.writeValueAsString(
+                            new RequestSuccessLog("Request Success", "processNote")));
             return resp.getBody();
         } catch (Exception ex) {
             inner.setEnterUserId("");
@@ -495,7 +522,9 @@ public class ProcessController {
                             HttpMethod.POST,
                             payload,
                             ProcessArraignmentResponse.class);
-
+            log.info(
+                    objectMapper.writeValueAsString(
+                            new RequestSuccessLog("Request Success", "processArraignment")));
             return resp.getBody();
         } catch (Exception ex) {
             inner.setEnterUserId("");
@@ -528,7 +557,9 @@ public class ProcessController {
                             HttpMethod.POST,
                             payload,
                             ProcessMoveResponse.class);
-
+            log.info(
+                    objectMapper.writeValueAsString(
+                            new RequestSuccessLog("Request Success", "processMove")));
             return resp.getBody();
         } catch (Exception ex) {
             inner.setEnterUserId("");
@@ -561,7 +592,9 @@ public class ProcessController {
                             HttpMethod.POST,
                             payload,
                             ProcessFindingResponse.class);
-
+            log.info(
+                    objectMapper.writeValueAsString(
+                            new RequestSuccessLog("Request Success", "processFinding")));
             return resp.getBody();
         } catch (Exception ex) {
             inner.setEnterUserId("");
@@ -593,7 +626,9 @@ public class ProcessController {
                             HttpMethod.POST,
                             payload,
                             ProcessGenericResultResponse.class);
-
+            log.info(
+                    objectMapper.writeValueAsString(
+                            new RequestSuccessLog("Request Success", "processGenericResult")));
             return resp.getBody();
         } catch (Exception ex) {
             if (process != null && process.getGenericResult() != null)
@@ -631,7 +666,10 @@ public class ProcessController {
                             HttpMethod.POST,
                             payload,
                             ProcessCivilAppearanceMethodResponse.class);
-
+            log.info(
+                    objectMapper.writeValueAsString(
+                            new RequestSuccessLog(
+                                    "Request Success", "ProcessCivilAppearanceMethod")));
             return resp.getBody();
         } catch (Exception ex) {
             inner.setEnterUserId("");
@@ -664,7 +702,9 @@ public class ProcessController {
                             HttpMethod.POST,
                             payload,
                             ProcessOrderResponse.class);
-
+            log.info(
+                    objectMapper.writeValueAsString(
+                            new RequestSuccessLog("Request Success", "processOrder")));
             return resp.getBody();
         } catch (Exception ex) {
             inner.setEnterUserId("");
@@ -700,7 +740,9 @@ public class ProcessController {
                             HttpMethod.POST,
                             payload,
                             ProcessCivilOrderResultResponse.class);
-
+            log.info(
+                    objectMapper.writeValueAsString(
+                            new RequestSuccessLog("Request Success", "processCivilOrderResult")));
             return resp.getBody();
         } catch (Exception ex) {
             inner.setEnterUserId("");
@@ -734,7 +776,9 @@ public class ProcessController {
                             HttpMethod.POST,
                             payload,
                             ProcessExhibitResponse.class);
-
+            log.info(
+                    objectMapper.writeValueAsString(
+                            new RequestSuccessLog("Request Success", "processExhibit")));
             return resp.getBody();
         } catch (Exception ex) {
             inner.setEnterUserId("");
@@ -768,7 +812,9 @@ public class ProcessController {
                             HttpMethod.POST,
                             payload,
                             ProcessSpecialCourtResponse.class);
-
+            log.info(
+                    objectMapper.writeValueAsString(
+                            new RequestSuccessLog("Request Success", "processSpecialCourt")));
             return resp.getBody();
         } catch (Exception ex) {
             inner.setEnterUserId("");

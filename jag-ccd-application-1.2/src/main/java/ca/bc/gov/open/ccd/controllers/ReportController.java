@@ -72,7 +72,7 @@ public class ReportController {
             // request url and key from ccd Report EndPoint
             resp =
                     restTemplate.exchange(
-                            builder.toUriString(),
+                            builder.build().toUri(),
                             HttpMethod.GET,
                             new HttpEntity<>(new HttpHeaders()),
                             new ParameterizedTypeReference<>() {});
@@ -83,7 +83,7 @@ public class ReportController {
                                     "Error received from ORDS",
                                     "getROPReportSecure",
                                     ex.getMessage(),
-                                    null)));
+                                    inner)));
             throw new ORDSException();
         }
 
@@ -94,7 +94,7 @@ public class ReportController {
                                     "Error received from ORDS",
                                     "getRopReportSecure",
                                     "Either response or its body is null while receiving the request getROPReportSecure's response.",
-                                    null)));
+                                    inner)));
             throw new ORDSException();
         } else {
             // if got response from ORDS's getROPReportSecure response
@@ -113,7 +113,7 @@ public class ReportController {
                                         "Error ("
                                                 + errMsg
                                                 + ") occurred while receiving the request getROPReportSecure's response.",
-                                        null)));
+                                        inner)));
                 throw new ORDSException();
             }
 
@@ -123,7 +123,9 @@ public class ReportController {
                 String query = "";
                 if (url.contains("?")) query = url.split("\\?")[1];
                 query =
-                        query.replace("<<FORM>>", inner.getFormCd())
+                        query.replace(
+                                        "<<FORM>>",
+                                        inner.getFormCd() != null ? inner.getFormCd() : "")
                                 .replace("<<APP>>", reportAppName)
                                 .replace("<<TICKET>>", keyValue);
 
@@ -155,7 +157,7 @@ public class ReportController {
                                         "Error received from ORDS",
                                         "getROPReportSecure",
                                         ex.getMessage(),
-                                        null)));
+                                        getROPReport)));
                 throw new ORDSException();
             }
         }

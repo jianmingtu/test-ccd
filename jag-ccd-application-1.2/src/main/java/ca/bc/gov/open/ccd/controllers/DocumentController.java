@@ -5,6 +5,7 @@ import ca.bc.gov.open.ccd.common.document.secure.GetDocumentSecure;
 import ca.bc.gov.open.ccd.common.document.secure.GetDocumentSecureResponse;
 import ca.bc.gov.open.ccd.exceptions.ORDSException;
 import ca.bc.gov.open.ccd.models.OrdsErrorLog;
+import ca.bc.gov.open.ccd.models.RequestSuccessLog;
 import ca.bc.gov.open.ccd.models.serializers.InstantSerializer;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -82,7 +83,7 @@ public class DocumentController {
                                     "Error received from ORDS",
                                     "getDocumentSecure",
                                     ex.getMessage(),
-                                    null)));
+                                    document)));
             throw new ORDSException();
         }
 
@@ -135,6 +136,10 @@ public class DocumentController {
                                 new ca.bc.gov.open.ccd.common.document.secure.DocumentResult();
                         documentResult.setB64Content(bs64);
                         out.setDocumentResponse(documentResult);
+                        log.info(
+                                objectMapper.writeValueAsString(
+                                        new RequestSuccessLog(
+                                                "Request Success", "getDocumentSecure")));
                         return out;
                     } catch (Exception ex) {
                         log.error(
@@ -143,7 +148,7 @@ public class DocumentController {
                                                 "Error occurred while requesting an uri to get base64 document",
                                                 "getDocumentSecure",
                                                 ex.getMessage(),
-                                                null)));
+                                                inner)));
                         throw new ORDSException();
                     }
                 }
@@ -157,7 +162,7 @@ public class DocumentController {
                                 "Error received from ORDS",
                                 "getDocument",
                                 "Either response or its body is null while receiving the request getDocumentSecure's response.",
-                                null)));
+                                document)));
         throw new ORDSException();
     }
 }
