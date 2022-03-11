@@ -1,0 +1,640 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project id="4d1def51-9459-4e1d-b5bd-9712dfec3f6b" activeEnvironment="Default" name="CCDCourtListSecure" resourceRoot="${projectDir}" soapui-version="5.6.0" abortOnError="false" runType="SEQUENTIAL" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:interface xsi:type="con:WsdlInterface" id="c3289d02-47fd-4408-b891-25976d6b57e9" wsaVersion="NONE" name="CCD_Source_CourtLists_ws_provider_CourtListSecure_Binder" type="wsdl" bindingName="{http://reeks.bcgov/CCD.Source.CourtLists.ws.provider:CourtListSecure}CCD_Source_CourtLists_ws_provider_CourtListSecure_Binder" soapVersion="1_2" anonymous="optional" definition="file:/C:/workspace2/jag-ccd/jag-ccd-application-1.2/src/main/resources/xsdSchemas/courtListSecure.wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="file:\C:\workspace2\jag-ccd\jag-ccd-application-1.2\src\main\resources\xsdSchemas\courtListSecure.wsdl"><con:part><con:url>file:\C:\workspace2\jag-ccd\jag-ccd-application-1.2\src\main\resources\xsdSchemas\courtListSecure.wsdl</con:url><con:content><![CDATA[<wsdl:definitions name="CourtListSecure" targetNamespace="http://reeks.bcgov/CCD.Source.CourtLists.ws.provider:CourtListSecure" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:soapjms="http://www.w3.org/2010/soapjms/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:tns="http://reeks.bcgov/CCD.Source.CourtLists.ws.provider:CourtListSecure" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:HDR1="http://courts.gov.bc.ca/XMLSchema/CriminalFileContent/1.0.0" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://reeks.bcgov/CCD.Source.CourtLists.ws.provider:CourtListSecure" xmlns:dx="http://courts.gov.bc.ca/XMLSchema/CriminalFileContent/1.0.0">
+      <xsd:import namespace="http://courts.gov.bc.ca/XMLSchema/CriminalFileContent/1.0.0"/>
+      <xsd:element name="getCrtListSecure" type="tns:getCrtListSecure"/>
+      <xsd:element name="getCrtListSecureResponse" type="tns:getCrtListSecureResponse"/>
+      <xsd:complexType name="getCrtListSecure">
+        <xsd:sequence>
+          <xsd:element name="RequestAgencyIdentifierId" nillable="true" type="xsd:string"/>
+          <xsd:element name="RequestPartId" nillable="true" type="xsd:string"/>
+          <xsd:element name="RequestDtm" nillable="true" type="xsd:string"/>
+          <xsd:element name="ApplicationCd" nillable="true" type="xsd:string"/>
+          <xsd:element name="AgencyIdentifierCd" nillable="true" type="xsd:string" minOccurs="0"/>
+          <xsd:element name="RoomCd" nillable="true" type="xsd:string" minOccurs="0"/>
+          <xsd:element name="ProceedingDate" nillable="true" type="xsd:string" minOccurs="0"/>
+          <xsd:element name="DivisionCd" nillable="true" type="xsd:string" minOccurs="0"/>
+          <xsd:element name="FileNumber" nillable="true" type="xsd:string" minOccurs="0"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="getCrtListSecureResponse">
+        <xsd:sequence>
+          <xsd:element name="ResultCd" nillable="true" type="xsd:string"/>
+          <xsd:element name="ResultMessage" nillable="true" type="xsd:string"/>
+          <xsd:element name="CourtLists" nillable="true" type="tns:CourtListTypes"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="CourtListTypes">
+        <xsd:sequence>
+          <xsd:element name="CourtLocationName" type="xsd:string" minOccurs="0"/>
+          <xsd:element name="CourtRoomCode" type="xsd:string" minOccurs="0"/>
+          <xsd:element name="CourtProceedingsDate" type="xsd:string" minOccurs="0"/>
+          <xsd:element name="FileSearchParameter" type="tns:FileSearchParameter" minOccurs="0"/>
+          <xsd:element name="CriminalCourtList" nillable="true" type="tns:CriminalCourtList" minOccurs="0" maxOccurs="unbounded"/>
+          <xsd:element name="CivilCourtList" nillable="true" type="tns:CivilCourtListType" minOccurs="0" maxOccurs="unbounded"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="FileSearchParameter">
+        <xsd:sequence>
+          <xsd:element name="CourtDivisionCd" type="xsd:string" minOccurs="0"/>
+          <xsd:element name="FileNumber" type="xsd:string" minOccurs="0"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="CriminalCourtList">
+        <xsd:sequence>
+          <xsd:element name="CriminalAppearanceID" type="xsd:string" minOccurs="0"/>
+          <xsd:element name="CourtListTypeCd" type="xsd:string" minOccurs="0"/>
+          <xsd:element name="AppearanceSequenceNumber" type="xsd:string" minOccurs="0"/>
+          <xsd:element name="AppearanceTime" type="xsd:string" minOccurs="0"/>
+          <xsd:element name="FileInformation" type="tns:FileInformationType" minOccurs="0"/>
+          <xsd:element name="FileNumberText" type="xsd:string" minOccurs="0"/>
+          <xsd:element name="FileHomeLocationName" type="xsd:string" minOccurs="0"/>
+          <xsd:element name="SealTypeCd" type="xsd:string" minOccurs="0"/>
+          <xsd:element name="SealTypeDsc" type="xsd:string" minOccurs="0"/>
+          <xsd:element name="OtherFileInformationText" type="xsd:string" minOccurs="0"/>
+          <xsd:element name="AccusedFullName" type="xsd:string" minOccurs="0"/>
+          <xsd:element name="AccusedFormattedName" type="tns:AccusedFormattedName" minOccurs="0"/>
+          <xsd:element name="AccusedBirthDate" type="xsd:string" minOccurs="0"/>
+          <xsd:element name="AccusedCurrentBailProcessText" type="xsd:string" minOccurs="0"/>
+          <xsd:element name="AccusedInCustodyFlag" type="xsd:string" minOccurs="0"/>
+          <xsd:element name="CounselFullName" type="xsd:string" minOccurs="0"/>
+          <xsd:element name="CounselDesignationYN" type="xsd:string" minOccurs="0"/>
+          <xsd:element name="CounselPartId" type="xsd:string" minOccurs="0"/>
+          <xsd:element name="CaseAgeDaysNumber" type="xsd:string" minOccurs="0"/>
+          <xsd:element name="CrownTypeCd" type="xsd:string" minOccurs="0"/>
+          <xsd:element name="CrownLocationCd" type="xsd:string" minOccurs="0"/>
+          <xsd:element name="ParticipantRoleCd" type="xsd:string" minOccurs="0"/>
+          <xsd:element name="ParticipantRoleDsc" type="xsd:string" minOccurs="0"/>
+          <xsd:element name="AttendanceMethod" type="tns:AttendanceMethod" minOccurs="0" maxOccurs="unbounded"/>
+          <xsd:element name="AppearanceCount" nillable="true" type="tns:AppearanceCount" minOccurs="0" maxOccurs="unbounded"/>
+          <xsd:element name="Bans" type="tns:Bans" minOccurs="0" maxOccurs="unbounded"/>
+          <xsd:element name="BailOrderToVary" nillable="true" type="tns:BailOrderToVary" minOccurs="0" maxOccurs="unbounded"/>
+          <xsd:element name="SentOrderToVary" nillable="true" type="tns:SentOrderToVary" minOccurs="0" maxOccurs="unbounded"/>
+          <xsd:element name="AgeNotice" nillable="true" type="tns:AgeNotice" minOccurs="0" maxOccurs="unbounded"/>
+          <xsd:element name="Speaker" type="tns:SpeakerType" minOccurs="0" maxOccurs="unbounded"/>
+          <xsd:element name="ArrestWarrant" nillable="true" type="tns:ArrestWarrant" minOccurs="0" maxOccurs="unbounded"/>
+          <xsd:element name="ProtectionOrder" nillable="true" type="tns:CRProtectionOrderType" minOccurs="0" maxOccurs="unbounded"/>
+          <xsd:element name="ScheduledAppearance" nillable="true" type="tns:ScheduledAppearance" minOccurs="0" maxOccurs="unbounded"/>
+          <xsd:element name="HearingRestriction" nillable="true" type="tns:HearingRestrictionType" minOccurs="0" maxOccurs="unbounded"/>
+          <xsd:element name="CFCOrder" nillable="true" type="tns:CFCOrderType" minOccurs="0" maxOccurs="unbounded"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="FileInformationType">
+        <xsd:sequence>
+          <xsd:element name="FileLocaAgencyIdentifierCd" type="xsd:string" minOccurs="0"/>
+          <xsd:element name="PhyFileFolderNo" type="xsd:string" minOccurs="0"/>
+          <xsd:element name="PhysTicketSeriesTxt" type="xsd:string" minOccurs="0"/>
+          <xsd:element name="MdocInfoSeqNo" type="xsd:string" minOccurs="0"/>
+          <xsd:element name="PartId" type="xsd:string" minOccurs="0"/>
+          <xsd:element name="ProfSeqNo" type="xsd:string" minOccurs="0"/>
+          <xsd:element name="MdocJustinNo" type="xsd:string" minOccurs="0"/>
+          <xsd:element name="CourtLevelCd" type="xsd:string" minOccurs="0"/>
+          <xsd:element name="CourtClassCd" type="xsd:string" minOccurs="0"/>
+          <xsd:element name="MdocTypeCd" nillable="true" type="xsd:string"/>
+          <xsd:element name="MdocTypeDsc" nillable="true" type="xsd:string"/>
+          <xsd:element name="MdocImageId" nillable="true" type="xsd:string"/>
+          <xsd:element name="MdocAmendedYN" nillable="true" type="xsd:string"/>
+          <xsd:element name="MdocAmendedText" nillable="true" type="xsd:string"/>
+          <xsd:element name="Issue" nillable="true" type="tns:Issue" minOccurs="0" maxOccurs="unbounded"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="Issue">
+        <xsd:sequence>
+          <xsd:element name="CountPrntSeqNo" nillable="true" type="xsd:string"/>
+          <xsd:element name="StatuteActCd" nillable="true" type="xsd:string"/>
+          <xsd:element name="StatuteSectionCd" nillable="true" type="xsd:string"/>
+          <xsd:element name="StatuteSectionDsc" nillable="true" type="xsd:string"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="AccusedFormattedName">
+        <xsd:sequence>
+          <xsd:element name="LastName" type="xsd:string" minOccurs="0"/>
+          <xsd:element name="Given1Name" type="xsd:string" minOccurs="0"/>
+          <xsd:element name="Given2Name" type="xsd:string" minOccurs="0"/>
+          <xsd:element name="Given3Name" type="xsd:string" minOccurs="0"/>
+          <xsd:element name="OrgName" type="xsd:string" minOccurs="0"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="AttendanceMethod">
+        <xsd:sequence>
+          <xsd:element name="ApprId" nillable="true" type="xsd:string"/>
+          <xsd:element name="AssetUsageSeqNo" nillable="true" type="xsd:string"/>
+          <xsd:element name="RoleType" type="xsd:string" minOccurs="0"/>
+          <xsd:element name="AttendanceMethodCd" type="xsd:string" minOccurs="0"/>
+          <xsd:element name="PhoneNumber" type="xsd:string" minOccurs="0"/>
+          <xsd:element name="Instruction" type="xsd:string" minOccurs="0"/>
+          <xsd:element name="OtherRoleName" type="xsd:string" minOccurs="0"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="AppearanceCount">
+        <xsd:sequence>
+          <xsd:element name="AppearanceCountId" type="xsd:string" minOccurs="0"/>
+          <xsd:element name="CountPrintSequenceNumber" type="xsd:string" minOccurs="0"/>
+          <xsd:element name="ChargeStatuteCode" type="xsd:string" minOccurs="0"/>
+          <xsd:element name="ChargeStatuteDescription" type="xsd:string" minOccurs="0"/>
+          <xsd:element name="LesserIncludedChargeStatuteCode" type="xsd:string" minOccurs="0"/>
+          <xsd:element name="AppearanceCountCancelledYN" type="xsd:string" minOccurs="0"/>
+          <xsd:element name="LesserIncludedChargeStatuteDescription" type="xsd:string" minOccurs="0"/>
+          <xsd:element name="AppearanceReasonCode" type="xsd:string" minOccurs="0"/>
+          <xsd:element name="PleaCode" type="xsd:string" minOccurs="0"/>
+          <xsd:element name="PleaDate" nillable="true" type="xsd:string"/>
+          <xsd:element name="ElectionCode" type="xsd:string" minOccurs="0"/>
+          <xsd:element name="ElectionDate" nillable="true" type="xsd:string"/>
+          <xsd:element name="MdctSeqNo" type="xsd:string" minOccurs="0"/>
+          <xsd:element name="OffenceAgeDaysNumber" type="xsd:string" minOccurs="0"/>
+          <xsd:element name="IssuingOfficerPoliceForceCode" type="xsd:string" minOccurs="0"/>
+          <xsd:element name="IssuingOfficerPINText" type="xsd:string" minOccurs="0"/>
+          <xsd:element name="IssuingOfficerSurnameName" type="xsd:string" minOccurs="0"/>
+          <xsd:element name="FindingCode" nillable="true" type="xsd:string"/>
+          <xsd:element name="FindingDate" nillable="true" type="xsd:string"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="Bans">
+        <xsd:sequence>
+          <xsd:element name="BanTypeCd" type="xsd:string" minOccurs="0"/>
+          <xsd:element name="BanTypeDescription" type="xsd:string" minOccurs="0"/>
+          <xsd:element name="BanTypeAct" type="xsd:string" minOccurs="0"/>
+          <xsd:element name="BanTypeSection" type="xsd:string" minOccurs="0"/>
+          <xsd:element name="BanTypeSubSection" type="xsd:string" minOccurs="0"/>
+          <xsd:element name="BanStatuteId" type="xsd:string" minOccurs="0"/>
+          <xsd:element name="BanCommentText" type="xsd:string" minOccurs="0"/>
+          <xsd:element name="BanAcprId" type="xsd:string" minOccurs="0"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="BailOrderToVary">
+        <xsd:sequence>
+          <xsd:element name="FormTypeCd" nillable="true" type="xsd:string"/>
+          <xsd:element name="DocmTypeDsc" nillable="true" type="xsd:string"/>
+          <xsd:element name="DocmId" nillable="true" type="xsd:string"/>
+          <xsd:element name="DocmIssueDate" nillable="true" type="xsd:string"/>
+          <xsd:element name="DocmImageId" nillable="true" type="xsd:string"/>
+          <xsd:element name="DocmStatus" nillable="true" type="xsd:string"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="SentOrderToVary">
+        <xsd:sequence>
+          <xsd:element name="FormTypeCd" nillable="true" type="xsd:string"/>
+          <xsd:element name="DocmTypeDsc" nillable="true" type="xsd:string"/>
+          <xsd:element name="DocmId" nillable="true" type="xsd:string"/>
+          <xsd:element name="DocmIssueDate" nillable="true" type="xsd:string"/>
+          <xsd:element name="DocmImageId" nillable="true" type="xsd:string"/>
+          <xsd:element name="DocmStatus" nillable="true" type="xsd:string"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="AgeNotice">
+        <xsd:sequence>
+          <xsd:element name="EventDate" nillable="true" type="xsd:string"/>
+          <xsd:element name="EventTypeDsc" nillable="true" type="xsd:string"/>
+          <xsd:element name="DetailText" nillable="true" type="xsd:string"/>
+          <xsd:element name="DOB" nillable="true" type="xsd:string"/>
+          <xsd:element name="Relationship" nillable="true" type="xsd:string"/>
+          <xsd:element name="ProvenBy" nillable="true" type="xsd:string"/>
+          <xsd:element name="NoticeTo" nillable="true" type="xsd:string"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="SpeakerType">
+        <xsd:sequence>
+          <xsd:element name="SpeakerId" type="xsd:string"/>
+          <xsd:element name="SpeakerTypeCd" nillable="true" type="xsd:string"/>
+          <xsd:element name="SpeakerSeqNo" nillable="true" type="xsd:string"/>
+          <xsd:element name="VoirDireSeqNo" nillable="true" type="xsd:string"/>
+          <xsd:element name="SpeakerName" nillable="true" type="xsd:string"/>
+          <xsd:element name="SpeakerStatusCd" nillable="true" type="xsd:string"/>
+          <xsd:element name="SpeakerStatusDsc" nillable="true" type="xsd:string"/>
+          <xsd:element name="SpeakerEvent" nillable="true" type="tns:SpeakerEvent" minOccurs="0" maxOccurs="unbounded"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="SpeakerEvent">
+        <xsd:sequence>
+          <xsd:element name="SpeakerEventDate" nillable="true" type="xsd:string"/>
+          <xsd:element name="SpeakerEventTime" nillable="true" type="xsd:string"/>
+          <xsd:element name="SpeakerEventText" nillable="true" type="xsd:string"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="ArrestWarrant">
+        <xsd:sequence>
+          <xsd:element name="FileNumberText" nillable="true" type="xsd:string"/>
+          <xsd:element name="WarrantDate" nillable="true" type="xsd:string"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="CRProtectionOrderType">
+        <xsd:sequence>
+          <xsd:element name="POROrderIssueDate" nillable="true" type="xsd:string"/>
+          <xsd:element name="OrderTypeDsc" nillable="true" type="xsd:string"/>
+          <xsd:element name="PORConditionText" nillable="true" type="xsd:string"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="ScheduledAppearance">
+        <xsd:sequence>
+          <xsd:element name="AppearanceId" nillable="true" type="xsd:string"/>
+          <xsd:element name="CourtAgencyIdentifier" nillable="true" type="xsd:string"/>
+          <xsd:element name="CourtRoom" nillable="true" type="xsd:string"/>
+          <xsd:element name="AppearanceDate" nillable="true" type="xsd:string"/>
+          <xsd:element name="AppearanceTime" nillable="true" type="xsd:string"/>
+          <xsd:element name="AppearanceReasonCd" nillable="true" type="xsd:string"/>
+          <xsd:element name="EstDurationHours" nillable="true" type="xsd:string"/>
+          <xsd:element name="EstDurationMins" nillable="true" type="xsd:string"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="HearingRestrictionType">
+        <xsd:sequence>
+          <xsd:element ref="dx:HearingRestrictiontype"/>
+          <xsd:element ref="dx:JudgeName"/>
+          <xsd:element ref="dx:HearingRestrictionDate"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="CFCOrderType">
+        <xsd:sequence>
+          <xsd:element name="CFCOrderIssueDate" nillable="true" type="xsd:string"/>
+          <xsd:element name="OrderTypeDsc" nillable="true" type="xsd:string"/>
+          <xsd:element name="CFCConditionText" nillable="true" type="xsd:string"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="CivilCourtListType">
+        <xsd:sequence>
+          <xsd:element name="AppearanceId" nillable="true" type="xsd:string"/>
+          <xsd:element name="AppearanceTime" nillable="true" type="xsd:string"/>
+          <xsd:element name="BinderText" nillable="true" type="xsd:string"/>
+          <xsd:element name="CourtListPrintSortNumber" nillable="true" type="xsd:string"/>
+          <xsd:element name="CivilDocumentsAvailable" nillable="true" type="xsd:string"/>
+          <xsd:element name="AppearanceDate" nillable="true" type="xsd:string"/>
+          <xsd:element name="ExternalFileNumberText" nillable="true" type="xsd:string"/>
+          <xsd:element name="CourtListTypeCd" nillable="true" type="xsd:string"/>
+          <xsd:element name="CourtRoomCd" nillable="true" type="xsd:string"/>
+          <xsd:element name="CourtLevelCd" nillable="true" type="xsd:string"/>
+          <xsd:element name="CourtClassCd" nillable="true" type="xsd:string"/>
+          <xsd:element name="FileAccessLevelCd" nillable="true" type="xsd:string"/>
+          <xsd:element name="SealStartDate" nillable="true" type="xsd:string"/>
+          <xsd:element name="SealEndDate" nillable="true" type="xsd:string"/>
+          <xsd:element name="SheriffCommentText" type="xsd:string" minOccurs="0"/>
+          <xsd:element name="SealFileSOCText" nillable="true" type="xsd:string"/>
+          <xsd:element name="EstimatedAppearanceMinutes" nillable="true" type="xsd:string"/>
+          <xsd:element name="PhysicalFile" nillable="true" type="tns:PhysicalFileType"/>
+          <xsd:element name="Asset" nillable="true" type="tns:AssetType" minOccurs="0" maxOccurs="unbounded"/>
+          <xsd:element name="Document" nillable="true" type="tns:DocumentType" minOccurs="0" maxOccurs="unbounded"/>
+          <xsd:element name="Parties" nillable="true" type="tns:PartyType" minOccurs="0" maxOccurs="unbounded"/>
+          <xsd:element name="Speaker" type="tns:SpeakerType" minOccurs="0" maxOccurs="unbounded"/>
+          <xsd:element name="ProtectionOrder" nillable="true" type="tns:ProtectionOrderType" minOccurs="0" maxOccurs="unbounded"/>
+          <xsd:element name="ScheduledAppearance" nillable="true" type="tns:ScheduledAppearanceType" minOccurs="0" maxOccurs="unbounded"/>
+          <xsd:element name="HearingRestriction" nillable="true" type="tns:HearingRestrictionType" minOccurs="0" maxOccurs="unbounded"/>
+          <xsd:element name="ArrestWarrant" nillable="true" type="tns:CivilArrestWarrantType" minOccurs="0" maxOccurs="unbounded"/>
+          <xsd:element name="UnscheduledDocument" nillable="true" type="tns:UnscheduledDocumentType" minOccurs="0" maxOccurs="unbounded"/>
+          <xsd:element name="OrderToVary" nillable="true" type="tns:OrderToVaryType" minOccurs="0" maxOccurs="unbounded"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="PhysicalFileType">
+        <xsd:sequence>
+          <xsd:element name="PhysicalFileID" nillable="true" type="xsd:string"/>
+          <xsd:element name="FileAccessLevelCd" nillable="true" type="xsd:string"/>
+          <xsd:element name="FileNumber" nillable="true" type="xsd:string"/>
+          <xsd:element name="StyleOfCause" nillable="true" type="xsd:string"/>
+          <xsd:element name="LeftPartyLastName" nillable="true" type="xsd:string"/>
+          <xsd:element name="LeftPartyGivenName" nillable="true" type="xsd:string"/>
+          <xsd:element name="LeftPartyOtherCount" nillable="true" type="xsd:string"/>
+          <xsd:element name="RightPartyLastName" nillable="true" type="xsd:string"/>
+          <xsd:element name="RightPartyGivenName" nillable="true" type="xsd:string"/>
+          <xsd:element name="RightPartyOtherCount" nillable="true" type="xsd:string"/>
+          <xsd:element name="ThirdPartyLastName" nillable="true" type="xsd:string"/>
+          <xsd:element name="ThirdPartyGivenName" nillable="true" type="xsd:string"/>
+          <xsd:element name="ThirdPartyOtherCount" nillable="true" type="xsd:string"/>
+          <xsd:element name="HomeAgencyCd" nillable="true" type="xsd:string"/>
+          <xsd:element name="CivilAgencyCd" nillable="true" type="xsd:string"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="AssetType">
+        <xsd:sequence>
+          <xsd:element name="AssetTypeDescription" nillable="true" type="xsd:string"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="DocumentType">
+        <xsd:sequence>
+          <xsd:element name="AppearanceID" nillable="true" type="xsd:string"/>
+          <xsd:element name="DocumentId" nillable="true" type="xsd:string"/>
+          <xsd:element name="FileSeqNumber" nillable="true" type="xsd:string"/>
+          <xsd:element name="RoleTypeCode" nillable="true" type="xsd:string"/>
+          <xsd:element name="DocumentTypeDescription" nillable="true" type="xsd:string"/>
+          <xsd:element name="EstimatedDocumentMinutes" nillable="true" type="xsd:string"/>
+          <xsd:element name="DocumentTypeCd" nillable="true" type="xsd:string"/>
+          <xsd:element name="DateGranted" nillable="true" type="xsd:string"/>
+          <xsd:element name="DateVaried" nillable="true" type="xsd:string"/>
+          <xsd:element name="CancelledDate" nillable="true" type="xsd:string"/>
+          <xsd:element name="AdjudicatorPartId" nillable="true" type="xsd:string"/>
+          <xsd:element name="AdjudicatorName" nillable="true" type="xsd:string"/>
+          <xsd:element name="OrderDocumentYN" nillable="true" type="xsd:string"/>
+          <xsd:element name="DocumentAccessLevelCd" nillable="true" type="xsd:string"/>
+          <xsd:element name="DocumentSealStartDate" nillable="true" type="xsd:string"/>
+          <xsd:element name="DocumentSealEndDate" nillable="true" type="xsd:string"/>
+          <xsd:element name="AppearanceReasonCode" nillable="true" type="xsd:string"/>
+          <xsd:element name="Issue" nillable="true" type="tns:IssueType" minOccurs="0" maxOccurs="unbounded"/>
+          <xsd:element name="FiledBy" nillable="true" type="tns:FiledByType" minOccurs="0" maxOccurs="unbounded"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="IssueType">
+        <xsd:sequence>
+          <xsd:element name="IssueDescription" nillable="true" type="xsd:string"/>
+          <xsd:element name="IssueNumber" nillable="true" type="xsd:string"/>
+          <xsd:element name="IssueType" nillable="true" type="xsd:string"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="FiledByType">
+        <xsd:sequence>
+          <xsd:element name="FiledByName" nillable="true" type="xsd:string"/>
+          <xsd:element name="RoleTypeCode" nillable="true" type="xsd:string"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="PartyType">
+        <xsd:sequence>
+          <xsd:element name="PartyId" nillable="true" type="xsd:string"/>
+          <xsd:element name="PartyScheduled" nillable="true" type="xsd:string"/>
+          <xsd:element name="PartyRoleType" nillable="true" type="xsd:string"/>
+          <xsd:element name="PartyFullName" nillable="true" type="xsd:string"/>
+          <xsd:element name="AttendanceMethodCd" nillable="true" type="xsd:string"/>
+          <xsd:element name="PartyTypeCd" nillable="true" type="xsd:string"/>
+          <xsd:element name="LeftRightParty" nillable="true" type="xsd:string"/>
+          <xsd:element name="BirthDate" nillable="true" type="xsd:string"/>
+          <xsd:element name="PhoneNumber" nillable="true" type="xsd:string"/>
+          <xsd:element name="Instruction" nillable="true" type="xsd:string"/>
+          <xsd:element name="PartyFullAddressText" nillable="true" type="xsd:string"/>
+          <xsd:element name="WarrantIssueDate" nillable="true" type="xsd:string"/>
+          <xsd:element name="ActiveYN" nillable="true" type="xsd:string"/>
+          <xsd:element name="Counsel" nillable="true" type="tns:CounselType" minOccurs="0" maxOccurs="unbounded"/>
+          <xsd:element name="Representative" nillable="true" type="tns:RepresentativeType" minOccurs="0" maxOccurs="unbounded"/>
+          <xsd:element name="LegalRepresentative" nillable="true" type="tns:LegalRepresentativeType" minOccurs="0" maxOccurs="unbounded"/>
+          <xsd:element name="PartyRole" nillable="true" type="tns:PartyRoleType2" minOccurs="0" maxOccurs="unbounded"/>
+          <xsd:element name="PartyName" nillable="true" type="tns:PartyNameType" minOccurs="0" maxOccurs="unbounded"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="CounselType">
+        <xsd:sequence>
+          <xsd:element name="CounselFullName" nillable="true" type="xsd:string"/>
+          <xsd:element name="CounselId" nillable="true" type="xsd:string"/>
+          <xsd:element name="PhoneNumber" nillable="true" type="xsd:string"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="RepresentativeType">
+        <xsd:sequence>
+          <xsd:element name="RepFullName" nillable="true" type="xsd:string"/>
+          <xsd:element name="AttendanceMethodCd" nillable="true" type="xsd:string"/>
+          <xsd:element name="PhoneNumber" nillable="true" type="xsd:string"/>
+          <xsd:element name="Instruction" nillable="true" type="xsd:string"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="LegalRepresentativeType">
+        <xsd:sequence>
+          <xsd:element name="LegalRepTypeDsc" nillable="true" type="xsd:string"/>
+          <xsd:element name="LegalRepFullName" nillable="true" type="xsd:string"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="PartyRoleType2">
+        <xsd:sequence>
+          <xsd:element name="RoleTypeCd" nillable="true" type="xsd:string"/>
+          <xsd:element name="RoleTypeDsc" nillable="true" type="xsd:string"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="PartyNameType">
+        <xsd:sequence>
+          <xsd:element name="NameTypeCd" nillable="true" type="xsd:string"/>
+          <xsd:element name="NameTypeDsc" nillable="true" type="xsd:string"/>
+          <xsd:element name="SurnameNm" nillable="true" type="xsd:string"/>
+          <xsd:element name="FirstGivenNm" nillable="true" type="xsd:string"/>
+          <xsd:element name="SecondGivenNm" nillable="true" type="xsd:string"/>
+          <xsd:element name="ThirdGivenNm" nillable="true" type="xsd:string"/>
+          <xsd:element name="OrganizationNm" nillable="true" type="xsd:string"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="ProtectionOrderType">
+        <xsd:sequence>
+          <xsd:element name="POROrderIssueDate" nillable="true" type="xsd:string"/>
+          <xsd:element name="OrderTypeDsc" nillable="true" type="xsd:string"/>
+          <xsd:element name="PORConditionText" nillable="true" type="xsd:string"/>
+          <xsd:element name="POROrderExpiryDate" nillable="true" type="xsd:string"/>
+          <xsd:element name="RestrainingPartyName" nillable="true" type="tns:RestrainingPartyNameType" minOccurs="0" maxOccurs="unbounded"/>
+          <xsd:element name="ProtectedPartyName" nillable="true" type="tns:ProtectedPartyNameType" minOccurs="0" maxOccurs="unbounded"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="RestrainingPartyNameType">
+        <xsd:sequence>
+          <xsd:element name="RestrainingPartyName" nillable="true" type="xsd:string"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="ProtectedPartyNameType">
+        <xsd:sequence>
+          <xsd:element name="ProtectedPartyName" nillable="true" type="xsd:string"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="ScheduledAppearanceType">
+        <xsd:sequence>
+          <xsd:element name="AppearanceId" nillable="true" type="xsd:string"/>
+          <xsd:element name="CourtAgencyIdentifier" nillable="true" type="xsd:string"/>
+          <xsd:element name="CourtRoom" nillable="true" type="xsd:string"/>
+          <xsd:element name="AppearanceDate" nillable="true" type="xsd:string"/>
+          <xsd:element name="AppearanceTime" nillable="true" type="xsd:string"/>
+          <xsd:element name="AppearanceReasonCd" nillable="true" type="xsd:string"/>
+          <xsd:element name="EstDurationHours" nillable="true" type="xsd:string"/>
+          <xsd:element name="EstDurationMins" nillable="true" type="xsd:string"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="CivilArrestWarrantType">
+        <xsd:sequence>
+          <xsd:element name="WarrantTypeCd" nillable="true" type="xsd:string"/>
+          <xsd:element name="WarrantDate" nillable="true" type="xsd:string"/>
+          <xsd:element name="WarrantTypeDsc" nillable="true" type="xsd:string"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="UnscheduledDocumentType">
+        <xsd:sequence>
+          <xsd:element name="DocumentId" nillable="true" type="xsd:string"/>
+          <xsd:element name="FileSeqNumber" nillable="true" type="xsd:string"/>
+          <xsd:element name="DocumentTypeDsc" nillable="true" type="xsd:string"/>
+          <xsd:element name="FiledBy" nillable="true" type="tns:FiledByType" minOccurs="0" maxOccurs="unbounded"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="OrderToVaryType">
+        <xsd:sequence>
+          <xsd:element name="DocumentId" nillable="true" type="xsd:string"/>
+          <xsd:element name="DocumentTypeDsc" nillable="true" type="xsd:string"/>
+          <xsd:element name="AdjudicatorName" nillable="true" type="xsd:string"/>
+          <xsd:element name="DateGranted" nillable="true" type="xsd:string"/>
+        </xsd:sequence>
+      </xsd:complexType>
+    </xsd:schema>
+    <xsd:schema targetNamespace="http://courts.gov.bc.ca/XMLSchema/CriminalFileContent/1.0.0" xmlns:dx="http://courts.gov.bc.ca/XMLSchema/CriminalFileContent/1.0.0">
+      <xsd:element name="HearingRestrictiontype" type="xsd:string"/>
+      <xsd:element name="JudgeName" type="xsd:string"/>
+      <xsd:element name="HearingRestrictionDate" type="xsd:string"/>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="CourtListSecure_PortType_getCrtListSecureResponse">
+    <wsdl:part name="parameters" element="tns:getCrtListSecureResponse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="CourtListSecure_PortType_getCrtListSecure">
+    <wsdl:part name="parameters" element="tns:getCrtListSecure"></wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="CourtListSecure_PortType">
+    <wsdl:operation name="getCrtListSecure">
+      <wsdl:input message="tns:CourtListSecure_PortType_getCrtListSecure"></wsdl:input>
+      <wsdl:output message="tns:CourtListSecure_PortType_getCrtListSecureResponse"></wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="CCD_Source_CourtLists_ws_provider_CourtListSecure_Binder" type="tns:CourtListSecure_PortType">
+    <soap12:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="getCrtListSecure">
+      <soap12:operation soapAction="CCD_Source_CourtLists_ws_provider_CourtListSecure_Binder_getCrtListSecure" style="document"/>
+      <wsdl:input>
+        <soap12:body parts="parameters" use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body parts="parameters" use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="CourtListSecure">
+    <wsdl:port name="CCD_Source_CourtLists_ws_provider_CourtListSecure_Port" binding="tns:CCD_Source_CourtLists_ws_provider_CourtListSecure_Binder">
+      <soap12:address location="http://reeks.bcgov:5555/ws/CCD.Source.CourtLists.ws.provider:CourtListSecure/CCD_Source_CourtLists_ws_provider_CourtListSecure_Port"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://reeks.bcgov:5555/ws/CCD.Source.CourtLists.ws.provider:CourtListSecure/CCD_Source_CourtLists_ws_provider_CourtListSecure_Port</con:endpoint></con:endpoints><con:operation id="66545cd4-606d-421e-971d-0f46a9844184" isOneWay="false" action="CCD_Source_CourtLists_ws_provider_CourtListSecure_Binder_getCrtListSecure" name="getCrtListSecure" bindingOperationName="getCrtListSecure" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="9259981a-bd5c-4110-b444-ab24bceb4556" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://reeks.bcgov:5555/ws/CCD.Source.CourtLists.ws.provider:CourtListSecure/CCD_Source_CourtLists_ws_provider_CourtListSecure_Port</con:endpoint><con:request><![CDATA[<soap:Envelope xmlns:soap="http://www.w3.org/2003/05/soap-envelope" xmlns:ccd="http://reeks.bcgov/CCD.Source.CourtLists.ws.provider:CourtListSecure">\r
+   <soap:Header/>\r
+   <soap:Body>\r
+      <ccd:getCrtListSecure>\r
+         <RequestAgencyIdentifierId>?</RequestAgencyIdentifierId>\r
+         <RequestPartId>?</RequestPartId>\r
+         <RequestDtm>?</RequestDtm>\r
+         <ApplicationCd>?</ApplicationCd>\r
+         <!--Optional:-->\r
+         <AgencyIdentifierCd>?</AgencyIdentifierCd>\r
+         <!--Optional:-->\r
+         <RoomCd>?</RoomCd>\r
+         <!--Optional:-->\r
+         <ProceedingDate>?</ProceedingDate>\r
+         <!--Optional:-->\r
+         <DivisionCd>?</DivisionCd>\r
+         <!--Optional:-->\r
+         <FileNumber>?</FileNumber>\r
+      </ccd:getCrtListSecure>\r
+   </soap:Body>\r
+</soap:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://reeks.bcgov/CCD.Source.CourtLists.ws.provider:CourtListSecure/CourtListSecure_PortType/getCrtListSecureRequest"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:testSuite id="d9d3890e-09e7-45c1-b019-1f2539c3dcb7" name="CCDCourtListSecure"><con:settings/><con:runType>SEQUENTIAL</con:runType><con:testCase id="f368248a-9102-4a45-a5cf-6ee12a5eedf4" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="GetCrtListSecure" searchProperties="true"><con:settings/><con:testStep type="request" name="getCrtListSecure" id="9bc1669d-ce93-4d79-8c1e-090197d31857"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>CCD_Source_CourtLists_ws_provider_CourtListSecure_Binder</con:interface><con:operation>getCrtListSecure</con:operation><con:request name="getCrtListSecure" id="6184463d-77bd-4800-9a88-014e2ccdc465"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>https://jag-ccd-1-2-52e74e-dev.apps.silver.devops.gov.bc.ca/ws</con:endpoint><con:request><![CDATA[<soap:Envelope xmlns:soap="http://www.w3.org/2003/05/soap-envelope" xmlns:ccd="http://reeks.bcgov/CCD.Source.CourtLists.ws.provider:CourtListSecure">
+   <soap:Header/>
+   <soap:Body>
+      <ccd:getCrtListSecure>
+         <RequestAgencyIdentifierId>83.0001</RequestAgencyIdentifierId>
+         <RequestPartId>19014.0001</RequestPartId>
+         <RequestDtm>2020-02-02 12:00:00.0</RequestDtm>
+         <ApplicationCd>PCSS</ApplicationCd>
+         <!--Optional:-->
+         <AgencyIdentifierCd>4801</AgencyIdentifierCd>
+         <!--Optional:-->
+         <RoomCd>001</RoomCd>
+         <!--Optional:-->
+         <ProceedingDate>2014-02-02 12:00:00.0</ProceedingDate>
+         <!--Optional:-->
+         <DivisionCd>R</DivisionCd>
+         <!--Optional:-->
+         <FileNumber>1</FileNumber>
+      </ccd:getCrtListSecure>
+   </soap:Body>
+</soap:Envelope>]]></con:request><con:assertion type="SOAP Response" id="9052482c-6aa2-430c-8b7a-586b8ba930cd"/><con:assertion type="Valid HTTP Status Codes" id="7a3d0efd-7e9a-47e9-9f5d-0b2863459a33" name="Valid HTTP Status Codes"><con:configuration><codes>200</codes></con:configuration></con:assertion><con:assertion type="Invalid HTTP Status Codes" id="549bd09f-45f3-4136-9066-b677b521b4c0" name="Invalid HTTP Status Codes"><con:configuration><codes>400, 401, 403, 404, 500</codes></con:configuration></con:assertion><con:assertion type="Response SLA Assertion" id="01ff67a5-99b5-4ba5-a383-35750158d9d9" name="Response SLA"><con:configuration><SLA>1000</SLA></con:configuration></con:assertion><con:assertion type="Simple Contains" id="28f94351-b552-4619-8653-c93d6975a8cc" name="Contains"><con:configuration><token>4801</token><ignoreCase>false</ignoreCase><useRegEx>false</useRegEx></con:configuration></con:assertion><con:assertion type="Simple Contains" id="9db94c1c-f5bc-48bc-838e-30287c7d58d8" name="Contains 1"><con:configuration><token>60930.0002</token><ignoreCase>false</ignoreCase><useRegEx>false</useRegEx></con:configuration></con:assertion><con:assertion type="Simple Contains" id="0ce233f7-5ef0-48eb-8cd3-53982b9b9925" name="Contains 2"><con:configuration><token>35829</token><ignoreCase>false</ignoreCase><useRegEx>false</useRegEx></con:configuration></con:assertion><con:assertion type="Simple Contains" id="32c16f68-545c-4552-bc34-204d2cac4193" name="Contains 3"><con:configuration><token>Johnson, Bart</token><ignoreCase>false</ignoreCase><useRegEx>false</useRegEx></con:configuration></con:assertion><con:assertion type="Simple Contains" id="bd843bf8-f464-470c-af94-fd0767bb1512" name="Contains 4"><con:configuration><token>N</token><ignoreCase>false</ignoreCase><useRegEx>false</useRegEx></con:configuration></con:assertion><con:assertion type="Simple Contains" id="b7a1c340-daf9-4305-bc1b-d165ff765dc7" name="Contains 5"><con:configuration><token>C402</token><ignoreCase>false</ignoreCase><useRegEx>false</useRegEx></con:configuration></con:assertion><con:credentials><con:username>{AUTHENTICATION_USERNAME}</con:username><con:password>{AUTHENTICATION_PASSWORD}</con:password><con:selectedAuthProfile>Basic</con:selectedAuthProfile><con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:properties><con:property><con:name>RequestAgencyIdentifierId</con:name><con:value>83.0001</con:value></con:property><con:property><con:name>RequestPartId</con:name><con:value>19014.0001</con:value></con:property><con:property><con:name>RequestDtm</con:name><con:value>2020-02-02 12:00:00.0</con:value></con:property><con:property><con:name>ApplicationCd</con:name><con:value>PCSS</con:value></con:property><con:property><con:name>AgencyIdentifierCd</con:name><con:value>4801</con:value></con:property><con:property><con:name>RoomCd</con:name><con:value>001</con:value></con:property><con:property><con:name>ProceedingDate</con:name><con:value>2014-02-02 12:00:00.0</con:value></con:property><con:property><con:name>DivisionCd</con:name><con:value>R</con:value></con:property><con:property><con:name>FileNumber</con:name><con:value>1</con:value></con:property></con:properties></con:testCase><con:testCase id="a3123938-447f-4a7a-8335-f95869a0c29d" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="AutomaticTest" searchProperties="true"><con:settings/><con:testStep type="groovy" name="getCrtListSecure" id="76dce04c-c733-4bf3-abac-280fae83d102"><con:settings/><con:config><script>import com.eviware.soapui.support.XmlHolder
+import com.eviware.soapui.impl.wsdl.testcase.WsdlTestRunContext
+
+ def GetCrtListSecureResp = testRunner.testCase.testSuite.testCases["GetCrtListSecure"].testSteps["getCrtListSecure"].getPropertyValue("Request")
+ 
+ def RequestAgencyIdentifierId=testRunner.testCase.testSuite.testCases["GetCrtListSecure"].getPropertyValue("RequestAgencyIdentifierId")
+ def RequestPartId=testRunner.testCase.testSuite.testCases["GetCrtListSecure"].getPropertyValue("RequestPartId")
+ def RequestDtm=testRunner.testCase.testSuite.testCases["GetCrtListSecure"].getPropertyValue("RequestDtm")
+ def ApplicationCd=testRunner.testCase.testSuite.testCases["GetCrtListSecure"].getPropertyValue("ApplicationCd")
+ def AgencyIdentifierCd=testRunner.testCase.testSuite.testCases["GetCrtListSecure"].getPropertyValue("AgencyIdentifierCd")
+ def RoomCd=testRunner.testCase.testSuite.testCases["GetCrtListSecure"].getPropertyValue("RoomCd")
+ def ProceedingDate=testRunner.testCase.testSuite.testCases["GetCrtListSecure"].getPropertyValue("ProceedingDate")
+ def DivisionCd=testRunner.testCase.testSuite.testCases["GetCrtListSecure"].getPropertyValue("DivisionCd")
+ def FileNumber=testRunner.testCase.testSuite.testCases["GetCrtListSecure"].getPropertyValue("FileNumber")
+
+ 
+ def xmlAdd= new XmlHolder(GetCrtListSecureResp)
+ xmlAdd.setNodeValue("//ccd:getCrtListSecure/RequestAgencyIdentifierId",RequestAgencyIdentifierId)
+ xmlAdd.setNodeValue("//ccd:getCrtListSecure/RequestPartId",RequestPartId)
+ xmlAdd.setNodeValue("//ccd:getCrtListSecure/RequestDtm",RequestDtm)
+ xmlAdd.setNodeValue("//ccd:getCrtListSecure/ApplicationCd",ApplicationCd)
+ xmlAdd.setNodeValue("//ccd:getCrtListSecure/AgencyIdentifierCd",AgencyIdentifierCd)
+ xmlAdd.setNodeValue("//ccd:getCrtListSecure/RoomCd",RoomCd)
+ xmlAdd.setNodeValue("//ccd:getCrtListSecure/ProceedingDate",ProceedingDate)
+ xmlAdd.setNodeValue("//ccd:getCrtListSecure/DivisionCd",DivisionCd)
+ xmlAdd.setNodeValue("//ccd:getCrtListSecure/FileNumber",FileNumber)
+ 
+ def newxmlGet= xmlAdd.getXml();
+ //add xml detail
+ testRunner.testCase.testSuite.testCases["GetCrtListSecure"].testSteps["getCrtListSecure"].setPropertyValue("Request",newxmlGet)
+
+ def getTestStep=testRunner.testCase.testSuite.testCases["GetCrtListSecure"].testSteps["getCrtListSecure"]
+ def contextGetCrtListSecure = new WsdlTestRunContext(getTestStep);
+ getTestStep.run(testRunner,contextGetCrtListSecure)
+ //Validation -
+ def getRes=testRunner.testCase.testSuite.testCases["GetCrtListSecure"].testSteps["getCrtListSecure"].getPropertyValue("Response")
+def Response= new XmlHolder(getRes)
+def GetResponse= Response.getNodeValue("//CourtLocationName")
+def GetResponse1= Response.getNodeValue("//CourtRoomCode")
+def GetResponse2= Response.getNodeValue("//CourtProceedingsDate")
+def GetResponse3= Response.getNodeValue("//AppearanceSequenceNumber")
+def GetResponse4= Response.getNodeValue("//PhyFileFolderNo")
+def GetResponse5= Response.getNodeValue("//MdocInfoSeqNo")
+def GetResponse6= Response.getNodeValue("//PartId")
+def GetResponse7= Response.getNodeValue("//ProfSeqNo")
+def GetResponse8= Response.getNodeValue("//MdocJustinNo")
+def GetResponse9= Response.getNodeValue("//CourtLevelCd")
+def GetResponse10= Response.getNodeValue("//CourtClassCd")
+def GetResponse11= Response.getNodeValue("//FileNumberText")
+def GetResponse12= Response.getNodeValue("//AccusedFullName")
+def GetResponse13= Response.getNodeValue("//LastName")
+def GetResponse14= Response.getNodeValue("//Given1Name")
+def GetResponse15= Response.getNodeValue("//AccusedCurrentBailProcessText")
+def GetResponse16= Response.getNodeValue("//AccusedInCustodyFlag")
+def GetResponse17= Response.getNodeValue("//CounselDesignationYN")
+def GetResponse18= Response.getNodeValue("//CaseAgeDaysNumber")
+def GetResponse19= Response.getNodeValue("//CrownTypeCd")
+def GetResponse20= Response.getNodeValue("//CrownLocationCd")
+
+log.info GetResponse
+log.info GetResponse1
+log.info GetResponse2
+log.info GetResponse3
+log.info GetResponse4
+log.info GetResponse5
+log.info GetResponse6
+log.info GetResponse7
+log.info GetResponse8
+log.info GetResponse9
+log.info GetResponse10
+log.info GetResponse11
+log.info GetResponse12
+log.info GetResponse13
+log.info GetResponse14
+log.info GetResponse15
+log.info GetResponse16
+log.info GetResponse17
+log.info GetResponse18
+log.info GetResponse19
+log.info GetResponse20
+
+assert GetResponse=="4801"
+assert GetResponse1=="001"
+assert GetResponse2=="2014-02-02 12:00:00.0"
+assert GetResponse3=="0"
+assert GetResponse4=="1"
+assert GetResponse5=="1"
+assert GetResponse6=="60930.0002"
+assert GetResponse7=="3"
+assert GetResponse8=="35829"
+assert GetResponse9=="P"
+assert GetResponse10=="A"
+assert GetResponse11=="1-1"
+assert GetResponse12=="Johnson, Bart"
+assert GetResponse13=="Johnson"
+assert GetResponse14=="Bart"
+assert GetResponse15=="AN"
+assert GetResponse16=="N"
+assert GetResponse17=="N" 
+assert GetResponse18=="837"
+assert GetResponse19=="P"
+assert GetResponse20=="C402"
+
+</script></con:config></con:testStep><con:properties/></con:testCase><con:properties/></con:testSuite><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/><con:oAuth1ProfileContainer/></con:soapui-project>
