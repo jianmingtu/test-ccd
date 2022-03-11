@@ -3,6 +3,7 @@ package ca.bc.gov.open.ccd.controllers;
 import ca.bc.gov.open.ccd.common.process.results.*;
 import ca.bc.gov.open.ccd.exceptions.ORDSException;
 import ca.bc.gov.open.ccd.models.OrdsErrorLog;
+import ca.bc.gov.open.ccd.models.RequestSuccessLog;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
@@ -50,7 +51,9 @@ public class HealthController {
                             HttpMethod.GET,
                             new HttpEntity<>(new HttpHeaders()),
                             GetHealthResponse.class);
-
+            log.info(
+                    objectMapper.writeValueAsString(
+                            new RequestSuccessLog("Request Success", "getHealth")));
             return resp.getBody();
         } catch (Exception ex) {
             log.error(
@@ -75,7 +78,9 @@ public class HealthController {
                             HttpMethod.GET,
                             new HttpEntity<>(new HttpHeaders()),
                             GetPingResponse.class);
-
+            log.info(
+                    objectMapper.writeValueAsString(
+                            new RequestSuccessLog("Request Success", "getPing")));
             return resp.getBody();
         } catch (Exception ex) {
             log.error(
