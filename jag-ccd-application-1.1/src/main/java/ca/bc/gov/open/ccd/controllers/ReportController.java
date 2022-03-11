@@ -5,6 +5,7 @@ import ca.bc.gov.open.ccd.common.rop.report.RopResult;
 import ca.bc.gov.open.ccd.common.rop.report.secure.*;
 import ca.bc.gov.open.ccd.exceptions.ORDSException;
 import ca.bc.gov.open.ccd.models.OrdsErrorLog;
+import ca.bc.gov.open.ccd.models.RequestSuccessLog;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.util.Map;
@@ -139,7 +140,9 @@ public class ReportController {
 
                 String bs64 =
                         resp2.getBody() != null ? Base64Utils.encodeToString(resp2.getBody()) : "";
-
+                log.info(
+                        objectMapper.writeValueAsString(
+                                new RequestSuccessLog("Request Success", "getROPReport")));
                 one.setB64Content(bs64);
                 return out;
             } catch (Exception ex) {

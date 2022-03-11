@@ -6,6 +6,7 @@ import ca.bc.gov.open.ccd.common.criminal.file.content.*;
 import ca.bc.gov.open.ccd.common.criminal.file.content.secure.*;
 import ca.bc.gov.open.ccd.exceptions.ORDSException;
 import ca.bc.gov.open.ccd.models.OrdsErrorLog;
+import ca.bc.gov.open.ccd.models.RequestSuccessLog;
 import ca.bc.gov.open.ccd.models.serializers.InstantSerializer;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -67,7 +68,9 @@ public class FileController {
                             HttpMethod.GET,
                             new HttpEntity<>(new HttpHeaders()),
                             GetCriminalFileContentResponse.class);
-
+            log.info(
+                    objectMapper.writeValueAsString(
+                            new RequestSuccessLog("Request Success", "getCriminalFileContent")));
             return resp.getBody();
         } catch (Exception ex) {
             log.error(
@@ -109,6 +112,9 @@ public class FileController {
                             HttpMethod.GET,
                             new HttpEntity<>(new HttpHeaders()),
                             GetCivilFileContentResponse.class);
+            log.info(
+                    objectMapper.writeValueAsString(
+                            new RequestSuccessLog("Request Success", "getCivilFileContent")));
             return resp.getBody();
         } catch (Exception ex) {
             log.error(

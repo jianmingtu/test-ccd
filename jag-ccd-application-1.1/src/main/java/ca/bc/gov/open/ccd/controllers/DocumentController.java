@@ -6,6 +6,7 @@ import ca.bc.gov.open.ccd.common.document.GetDocument;
 import ca.bc.gov.open.ccd.common.document.GetDocumentResponse;
 import ca.bc.gov.open.ccd.exceptions.ORDSException;
 import ca.bc.gov.open.ccd.models.OrdsErrorLog;
+import ca.bc.gov.open.ccd.models.RequestSuccessLog;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.net.URI;
@@ -118,6 +119,9 @@ public class DocumentController {
                 out.setDocumentResponse(one);
                 one.setResultCd(resultCd);
                 one.setResultMessage(resultMessage);
+                log.info(
+                        objectMapper.writeValueAsString(
+                                new RequestSuccessLog("Request Success", "getDocument")));
                 return out;
             } catch (Exception ex) {
                 log.error(
