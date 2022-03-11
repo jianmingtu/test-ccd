@@ -74,7 +74,7 @@ public class CourtController {
                                     "Error received from ORDS",
                                     "getCrtListSecure",
                                     ex.getMessage(),
-                                    null)));
+                                    getCrtList)));
             throw new ORDSException();
         }
     }

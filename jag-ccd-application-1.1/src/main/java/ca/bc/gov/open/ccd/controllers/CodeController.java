@@ -69,7 +69,7 @@ public class CodeController {
                                     "Error received from ORDS",
                                     "getCodeValues",
                                     ex.getMessage(),
-                                    null)));
+                                    getCodeValues)));
             throw new ORDSException();
         }
     }

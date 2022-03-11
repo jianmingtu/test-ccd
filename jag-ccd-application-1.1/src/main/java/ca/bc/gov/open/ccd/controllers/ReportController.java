@@ -79,7 +79,7 @@ public class ReportController {
                                     "Error received from ORDS",
                                     "getROPReport",
                                     ex.getMessage(),
-                                    null)));
+                                    inner)));
             throw new ORDSException();
         }
 
@@ -90,7 +90,7 @@ public class ReportController {
                                     "Error received from ORDS",
                                     "getROPReport",
                                     "Either response or its body is null while receiving the request getRopReport's response.",
-                                    null)));
+                                    inner)));
             throw new ORDSException();
         } else {
             // if got response from ORDS's RopReport response
@@ -149,7 +149,7 @@ public class ReportController {
                                         "Error received from ORDS",
                                         "getROPReport",
                                         ex.getMessage(),
-                                        null)));
+                                        inner)));
                 throw new ORDSException();
             }
         }

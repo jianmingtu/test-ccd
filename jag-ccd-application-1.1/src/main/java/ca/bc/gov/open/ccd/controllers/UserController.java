@@ -59,7 +59,7 @@ public class UserController {
                                     "Error received from ORDS",
                                     "getParticipantInfo",
                                     ex.getMessage(),
-                                    null)));
+                                    getParticipantInfo)));
             throw new ORDSException();
         }
     }
@@ -131,7 +131,7 @@ public class UserController {
                                     "Error received from ORDS",
                                     "getUserLogin",
                                     ex.getMessage(),
-                                    null)));
+                                    inner)));
             throw new ORDSException();
         }
     }
