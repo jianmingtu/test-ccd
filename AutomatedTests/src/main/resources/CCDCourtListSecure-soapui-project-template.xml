@@ -632,8 +632,8 @@ assert GetResponse13=="Johnson"
 assert GetResponse14=="Bart"
 assert GetResponse15=="AN"
 assert GetResponse16=="N"
-assert GetResponse17=="N" 
-assert GetResponse18=="837"
+assert GetResponse17=="N"
+ assert GetResponse18.isNumber()
 assert GetResponse19=="P"
 assert GetResponse20=="C402"
 
