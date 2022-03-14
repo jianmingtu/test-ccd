@@ -111,13 +111,6 @@ public class SoapConfig extends WsConfigurerAdapter {
         return wsdl11Definition;
     }
 
-    @Bean(name = "CCD.Source.ProcessResults.ws.provider:ProcessResults")
-    public Wsdl11Definition processResultsWSDL() {
-        SimpleWsdl11Definition wsdl11Definition = new SimpleWsdl11Definition();
-        wsdl11Definition.setWsdl(new ClassPathResource("xsdSchemas/processResults.wsdl"));
-        return wsdl11Definition;
-    }
-
     @Bean(name = "CCD.Source.GetDocument.ws:GetDocumentSecure")
     public Wsdl11Definition getDocumentSecureWSDL() {
         SimpleWsdl11Definition wsdl11Definition = new SimpleWsdl11Definition();
