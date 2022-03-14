@@ -4,6 +4,7 @@ import ca.bc.gov.open.ccd.common.rop.report.*;
 import ca.bc.gov.open.ccd.common.rop.report.secure.*;
 import ca.bc.gov.open.ccd.exceptions.ORDSException;
 import ca.bc.gov.open.ccd.models.OrdsErrorLog;
+import ca.bc.gov.open.ccd.models.RequestSuccessLog;
 import ca.bc.gov.open.ccd.models.serializers.InstantSerializer;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -98,39 +99,39 @@ public class ReportController {
             throw new ORDSException();
         } else {
             // if got response from ORDS's getROPReportSecure response
+            var out = new GetROPReportSecureResponse();
+            var one = new ca.bc.gov.open.ccd.common.rop.report.secure.RopResult();
+
             var body = resp.getBody();
-            String respCd = body.get("responseCd");
-            if (respCd != null && !respCd.equals("0")) {
-                String errMsg =
-                        body.get("responseMessageTxt") != null
-                                ? body.get("responseMessageTxt")
-                                : "";
-                log.error(
-                        objectMapper.writeValueAsString(
-                                new OrdsErrorLog(
-                                        "Error received from ORDS",
-                                        "getROPReportSecure",
-                                        "Error ("
-                                                + errMsg
-                                                + ") occurred while receiving the request getROPReportSecure's response.",
-                                        inner)));
-                throw new ORDSException();
+            var respCd = body.get("responseCd");
+            var respMsg = body.get("responseMessageTxt");
+            var url = body.get("url");
+            var keyValue = body.get("keyValue");
+
+            one.setResultCd(respCd);
+            one.setResultMessage(respMsg);
+            out.setROPResponse(one);
+
+            if (url == null) {
+                // return error
+                return out;
             }
 
             try {
-                String url = body.get("url") != null ? body.get("url") : "";
-                String keyValue = body.get("keyValue") != null ? body.get("keyValue") : "";
                 String query = "";
-                if (url.contains("?")) query = url.split("\\?")[1];
-                query =
-                        query.replace(
-                                        "<<FORM>>",
-                                        inner.getFormCd() != null ? inner.getFormCd() : "")
-                                .replace("<<APP>>", reportAppName)
-                                .replace("<<TICKET>>", keyValue);
+                if (url.contains("?")) {
+                    query = url.split("\\?")[1];
+                }
 
                 // build an adobe server uri using its url and parameters being return from ccd and
                 // request base64 stream from this adobe server
+                query =
+                        query.replace(
+                                        "<<FORM>>",
+                                        inner.getFormCd() == null ? "" : inner.getFormCd())
+                                .replace("<<APP>>", reportAppName)
+                                .replace("<<TICKET>>", keyValue);
+
                 String rpServerHost = url.length() > 0 ? adobeServerHost : url;
                 String rpServerUri = rpServerHost + "?" + query;
 
@@ -143,12 +144,10 @@ public class ReportController {
 
                 String bs64 =
                         resp2.getBody() != null ? Base64Utils.encodeToString(resp2.getBody()) : "";
-
-                var out = new GetROPReportSecureResponse();
-                var one = new ca.bc.gov.open.ccd.common.rop.report.secure.RopResult();
+                log.info(
+                        objectMapper.writeValueAsString(
+                                new RequestSuccessLog("Request Success", "getROPReportSecure")));
                 one.setB64Content(bs64);
-                one.setResultCd("0");
-                out.setROPResponse(one);
                 return out;
             } catch (Exception ex) {
                 log.error(
@@ -157,7 +156,7 @@ public class ReportController {
                                         "Error received from ORDS",
                                         "getROPReportSecure",
                                         ex.getMessage(),
-                                        getROPReport)));
+                                        inner)));
                 throw new ORDSException();
             }
         }
