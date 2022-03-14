@@ -91,67 +91,49 @@ public class DocumentController {
             var body = resp.getBody();
             String resultCd = body.get("resultCd");
             String resultMessage = body.get("resultMessage");
-            String status = body.get("status");
             String url = body.get("url");
 
-            if (status == null || !status.equals("1")) {
-                // when status is null/or status is not 1, we neither pass the validation nor get a
-                // valid url so that just return errors back
-                var out = new GetDocumentSecureResponse();
-                var documentResult = new ca.bc.gov.open.ccd.common.document.secure.DocumentResult();
-                out.setDocumentResponse(documentResult);
-                documentResult.setResultCd(resultCd != null ? resultCd : "");
-                documentResult.setResultMessage(resultMessage != null ? resultMessage : "");
+            var out = new GetDocumentSecureResponse();
+            var one = new ca.bc.gov.open.ccd.common.document.secure.DocumentResult();
+
+            out.setDocumentResponse(one);
+            one.setResultCd(resultCd);
+            one.setResultMessage(resultMessage);
+
+            if (url == null) {
+                // process the response's error messages which are return from the ORDS getDocument
+                // API
                 return out;
-            } else {
-                if (resultCd != null && resultMessage != null && url != null) {
-                    // process the response's error messages which are return from the ORDS
-                    // getDocument API
-                    if (!resultCd.equals("1")) {
-                        var out = new GetDocumentSecureResponse();
-                        var documentResult =
-                                new ca.bc.gov.open.ccd.common.document.secure.DocumentResult();
-                        out.setDocumentResponse(documentResult);
-                        documentResult.setResultCd(resultCd);
-                        documentResult.setResultMessage(resultMessage);
-                        return out;
-                    }
+            }
 
-                    // request uri to get base64 document
-                    try {
-                        HttpEntity<byte[]> resp2 =
-                                restTemplate.exchange(
-                                        new URI(url),
-                                        HttpMethod.GET,
-                                        new HttpEntity<>(new HttpHeaders()),
-                                        byte[].class);
+            // request uri to get base64 document
 
-                        String bs64 =
-                                resp2.getBody() != null
-                                        ? Base64Utils.encodeToString(resp2.getBody())
-                                        : "";
+            try {
+                HttpEntity<byte[]> resp2 =
+                        restTemplate.exchange(
+                                new URI(url),
+                                HttpMethod.GET,
+                                new HttpEntity<>(new HttpHeaders()),
+                                byte[].class);
 
-                        var out = new GetDocumentSecureResponse();
-                        var documentResult =
-                                new ca.bc.gov.open.ccd.common.document.secure.DocumentResult();
-                        documentResult.setB64Content(bs64);
-                        out.setDocumentResponse(documentResult);
-                        log.info(
-                                objectMapper.writeValueAsString(
-                                        new RequestSuccessLog(
-                                                "Request Success", "getDocumentSecure")));
-                        return out;
-                    } catch (Exception ex) {
-                        log.error(
-                                objectMapper.writeValueAsString(
-                                        new OrdsErrorLog(
-                                                "Error occurred while requesting an uri to get base64 document",
-                                                "getDocumentSecure",
-                                                ex.getMessage(),
-                                                inner)));
-                        throw new ORDSException();
-                    }
-                }
+                String bs64 =
+                        resp2.getBody() != null ? Base64Utils.encodeToString(resp2.getBody()) : "";
+
+                one.setB64Content(bs64);
+                out.setDocumentResponse(one);
+                log.info(
+                        objectMapper.writeValueAsString(
+                                new RequestSuccessLog("Request Success", "getDocumentSecure")));
+                return out;
+            } catch (Exception ex) {
+                log.error(
+                        objectMapper.writeValueAsString(
+                                new OrdsErrorLog(
+                                        "Error occurred while requesting an uri to get base64 document",
+                                        "getDocumentSecure",
+                                        ex.getMessage(),
+                                        inner)));
+                throw new ORDSException();
             }
         }
 
@@ -160,9 +142,9 @@ public class DocumentController {
                 objectMapper.writeValueAsString(
                         new OrdsErrorLog(
                                 "Error received from ORDS",
-                                "getDocument",
+                                "getDocumentSecure",
                                 "Either response or its body is null while receiving the request getDocumentSecure's response.",
-                                document)));
+                                inner)));
         throw new ORDSException();
     }
 }

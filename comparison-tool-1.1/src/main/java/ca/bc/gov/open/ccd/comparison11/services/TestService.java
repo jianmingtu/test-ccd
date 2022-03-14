@@ -101,8 +101,8 @@ public class TestService {
         getCodeValuesCompare();
 
         // document
-        getDocumentGUIDCompare();
-        getDocumentFileCompare();
+        getDocumentCriminalCompare();
+        getDocumentCivillCompare();
 
         // ropreport
         getRopReportCompare();
@@ -464,68 +464,60 @@ public class TestService {
         printCompletion();
     }
 
-    private void getDocumentGUIDCompare() throws Exception {
+    private void getDocumentCriminalCompare() throws Exception {
         diffCounter = 0;
-        String divisionCds[] = {"R", "I"};
-
         GetDocument request = new GetDocument();
         Document document = new Document();
 
-        InputStream inputIds = getClass().getResourceAsStream("/getDocumentGUID.csv");
+        InputStream inputIds = getClass().getResourceAsStream("/getDocumentCriminal.csv");
         assert inputIds != null;
         Scanner scanner = new Scanner(inputIds);
-        fileOutput = new PrintWriter(outputDir + "getDocumentGUID.txt", StandardCharsets.UTF_8);
+        fileOutput = new PrintWriter(outputDir + "getDocumentCriminal.txt", StandardCharsets.UTF_8);
 
-        for (var cd : divisionCds) {
-            document.setCourtDivisionCd(cd);
-            while (scanner.hasNextLine()) {
-                String line = scanner.nextLine();
-                System.out.format(
-                        "\nINFO: getDocumentGUID with CCD division code: %s and GUID Id: %s\n",
-                        cd, line);
-                document.setDocumentId(line);
-                request.setDocumentRequest(document);
+        document.setCourtDivisionCd("R");
+        while (scanner.hasNextLine()) {
+            String line = scanner.nextLine();
+            System.out.format(
+                    "\nINFO: getDocumentCriminalCompare with CCD division code: %s and GUID/or Document Id: %s\n",
+                    "R", line);
+            document.setDocumentId(line);
+            request.setDocumentRequest(document);
 
-                if (!compare(new GetDocumentResponse(), request, "GetDocument")) {
-                    fileOutput.format(
-                            "\nINFO: getDocumentGUID with CCD division code: %s and GUID Id: %s\n",
-                            cd, line);
-                    ++diffCounter;
-                }
+            if (!compare(new GetDocumentResponse(), request, "GetDocument")) {
+                fileOutput.format(
+                        "\nINFO: getDocumentCriminalCompare with CCD division code: %s and GUID/or Document Id: %s\n",
+                        "R", line);
+                ++diffCounter;
             }
         }
 
         printCompletion();
     }
 
-    private void getDocumentFileCompare() throws Exception {
+    private void getDocumentCivillCompare() throws Exception {
         diffCounter = 0;
-        String divisionCds[] = {"R", "I"};
-
         GetDocument request = new GetDocument();
         Document document = new Document();
 
-        InputStream inputIds = getClass().getResourceAsStream("/getDocumentFile.csv");
+        InputStream inputIds = getClass().getResourceAsStream("/getDocumentCivill.csv");
         assert inputIds != null;
         Scanner scanner = new Scanner(inputIds);
-        fileOutput = new PrintWriter(outputDir + "getDocumentFile.txt", StandardCharsets.UTF_8);
+        fileOutput = new PrintWriter(outputDir + "getDocumentCivill.txt", StandardCharsets.UTF_8);
 
-        for (var cd : divisionCds) {
-            document.setCourtDivisionCd(cd);
-            while (scanner.hasNextLine()) {
-                String line = scanner.nextLine();
-                System.out.format(
-                        "\nINFO: getDocumentFile with CCD division code: %s and File Id: %s\n",
-                        cd, line);
-                document.setDocumentId(line);
-                request.setDocumentRequest(document);
+        document.setCourtDivisionCd("I");
+        while (scanner.hasNextLine()) {
+            String line = scanner.nextLine();
+            System.out.format(
+                    "\nINFO: getDocumentCivillCompare with CCD division code: %s and GUID/or Document Id: %s\n",
+                    "I", line);
+            document.setDocumentId(line);
+            request.setDocumentRequest(document);
 
-                if (!compare(new GetDocumentResponse(), request, "GetDocument")) {
-                    fileOutput.format(
-                            "\nINFO: getDocumentFile with CCD division code: %s and File Id: %s\n",
-                            cd, line);
-                    ++diffCounter;
-                }
+            if (!compare(new GetDocumentResponse(), request, "GetDocument")) {
+                fileOutput.format(
+                        "\nINFO: getDocumentCivillCompare with CCD division code: %s and GUID/or Document Id: %s\n",
+                        "R", line);
+                ++diffCounter;
             }
         }
 
@@ -641,8 +633,7 @@ public class TestService {
         Diff diff = javers.compare(resultObjectAPI, resultObjectWM);
 
         String responseClassName = response.getClass().getName();
-        if (diff.hasChanges()) {
-            printDiff(diff);
+        if (diff.hasChanges() && printDiff(diff)) {
             return false;
         } else {
             if (resultObjectAPI == null && resultObjectWM == null) {
@@ -662,7 +653,7 @@ public class TestService {
         }
     }
 
-    private void printDiff(Diff diff) {
+    private boolean printDiff(Diff diff) {
 
         List<Change> actualChanges = new ArrayList<>(diff.getChanges());
 
@@ -682,8 +673,7 @@ public class TestService {
         int diffSize = actualChanges.size();
 
         if (diffSize == 0) {
-            System.out.println("Only null and blank changes detected");
-            return;
+            return false;
         }
 
         String[] header = new String[] {"Property", "API Response", "WM Response"};
@@ -764,5 +754,7 @@ public class TestService {
 
         fileOutput.println("=".repeat(totalColumnLength));
         System.out.println("=".repeat(totalColumnLength));
+
+        return true;
     }
 }
