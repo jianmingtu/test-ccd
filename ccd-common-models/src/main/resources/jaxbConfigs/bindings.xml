@@ -11,7 +11,7 @@
             <jxb:package name="ca.bc.gov.open.ccd.common.user.mapping" />
         </jxb:schemaBindings>
         <jxb:bindings>
-            <namespace:prefix name="ser-root" />
+
             <!-- Additional @XmlNs prefix declarations to take effect for this schema/package -->
             <namespace:prefix name="xsi" namespaceURI="http://www.w3.org/2001/XMLSchema-instance" />
         </jxb:bindings>
@@ -21,7 +21,7 @@
             <jxb:package name="ca.bc.gov.open.ccd.common.code.values" />
         </jxb:schemaBindings>
         <jxb:bindings>
-            <namespace:prefix name="ser-root" />
+
             <!-- Additional @XmlNs prefix declarations to take effect for this schema/package -->
             <namespace:prefix name="xsi" namespaceURI="http://www.w3.org/2001/XMLSchema-instance" />
         </jxb:bindings>
@@ -31,7 +31,7 @@
             <jxb:package name="ca.bc.gov.open.ccd.common.code.values.secure" />
         </jxb:schemaBindings>
         <jxb:bindings>
-            <namespace:prefix name="ser-root" />
+
             <!-- Additional @XmlNs prefix declarations to take effect for this schema/package -->
             <namespace:prefix name="xsi" namespaceURI="http://www.w3.org/2001/XMLSchema-instance" />
         </jxb:bindings>
@@ -41,7 +41,7 @@
             <jxb:package name="ca.bc.gov.open.ccd.common.criminal.file.content" />
         </jxb:schemaBindings>
         <jxb:bindings>
-            <namespace:prefix name="ser-root" />
+
             <!-- Additional @XmlNs prefix declarations to take effect for this schema/package -->
             <namespace:prefix name="xsi" namespaceURI="http://www.w3.org/2001/XMLSchema-instance" />
         </jxb:bindings>
@@ -51,7 +51,7 @@
             <jxb:package name="ca.bc.gov.open.ccd.common.criminal.file.content.secure" />
         </jxb:schemaBindings>
         <jxb:bindings>
-            <namespace:prefix name="ser-root" />
+
             <!-- Additional @XmlNs prefix declarations to take effect for this schema/package -->
             <namespace:prefix name="xsi" namespaceURI="http://www.w3.org/2001/XMLSchema-instance" />
         </jxb:bindings>
@@ -61,7 +61,7 @@
             <jxb:package name="ca.bc.gov.open.ccd.common.rop.report" />
         </jxb:schemaBindings>
         <jxb:bindings>
-            <namespace:prefix name="ser-root" />
+
             <!-- Additional @XmlNs prefix declarations to take effect for this schema/package -->
             <namespace:prefix name="xsi" namespaceURI="http://www.w3.org/2001/XMLSchema-instance" />
         </jxb:bindings>
@@ -71,7 +71,7 @@
             <jxb:package name="ca.bc.gov.open.ccd.common.rop.report.secure" />
         </jxb:schemaBindings>
         <jxb:bindings>
-            <namespace:prefix name="ser-root" />
+
             <!-- Additional @XmlNs prefix declarations to take effect for this schema/package -->
             <namespace:prefix name="xsi" namespaceURI="http://www.w3.org/2001/XMLSchema-instance" />
         </jxb:bindings>
@@ -81,7 +81,7 @@
             <jxb:package name="ca.bc.gov.open.ccd.common.user.login" />
         </jxb:schemaBindings>
         <jxb:bindings>
-            <namespace:prefix name="ser-root" />
+
             <!-- Additional @XmlNs prefix declarations to take effect for this schema/package -->
             <namespace:prefix name="xsi" namespaceURI="http://www.w3.org/2001/XMLSchema-instance" />
         </jxb:bindings>
@@ -91,7 +91,7 @@
             <jxb:package name="ca.bc.gov.open.ccd.common.process.results" />
         </jxb:schemaBindings>
         <jxb:bindings>
-            <namespace:prefix name="ser-root" />
+
             <!-- Additional @XmlNs prefix declarations to take effect for this schema/package -->
             <namespace:prefix name="xsi" namespaceURI="http://www.w3.org/2001/XMLSchema-instance" />
         </jxb:bindings>
@@ -101,7 +101,7 @@
             <jxb:package name="ca.bc.gov.open.ccd.common.document" />
         </jxb:schemaBindings>
         <jxb:bindings>
-            <namespace:prefix name="ser-root" />
+
             <!-- Additional @XmlNs prefix declarations to take effect for this schema/package -->
             <namespace:prefix name="xsi" namespaceURI="http://www.w3.org/2001/XMLSchema-instance" />
         </jxb:bindings>
@@ -111,7 +111,7 @@
             <jxb:package name="ca.bc.gov.open.ccd.common.document.secure" />
         </jxb:schemaBindings>
         <jxb:bindings>
-            <namespace:prefix name="ser-root" />
+
             <!-- Additional @XmlNs prefix declarations to take effect for this schema/package -->
             <namespace:prefix name="xsi" namespaceURI="http://www.w3.org/2001/XMLSchema-instance" />
         </jxb:bindings>
@@ -121,7 +121,7 @@
             <jxb:package name="ca.bc.gov.open.ccd.common.dev.utils" />
         </jxb:schemaBindings>
         <jxb:bindings>
-            <namespace:prefix name="ser-root" />
+
             <!-- Additional @XmlNs prefix declarations to take effect for this schema/package -->
             <namespace:prefix name="xsi" namespaceURI="http://www.w3.org/2001/XMLSchema-instance" />
         </jxb:bindings>

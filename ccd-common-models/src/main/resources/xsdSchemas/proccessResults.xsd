@@ -127,7 +127,7 @@
     <xsd:complexType name="SpeakerEventsType">
         <xsd:sequence>
             <xsd:element name="SpeakerEventDate" nillable="true" type="xsd:dateTime"/>
-            <xsd:element name="SpeakerEventTime" nillable="true" type="xsd:dateTime"/>
+            <xsd:element name="SpeakerEventTime" nillable="true" type="xsd:string"/>
             <xsd:element name="SpeakerEventText" nillable="true" type="xsd:string"/>
         </xsd:sequence>
     </xsd:complexType>
@@ -592,7 +592,7 @@
     <xsd:complexType name="GenerateDocumentCRType">
         <xsd:sequence>
             <xsd:element name="FormTypeCd" nillable="true" type="xsd:string"/>
-            <xsd:element name="NextAppearanceDate" nillable="true" type="xsd:string"/>
+            <xsd:element name="NextAppearanceDate" nillable="true" type="xsd:dateTime"/>
             <xsd:element name="RegistryToCreateYN" nillable="true" type="xsd:string"/>
             <xsd:element name="ReferralTo" nillable="true" type="xsd:string"/>
             <xsd:element name="ReferralReason" nillable="true" type="xsd:string"/>

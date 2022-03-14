@@ -178,8 +178,8 @@ public class CourtControllerTests {
         st.setSpeakerStatusCd("A");
         st.setSpeakerStatusDsc("A");
         SpeakerEvent se = new SpeakerEvent();
-        se.setSpeakerEventDate("A");
-        se.setSpeakerEventTime(Instant.now());
+        se.setSpeakerEventDate(Instant.now());
+        se.setSpeakerEventTime("A");
         se.setSpeakerEventText("A");
 
         st.setSpeakerEvent(Collections.singletonList(se));
@@ -187,7 +187,7 @@ public class CourtControllerTests {
 
         ArrestWarrant aw = new ArrestWarrant();
         aw.setFileNumberText("A");
-        aw.setWarrantDate("A");
+        aw.setWarrantDate(Instant.now());
         crl.setArrestWarrant(Collections.singletonList(aw));
 
         var crp = new CRProtectionOrderType();
@@ -223,7 +223,7 @@ public class CourtControllerTests {
 
         var crl2 = new CivilCourtListType();
         crl2.setAppearanceId("A");
-        crl2.setAppearanceTime(Instant.now());
+        crl2.setAppearanceTime("A");
         crl2.setBinderText("A");
         crl2.setCourtListPrintSortNumber("A");
         crl2.setCivilDocumentsAvailable("A");
@@ -271,9 +271,9 @@ public class CourtControllerTests {
         dt.setDocumentAccessLevelCd("A");
         dt.setDocumentSealEndDate(Instant.now());
         dt.setDocumentSealStartDate(Instant.now());
-        dt.setDateGranted("A");
+        dt.setDateGranted(Instant.now());
         dt.setEstimatedDocumentMinutes("A");
-        dt.setDateVaried("A");
+        dt.setDateVaried(Instant.now());
         dt.setCancelledDate(Instant.now());
         dt.setOrderDocumentYN("A");
         dt.setAdjudicatorPartId("A");
@@ -355,8 +355,8 @@ public class CourtControllerTests {
         st2.setSpeakerStatusDsc("A");
         SpeakerEvent se2 = new SpeakerEvent();
         se2.setSpeakerEventText("A");
-        se2.setSpeakerEventDate("A");
-        se2.setSpeakerEventTime(Instant.now());
+        se2.setSpeakerEventDate(Instant.now());
+        se2.setSpeakerEventTime("A");
         st2.setSpeakerEvent(Collections.singletonList(se2));
 
         var pot = new ProtectionOrderType();
@@ -410,7 +410,7 @@ public class CourtControllerTests {
 
         var ov = new OrderToVaryType();
         ov.setAdjudicatorName("A");
-        ov.setDateGranted("A");
+        ov.setDateGranted(Instant.now());
         ov.setDocumentId("A");
         ov.setDocumentTypeDsc("A");
 

@@ -4,6 +4,7 @@ import ca.bc.gov.open.ccd.common.user.login.*;
 import ca.bc.gov.open.ccd.common.user.mapping.*;
 import ca.bc.gov.open.ccd.exceptions.ORDSException;
 import ca.bc.gov.open.ccd.models.OrdsErrorLog;
+import ca.bc.gov.open.ccd.models.RequestSuccessLog;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
@@ -51,6 +52,9 @@ public class UserController {
                             HttpMethod.GET,
                             new HttpEntity<>(new HttpHeaders()),
                             GetParticipantInfoResponse.class);
+            log.info(
+                    objectMapper.writeValueAsString(
+                            new RequestSuccessLog("Request Success", "getParticipantInfo")));
             return resp.getBody();
         } catch (Exception ex) {
             log.error(
@@ -59,7 +63,7 @@ public class UserController {
                                     "Error received from ORDS",
                                     "getParticipantInfo",
                                     ex.getMessage(),
-                                    null)));
+                                    getParticipantInfo)));
             throw new ORDSException();
         }
     }
@@ -84,6 +88,9 @@ public class UserController {
                             HttpMethod.POST,
                             new HttpEntity<>(new HttpHeaders()),
                             MapGuidToParticipantResponse.class);
+            log.info(
+                    objectMapper.writeValueAsString(
+                            new RequestSuccessLog("Request Success", "mapGuidToParticipant")));
             return resp.getBody();
         } catch (Exception ex) {
             log.error(
@@ -123,6 +130,9 @@ public class UserController {
                             GetUserLoginResponseType.class);
             var out = new GetUserLoginResponse();
             out.setResponse(resp.getBody());
+            log.info(
+                    objectMapper.writeValueAsString(
+                            new RequestSuccessLog("Request Success", "getUserLogin")));
             return out;
         } catch (Exception ex) {
             log.error(
@@ -131,7 +141,7 @@ public class UserController {
                                     "Error received from ORDS",
                                     "getUserLogin",
                                     ex.getMessage(),
-                                    null)));
+                                    inner)));
             throw new ORDSException();
         }
     }

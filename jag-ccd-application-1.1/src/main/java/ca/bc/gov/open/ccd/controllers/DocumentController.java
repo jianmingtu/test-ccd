@@ -6,9 +6,12 @@ import ca.bc.gov.open.ccd.common.document.GetDocument;
 import ca.bc.gov.open.ccd.common.document.GetDocumentResponse;
 import ca.bc.gov.open.ccd.exceptions.ORDSException;
 import ca.bc.gov.open.ccd.models.OrdsErrorLog;
+import ca.bc.gov.open.ccd.models.RequestSuccessLog;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.net.URI;
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 import java.util.Map;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -56,14 +59,16 @@ public class DocumentController {
         // request getDocument to get url
         UriComponentsBuilder builder =
                 UriComponentsBuilder.fromHttpUrl(host + "common/document")
-                        .queryParam("documentId", inner.getDocumentId())
+                        .queryParam(
+                                "documentId",
+                                URLEncoder.encode(inner.getDocumentId(), StandardCharsets.UTF_8))
                         .queryParam("courtDivisionCd", inner.getCourtDivisionCd());
 
         HttpEntity<Map<String, String>> resp = null;
         try {
             resp =
                     restTemplate.exchange(
-                            builder.toUriString(),
+                            builder.build(true).toUri(),
                             HttpMethod.GET,
                             new HttpEntity<>(new HttpHeaders()),
                             new ParameterizedTypeReference<>() {});
@@ -74,7 +79,7 @@ public class DocumentController {
                                     "Error received from ORDS",
                                     "getDocument",
                                     ex.getMessage(),
-                                    null)));
+                                    inner)));
             throw new ORDSException();
         }
 
@@ -83,49 +88,50 @@ public class DocumentController {
             String resultCd = body.get("resultCd");
             String resultMessage = body.get("resultMessage");
             String url = body.get("url");
-            if (resultCd != null && resultMessage != null && url != null) {
+            if (url == null) {
                 // process the response's error messages which are return from the ORDS getDocument
                 // API
-                if (!resultCd.equals("1")) {
-                    var out = new GetDocumentResponse();
-                    var one = new DocumentResult();
-                    one.setResultCd(resultCd);
-                    out.setDocumentResponse(one);
-                    one.setResultCd(resultCd);
-                    one.setResultMessage(resultMessage);
-                    return out;
-                }
+                var out = new GetDocumentResponse();
+                var one = new DocumentResult();
+                ;
+                out.setDocumentResponse(one);
+                one.setResultCd(resultCd);
+                one.setResultMessage(resultMessage);
+                return out;
+            }
 
-                // request uri to get base64 document
+            // request uri to get base64 document
 
-                try {
-                    HttpEntity<byte[]> resp2 =
-                            restTemplate.exchange(
-                                    new URI(url),
-                                    HttpMethod.GET,
-                                    new HttpEntity<>(new HttpHeaders()),
-                                    byte[].class);
+            try {
+                HttpEntity<byte[]> resp2 =
+                        restTemplate.exchange(
+                                new URI(url),
+                                HttpMethod.GET,
+                                new HttpEntity<>(new HttpHeaders()),
+                                byte[].class);
 
-                    String bs64 =
-                            resp2.getBody() != null
-                                    ? Base64Utils.encodeToString(resp2.getBody())
-                                    : "";
+                String bs64 =
+                        resp2.getBody() != null ? Base64Utils.encodeToString(resp2.getBody()) : "";
 
-                    var out = new GetDocumentResponse();
-                    var one = new DocumentResult();
-                    one.setB64Content(bs64);
-                    out.setDocumentResponse(one);
-                    return out;
-                } catch (Exception ex) {
-                    log.error(
-                            objectMapper.writeValueAsString(
-                                    new OrdsErrorLog(
-                                            "Error occurred while requesting an uri to get base64 document",
-                                            "getDocument",
-                                            ex.getMessage(),
-                                            null)));
-                    throw new ORDSException();
-                }
+                var out = new GetDocumentResponse();
+                var one = new DocumentResult();
+                one.setB64Content(bs64);
+                out.setDocumentResponse(one);
+                one.setResultCd(resultCd);
+                one.setResultMessage(resultMessage);
+                log.info(
+                        objectMapper.writeValueAsString(
+                                new RequestSuccessLog("Request Success", "getDocument")));
+                return out;
+            } catch (Exception ex) {
+                log.error(
+                        objectMapper.writeValueAsString(
+                                new OrdsErrorLog(
+                                        "Error occurred while requesting an uri to get base64 document",
+                                        "getDocument",
+                                        ex.getMessage(),
+                                        inner)));
+                throw new ORDSException();
             }
         }
 
@@ -136,7 +142,7 @@ public class DocumentController {
                                 "Error received from ORDS",
                                 "getDocument",
                                 "Either response or its body is null while receiving the request getDocument's response.",
-                                null)));
+                                inner)));
         throw new ORDSException();
     }
 }

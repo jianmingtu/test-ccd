@@ -1,9 +1,10 @@
 package ca.bc.gov.open.ccd.controllers;
 
 import ca.bc.gov.open.ccd.court.one.*;
-import ca.bc.gov.open.ccd.court.secure.one.*;
 import ca.bc.gov.open.ccd.exceptions.ORDSException;
 import ca.bc.gov.open.ccd.models.OrdsErrorLog;
+import ca.bc.gov.open.ccd.models.RequestSuccessLog;
+import ca.bc.gov.open.ccd.models.serializers.InstantSerializer;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
@@ -45,7 +46,9 @@ public class CourtController {
                 UriComponentsBuilder.fromHttpUrl(host + "/common/courtlist")
                         .queryParam("agencyIdentifierCd", getCrtList.getAgencyIdentifierCd())
                         .queryParam("roomCd", getCrtList.getRoomCd())
-                        .queryParam("proceedingDate", getCrtList.getProceedingDate())
+                        .queryParam(
+                                "proceedingDate",
+                                InstantSerializer.convert(getCrtList.getProceedingDate()))
                         .queryParam("divisionCd", getCrtList.getDivisionCd())
                         .queryParam("fileNumber", getCrtList.getFileNumber());
 
@@ -56,6 +59,9 @@ public class CourtController {
                             HttpMethod.GET,
                             new HttpEntity<>(new HttpHeaders()),
                             GetCrtListResponse.class);
+            log.info(
+                    objectMapper.writeValueAsString(
+                            new RequestSuccessLog("Request Success", "getCrtList")));
             return resp.getBody();
         } catch (Exception ex) {
             log.error(
@@ -64,7 +70,7 @@ public class CourtController {
                                     "Error received from ORDS",
                                     "getCrtList",
                                     ex.getMessage(),
-                                    null)));
+                                    getCrtList)));
             throw new ORDSException();
         }
     }
