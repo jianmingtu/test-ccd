@@ -1,0 +1,56 @@
+<xsd:schema targetNamespace="http://courts.ag.gov.bc.ca/CCD.Source.DevUtil.ws:DevUtils"
+            xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            xmlns:tns="http://courts.ag.gov.bc.ca/CCD.Source.DevUtil.ws:DevUtils">
+
+    <xsd:element name="clearAppearanceResults">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="ClrResults" nillable="true" type="tns:ClrResults"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:complexType name="ClrResults">
+        <xsd:sequence>
+            <xsd:element name="AppearanceId" nillable="true" type="xsd:string"/>
+            <xsd:element name="CourtAgencyIdentifierCode" nillable="true" type="xsd:string"/>
+            <xsd:element name="CourtProceedingDate" nillable="true" type="xsd:dateTime"/>
+            <xsd:element name="CourtRoomCode" nillable="true" type="xsd:string"/>
+            <xsd:element name="CourtListTypeCd" nillable="true" type="xsd:string"/>
+            <xsd:element name="RecordTypeToRemove" nillable="true" type="xsd:string"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:element name="clearAppearanceResultsResponse">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="status" nillable="true" type="xsd:string"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+
+    <xsd:element name="RecreateCourtList">
+        <xsd:complexType >
+            <xsd:sequence>
+                <xsd:element name="RecreateCourtListDoc" nillable="true" type="tns:RecreateCourtListDoc"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+
+    <xsd:complexType name="RecreateCourtListDoc">
+        <xsd:sequence>
+            <xsd:element name="CourtAgencyIdentifierCode" nillable="true" type="xsd:string"/>
+            <xsd:element name="CourtProceedingDate" nillable="true" type="xsd:dateTime"/>
+            <xsd:element name="CourtRoomCode" nillable="true" type="xsd:string"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+
+    <xsd:element name="RecreateCourtListResponse">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="status" nillable="true" type="xsd:string"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+
+</xsd:schema>

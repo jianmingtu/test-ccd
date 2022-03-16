@@ -48,10 +48,10 @@
         <xsd:sequence>
             <xsd:element name="CourtAgencyIdentifierCode" nillable="true" type="xsd:string"/>
             <xsd:element name="CourtRoomCode" nillable="true" type="xsd:string"/>
-            <xsd:element name="CourtProceedingDate" nillable="true" type="xsd:string"/>
-            <xsd:element name="CreationTime" nillable="true" type="xsd:string"/>
+            <xsd:element name="CourtProceedingDate" nillable="true" type="xsd:dateTime"/>
+            <xsd:element name="CreationTime" nillable="true" type="xsd:dateTime"/>
             <xsd:element name="EnterUserId" nillable="true" type="xsd:string"/>
-            <xsd:element name="EventTime" nillable="true" type="xsd:string"/>
+            <xsd:element name="EventTime" nillable="true" type="xsd:dateTime"/>
             <xsd:element name="EventTypeCode" nillable="true" type="xsd:string"/>
             <xsd:element name="EventLogText" nillable="true" type="xsd:string"/>
             <xsd:element name="SourceEventSeqNo" nillable="true" type="xsd:string"/>
@@ -126,7 +126,7 @@
 
     <xsd:complexType name="SpeakerEventsType">
         <xsd:sequence>
-            <xsd:element name="SpeakerEventDate" nillable="true" type="xsd:string"/>
+            <xsd:element name="SpeakerEventDate" nillable="true" type="xsd:dateTime"/>
             <xsd:element name="SpeakerEventTime" nillable="true" type="xsd:string"/>
             <xsd:element name="SpeakerEventText" nillable="true" type="xsd:string"/>
         </xsd:sequence>
@@ -152,10 +152,10 @@
         <xsd:sequence>
             <xsd:element name="CourtAgencyIdentifierCode" nillable="true" type="xsd:string"/>
             <xsd:element name="CourtRoomCode" nillable="true" type="xsd:string"/>
-            <xsd:element name="CourtProceedingDate" nillable="true" type="xsd:string"/>
-            <xsd:element name="CreationTime" nillable="true" type="xsd:string"/>
+            <xsd:element name="CourtProceedingDate" nillable="true" type="xsd:dateTime"/>
+            <xsd:element name="CreationTime" nillable="true" type="xsd:dateTime"/>
             <xsd:element name="EnterUserId" nillable="true" type="xsd:string"/>
-            <xsd:element name="EventTime" nillable="true" type="xsd:string"/>
+            <xsd:element name="EventTime" nillable="true" type="xsd:dateTime"/>
             <xsd:element name="EventTypeCode" nillable="true" type="xsd:string"/>
             <xsd:element name="EventLogText" nillable="true" type="xsd:string"/>
             <xsd:element name="SourceEventSeqNo" nillable="true" type="xsd:string"/>
@@ -197,8 +197,8 @@
 
     <xsd:complexType name="NextAppearanceType">
         <xsd:sequence>
-            <xsd:element name="AppearanceDate" nillable="true" type="xsd:string"/>
-            <xsd:element name="AppearanceTime" nillable="true" type="xsd:string"/>
+            <xsd:element name="AppearanceDate" nillable="true" type="xsd:dateTime"/>
+            <xsd:element name="AppearanceTime" nillable="true" type="xsd:dateTime"/>
             <xsd:element name="AppearanceReason" nillable="true" type="xsd:string"/>
             <xsd:element name="CourtAgencyIdentifier" nillable="true" type="xsd:string"/>
             <xsd:element name="CourtRoom" nillable="true" type="xsd:string"/>
@@ -289,10 +289,10 @@
         <xsd:sequence>
             <xsd:element name="CourtAgencyIdentifierCode" nillable="true" type="xsd:string"/>
             <xsd:element name="CourtRoomCode" nillable="true" type="xsd:string"/>
-            <xsd:element name="CourtProceedingDate" nillable="true" type="xsd:string"/>
-            <xsd:element name="CreationTime" nillable="true" type="xsd:string"/>
+            <xsd:element name="CourtProceedingDate" nillable="true" type="xsd:dateTime"/>
+            <xsd:element name="CreationTime" nillable="true" type="xsd:dateTime"/>
             <xsd:element name="EnterUserId" nillable="true" type="xsd:string"/>
-            <xsd:element name="EventTime" nillable="true" type="xsd:string"/>
+            <xsd:element name="EventTime" nillable="true" type="xsd:dateTime"/>
             <xsd:element name="EventTypeCode" nillable="true" type="xsd:string"/>
             <xsd:element name="EventLogText" nillable="true" type="xsd:string"/>
             <xsd:element name="SourceEventSeqNo" nillable="true" type="xsd:string"/>
@@ -354,10 +354,10 @@
         <xsd:sequence>
             <xsd:element name="CourtAgencyIdentifierCode" nillable="true" type="xsd:string"/>
             <xsd:element name="CourtRoomCode" nillable="true" type="xsd:string"/>
-            <xsd:element name="CourtProceedingDate" nillable="true" type="xsd:string"/>
-            <xsd:element name="CreationTime" nillable="true" type="xsd:string"/>
+            <xsd:element name="CourtProceedingDate" nillable="true" type="xsd:dateTime"/>
+            <xsd:element name="CreationTime" nillable="true" type="xsd:dateTime"/>
             <xsd:element name="EnterUserId" nillable="true" type="xsd:string"/>
-            <xsd:element name="EventTime" nillable="true" type="xsd:string"/>
+            <xsd:element name="EventTime" nillable="true" type="xsd:dateTime"/>
             <xsd:element name="EventTypeCode" nillable="true" type="xsd:string"/>
             <xsd:element name="EventLogText" nillable="true" type="xsd:string"/>
             <xsd:element name="SourceEventSeqNo" nillable="true" type="xsd:string"/>
@@ -407,10 +407,10 @@
         <xsd:sequence>
             <xsd:element name="CourtAgencyIdentifierCode" nillable="true" type="xsd:string"/>
             <xsd:element name="CourtRoomCode" nillable="true" type="xsd:string"/>
-            <xsd:element name="CourtProceedingDate" nillable="true" type="xsd:string"/>
-            <xsd:element name="CreationTime" nillable="true" type="xsd:string"/>
+            <xsd:element name="CourtProceedingDate" nillable="true" type="xsd:dateTime"/>
+            <xsd:element name="CreationTime" nillable="true" type="xsd:dateTime"/>
             <xsd:element name="EnterUserId" nillable="true" type="xsd:string"/>
-            <xsd:element name="EventTime" nillable="true" type="xsd:string"/>
+            <xsd:element name="EventTime" nillable="true" type="xsd:dateTime"/>
             <xsd:element name="EventTypeCode" nillable="true" type="xsd:string"/>
             <xsd:element name="EventLogText" nillable="true" type="xsd:string"/>
             <xsd:element name="SourceEventSeqNo" nillable="true" type="xsd:string"/>
@@ -457,10 +457,10 @@
         <xsd:sequence>
             <xsd:element name="CourtAgencyIdentifierCode" nillable="true" type="xsd:string"/>
             <xsd:element name="CourtRoomCode" nillable="true" type="xsd:string"/>
-            <xsd:element name="CourtProceedingDate" nillable="true" type="xsd:string"/>
-            <xsd:element name="CreationTime" nillable="true" type="xsd:string"/>
+            <xsd:element name="CourtProceedingDate" nillable="true" type="xsd:dateTime"/>
+            <xsd:element name="CreationTime" nillable="true" type="xsd:dateTime"/>
             <xsd:element name="EnterUserId" nillable="true" type="xsd:string"/>
-            <xsd:element name="EventTime" nillable="true" type="xsd:string"/>
+            <xsd:element name="EventTime" nillable="true" type="xsd:dateTime"/>
             <xsd:element name="EventTypeCode" nillable="true" type="xsd:string"/>
             <xsd:element name="EventLogText" nillable="true" type="xsd:string"/>
             <xsd:element name="SourceEventSeqNo" nillable="true" type="xsd:string"/>
@@ -525,10 +525,10 @@
         <xsd:sequence>
             <xsd:element name="CourtAgencyIdentifierCode" nillable="true" type="xsd:string"/>
             <xsd:element name="CourtRoomCode" nillable="true" type="xsd:string"/>
-            <xsd:element name="CourtProceedingDate" nillable="true" type="xsd:string"/>
-            <xsd:element name="CreationTime" nillable="true" type="xsd:string"/>
+            <xsd:element name="CourtProceedingDate" nillable="true" type="xsd:dateTime"/>
+            <xsd:element name="CreationTime" nillable="true" type="xsd:dateTime"/>
             <xsd:element name="EnterUserId" nillable="true" type="xsd:string"/>
-            <xsd:element name="EventTime" nillable="true" type="xsd:string"/>
+            <xsd:element name="EventTime" nillable="true" type="xsd:dateTime"/>
             <xsd:element name="EventTypeCode" nillable="true" type="xsd:string"/>
             <xsd:element name="EventLogText" nillable="true" type="xsd:string"/>
             <xsd:element name="SourceEventSeqNo" nillable="true" type="xsd:string"/>
@@ -564,8 +564,8 @@
 
     <xsd:complexType name="NextAppearanceCRType">
         <xsd:sequence>
-            <xsd:element name="AppearanceDate" nillable="true" type="xsd:string"/>
-            <xsd:element name="AppearanceTime" nillable="true" type="xsd:string"/>
+            <xsd:element name="AppearanceDate" nillable="true" type="xsd:dateTime"/>
+            <xsd:element name="AppearanceTime" nillable="true" type="xsd:dateTime"/>
             <xsd:element name="AppearanceReason" nillable="true" type="xsd:string"/>
             <xsd:element name="CourtAgencyIdentifier" nillable="true" type="xsd:string"/>
             <xsd:element name="CourtRoom" nillable="true" type="xsd:string"/>
@@ -592,7 +592,7 @@
     <xsd:complexType name="GenerateDocumentCRType">
         <xsd:sequence>
             <xsd:element name="FormTypeCd" nillable="true" type="xsd:string"/>
-            <xsd:element name="NextAppearanceDate" nillable="true" type="xsd:string"/>
+            <xsd:element name="NextAppearanceDate" nillable="true" type="xsd:dateTime"/>
             <xsd:element name="RegistryToCreateYN" nillable="true" type="xsd:string"/>
             <xsd:element name="ReferralTo" nillable="true" type="xsd:string"/>
             <xsd:element name="ReferralReason" nillable="true" type="xsd:string"/>
@@ -620,10 +620,10 @@
         <xsd:sequence>
             <xsd:element name="CourtAgencyIdentifierCode" nillable="true" type="xsd:string"/>
             <xsd:element name="CourtRoomCode" nillable="true" type="xsd:string"/>
-            <xsd:element name="CourtProceedingDate" nillable="true" type="xsd:string"/>
-            <xsd:element name="CreationTime" nillable="true" type="xsd:string"/>
+            <xsd:element name="CourtProceedingDate" nillable="true" type="xsd:dateTime"/>
+            <xsd:element name="CreationTime" nillable="true" type="xsd:dateTime"/>
             <xsd:element name="EnterUserId" nillable="true" type="xsd:string"/>
-            <xsd:element name="EventTime" nillable="true" type="xsd:string"/>
+            <xsd:element name="EventTime" nillable="true" type="xsd:dateTime"/>
             <xsd:element name="EventTypeCode" nillable="true" type="xsd:string"/>
             <xsd:element name="EventLogText" nillable="true" type="xsd:string"/>
             <xsd:element name="SourceEventSeqNo" nillable="true" type="xsd:string"/>
@@ -678,10 +678,10 @@
         <xsd:sequence>
             <xsd:element name="CourtAgencyIdentifierCode" nillable="true" type="xsd:string"/>
             <xsd:element name="CourtRoomCode" nillable="true" type="xsd:string"/>
-            <xsd:element name="CourtProceedingDate" nillable="true" type="xsd:string"/>
-            <xsd:element name="CreationTime" nillable="true" type="xsd:string"/>
+            <xsd:element name="CourtProceedingDate" nillable="true" type="xsd:dateTime"/>
+            <xsd:element name="CreationTime" nillable="true" type="xsd:dateTime"/>
             <xsd:element name="EnterUserId" nillable="true" type="xsd:string"/>
-            <xsd:element name="EventTime" nillable="true" type="xsd:string"/>
+            <xsd:element name="EventTime" nillable="true" type="xsd:dateTime"/>
             <xsd:element name="EventTypeCode" nillable="true" type="xsd:string"/>
             <xsd:element name="EventLogText" nillable="true" type="xsd:string"/>
             <xsd:element name="SourceEventSeqNo" nillable="true" type="xsd:string"/>
@@ -730,10 +730,10 @@
         <xsd:sequence>
             <xsd:element name="CourtAgencyIdentifierCode" nillable="true" type="xsd:string"/>
             <xsd:element name="CourtRoomCode" nillable="true" type="xsd:string"/>
-            <xsd:element name="CourtProceedingDate" nillable="true" type="xsd:string"/>
-            <xsd:element name="CreationTime" nillable="true" type="xsd:string"/>
+            <xsd:element name="CourtProceedingDate" nillable="true" type="xsd:dateTime"/>
+            <xsd:element name="CreationTime" nillable="true" type="xsd:dateTime"/>
             <xsd:element name="EnterUserId" nillable="true" type="xsd:string"/>
-            <xsd:element name="EventTime" nillable="true" type="xsd:string"/>
+            <xsd:element name="EventTime" nillable="true" type="xsd:dateTime"/>
             <xsd:element name="EventTypeCode" nillable="true" type="xsd:string"/>
             <xsd:element name="EventLogText" nillable="true" type="xsd:string"/>
             <xsd:element name="SourceEventSeqNo" nillable="true" type="xsd:string"/>
@@ -764,7 +764,7 @@
             <xsd:element name="SentenceTypeCd" nillable="true" type="xsd:string"/>
             <xsd:element name="Amount" nillable="true" type="xsd:string"/>
             <xsd:element name="VictimSurchargeTypeCd" nillable="true" type="xsd:string"/>
-            <xsd:element name="DueDate" nillable="true" type="xsd:string"/>
+            <xsd:element name="DueDate" nillable="true" type="xsd:dateTime"/>
             <xsd:element name="PaymentScheduleText" nillable="true" type="xsd:string"/>
             <xsd:element name="JailYN" nillable="true" type="xsd:string"/>
             <xsd:element name="SameAsFineYN" nillable="true" type="xsd:string"/>
@@ -791,8 +791,8 @@
             <xsd:element name="ConsecutiveText" nillable="true" type="xsd:string"/>
             <xsd:element name="TermText" nillable="true" type="xsd:string"/>
             <xsd:element name="SectionText" nillable="true" type="xsd:string"/>
-            <xsd:element name="ReportingDate" nillable="true" type="xsd:string"/>
-            <xsd:element name="ReportingTime" nillable="true" type="xsd:string"/>
+            <xsd:element name="ReportingDate" nillable="true" type="xsd:dateTime"/>
+            <xsd:element name="ReportingTime" nillable="true" type="xsd:dateTime"/>
             <xsd:element name="ReportingLocationText" nillable="true" type="xsd:string"/>
         </xsd:sequence>
     </xsd:complexType>
@@ -824,10 +824,10 @@
         <xsd:sequence>
             <xsd:element name="CourtAgencyIdentifierCode" nillable="true" type="xsd:string"/>
             <xsd:element name="CourtRoomCode" nillable="true" type="xsd:string"/>
-            <xsd:element name="CourtProceedingDate" nillable="true" type="xsd:string"/>
-            <xsd:element name="CreationTime" nillable="true" type="xsd:string"/>
+            <xsd:element name="CourtProceedingDate" nillable="true" type="xsd:dateTime"/>
+            <xsd:element name="CreationTime" nillable="true" type="xsd:dateTime"/>
             <xsd:element name="EnterUserId" nillable="true" type="xsd:string"/>
-            <xsd:element name="EventTime" nillable="true" type="xsd:string"/>
+            <xsd:element name="EventTime" nillable="true" type="xsd:dateTime"/>
             <xsd:element name="EventTypeCode" nillable="true" type="xsd:string"/>
             <xsd:element name="EventLogText" nillable="true" type="xsd:string"/>
             <xsd:element name="SourceEventSeqNo" nillable="true" type="xsd:string"/>
@@ -854,10 +854,10 @@
         <xsd:sequence>
             <xsd:element name="ActionCd" nillable="true" type="xsd:string"/>
             <xsd:element name="BanType" nillable="true" type="xsd:string"/>
-            <xsd:element name="OrderedDate" nillable="true" type="xsd:string"/>
+            <xsd:element name="OrderedDate" nillable="true" type="xsd:dateTime"/>
             <xsd:element name="BanStatuteId" nillable="true" type="xsd:string"/>
             <xsd:element name="BanOtherStatuteDsc" nillable="true" type="xsd:string"/>
-            <xsd:element name="ExpiredDate" nillable="true" type="xsd:string"/>
+            <xsd:element name="ExpiredDate" nillable="true" type="xsd:dateTime"/>
             <xsd:element name="BanCommentText" nillable="true" type="xsd:string"/>
             <xsd:element name="AcprId" nillable="true" type="xsd:string"/>
         </xsd:sequence>
@@ -924,10 +924,10 @@
         <xsd:sequence>
             <xsd:element name="CourtAgencyIdentifierCode" nillable="true" type="xsd:string"/>
             <xsd:element name="CourtRoomCode" nillable="true" type="xsd:string"/>
-            <xsd:element name="CourtProceedingDate" nillable="true" type="xsd:string"/>
-            <xsd:element name="CreationTime" nillable="true" type="xsd:string"/>
+            <xsd:element name="CourtProceedingDate" nillable="true" type="xsd:dateTime"/>
+            <xsd:element name="CreationTime" nillable="true" type="xsd:dateTime"/>
             <xsd:element name="EnterUserId" nillable="true" type="xsd:string"/>
-            <xsd:element name="EventTime" nillable="true" type="xsd:string"/>
+            <xsd:element name="EventTime" nillable="true" type="xsd:dateTime"/>
             <xsd:element name="EventTypeCode" nillable="true" type="xsd:string"/>
             <xsd:element name="EventLogText" nillable="true" type="xsd:string"/>
             <xsd:element name="SourceEventSeqNo" nillable="true" type="xsd:string"/>
@@ -979,10 +979,10 @@
         <xsd:sequence>
             <xsd:element name="CourtAgencyIdentifierCode" nillable="true" type="xsd:string"/>
             <xsd:element name="CourtRoomCode" nillable="true" type="xsd:string"/>
-            <xsd:element name="CourtProceedingDate" nillable="true" type="xsd:string"/>
-            <xsd:element name="CreationTime" nillable="true" type="xsd:string"/>
+            <xsd:element name="CourtProceedingDate" nillable="true" type="xsd:dateTime"/>
+            <xsd:element name="CreationTime" nillable="true" type="xsd:dateTime"/>
             <xsd:element name="EnterUserId" nillable="true" type="xsd:string"/>
-            <xsd:element name="EventTime" nillable="true" type="xsd:string"/>
+            <xsd:element name="EventTime" nillable="true" type="xsd:dateTime"/>
             <xsd:element name="EventTypeCode" nillable="true" type="xsd:string"/>
             <xsd:element name="EventLogText" nillable="true" type="xsd:string"/>
             <xsd:element name="SourceEventSeqNo" nillable="true" type="xsd:string"/>
@@ -1026,10 +1026,10 @@
         <xsd:sequence>
             <xsd:element name="CourtAgencyIdentifierCode" nillable="true" type="xsd:string"/>
             <xsd:element name="CourtRoomCode" nillable="true" type="xsd:string"/>
-            <xsd:element name="CourtProceedingDate" nillable="true" type="xsd:string"/>
-            <xsd:element name="CreationTime" nillable="true" type="xsd:string"/>
+            <xsd:element name="CourtProceedingDate" nillable="true" type="xsd:dateTime"/>
+            <xsd:element name="CreationTime" nillable="true" type="xsd:dateTime"/>
             <xsd:element name="EnterUserId" nillable="true" type="xsd:string"/>
-            <xsd:element name="EventTime" nillable="true" type="xsd:string"/>
+            <xsd:element name="EventTime" nillable="true" type="xsd:dateTime"/>
             <xsd:element name="EventTypeCode" nillable="true" type="xsd:string"/>
             <xsd:element name="SourcePackageId" nillable="true" type="xsd:string"/>
             <xsd:element name="EventLogText" nillable="true" type="xsd:string"/>
@@ -1077,10 +1077,10 @@
         <xsd:sequence>
             <xsd:element name="CourtAgencyIdentifierCode" nillable="true" type="xsd:string"/>
             <xsd:element name="CourtRoomCode" nillable="true" type="xsd:string"/>
-            <xsd:element name="CourtProceedingDate" nillable="true" type="xsd:string"/>
-            <xsd:element name="CreationTime" nillable="true" type="xsd:string"/>
+            <xsd:element name="CourtProceedingDate" nillable="true" type="xsd:dateTime"/>
+            <xsd:element name="CreationTime" nillable="true" type="xsd:dateTime"/>
             <xsd:element name="EnterUserId" nillable="true" type="xsd:string"/>
-            <xsd:element name="EventTime" nillable="true" type="xsd:string"/>
+            <xsd:element name="EventTime" nillable="true" type="xsd:dateTime"/>
             <xsd:element name="EventTypeCode" nillable="true" type="xsd:string"/>
             <xsd:element name="EventLogText" nillable="true" type="xsd:string"/>
             <xsd:element name="SourceEventSeqNo" nillable="true" type="xsd:string"/>
@@ -1127,10 +1127,10 @@
         <xsd:sequence>
             <xsd:element name="CourtAgencyIdentifierCode" nillable="true" type="xsd:string"/>
             <xsd:element name="CourtRoomCode" nillable="true" type="xsd:string"/>
-            <xsd:element name="CourtProceedingDate" nillable="true" type="xsd:string"/>
-            <xsd:element name="CreationTime" nillable="true" type="xsd:string"/>
+            <xsd:element name="CourtProceedingDate" nillable="true" type="xsd:dateTime"/>
+            <xsd:element name="CreationTime" nillable="true" type="xsd:dateTime"/>
             <xsd:element name="EnterUserId" nillable="true" type="xsd:string"/>
-            <xsd:element name="EventTime" nillable="true" type="xsd:string"/>
+            <xsd:element name="EventTime" nillable="true" type="xsd:dateTime"/>
             <xsd:element name="EventTypeCode" nillable="true" type="xsd:string"/>
             <xsd:element name="EventLogText" nillable="true" type="xsd:string"/>
             <xsd:element name="SourceEventSeqNo" nillable="true" type="xsd:string"/>
@@ -1164,6 +1164,10 @@
             <xsd:element name="PartyId" nillable="true" type="xsd:string"/>
             <xsd:element name="PartyTypeCd" nillable="true" type="xsd:string"/>
             <xsd:element name="PartyAppearanceMethod" nillable="true" type="xsd:string"/>
+            <xsd:element name="RemoteAttendanceYN" nillable="true" type="xsd:string"/>
+            <xsd:element name="RemoteAgencyIdentifierId" nillable="true" type="xsd:string"/>
+            <xsd:element name="RemoteCourtRoomAgencyIdentifierId" nillable="true" type="xsd:string"/>
+            <xsd:element name="RemoteCourtRoomCd" nillable="true" type="xsd:string"/>
             <xsd:element name="Counsel" nillable="true" type="tns:CounselType" maxOccurs="unbounded"/>
             <xsd:element name="Representative" nillable="true" type="tns:RepresentativeType" maxOccurs="unbounded"/>
         </xsd:sequence>
@@ -1205,10 +1209,10 @@
         <xsd:sequence>
             <xsd:element name="CourtAgencyIdentifierCode" nillable="true" type="xsd:string"/>
             <xsd:element name="CourtRoomCode" nillable="true" type="xsd:string"/>
-            <xsd:element name="CourtProceedingDate" nillable="true" type="xsd:string"/>
-            <xsd:element name="CreationTime" nillable="true" type="xsd:string"/>
+            <xsd:element name="CourtProceedingDate" nillable="true" type="xsd:dateTime"/>
+            <xsd:element name="CreationTime" nillable="true" type="xsd:dateTime"/>
             <xsd:element name="EnterUserId" nillable="true" type="xsd:string"/>
-            <xsd:element name="EventTime" nillable="true" type="xsd:string"/>
+            <xsd:element name="EventTime" nillable="true" type="xsd:dateTime"/>
             <xsd:element name="EventTypeCode" nillable="true" type="xsd:string"/>
             <xsd:element name="EventLogText" nillable="true" type="xsd:string"/>
             <xsd:element name="SourceEventSeqNo" nillable="true" type="xsd:string"/>
@@ -1234,7 +1238,7 @@
     <xsd:complexType name="OrderEventType">
         <xsd:sequence>
             <xsd:element name="OrderDetailText" nillable="true" type="xsd:string"/>
-            <xsd:element name="DueDate" nillable="true" type="xsd:string"/>
+            <xsd:element name="DueDate" nillable="true" type="xsd:dateTime"/>
             <xsd:element name="DisclosureAuthorizedTo" nillable="true" type="xsd:string"/>
             <xsd:element name="OrderUnderSection" nillable="true" type="xsd:string"/>
             <xsd:element name="PurposeOfReport" nillable="true" type="xsd:string"/>
@@ -1269,10 +1273,10 @@
         <xsd:sequence>
             <xsd:element name="CourtAgencyIdentifierCode" nillable="true" type="xsd:string"/>
             <xsd:element name="CourtRoomCode" nillable="true" type="xsd:string"/>
-            <xsd:element name="CourtProceedingDate" nillable="true" type="xsd:string"/>
-            <xsd:element name="CreationTime" nillable="true" type="xsd:string"/>
+            <xsd:element name="CourtProceedingDate" nillable="true" type="xsd:dateTime"/>
+            <xsd:element name="CreationTime" nillable="true" type="xsd:dateTime"/>
             <xsd:element name="EnterUserId" nillable="true" type="xsd:string"/>
-            <xsd:element name="EventTime" nillable="true" type="xsd:string"/>
+            <xsd:element name="EventTime" nillable="true" type="xsd:dateTime"/>
             <xsd:element name="EventTypeCode" nillable="true" type="xsd:string"/>
             <xsd:element name="EventLogText" nillable="true" type="xsd:string"/>
             <xsd:element name="SourceEventSeqNo" nillable="true" type="xsd:string"/>
@@ -1287,8 +1291,8 @@
         <xsd:sequence>
             <xsd:element name="OrderTypeCd" nillable="true" type="xsd:string"/>
             <xsd:element name="AdjudicatorPartId" nillable="true" type="xsd:string"/>
-            <xsd:element name="EnteredDate" nillable="true" type="xsd:string"/>
-            <xsd:element name="ExpiryDate" nillable="true" type="xsd:string"/>
+            <xsd:element name="EnteredDate" nillable="true" type="xsd:dateTime"/>
+            <xsd:element name="ExpiryDate" nillable="true" type="xsd:dateTime"/>
             <xsd:element name="RegistryToDraftYN" nillable="true" type="xsd:string"/>
             <xsd:element name="NoticeRequiredYN" nillable="true" type="xsd:string"/>
             <xsd:element name="SignedOnBenchYN" nillable="true" type="xsd:string"/>
@@ -1320,7 +1324,7 @@
     <xsd:complexType name="OrderTermType">
         <xsd:sequence>
             <xsd:element name="OrderTermSeqNo" nillable="true" type="xsd:string"/>
-            <xsd:element name="OrderTermEventTime" nillable="true" type="xsd:string"/>
+            <xsd:element name="OrderTermEventTime" nillable="true" type="xsd:dateTime"/>
             <xsd:element name="OrderTermText" nillable="true" type="xsd:string"/>
             <xsd:element name="OrderTermLogNoteText" nillable="true" type="xsd:string"/>
         </xsd:sequence>
@@ -1331,7 +1335,7 @@
             <xsd:element name="OrderRoleCd" nillable="true" type="xsd:string"/>
             <xsd:element name="PartyFullName" nillable="true" type="xsd:string"/>
             <xsd:element name="PartyId" nillable="true" type="xsd:string"/>
-            <xsd:element name="BirthDate" nillable="true" type="xsd:string"/>
+            <xsd:element name="BirthDate" nillable="true" type="xsd:dateTime"/>
         </xsd:sequence>
     </xsd:complexType>
 
@@ -1369,9 +1373,9 @@
         <xsd:sequence>
             <xsd:element name="CourtAgencyIdentifierCode" nillable="true" type="xsd:string"/>
             <xsd:element name="CourtRoomCode" nillable="true" type="xsd:string"/>
-            <xsd:element name="CourtProceedingDate" nillable="true" type="xsd:string"/>
-            <xsd:element name="CreationTime" nillable="true" type="xsd:string"/>
-            <xsd:element name="EventTime" nillable="true" type="xsd:string"/>
+            <xsd:element name="CourtProceedingDate" nillable="true" type="xsd:dateTime"/>
+            <xsd:element name="CreationTime" nillable="true" type="xsd:dateTime"/>
+            <xsd:element name="EventTime" nillable="true" type="xsd:dateTime"/>
             <xsd:element name="EnterUserId" nillable="true" type="xsd:string"/>
             <xsd:element name="EventTypeCode" nillable="true" type="xsd:string"/>
             <xsd:element name="EventLogText" nillable="true" type="xsd:string"/>
@@ -1426,9 +1430,9 @@
         <xsd:sequence>
             <xsd:element name="CourtAgencyIdentifierCode" nillable="true" type="xsd:string"/>
             <xsd:element name="CourtRoomCode" nillable="true" type="xsd:string"/>
-            <xsd:element name="CourtProceedingDate" nillable="true" type="xsd:string"/>
-            <xsd:element name="CreationTime" nillable="true" type="xsd:string"/>
-            <xsd:element name="EventTime" nillable="true" type="xsd:string"/>
+            <xsd:element name="CourtProceedingDate" nillable="true" type="xsd:dateTime"/>
+            <xsd:element name="CreationTime" nillable="true" type="xsd:dateTime"/>
+            <xsd:element name="EventTime" nillable="true" type="xsd:dateTime"/>
             <xsd:element name="EnterUserId" nillable="true" type="xsd:string"/>
             <xsd:element name="EventTypeCode" nillable="true" type="xsd:string"/>
             <xsd:element name="EventLogText" nillable="true" type="xsd:string"/>

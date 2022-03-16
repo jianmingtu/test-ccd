@@ -6,7 +6,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.5.3</version>
+        <version>2.5.9</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>ca.bc.gov.open</groupId>
@@ -16,6 +16,7 @@
     <description>Demo project for Spring Boot</description>
     <properties>
         <java.version>11</java.version>
+        <log4j2.version>2.17.1</log4j2.version>
     </properties>
     <repositories>
         <repository>
@@ -26,13 +27,16 @@
     </repositories>
 
     <modules>
-        <module>jag-ccd-application</module>
+        <module>jag-ccd-application-1.1</module>
+        <module>jag-ccd-application-1.2</module>
         <module>ccd-code-coverage</module>
         <module>ccd-court-list-models</module>
         <module>ccd-civil-models</module>
         <module>ccd-civil-secure-models</module>
         <module>ccd-common-models</module>
         <module>ccd-court-list-secure-models</module>
+        <module>AutomatedTests</module>
+        <module>comparison-tool-1.1</module>
     </modules>
 
 

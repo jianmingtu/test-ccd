@@ -1,0 +1,335 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project id="3341cae4-ebf5-4b27-ac0a-8060d8763c40" activeEnvironment="Default" name="CCDGetCivilFileContentSecure" resourceRoot="${projectDir}" soapui-version="5.6.0" abortOnError="false" runType="SEQUENTIAL" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:interface xsi:type="con:WsdlInterface" id="cb3ba8c8-913a-4e5f-a222-8b736784b083" wsaVersion="NONE" name="CCD_Source_CivilFileContent_ws_CivilFileContentSecure_Binder" type="wsdl" bindingName="{http://courts.ag.gov.bc.ca/CCD.Source.CivilFileContent.ws:CivilFileContent}CCD_Source_CivilFileContent_ws_CivilFileContentSecure_Binder" soapVersion="1_2" anonymous="optional" definition="file:/C:/workspace2/jag-ccd/jag-ccd-application-1.2/src/main/resources/xsdSchemas/civilFileContentSecure.wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="file:\C:\workspace2\jag-ccd\jag-ccd-application-1.2\src\main\resources\xsdSchemas\civilFileContentSecure.wsdl"><con:part><con:url>file:\C:\workspace2\jag-ccd\jag-ccd-application-1.2\src\main\resources\xsdSchemas\civilFileContentSecure.wsdl</con:url><con:content><![CDATA[<wsdl:definitions name="CivilFileContentSecure" targetNamespace="http://courts.ag.gov.bc.ca/CCD.Source.CivilFileContent.ws:CivilFileContent" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns1="http://courts.ag.gov.bc.ca/CCD.Source.CivilFileContent.ws:CivilFileContent" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:soapjms="http://www.w3.org/2010/soapjms/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:tns="http://reeks.bcgov/CCD.Source.CivilFileContent.ws:CivilFileContentSecure" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://courts.ag.gov.bc.ca/CCD.Source.CivilFileContent.ws:CivilFileContent" xmlns:tns="http://courts.ag.gov.bc.ca/CCD.Source.CivilFileContent.ws:CivilFileContent">
+      <xsd:element name="getCivilFileContentSecure" type="tns:getCivilFileContentSecure"/>
+      <xsd:element name="getCivilFileContentSecureResponse" type="tns:getCivilFileContentSecureResponse"/>
+      <xsd:complexType name="getCivilFileContentSecure">
+        <xsd:sequence>
+          <xsd:element name="RequestAgencyIdentifierId" nillable="true" type="xsd:string"/>
+          <xsd:element name="RequestPartId" nillable="true" type="xsd:string"/>
+          <xsd:element name="RequestDtm" nillable="true" type="xsd:string"/>
+          <xsd:element name="ApplicationCd" nillable="true" type="xsd:string"/>
+          <xsd:element name="CourtLocaCd" type="xsd:string" minOccurs="0"/>
+          <xsd:element name="CourtRoomCd" type="xsd:string" minOccurs="0"/>
+          <xsd:element name="CourtProceedingDate" type="xsd:string" minOccurs="0"/>
+          <xsd:element name="AppearanceId" type="xsd:long" minOccurs="0"/>
+          <xsd:element name="PhysicalFileId" nillable="true" type="xsd:string"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="getCivilFileContentSecureResponse">
+        <xsd:sequence>
+          <xsd:element name="ResultCd" nillable="true" type="xsd:string"/>
+          <xsd:element name="ResultMessage" nillable="true" type="xsd:string"/>
+          <xsd:element name="CivilFileContentDoc" nillable="true" type="tns:CivilFileContentDoc"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="CivilFileContentDoc">
+        <xsd:sequence>
+          <xsd:element name="CourtLocaCd" nillable="true" type="xsd:string"/>
+          <xsd:element name="CourtRoomCd" nillable="true" type="xsd:string"/>
+          <xsd:element name="CourtProceedingDate" nillable="true" type="xsd:string"/>
+          <xsd:element name="AppearanceId" nillable="true" type="xsd:string" maxOccurs="unbounded"/>
+          <xsd:element name="PhysicalFileId" nillable="true" type="xsd:string"/>
+          <xsd:element name="CivilFile" nillable="true" type="tns:CivilFileType" maxOccurs="unbounded"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="CivilFileType">
+        <xsd:sequence>
+          <xsd:element name="PhysicalFileID" nillable="true" type="xsd:string"/>
+          <xsd:element name="FileNumber" nillable="true" type="xsd:string"/>
+          <xsd:element name="CourtLevelCd" nillable="true" type="xsd:string"/>
+          <xsd:element name="CourtClassCd" nillable="true" type="xsd:string"/>
+          <xsd:element name="IndigencyGrantedYN" nillable="true" type="xsd:string"/>
+          <xsd:element name="InfantFileYN" nillable="true" type="xsd:string"/>
+          <xsd:element name="CFCSAFileYN" nillable="true" type="xsd:string"/>
+          <xsd:element name="MarriagePlaceText" nillable="true" type="xsd:string"/>
+          <xsd:element name="MarriageDate" nillable="true" type="xsd:string"/>
+          <xsd:element name="DivorceDate" nillable="true" type="xsd:string"/>
+          <xsd:element name="FederalClearanceDate" nillable="true" type="xsd:string"/>
+          <xsd:element name="CentralRegNumber" nillable="true" type="xsd:string"/>
+          <xsd:element name="CaveatExpiryDate" nillable="true" type="xsd:string"/>
+          <xsd:element name="ProbateFileNumber" nillable="true" type="xsd:string"/>
+          <xsd:element name="CaveatCancelledYN" nillable="true" type="xsd:string"/>
+          <xsd:element name="AssetDeclaredAmt" nillable="true" type="xsd:string"/>
+          <xsd:element name="ProbateFeeAmt" nillable="true" type="xsd:string"/>
+          <xsd:element name="ProbateEnteredDate" nillable="true" type="xsd:string"/>
+          <xsd:element name="AdditionalAssetDeclaredAmt" nillable="true" type="xsd:string"/>
+          <xsd:element name="AdditionalProbateFeeAmt" nillable="true" type="xsd:string"/>
+          <xsd:element name="EstateValueAmt" nillable="true" type="xsd:string"/>
+          <xsd:element name="OutsideBCAssetAmt" nillable="true" type="xsd:string"/>
+          <xsd:element name="AssetCommentText" nillable="true" type="xsd:string"/>
+          <xsd:element name="FileCommentText" nillable="true" type="xsd:string"/>
+          <xsd:element name="SealedYN" nillable="true" type="xsd:string"/>
+          <xsd:element name="SheriffCommentText" nillable="true" type="xsd:string"/>
+          <xsd:element name="FileLocaAgencyIdentifierCd" nillable="true" type="xsd:string"/>
+          <xsd:element name="SpecialProgram" nillable="true" type="tns:SpecialProgramType" maxOccurs="unbounded"/>
+          <xsd:element name="PreviousAppearance" nillable="true" type="tns:PreviousAppearanceType" maxOccurs="unbounded"/>
+          <xsd:element name="Document" nillable="true" type="tns:DocumentType" maxOccurs="unbounded"/>
+          <xsd:element name="ReferenceDocument" nillable="true" type="tns:ReferenceDocumentType" maxOccurs="unbounded"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="SpecialProgramType">
+        <xsd:sequence>
+          <xsd:element name="SpecialProgramDsc" nillable="true" type="xsd:string"/>
+          <xsd:element name="ProgramEntryDate" nillable="true" type="xsd:string"/>
+          <xsd:element name="ProgramEntryReasonDsc" nillable="true" type="xsd:string"/>
+          <xsd:element name="ProgramExitDate" nillable="true" type="xsd:string"/>
+          <xsd:element name="ProgramExitReasonDsc" nillable="true" type="xsd:string"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="PreviousAppearanceType">
+        <xsd:sequence>
+          <xsd:element name="AppearanceId" nillable="true" type="xsd:string"/>
+          <xsd:element name="AppearanceDate" nillable="true" type="xsd:string"/>
+          <xsd:element name="CourtAgencyIdentifier" nillable="true" type="xsd:string"/>
+          <xsd:element name="CourtRoom" nillable="true" type="xsd:string"/>
+          <xsd:element name="AdjudicatorName" nillable="true" type="xsd:string"/>
+          <xsd:element name="AdjudicatorComment" nillable="true" type="xsd:string"/>
+          <xsd:element name="AdjudicatorAppearanceMethod" nillable="true" type="xsd:string"/>
+          <xsd:element name="DocumentHearing" nillable="true" type="tns:DocumentHearingType" maxOccurs="unbounded"/>
+          <xsd:element name="CourtParticipant" nillable="true" type="tns:CourtParticipantType" maxOccurs="unbounded"/>
+          <xsd:element name="GeneralAttendee" nillable="true" type="tns:GeneralAttendeeType" maxOccurs="unbounded"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="DocumentHearingType">
+        <xsd:sequence>
+          <xsd:element name="DocumentId" nillable="true" type="xsd:string"/>
+          <xsd:element name="FileSeqNumber" nillable="true" type="xsd:string"/>
+          <xsd:element name="DocumentTypeCd" nillable="true" type="xsd:string"/>
+          <xsd:element name="DocumentTypeDescription" nillable="true" type="xsd:string"/>
+          <xsd:element name="OrderDocumentYN" nillable="true" type="xsd:string"/>
+          <xsd:element name="AppearanceReasonCode" nillable="true" type="xsd:string"/>
+          <xsd:element name="AppearanceResultCode" nillable="true" type="xsd:string"/>
+          <xsd:element name="Issue" nillable="true" type="tns:IssueType" maxOccurs="unbounded"/>
+          <xsd:element name="FiledBy" nillable="true" type="tns:FiledByType" maxOccurs="unbounded"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="IssueType">
+        <xsd:sequence>
+          <xsd:element name="IssueDsc" nillable="true" type="xsd:string"/>
+          <xsd:element name="IssueNumber" nillable="true" type="xsd:string"/>
+          <xsd:element name="ConcludedYN" nillable="true" type="xsd:string"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="FiledByType">
+        <xsd:sequence>
+          <xsd:element name="FiledByName" nillable="true" type="xsd:string"/>
+          <xsd:element name="RoleTypeCode" nillable="true" type="xsd:string"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="CourtParticipantType">
+        <xsd:sequence>
+          <xsd:element name="PartyName" nillable="true" type="xsd:string"/>
+          <xsd:element name="PartyRole" nillable="true" type="xsd:string"/>
+          <xsd:element name="PartId" nillable="true" type="xsd:string"/>
+          <xsd:element name="PartyAppearanceMethod" nillable="true" type="xsd:string"/>
+          <xsd:element name="LeftRightParty" nillable="true" type="xsd:string"/>
+          <xsd:element name="Counsel" nillable="true" type="tns:CounselType" maxOccurs="unbounded"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="CounselType">
+        <xsd:sequence>
+          <xsd:element name="CounselName" nillable="true" type="xsd:string"/>
+          <xsd:element name="CounselAppearanceMethod" nillable="true" type="xsd:string"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="GeneralAttendeeType">
+        <xsd:sequence>
+          <xsd:element name="AttendeeName" nillable="true" type="xsd:string"/>
+          <xsd:element name="CounselName" nillable="true" type="xsd:string"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="DocumentType">
+        <xsd:sequence>
+          <xsd:element name="DocumentId" nillable="true" type="xsd:string"/>
+          <xsd:element name="FileSeqNumber" nillable="true" type="xsd:string"/>
+          <xsd:element name="DocumentTypeCd" nillable="true" type="xsd:string"/>
+          <xsd:element name="DocumentTypeDescription" nillable="true" type="xsd:string"/>
+          <xsd:element name="DocumentAccessLevelCd" nillable="true" type="xsd:string"/>
+          <xsd:element name="DocumentSealEndDate" nillable="true" type="xsd:string"/>
+          <xsd:element name="DocumentSealStartDate" nillable="true" type="xsd:string"/>
+          <xsd:element name="DateGranted" nillable="true" type="xsd:string"/>
+          <xsd:element name="EstimatedDocumentMinutes" nillable="true" type="xsd:string"/>
+          <xsd:element name="EndedDate" nillable="true" type="xsd:string"/>
+          <xsd:element name="DateVaried" nillable="true" type="xsd:string"/>
+          <xsd:element name="CancelledDate" nillable="true" type="xsd:string"/>
+          <xsd:element name="DocumentCommentText" nillable="true" type="xsd:string"/>
+          <xsd:element name="OrderDocumentYN" nillable="true" type="xsd:string"/>
+          <xsd:element name="POROrderYN" nillable="true" type="xsd:string"/>
+          <xsd:element name="CFCOrderYN" nillable="true" type="xsd:string"/>
+          <xsd:element name="ImageId" nillable="true" type="xsd:string"/>
+          <xsd:element name="SealedYN" nillable="true" type="xsd:string"/>
+          <xsd:element name="DocumentPageCount" nillable="true" type="xsd:string"/>
+          <xsd:element name="SwornByNm" nillable="true" type="xsd:string"/>
+          <xsd:element name="AffidavitNo" nillable="true" type="xsd:string"/>
+          <xsd:element name="Issue" nillable="true" type="tns:IssueType" maxOccurs="unbounded"/>
+          <xsd:element name="Appearance" nillable="true" type="tns:AppearanceType" maxOccurs="unbounded"/>
+          <xsd:element name="PartyInterest" nillable="true" type="tns:PartyInterestType" maxOccurs="unbounded"/>
+          <xsd:element name="FiledBy" nillable="true" type="tns:FiledByType" maxOccurs="unbounded"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="AppearanceType">
+        <xsd:sequence>
+          <xsd:element name="AppearanceId" nillable="true" type="xsd:string"/>
+          <xsd:element name="AppearanceDate" nillable="true" type="xsd:string"/>
+          <xsd:element name="CourtAgencyIdentifier" nillable="true" type="xsd:string"/>
+          <xsd:element name="CourtRoom" nillable="true" type="xsd:string"/>
+          <xsd:element name="AppearanceReason" nillable="true" type="xsd:string"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="PartyInterestType">
+        <xsd:sequence>
+          <xsd:element name="OrderRoleTypeDsc" nillable="true" type="xsd:string"/>
+          <xsd:element name="PartyName" nillable="true" type="xsd:string"/>
+          <xsd:element name="PartyBirthDate" nillable="true" type="xsd:string"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="ReferenceDocumentType">
+        <xsd:sequence>
+          <xsd:element name="ReferenceDocumentId" nillable="true" type="xsd:string"/>
+          <xsd:element name="ReferenceDocumentNo" nillable="true" type="xsd:string"/>
+          <xsd:element name="AppearanceId" nillable="true" type="xsd:string"/>
+          <xsd:element name="AppearanceDate" nillable="true" type="xsd:string"/>
+          <xsd:element name="ObjectGuid" nillable="true" type="xsd:string"/>
+          <xsd:element name="DescriptionText" nillable="true" type="xsd:string"/>
+          <xsd:element name="EnterDtm" nillable="true" type="xsd:string"/>
+          <xsd:element name="ReferenceDocumentTypeCd" nillable="true" type="xsd:string"/>
+          <xsd:element name="ReferenceDocumentTypeDsc" nillable="true" type="xsd:string"/>
+          <xsd:element name="ReferenceDocumentInterest" nillable="true" type="tns:ReferenceDocInterest" maxOccurs="unbounded"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="ReferenceDocInterest">
+        <xsd:sequence>
+          <xsd:element name="PartyId" nillable="true" type="xsd:string"/>
+          <xsd:element name="PartyName" nillable="true" type="xsd:string"/>
+          <xsd:element name="NonPartyName" nillable="true" type="xsd:string"/>
+        </xsd:sequence>
+      </xsd:complexType>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="CivilFileContentSecure_PortType_getCivilFileContentSecure">
+    <wsdl:part name="parameters" element="tns1:getCivilFileContentSecure"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="CivilFileContentSecure_PortType_getCivilFileContentSecureResponse">
+    <wsdl:part name="parameters" element="tns1:getCivilFileContentSecureResponse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="CivilFileContentSecure_PortType">
+    <wsdl:operation name="getCivilFileContentSecure">
+      <wsdl:input message="tns1:CivilFileContentSecure_PortType_getCivilFileContentSecure"></wsdl:input>
+      <wsdl:output message="tns1:CivilFileContentSecure_PortType_getCivilFileContentSecureResponse"></wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="CCD_Source_CivilFileContent_ws_CivilFileContentSecure_Binder" type="tns1:CivilFileContentSecure_PortType">
+    <soap12:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="getCivilFileContentSecure">
+      <soap12:operation soapAction="CCD_Source_CivilFileContent_ws_CivilFileContentSecure_Binder_getCivilFileContentSecure" style="document"/>
+      <wsdl:input>
+        <soap12:body parts="parameters" use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body parts="parameters" use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="CivilFileContentSecure">
+    <wsdl:port name="CCD_Source_CivilFileContent_ws_CivilFileContentSecure_Port" binding="tns1:CCD_Source_CivilFileContent_ws_CivilFileContentSecure_Binder">
+      <soap12:address location="http://reeks.bcgov:5555/ws/CCD.Source.CivilFileContent.ws:CivilFileContentSecure/CCD_Source_CivilFileContent_ws_CivilFileContentSecure_Port"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://reeks.bcgov:5555/ws/CCD.Source.CivilFileContent.ws:CivilFileContentSecure/CCD_Source_CivilFileContent_ws_CivilFileContentSecure_Port</con:endpoint></con:endpoints><con:operation id="76a823a0-ad91-4a57-bc99-162f5a754a21" isOneWay="false" action="CCD_Source_CivilFileContent_ws_CivilFileContentSecure_Binder_getCivilFileContentSecure" name="getCivilFileContentSecure" bindingOperationName="getCivilFileContentSecure" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="90f46b47-3116-4325-ad94-8951f55e0a96" name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>https://jag-ccd-1-2-52e74e-dev.apps.silver.devops.gov.bc.ca/ws/secure</con:endpoint><con:request><![CDATA[<soap:Envelope xmlns:soap="http://www.w3.org/2003/05/soap-envelope" xmlns:ccd="http://courts.ag.gov.bc.ca/CCD.Source.CivilFileContent.ws:CivilFileContent">\r
+   <soap:Header/>\r
+   <soap:Body>\r
+      <ccd:getCivilFileContentSecure>\r
+         <RequestAgencyIdentifierId>?</RequestAgencyIdentifierId>\r
+         <RequestPartId>?</RequestPartId>\r
+         <RequestDtm>?</RequestDtm>\r
+         <ApplicationCd>?</ApplicationCd>\r
+         <!--Optional:-->\r
+         <CourtLocaCd>?</CourtLocaCd>\r
+         <!--Optional:-->\r
+         <CourtRoomCd>?</CourtRoomCd>\r
+         <!--Optional:-->\r
+         <CourtProceedingDate>?</CourtProceedingDate>\r
+         <!--Optional:-->\r
+         <AppearanceId>?</AppearanceId>\r
+         <PhysicalFileId>?</PhysicalFileId>\r
+      </ccd:getCivilFileContentSecure>\r
+   </soap:Body>\r
+</soap:Envelope>]]></con:request><con:credentials><con:username>{AUTHENTICATION_USERNAME}</con:username><con:password>{AUTHENTICATION_PASSWORD}</con:password><con:selectedAuthProfile>No Authorization</con:selectedAuthProfile><con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://courts.ag.gov.bc.ca/CCD.Source.CivilFileContent.ws:CivilFileContent/CivilFileContentSecure_PortType/getCivilFileContentSecureRequest"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:testSuite id="5cffb17f-a38c-4701-9ddd-f9f6be54f8bf" name="GetCivilFileContentSecure"><con:settings/><con:runType>SEQUENTIAL</con:runType><con:testCase id="eeedd47b-9f07-45c1-8040-48981979cd5e" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="GetCivilFileContentSecure" searchProperties="true"><con:settings/><con:testStep type="request" name="getCivilFileContentSecure" id="da7414b8-120e-44fb-987e-9f7208f9316f"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>CCD_Source_CivilFileContent_ws_CivilFileContentSecure_Binder</con:interface><con:operation>getCivilFileContentSecure</con:operation><con:request name="getCivilFileContentSecure" id="e1161bff-dcfa-4600-96fa-e8f5e22eafa8"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>https://jag-ccd-1-2-52e74e-dev.apps.silver.devops.gov.bc.ca/ws/secure</con:endpoint><con:request><![CDATA[<soap:Envelope xmlns:soap="http://www.w3.org/2003/05/soap-envelope" xmlns:ccd="http://courts.ag.gov.bc.ca/CCD.Source.CivilFileContent.ws:CivilFileContent">
+   <soap:Header/>
+   <soap:Body>
+      <ccd:getCivilFileContentSecure>
+         <RequestAgencyIdentifierId>83.0001</RequestAgencyIdentifierId>
+         <RequestPartId>19014.0001</RequestPartId>
+         <RequestDtm>2022-02-17 10:36:09.1</RequestDtm>
+         <ApplicationCd>CCD</ApplicationCd>
+         <!--Optional:-->
+         <CourtLocaCd>4801</CourtLocaCd>
+         <!--Optional:-->
+         <CourtRoomCd>009</CourtRoomCd>
+         <!--Optional:-->
+         <CourtProceedingDate>2022-02-17 10:36:09.1</CourtProceedingDate>
+         <!--Optional:-->
+         <AppearanceId>7507</AppearanceId>
+         <PhysicalFileId>14886</PhysicalFileId>
+      </ccd:getCivilFileContentSecure>
+   </soap:Body>
+</soap:Envelope>]]></con:request><con:assertion type="SOAP Response" id="a9f694f5-bc8e-4343-b445-1daead47ee90"/><con:assertion type="Valid HTTP Status Codes" id="8bdeaa6c-0f85-4ba4-ba90-599318238008" name="Valid HTTP Status Codes"><con:configuration><codes>200</codes></con:configuration></con:assertion><con:assertion type="Response SLA Assertion" id="32e18b3b-ecd0-4329-b5dc-9218e1d2658f" name="Response SLA"><con:configuration><SLA>1000</SLA></con:configuration></con:assertion><con:assertion type="Invalid HTTP Status Codes" id="807bc308-f850-4244-98a1-b7ee0e3bc935" name="Invalid HTTP Status Codes"><con:configuration><codes>400, 401, 403, 404, 500, 503</codes></con:configuration></con:assertion><con:assertion type="Simple Contains" id="0f91af7e-3944-4301-bdd5-19f533ee26f1" name="Contains"><con:configuration><token>0</token><ignoreCase>false</ignoreCase><useRegEx>false</useRegEx></con:configuration></con:assertion><con:assertion type="Simple Contains" id="464071d2-74ba-48ed-8d6e-d4a386793731" name="Contains 1"><con:configuration><token>4801</token><ignoreCase>false</ignoreCase><useRegEx>false</useRegEx></con:configuration></con:assertion><con:assertion type="Simple Contains" id="b508a1e2-7180-4d3b-87fe-1ca317b25582" name="Contains 2"><con:configuration><token>2022-02-17 10:36:09.0</token><ignoreCase>false</ignoreCase><useRegEx>false</useRegEx></con:configuration></con:assertion><con:assertion type="Simple Contains" id="ffae9d85-81d0-45a9-992c-a70b374f5af7" name="Contains 3"><con:configuration><token>7507</token><ignoreCase>false</ignoreCase><useRegEx>false</useRegEx></con:configuration></con:assertion><con:assertion type="Simple Contains" id="a199f3f6-bc08-4140-aabc-0e8af25a1f5b" name="Contains 4"><con:configuration><token>14886</token><ignoreCase>false</ignoreCase><useRegEx>false</useRegEx></con:configuration></con:assertion><con:credentials><con:username>{AUTHENTICATION_USERNAME}</con:username><con:password>{AUTHENTICATION_PASSWORD}</con:password><con:selectedAuthProfile>Basic</con:selectedAuthProfile><con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:properties><con:property><con:name>RequestAgencyIdentifierId</con:name><con:value>83.0001</con:value></con:property><con:property><con:name>RequestPartId</con:name><con:value>19014.0001</con:value></con:property><con:property><con:name>RequestDtm</con:name><con:value>2022-02-17 10:36:09.1</con:value></con:property><con:property><con:name>ApplicationCd</con:name><con:value>CCD</con:value></con:property><con:property><con:name>CourtLocaCd</con:name><con:value>4801</con:value></con:property><con:property><con:name>CourtRoomCd</con:name><con:value>009</con:value></con:property><con:property><con:name>CourtProceedingDate</con:name><con:value>2022-02-17 10:36:09.1</con:value></con:property><con:property><con:name>AppearanceId</con:name><con:value>7507</con:value></con:property><con:property><con:name>PhysicalFileId</con:name><con:value>14886</con:value></con:property></con:properties></con:testCase><con:testCase id="b20a6907-ec8b-414b-a442-e7f7c37a9839" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="AutomationTests" searchProperties="true"><con:settings/><con:testStep type="groovy" name="getCivilFileSecure" id="d168a1fe-c3ce-4d0c-b92e-cf95d47fcb8c"><con:settings/><con:config><script>import com.eviware.soapui.support.XmlHolder
+import com.eviware.soapui.impl.wsdl.testcase.WsdlTestRunContext
+
+ def GetCivilFileContentSecure = testRunner.testCase.testSuite.testCases["GetCivilFileContentSecure"].testSteps["getCivilFileContentSecure"].getPropertyValue("Request")
+ 
+ def RequestAgencyIdentifierId=testRunner.testCase.testSuite.testCases["GetCivilFileContentSecure"].getPropertyValue("RequestAgencyIdentifierId")
+ def RequestPartId=testRunner.testCase.testSuite.testCases["GetCivilFileContentSecure"].getPropertyValue("RequestPartId")
+ def RequestDtm=testRunner.testCase.testSuite.testCases["GetCivilFileContentSecure"].getPropertyValue("RequestDtm")
+ def ApplicationCd=testRunner.testCase.testSuite.testCases["GetCivilFileContentSecure"].getPropertyValue("ApplicationCd")
+ def CourtLocaCd=testRunner.testCase.testSuite.testCases["GetCivilFileContentSecure"].getPropertyValue("CourtLocaCd")
+ def CourtRoomCd=testRunner.testCase.testSuite.testCases["GetCivilFileContentSecure"].getPropertyValue("CourtRoomCd")
+ def CourtProceedingDate=testRunner.testCase.testSuite.testCases["GetCivilFileContentSecure"].getPropertyValue("CourtProceedingDate")
+ def AppearanceId=testRunner.testCase.testSuite.testCases["GetCivilFileContentSecure"].getPropertyValue("AppearanceId")
+ def PhysicalFileId=testRunner.testCase.testSuite.testCases["GetCivilFileContentSecure"].getPropertyValue("PhysicalFileId")
+
+ 
+ def xmlAdd= new XmlHolder(GetCivilFileContentSecure)
+ xmlAdd.setNodeValue("//ccd:getCivilFileContentSecure/RequestAgencyIdentifierId",RequestAgencyIdentifierId)
+ xmlAdd.setNodeValue("//ccd:getCivilFileContentSecure/RequestPartId",RequestPartId)
+ xmlAdd.setNodeValue("//ccd:getCivilFileContentSecure/RequestDtm",RequestDtm)
+ xmlAdd.setNodeValue("//ccd:getCivilFileContentSecure/ApplicationCd",ApplicationCd)
+ xmlAdd.setNodeValue("//ccd:getCivilFileContentSecure/CourtLocaCd",CourtLocaCd)
+ xmlAdd.setNodeValue("//ccd:getCivilFileContentSecure/CourtRoomCd",CourtRoomCd)
+ xmlAdd.setNodeValue("//ccd:getCivilFileContentSecure/CourtProceedingDate",CourtProceedingDate)
+ xmlAdd.setNodeValue("//ccd:getCivilFileContentSecure/AppearanceId",AppearanceId)
+ xmlAdd.setNodeValue("//ccd:getCivilFileContentSecure/PhysicalFileId",PhysicalFileId)
+ 
+ def newxmlGet= xmlAdd.getXml();
+ //add xml detail
+ testRunner.testCase.testSuite.testCases["GetCivilFileContentSecure"].testSteps["getCivilFileContentSecure"].setPropertyValue("Request",newxmlGet)
+
+ def getTestStep=testRunner.testCase.testSuite.testCases["GetCivilFileContentSecure"].testSteps["getCivilFileContentSecure"]
+ def contextGetCivilFileContentSecure = new WsdlTestRunContext(getTestStep);
+ getTestStep.run(testRunner,contextGetCivilFileContentSecure)
+ //Validation -
+ def getRes=testRunner.testCase.testSuite.testCases["GetCivilFileContentSecure"].testSteps["getCivilFileContentSecure"].getPropertyValue("Response")
+def Response= new XmlHolder(getRes)
+def GetResponse= Response.getNodeValue("//ResultCd")
+def GetResponse1= Response.getNodeValue("//CourtLocaCd")
+def GetResponse2= Response.getNodeValue("//CourtRoomCd")
+def GetResponse3= Response.getNodeValue("//CourtProceedingDate")
+def GetResponse4= Response.getNodeValue("//AppearanceId")
+def GetResponse5= Response.getNodeValue("//PhysicalFileId")
+
+log.info GetResponse
+log.info GetResponse1
+log.info GetResponse2
+log.info GetResponse3
+log.info GetResponse4
+log.info GetResponse5
+
+assert GetResponse=="0"
+assert GetResponse1=="4801"
+assert GetResponse2=="009"
+assert GetResponse3=="2022-02-17 10:36:09.0"
+assert GetResponse4=="7507"
+assert GetResponse5=="14886"
+</script></con:config></con:testStep><con:properties/></con:testCase><con:properties><con:property><con:name>RequestAgencyIdentifierId</con:name><con:value>83.0001</con:value></con:property><con:property><con:name>RequestPartId</con:name><con:value>19014.0001</con:value></con:property><con:property><con:name>RequestDtm</con:name><con:value>2022-02-17 10:36:09.1</con:value></con:property><con:property><con:name>ApplicationCd</con:name><con:value>CCD</con:value></con:property><con:property><con:name>CourtLocaCd</con:name><con:value>4801</con:value></con:property><con:property><con:name>CourtRoomCd</con:name><con:value>009</con:value></con:property><con:property><con:name>CourtProceedingDate</con:name><con:value>2022-02-17 10:36:09.1</con:value></con:property><con:property><con:name>AppearanceId</con:name><con:value>7507</con:value></con:property><con:property><con:name>PhysicalFileId</con:name><con:value>14886</con:value></con:property></con:properties></con:testSuite><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/><con:oAuth1ProfileContainer/></con:soapui-project>

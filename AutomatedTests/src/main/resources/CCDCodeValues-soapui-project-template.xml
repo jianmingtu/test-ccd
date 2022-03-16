@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project id="581e874e-8c0c-401b-b4f6-2e39887eb5d4" activeEnvironment="Default" name="CodeValues" resourceRoot="${projectDir}" soapui-version="5.6.0" abortOnError="false" runType="SEQUENTIAL" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:interface xsi:type="con:WsdlInterface" id="9d3a9260-f425-4f83-bec7-249b8d104690" wsaVersion="NONE" name="CCD_Source_CodeValues_ws_provider_CodeValues_Binder" type="wsdl" bindingName="{http://brooks/CCD.Source.CodeValues.ws.provider:CodeValues}CCD_Source_CodeValues_ws_provider_CodeValues_Binder" soapVersion="1_1" anonymous="optional" definition="file:/C:/workspace2/jag-ccd/jag-ccd-application/src/main/resources/xsdSchemas/codeValues.wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="file:\C:\workspace2\jag-ccd\jag-ccd-application\src\main\resources\xsdSchemas\codeValues.wsdl"><con:part><con:url>file:\C:\workspace2\jag-ccd\jag-ccd-application\src\main\resources\xsdSchemas\codeValues.wsdl</con:url><con:content><![CDATA[<wsdl:definitions name="CodeValues" targetNamespace="http://brooks/CCD.Source.CodeValues.ws.provider:CodeValues" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:soapjms="http://www.w3.org/2008/07/soap/bindings/JMS/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:tns="http://brooks/CCD.Source.CodeValues.ws.provider:CodeValues" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://brooks/CCD.Source.CodeValues.ws.provider:CodeValues">
+      <xsd:complexType name="getCodeValues">
+        <xsd:sequence>
+          <xsd:element name="lastRetrievedDate" nillable="true" type="xsd:string"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="getCodeValuesResponse">
+        <xsd:sequence>
+          <xsd:element name="CeisCodeValues" nillable="true" type="tns:CodeValues"/>
+          <xsd:element name="JustinCodeValues" nillable="true" type="tns:CodeValues"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="CodeValues">
+        <xsd:sequence>
+          <xsd:element name="CodeValue" nillable="true" type="tns:CodeValue" maxOccurs="unbounded"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="CodeValue">
+        <xsd:sequence>
+          <xsd:element name="codeType" nillable="true" type="xsd:string"/>
+          <xsd:element name="code" nillable="true" type="xsd:string"/>
+          <xsd:element name="shortDesc" nillable="true" type="xsd:string"/>
+          <xsd:element name="longDesc" nillable="true" type="xsd:string"/>
+          <xsd:element name="flex" nillable="true" type="xsd:string"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="getCodeValues" type="tns:getCodeValues"/>
+      <xsd:element name="getCodeValuesResponse" type="tns:getCodeValuesResponse"/>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="CodeValues_PortType_getCodeValues">
+    <wsdl:part name="parameters" element="tns:getCodeValues"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="CodeValues_PortType_getCodeValuesResponse">
+    <wsdl:part name="parameters" element="tns:getCodeValuesResponse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="CodeValues_PortType">
+    <wsdl:operation name="getCodeValues">
+      <wsdl:input message="tns:CodeValues_PortType_getCodeValues"></wsdl:input>
+      <wsdl:output message="tns:CodeValues_PortType_getCodeValuesResponse"></wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="CCD_Source_CodeValues_ws_provider_CodeValues_Binder" type="tns:CodeValues_PortType">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="getCodeValues">
+      <soap:operation soapAction="CCD_Source_CodeValues_ws_provider_CodeValues_Binder_getCodeValues" style="document"/>
+      <wsdl:input>
+        <soap:body parts="parameters" use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body parts="parameters" use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="CodeValues">
+    <wsdl:port name="CCD_Source_CodeValues_ws_provider_CodeValues_Port" binding="tns:CCD_Source_CodeValues_ws_provider_CodeValues_Binder">
+      <soap:address location="{API_HOST}"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>{API_HOST}</con:endpoint></con:endpoints><con:operation id="0bd154e2-6c9f-448f-b162-bffd1a718a80" isOneWay="false" action="CCD_Source_CodeValues_ws_provider_CodeValues_Binder_getCodeValues" name="getCodeValues" bindingOperationName="getCodeValues" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="37c65d39-d904-4f85-8abc-b15f2b1a78eb" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>{API_HOST}</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ccd="http://brooks/CCD.Source.CodeValues.ws.provider:CodeValues">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <ccd:getCodeValues>\r
+         <lastRetrievedDate>?</lastRetrievedDate>\r
+      </ccd:getCodeValues>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="CCD_Source_CodeValues_ws_provider_CodeValues_Binder_getCodeValues"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:testSuite id="8bc3e464-5095-41d1-9087-9da4da59efe0" name="CCDCodeValuesTestSuite"><con:settings/><con:runType>SEQUENTIAL</con:runType><con:testCase id="c5417c86-9e77-48db-9476-af7aae009d88" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="GetCodeValues" searchProperties="true"><con:settings/><con:testStep type="request" name="getCodeValues" id="c311bd85-ab4f-4d3a-a055-764121177e45"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>CCD_Source_CodeValues_ws_provider_CodeValues_Binder</con:interface><con:operation>getCodeValues</con:operation><con:request name="getCodeValues" id="6adaeed9-6897-4e89-95b8-c748ca8738e7"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/ws</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ccd="http://brooks/CCD.Source.CodeValues.ws.provider:CodeValues">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ccd:getCodeValues>
+         <lastRetrievedDate>2013-08-09 09:09:09.1</lastRetrievedDate>
+      </ccd:getCodeValues>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response" id="af94c6b4-b35c-4b79-9067-5ba0563baa0a"/><con:assertion type="Valid HTTP Status Codes" id="920d743d-bf34-4548-9950-bdbd882b13fa" name="Valid HTTP Status Codes"><con:configuration><codes>200</codes></con:configuration></con:assertion><con:assertion type="Invalid HTTP Status Codes" id="a04799bd-e991-48fa-af49-6a64e4cfe6c1" name="Invalid HTTP Status Codes"><con:configuration><codes>400, 401, 403, 500</codes></con:configuration></con:assertion><con:assertion type="Response SLA Assertion" id="761cdd67-4e3a-4b77-ae6b-e71607b0e6a9" name="Response SLA"><con:configuration><SLA>2500</SLA></con:configuration></con:assertion><con:assertion type="Simple Contains" id="5dfc2406-80c1-4bcd-a41f-7dcb5e91467d" name="Contains"><con:configuration><token>ADJUDICATOR</token><ignoreCase>false</ignoreCase><useRegEx>false</useRegEx></con:configuration></con:assertion><con:assertion type="Simple Contains" id="a7930085-7aa4-4dde-b30c-1a457936ff5e" name="Contains 1"><con:configuration><token>59228.0045</token><ignoreCase>false</ignoreCase><useRegEx>false</useRegEx></con:configuration></con:assertion><con:assertion type="Simple Contains" id="5b86ff8d-aa0d-4366-a66b-b487d3a727c4" name="Contains 2"><con:configuration><token>Ceis2, S</token><ignoreCase>false</ignoreCase><useRegEx>false</useRegEx></con:configuration></con:assertion><con:assertion type="Simple Contains" id="897a5632-ee5d-48ab-8fea-bb2ced03b0f3" name="Contains 3"><con:configuration><token>ceis2</token><ignoreCase>false</ignoreCase><useRegEx>false</useRegEx></con:configuration></con:assertion><con:assertion type="Simple Contains" id="db6d8405-5b8d-4942-b2db-db4e543bc2aa" name="Contains 4"><con:configuration><token>ADJU</token><ignoreCase>false</ignoreCase><useRegEx>false</useRegEx></con:configuration></con:assertion><con:assertion type="Simple Contains" id="dedddcb7-9d44-4672-8a2b-37c48ad77bf1" name="Contains 5"><con:configuration><token>85936.0734</token><ignoreCase>false</ignoreCase><useRegEx>false</useRegEx></con:configuration></con:assertion><con:assertion type="Simple Contains" id="1842dfed-b4df-48f1-a4e4-60bf20471b87" name="Contains 6"><con:configuration><token>Dread, JGE</token><ignoreCase>false</ignoreCase><useRegEx>false</useRegEx></con:configuration></con:assertion><con:assertion type="Simple Contains" id="9896d7ad-46d6-4203-a441-e3006fd1c489" name="Contains 7"><con:configuration><token>666</token><ignoreCase>false</ignoreCase><useRegEx>false</useRegEx></con:configuration></con:assertion><con:assertion type="Simple Contains" id="06987eb7-503f-461d-892c-1ca91163e599" name="Contains 8"><con:configuration><token>12910.0026</token><ignoreCase>false</ignoreCase><useRegEx>false</useRegEx></con:configuration></con:assertion><con:assertion type="Simple Contains" id="f273ddf3-009a-4a8c-ac29-bdce6bd7e912" name="Contains 9"><con:configuration><token>Gibson, M</token><ignoreCase>false</ignoreCase><useRegEx>false</useRegEx></con:configuration></con:assertion><con:assertion type="Simple Contains" id="7f2689af-34de-46fa-9097-0618fccb49f6" name="Contains 10"><con:configuration><token>12345</token><ignoreCase>false</ignoreCase><useRegEx>false</useRegEx></con:configuration></con:assertion><con:assertion type="Simple Contains" id="deead732-7fde-4fa9-99ab-6d31ce47ead6" name="Contains 11"><con:configuration><token>108353.0734</token><ignoreCase>false</ignoreCase><useRegEx>false</useRegEx></con:configuration></con:assertion><con:assertion type="Simple Contains" id="066c62f8-a60d-444f-bf27-954e9d8c6122" name="Contains 12"><con:configuration><token>JONES, TOM</token><ignoreCase>false</ignoreCase><useRegEx>false</useRegEx></con:configuration></con:assertion><con:assertion type="Simple Contains" id="d3acb9e1-fc01-454e-9a84-83ce99ab1595" name="Contains 13"><con:configuration><token>233532</token><ignoreCase>false</ignoreCase><useRegEx>false</useRegEx></con:configuration></con:assertion><con:assertion type="Simple Contains" id="d8f547de-2846-4c8d-90ca-8b3fecaab171" name="Contains 14"><con:configuration><token>114622.0734</token><ignoreCase>false</ignoreCase><useRegEx>false</useRegEx></con:configuration></con:assertion><con:assertion type="Simple Contains" id="664aee5b-f21d-4b29-ba43-b950c3a78770" name="Contains 15"><con:configuration><token>Justin94, Tester</token><ignoreCase>false</ignoreCase><useRegEx>false</useRegEx></con:configuration></con:assertion><con:assertion type="Simple Contains" id="5c261870-2ecf-4591-a5e9-a30cd4c4e0fb" name="Contains 16"><con:configuration><token>TST94</token><ignoreCase>false</ignoreCase><useRegEx>false</useRegEx></con:configuration></con:assertion><con:assertion type="Simple Contains" id="f557472a-ebef-4e3b-9c36-f7c549f7a550" name="Contains 17"><con:configuration><token>12912.0026</token><ignoreCase>false</ignoreCase><useRegEx>false</useRegEx></con:configuration></con:assertion><con:assertion type="Simple Contains" id="641f2359-8dfc-4715-8943-9b80bfedfae2" name="Contains 18"><con:configuration><token>Kramer, C</token><ignoreCase>false</ignoreCase><useRegEx>false</useRegEx></con:configuration></con:assertion><con:assertion type="Simple Contains" id="d5f1921d-43cb-4907-812e-9acc69e58264" name="Contains 19"><con:configuration><token>44</token><ignoreCase>false</ignoreCase><useRegEx>false</useRegEx></con:configuration></con:assertion><con:assertion type="Simple Contains" id="46fcbf85-d420-4e82-bbf0-93c4a3e34324" name="Contains 20"><con:configuration><token>APP</token><ignoreCase>false</ignoreCase><useRegEx>false</useRegEx></con:configuration></con:assertion><con:assertion type="Simple Contains" id="3bef7eb3-2620-4521-9df5-a2a242b0ab37" name="Contains 21"><con:configuration><token>Application</token><ignoreCase>false</ignoreCase><useRegEx>false</useRegEx></con:configuration></con:assertion><con:assertion type="Simple Contains" id="49152ca7-bd6b-443a-84aa-e9aa3784a4aa" name="Contains 22"><con:configuration><token>Appointment</token><ignoreCase>false</ignoreCase><useRegEx>false</useRegEx></con:configuration></con:assertion><con:assertion type="Simple Contains" id="b5bba6a6-aae8-4b86-a6a4-6b26e0c56abe" name="Contains 23"><con:configuration><token>APPEARANCE_REASONS</token><ignoreCase>false</ignoreCase><useRegEx>false</useRegEx></con:configuration></con:assertion><con:assertion type="Simple Contains" id="9a62dca4-66a3-47c6-9478-5a7faf1eaedc" name="Contains 24"><con:configuration><token>Case Conference</token><ignoreCase>false</ignoreCase><useRegEx>false</useRegEx></con:configuration></con:assertion><con:assertion type="Simple Contains" id="7a80a678-a2ea-4758-940b-2069a214136b" name="Contains 25"><con:configuration><token>Chambers Application</token><ignoreCase>false</ignoreCase><useRegEx>false</useRegEx></con:configuration></con:assertion><con:assertion type="Simple Contains" id="934167eb-a81f-423e-8b82-ec9c007df130" name="Contains 26"><con:configuration><token>Judicial Case Conference</token><ignoreCase>false</ignoreCase><useRegEx>false</useRegEx></con:configuration></con:assertion><con:assertion type="Simple Contains" id="7cbcb833-20d5-4174-bb1e-edb131e353a6" name="Contains 27"><con:configuration><token>ADMIN_ORDER_TYPES</token><ignoreCase>false</ignoreCase><useRegEx>false</useRegEx></con:configuration></con:assertion><con:assertion type="Simple Contains" id="36ea355d-be11-430a-bf4b-17ca674c49d4" name="Contains 28"><con:configuration><token>RULING ON VOIR DIRE: Evidence on Voir Dire Number VDNUMBER is ruled inadmissible and excluded.</token><ignoreCase>false</ignoreCase><useRegEx>false</useRegEx></con:configuration></con:assertion><con:assertion type="Simple Contains" id="a9110517-f6d3-41cb-ae78-8275d2060634" name="Contains 29"><con:configuration><token>LANGUAGE_TYPES</token><ignoreCase>false</ignoreCase><useRegEx>false</useRegEx></con:configuration></con:assertion><con:assertion type="Simple Contains" id="7af42ef3-2d67-421b-8587-736d0745049e" name="Contains 30"><con:configuration><token>SOM</token><ignoreCase>false</ignoreCase><useRegEx>false</useRegEx></con:configuration></con:assertion><con:assertion type="Simple Contains" id="04825d8d-cad5-4df6-9c07-eca4b2ecc9b9" name="Contains 31"><con:configuration><token>Somalian</token><ignoreCase>false</ignoreCase><useRegEx>false</useRegEx></con:configuration></con:assertion><con:assertion type="Simple Contains" id="fc81f0d8-8464-4e51-a999-5b244653c8e1" name="Contains 32"><con:configuration><token>WIT_STATUS</token><ignoreCase>false</ignoreCase><useRegEx>false</useRegEx></con:configuration></con:assertion><con:assertion type="Simple Contains" id="4cb9405f-07db-44c1-b767-237270f7b774" name="Contains 33"><con:configuration><token>WST9</token><ignoreCase>false</ignoreCase><useRegEx>false</useRegEx></con:configuration></con:assertion><con:assertion type="Simple Contains" id="a0e8b1da-8eb3-4610-81c9-3cc50840a442" name="Contains 34"><con:configuration><token>Re-Promise (Child)</token><ignoreCase>false</ignoreCase><useRegEx>false</useRegEx></con:configuration></con:assertion><con:assertion type="Simple Contains" id="bebdfcac-bca7-4693-82f7-0be9978f48f6" name="Contains 35"><con:configuration><token>ACTIVE</token><ignoreCase>false</ignoreCase><useRegEx>false</useRegEx></con:configuration></con:assertion><con:credentials><con:username>{AUTHENTICATION_USERNAME}</con:username><con:password>{AUTHENTICATION_PASSWORD}</con:password><con:selectedAuthProfile>Basic</con:selectedAuthProfile><con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:properties><con:property><con:name>lastRetrievedDate</con:name><con:value>2013-08-09 09:09:09.1</con:value></con:property></con:properties></con:testCase><con:testCase id="5c63ad11-4822-46b4-a82d-956348eb4024" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="AutomationTest" searchProperties="true"><con:settings/><con:testStep type="groovy" name="Groovy Script" id="95c90fb2-dff1-44b0-a8d3-6e4beb4f13be"><con:settings/><con:config><script>import com.eviware.soapui.support.XmlHolder
+import com.eviware.soapui.impl.wsdl.testcase.WsdlTestRunContext
+
+ def GetCodeValues = testRunner.testCase.testSuite.testCases["GetCodeValues"].testSteps["getCodeValues"].getPropertyValue("Request")
+ 
+ def lastRetrievedDate=testRunner.testCase.testSuite.testCases["GetCodeValues"].getPropertyValue("lastRetrievedDate")
+ 
+ def xmlAdd= new XmlHolder(GetCodeValues)
+ xmlAdd.setNodeValue("//ccd:getCodeValues/lastRetrievedDate",lastRetrievedDate)
+
+ 
+ def newxmlGet= xmlAdd.getXml();
+ //add xml detail
+ testRunner.testCase.testSuite.testCases["GetCodeValues"].testSteps["getCodeValues"].setPropertyValue("Request",newxmlGet)
+
+ def getTestStep=testRunner.testCase.testSuite.testCases["GetCodeValues"].testSteps["getCodeValues"]
+ def contextGetCodeValues = new WsdlTestRunContext(getTestStep);
+ getTestStep.run(testRunner,contextGetCodeValues)
+ //Validation -
+ def getRes=testRunner.testCase.testSuite.testCases["GetCodeValues"].testSteps["getCodeValues"].getPropertyValue("Response")
+def Response= new XmlHolder(getRes)
+def GetResponse= Response.getNodeValue("//codeType")
+def GetResponse1= Response.getNodeValue("//code")
+def GetResponse2= Response.getNodeValue("//shortDesc")
+def GetResponse3= Response.getNodeValue("//longDesc")
+def GetResponse4= Response.getNodeValue("//flex")
+
+log.info GetResponse
+log.info GetResponse1
+log.info GetResponse2
+log.info GetResponse3
+log.info GetResponse4
+
+assert GetResponse=="ADJUDICATOR"
+assert GetResponse1=="12879.0026"
+assert GetResponse2=="Butler Mon Ami, R"
+assert GetResponse3=="988888"
+assert GetResponse4=="ADJU"
+</script></con:config></con:testStep><con:properties/></con:testCase><con:properties/></con:testSuite><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/><con:oAuth1ProfileContainer/></con:soapui-project>

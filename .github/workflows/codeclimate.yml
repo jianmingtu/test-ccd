@@ -23,6 +23,8 @@ jobs:
       CC_TEST_REPORTER_ID: 841d6c839e4cf73e03aaa0a2c19ce2c8cabf8d5a3e023e893cbe27304b3a432a
       BASIC_AUTH_USER: ${{ secrets.BASIC_AUTH_USER }}
       BASIC_AUTH_PASS: ${{ secrets.BASIC_AUTH_PASS }}
+      GENERIC_AGENCY_ID: ${{secrets.GENERIC_AGENCY_ID}}
+      GENERIC_PART_ID: ${{secrets.GENERIC_PART_ID}}
       ACTION_DEBUG: true
 
     # Steps represent a sequence of tasks that will be executed as part of the job
