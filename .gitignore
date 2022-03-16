@@ -50,3 +50,4 @@ CcdUserMapping-*-FAILED.txt
 /CCDgetDocumentSecure-soapui-project.xml
 /comparison-tool-1.1/results/*.txt
 /comparison-tool-1.2/results/*.txt
+/CCDGetCivilFileContentSecure-soapui-project.xml

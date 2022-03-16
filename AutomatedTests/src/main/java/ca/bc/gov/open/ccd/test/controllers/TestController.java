@@ -33,6 +33,8 @@ public class TestController {
                 "CCDCriminalFileContentSecure-soapui-project-template.xml");
         this.testService.setAuthentication("CCDCourtListSecure-soapui-project-template.xml");
         this.testService.setAuthentication("CCDgetDocumentSecure-soapui-project-template.xml");
+        this.testService.setAuthentication(
+                "CCDGetCivilFileContentSecure-soapui-project-template.xml");
     }
 
     @GetMapping(value = "/all")
