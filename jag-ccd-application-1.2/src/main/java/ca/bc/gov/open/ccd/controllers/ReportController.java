@@ -108,7 +108,8 @@ public class ReportController {
             var url = body.get("url");
             var keyValue = body.get("keyValue");
 
-            one.setResultCd(respCd);
+            // This is not shown in designer but the comparison tool is doing this
+            one.setResultCd(respCd.equals("0") ? "2" : respCd);
             one.setResultMessage(respMsg);
             out.setROPResponse(one);
 
