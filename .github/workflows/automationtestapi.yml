@@ -79,7 +79,7 @@ jobs:
         env:
           COMPOSE_DOCKER_CLI_BUILD: 1
           DOCKER_BUILDKIT: 1
-          CONTEXT: ./AutomatedTest
+          CONTEXT: ./AutomatedTests
           IMAGE: ${{secrets.OPENSHIFT_EXTERNAL_REPOSITORY_SILVER}}/${{secrets.OPENSHIFT_TOOLS_NAMESPACE_SILVER}}/jag-ccd-tests:${{secrets.OPENSHIFT_ENV_TAG}}
         run: |
           docker build \
@@ -100,7 +100,7 @@ jobs:
         env:
           COMPOSE_DOCKER_CLI_BUILD: 1
           DOCKER_BUILDKIT: 1
-          CONTEXT: ./AutomatedTest
+          CONTEXT: ./AutomatedTests
           IMAGE: ${{secrets.OPENSHIFT_EXTERNAL_REPOSITORY}}/${{secrets.OPENSHIFT_TOOLS_NAMESPACE}}/jag-ccd-tests:${{secrets.OPENSHIFT_ENV_TAG}}
         run: |
           docker build \
@@ -121,7 +121,7 @@ jobs:
         env:
           COMPOSE_DOCKER_CLI_BUILD: 1
           DOCKER_BUILDKIT: 1
-          CONTEXT: ./AutomatedTest
+          CONTEXT: ./AutomatedTests
           IMAGE: ${{secrets.OPENSHIFT_EXTERNAL_REPOSITORY_DR}}/${{secrets.OPENSHIFT_TOOLS_NAMESPACE}}/jag-ccd-tests:${{secrets.OPENSHIFT_ENV_TAG}}
         run: |
           docker build \
