@@ -16,3 +16,16 @@ management:
       exposure:
         include: metrics,prometheus,health
 
+server:
+  compression:
+    enabled: true
+    mime-types: text/xml,application/soap+xml
+    min-response-size: 10240
+  http2:
+    enabled: true
+
+spring:
+  http:
+    gzip:
+      deflate-compression-level: 3
+      buffer-size : 20971520
