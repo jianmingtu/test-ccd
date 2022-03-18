@@ -39,7 +39,7 @@
     <xsd:complexType name="RecreateCourtListDoc">
         <xsd:sequence>
             <xsd:element name="CourtAgencyIdentifierCode" nillable="true" type="xsd:string"/>
-            <xsd:element name="CourtProceedingDate" nillable="true" type="xsd:string"/>
+            <xsd:element name="CourtProceedingDate" nillable="true" type="xsd:dateTime"/>
             <xsd:element name="CourtRoomCode" nillable="true" type="xsd:string"/>
         </xsd:sequence>
     </xsd:complexType>

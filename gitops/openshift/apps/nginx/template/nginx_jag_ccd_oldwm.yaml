@@ -56,7 +56,7 @@ objects:
         access_log off;
       }
 
-      location /ws {
+      location /CivilFileContent {
         client_max_body_size 100m;
         proxy_read_timeout 240s;
         proxy_send_timeout 80s;
@@ -69,7 +69,231 @@ objects:
         proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
         proxy_set_header X-Forwarded-Host $server_name;
         proxy_pass_request_headers on;
-        proxy_pass https://wsgw.dev.jag.gov.bc.ca/courts/ocp/CeisScss;
+        proxy_pass https://wsgw.dev.jag.gov.bc.ca/ccdapp/ocp/CivilFileContent;
+      }
+
+      location /CivilFileContent/secure {
+        client_max_body_size 100m;
+        proxy_read_timeout 240s;
+        proxy_send_timeout 80s;
+        proxy_redirect off;
+        port_in_redirect off;
+        proxy_http_version 1.1;
+        proxy_set_header Host $host;
+        proxy_set_header X-Forwarded-Proto $scheme;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Host $server_name;
+        proxy_pass_request_headers on;
+        proxy_pass https://wsgw.dev.jag.gov.bc.ca:8443/ccdapp/ocp/CivilFileContentSecure;
+      }
+
+      location /CodeValues {
+        client_max_body_size 100m;
+        proxy_read_timeout 240s;
+        proxy_send_timeout 80s;
+        proxy_redirect off;
+        port_in_redirect off;
+        proxy_http_version 1.1;
+        proxy_set_header Host $host;
+        proxy_set_header X-Forwarded-Proto $scheme;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Host $server_name;
+        proxy_pass_request_headers on;
+        proxy_pass https://wsgw.dev.jag.gov.bc.ca/ccdapp/ocp/CodeValues;
+      }
+
+      location /CodeValues/secure {
+        client_max_body_size 100m;
+        proxy_read_timeout 240s;
+        proxy_send_timeout 80s;
+        proxy_redirect off;
+        port_in_redirect off;
+        proxy_http_version 1.1;
+        proxy_set_header Host $host;
+        proxy_set_header X-Forwarded-Proto $scheme;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Host $server_name;
+        proxy_pass_request_headers on;
+        proxy_pass https://wsgw.dev.jag.gov.bc.ca:8443/ccdapp/ocp/CodeValuesSecure;
+      }
+
+      location /CourtList {
+        client_max_body_size 100m;
+        proxy_read_timeout 240s;
+        proxy_send_timeout 80s;
+        proxy_redirect off;
+        port_in_redirect off;
+        proxy_http_version 1.1;
+        proxy_set_header Host $host;
+        proxy_set_header X-Forwarded-Proto $scheme;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Host $server_name;
+        proxy_pass_request_headers on;
+        proxy_pass https://wsgw.dev.jag.gov.bc.ca/ccdapp/ocp/CourtList;
+      }
+
+      location /CourtList/secure {
+        client_max_body_size 100m;
+        proxy_read_timeout 240s;
+        proxy_send_timeout 80s;
+        proxy_redirect off;
+        port_in_redirect off;
+        proxy_http_version 1.1;
+        proxy_set_header Host $host;
+        proxy_set_header X-Forwarded-Proto $scheme;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Host $server_name;
+        proxy_pass_request_headers on;
+        proxy_pass https://wsgw.dev.jag.gov.bc.ca:8443/ccdapp/ocp/CourtListSecure;
+      }
+
+      location /CriminalFileContent {
+        client_max_body_size 100m;
+        proxy_read_timeout 240s;
+        proxy_send_timeout 80s;
+        proxy_redirect off;
+        port_in_redirect off;
+        proxy_http_version 1.1;
+        proxy_set_header Host $host;
+        proxy_set_header X-Forwarded-Proto $scheme;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Host $server_name;
+        proxy_pass_request_headers on;
+        proxy_pass https://wsgw.dev.jag.gov.bc.ca/ccdapp/ocp/CriminalFileContent;
+      }
+
+      location /CriminalFileContent/secure {
+        client_max_body_size 100m;
+        proxy_read_timeout 240s;
+        proxy_send_timeout 80s;
+        proxy_redirect off;
+        port_in_redirect off;
+        proxy_http_version 1.1;
+        proxy_set_header Host $host;
+        proxy_set_header X-Forwarded-Proto $scheme;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Host $server_name;
+        proxy_pass_request_headers on;
+        proxy_pass https://wsgw.dev.jag.gov.bc.ca:8443/ccdapp/ocp/CriminalFileContentSecure;
+      }
+
+      location /GetROPReport {
+        client_max_body_size 100m;
+        proxy_read_timeout 240s;
+        proxy_send_timeout 80s;
+        proxy_redirect off;
+        port_in_redirect off;
+        proxy_http_version 1.1;
+        proxy_set_header Host $host;
+        proxy_set_header X-Forwarded-Proto $scheme;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Host $server_name;
+        proxy_pass_request_headers on;
+        proxy_pass https://wsgw.dev.jag.gov.bc.ca/ccdapp/ocp/GetROPReport;
+      }
+
+      location /GetROPReport/secure {
+        client_max_body_size 100m;
+        proxy_read_timeout 240s;
+        proxy_send_timeout 80s;
+        proxy_redirect off;
+        port_in_redirect off;
+        proxy_http_version 1.1;
+        proxy_set_header Host $host;
+        proxy_set_header X-Forwarded-Proto $scheme;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Host $server_name;
+        proxy_pass_request_headers on;
+        proxy_pass https://wsgw.dev.jag.gov.bc.ca:8443/ccdapp/ocp/GetROPReportSecure;
+      }
+
+      location /DevUtils {
+        client_max_body_size 100m;
+        proxy_read_timeout 240s;
+        proxy_send_timeout 80s;
+        proxy_redirect off;
+        port_in_redirect off;
+        proxy_http_version 1.1;
+        proxy_set_header Host $host;
+        proxy_set_header X-Forwarded-Proto $scheme;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Host $server_name;
+        proxy_pass_request_headers on;
+        proxy_pass https://wsgw.dev.jag.gov.bc.ca/ccdapp/ocp/DevUtils;
+      }
+
+      location /GetDocument {
+        client_max_body_size 100m;
+        proxy_read_timeout 240s;
+        proxy_send_timeout 80s;
+        proxy_redirect off;
+        port_in_redirect off;
+        proxy_http_version 1.1;
+        proxy_set_header Host $host;
+        proxy_set_header X-Forwarded-Proto $scheme;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Host $server_name;
+        proxy_pass_request_headers on;
+        proxy_pass https://wsgw.dev.jag.gov.bc.ca/ccdapp/ocp/GetDocument;
+      }
+
+      location /getUserLogin {
+        client_max_body_size 100m;
+        proxy_read_timeout 240s;
+        proxy_send_timeout 80s;
+        proxy_redirect off;
+        port_in_redirect off;
+        proxy_http_version 1.1;
+        proxy_set_header Host $host;
+        proxy_set_header X-Forwarded-Proto $scheme;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Host $server_name;
+        proxy_pass_request_headers on;
+        proxy_pass https://wsgw.dev.jag.gov.bc.ca/ccdapp/ocp/getUserLogin;
+      }
+
+      location /ProcessResults {
+        client_max_body_size 100m;
+        proxy_read_timeout 240s;
+        proxy_send_timeout 80s;
+        proxy_redirect off;
+        port_in_redirect off;
+        proxy_http_version 1.1;
+        proxy_set_header Host $host;
+        proxy_set_header X-Forwarded-Proto $scheme;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Host $server_name;
+        proxy_pass_request_headers on;
+        proxy_pass https://wsgw.dev.jag.gov.bc.ca/ccdapp/ocp/ProcessResults;
+      }
+
+      location /UserMapping {
+        client_max_body_size 100m;
+        proxy_read_timeout 240s;
+        proxy_send_timeout 80s;
+        proxy_redirect off;
+        port_in_redirect off;
+        proxy_http_version 1.1;
+        proxy_set_header Host $host;
+        proxy_set_header X-Forwarded-Proto $scheme;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Host $server_name;
+        proxy_pass_request_headers on;
+        proxy_pass https://wsgw.dev.jag.gov.bc.ca/ccdapp/ocp/UserMapping;
       }
 
 - kind: DeploymentConfig

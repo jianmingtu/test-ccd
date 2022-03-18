@@ -5,10 +5,17 @@
     <xsd:element name="getDocument">
         <xsd:complexType>
             <xsd:sequence>
-                <xsd:element name="DocumentRequest" nillable="true" type="tns:Document"/>
+                <xsd:element name="DocumentRequest" type="tns:Document"/>
             </xsd:sequence>
         </xsd:complexType>
     </xsd:element>
+
+    <xsd:complexType name="Document">
+        <xsd:sequence>
+            <xsd:element name="DocumentId" type="xsd:string"/>
+            <xsd:element name="CourtDivisionCd" type="xsd:string"/>
+        </xsd:sequence>
+    </xsd:complexType>
 
     <xsd:element name="getDocumentResponse">
         <xsd:complexType>
@@ -17,13 +24,6 @@
             </xsd:sequence>
         </xsd:complexType>
     </xsd:element>
-
-    <xsd:complexType name="Document">
-        <xsd:sequence>
-            <xsd:element name="DocumentResult" type="xsd:string"/>
-            <xsd:element name="CourtDivisionCd" type="xsd:string"/>
-        </xsd:sequence>
-    </xsd:complexType>
 
     <xsd:complexType name="DocumentResult">
         <xsd:sequence>

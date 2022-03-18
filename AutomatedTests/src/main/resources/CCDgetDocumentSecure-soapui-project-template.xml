@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project id="dcde0825-5c9b-4a1a-9f41-9232bc536e8d" activeEnvironment="Default" name="CCDgetDocumentSecure" resourceRoot="${projectDir}" soapui-version="5.6.0" abortOnError="false" runType="SEQUENTIAL" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:interface xsi:type="con:WsdlInterface" id="9486a23b-3371-46aa-95cf-dcdbd941bdc1" wsaVersion="NONE" name="CCD_Source_GetDocument_ws_GetDocumentSecure_Binder" type="wsdl" bindingName="{http://reeks.bcgov/CCD.Source.GetDocument.ws:CCD.Source.GetDocument.ws:GetDocumentSecure}CCD_Source_GetDocument_ws_GetDocumentSecure_Binder" soapVersion="1_2" anonymous="optional" definition="file:/C:/workspace2/jag-ccd/jag-ccd-application-1.2/src/main/resources/xsdSchemas/getDocumentSecure.wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="file:\C:\workspace2\jag-ccd\jag-ccd-application-1.2\src\main\resources\xsdSchemas\getDocumentSecure.wsdl"><con:part><con:url>file:\C:\workspace2\jag-ccd\jag-ccd-application-1.2\src\main\resources\xsdSchemas\getDocumentSecure.wsdl</con:url><con:content><![CDATA[<wsdl:definitions name="GetDocumentSecure" targetNamespace="http://reeks.bcgov/CCD.Source.GetDocument.ws:CCD.Source.GetDocument.ws:GetDocumentSecure" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns1="http://reeks.bcgov/CCD.Source.GetDocument.ws:CCD.Source.GetDocument.ws:GetDocumentSecure" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:soapjms="http://www.w3.org/2010/soapjms/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:tns="http://reeks.bcgov/CCD.Source.GetDocument.ws:GetDocumentSecure" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://reeks.bcgov/CCD.Source.GetDocument.ws:CCD.Source.GetDocument.ws:GetDocumentSecure" xmlns:tns="http://reeks.bcgov/CCD.Source.GetDocument.ws:CCD.Source.GetDocument.ws:GetDocumentSecure">
+      <xsd:element name="getDocumentSecure" type="tns:getDocumentSecure"/>
+      <xsd:element name="getDocumentSecureResponse" type="tns:getDocumentSecureResponse"/>
+      <xsd:complexType name="getDocumentSecure">
+        <xsd:sequence>
+          <xsd:element name="DocumentSecureRequest" nillable="true" type="tns:DocumentSecureRequest"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="DocumentSecureRequest">
+        <xsd:sequence>
+          <xsd:element name="RequestAgencyIdentifierId" nillable="true" type="xsd:string"/>
+          <xsd:element name="RequestPartId" nillable="true" type="xsd:string"/>
+          <xsd:element name="RequestDtm" nillable="true" type="xsd:string"/>
+          <xsd:element name="ApplicationCd" nillable="true" type="xsd:string"/>
+          <xsd:element name="DocumentId" type="xsd:string"/>
+          <xsd:element name="CourtDivisionCd" type="xsd:string"/>
+          <xsd:element name="PhysicalFileId" nillable="true" type="xsd:string" minOccurs="0"/>
+          <xsd:element name="MdocJustinNo" nillable="true" type="xsd:string" minOccurs="0"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="getDocumentSecureResponse">
+        <xsd:sequence>
+          <xsd:element name="DocumentResponse" nillable="true" type="tns:DocumentResult"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="DocumentResult">
+        <xsd:sequence>
+          <xsd:element name="B64Content" nillable="true" type="xsd:string"/>
+          <xsd:element name="ResultCd" nillable="true" type="xsd:string"/>
+          <xsd:element name="ResultMessage" nillable="true" type="xsd:string"/>
+        </xsd:sequence>
+      </xsd:complexType>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="GetDocumentSecure_PortType_getDocumentSecureResponse">
+    <wsdl:part name="parameters" element="tns1:getDocumentSecureResponse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="GetDocumentSecure_PortType_getDocumentSecure">
+    <wsdl:part name="parameters" element="tns1:getDocumentSecure"></wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="GetDocumentSecure_PortType">
+    <wsdl:operation name="getDocumentSecure">
+      <wsdl:input message="tns1:GetDocumentSecure_PortType_getDocumentSecure"></wsdl:input>
+      <wsdl:output message="tns1:GetDocumentSecure_PortType_getDocumentSecureResponse"></wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="CCD_Source_GetDocument_ws_GetDocumentSecure_Binder" type="tns1:GetDocumentSecure_PortType">
+    <soap12:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="getDocumentSecure">
+      <soap12:operation soapAction="CCD_Source_GetDocument_ws_GetDocumentSecure_Binder_getDocumentSecure" style="document"/>
+      <wsdl:input>
+        <soap12:body parts="parameters" use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body parts="parameters" use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="GetDocumentSecure">
+    <wsdl:port name="CCD_Source_GetDocument_ws_GetDocumentSecure_Port" binding="tns1:CCD_Source_GetDocument_ws_GetDocumentSecure_Binder">
+      <soap12:address location="http://reeks.bcgov:5555/ws/CCD.Source.GetDocument.ws:GetDocumentSecure/CCD_Source_GetDocument_ws_GetDocumentSecure_Port"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://reeks.bcgov:5555/ws/CCD.Source.GetDocument.ws:GetDocumentSecure/CCD_Source_GetDocument_ws_GetDocumentSecure_Port</con:endpoint></con:endpoints><con:operation id="cd0dc942-28e8-4efb-b5ad-690172b84fd2" isOneWay="false" action="CCD_Source_GetDocument_ws_GetDocumentSecure_Binder_getDocumentSecure" name="getDocumentSecure" bindingOperationName="getDocumentSecure" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="97dd2a8e-74ad-48c3-9d61-eb29c5e70ff2" name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>https://jag-ccd-1-2-52e74e-dev.apps.silver.devops.gov.bc.ca/ws/secure</con:endpoint><con:request><![CDATA[<soap:Envelope xmlns:soap="http://www.w3.org/2003/05/soap-envelope" xmlns:ccd="http://reeks.bcgov/CCD.Source.GetDocument.ws:CCD.Source.GetDocument.ws:GetDocumentSecure">\r
+   <soap:Header/>\r
+   <soap:Body>\r
+      <ccd:getDocumentSecure>\r
+         <DocumentSecureRequest>\r
+            <RequestAgencyIdentifierId>?</RequestAgencyIdentifierId>\r
+            <RequestPartId>?</RequestPartId>\r
+            <RequestDtm>?</RequestDtm>\r
+            <ApplicationCd>?</ApplicationCd>\r
+            <DocumentId>?</DocumentId>\r
+            <CourtDivisionCd>?</CourtDivisionCd>\r
+            <!--Optional:-->\r
+            <PhysicalFileId>?</PhysicalFileId>\r
+            <!--Optional:-->\r
+            <MdocJustinNo>?</MdocJustinNo>\r
+         </DocumentSecureRequest>\r
+      </ccd:getDocumentSecure>\r
+   </soap:Body>\r
+</soap:Envelope>]]></con:request><con:credentials><con:username/><con:password>{AUTHENTICATION_PASSWORD}</con:password><con:selectedAuthProfile>No Authorization</con:selectedAuthProfile><con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://reeks.bcgov/CCD.Source.GetDocument.ws:CCD.Source.GetDocument.ws:GetDocumentSecure/GetDocumentSecure_PortType/getDocumentSecureRequest"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:testSuite id="cc169337-7835-449e-bdf2-7b640dc3fa98" name="CCDGetDocumentSecure"><con:settings/><con:runType>SEQUENTIAL</con:runType><con:testCase id="1c8b4334-52fd-44a8-81d1-6215f154dee3" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="GetDocumentSecure" searchProperties="true"><con:settings/><con:testStep type="request" name="getDocumentSecure" id="0725c9c3-6eef-412e-a763-757911a106b0"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>CCD_Source_GetDocument_ws_GetDocumentSecure_Binder</con:interface><con:operation>getDocumentSecure</con:operation><con:request name="getDocumentSecure" id="793a1d64-085a-49ba-aee3-c71e72a25290"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>https://jag-ccd-1-2-52e74e-dev.apps.silver.devops.gov.bc.ca/ws/secure</con:endpoint><con:request><![CDATA[<soap:Envelope xmlns:soap="http://www.w3.org/2003/05/soap-envelope" xmlns:ccd="http://reeks.bcgov/CCD.Source.GetDocument.ws:CCD.Source.GetDocument.ws:GetDocumentSecure">
+   <soap:Header/>
+   <soap:Body>
+      <ccd:getDocumentSecure>
+         <DocumentSecureRequest>
+            <RequestAgencyIdentifierId>83.0001</RequestAgencyIdentifierId>
+            <RequestPartId>19014.0001</RequestPartId>
+            <RequestDtm>2014-02-02 12:00:00</RequestDtm>
+            <ApplicationCd>CCD</ApplicationCd>
+            <DocumentId>9296.0734</DocumentId>
+            <CourtDivisionCd>R</CourtDivisionCd>
+            <!--Optional:-->
+            <PhysicalFileId/>
+            <!--Optional:-->
+            <MdocJustinNo>39616</MdocJustinNo>
+         </DocumentSecureRequest>
+      </ccd:getDocumentSecure>
+   </soap:Body>
+</soap:Envelope>]]></con:request><con:assertion type="SOAP Response" id="f58aa288-2516-4770-a6e5-69262ed76222"/><con:assertion type="Valid HTTP Status Codes" id="ae4fff8d-55e2-4e5c-b4bf-981d2d19d5b5" name="Valid HTTP Status Codes"><con:configuration><codes>200</codes></con:configuration></con:assertion><con:assertion type="Invalid HTTP Status Codes" id="06259bb2-8f0c-4b33-bdc8-4505c9c023b8" name="Invalid HTTP Status Codes"><con:configuration><codes>400, 401, 403, 404, 500, 503</codes></con:configuration></con:assertion><con:assertion type="Response SLA Assertion" id="c17df71c-929b-4de5-abef-c440b4415066" name="Response SLA"><con:configuration><SLA>2500</SLA></con:configuration></con:assertion><con:credentials><con:username>{AUTHENTICATION_USERNAME}</con:username><con:password>{AUTHENTICATION_PASSWORD}</con:password><con:selectedAuthProfile>Basic</con:selectedAuthProfile><con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" name="getDocumentSecureNegativeTest" id="c4b4bb57-dd0c-4e10-b814-f23d9ddca8f0"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>CCD_Source_GetDocument_ws_GetDocumentSecure_Binder</con:interface><con:operation>getDocumentSecure</con:operation><con:request name="getDocumentSecureNegativeTest" id="839a5655-3bbf-4b11-b454-409471d5f8c2"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>https://jag-ccd-1-2-52e74e-dev.apps.silver.devops.gov.bc.ca/ws/secure</con:endpoint><con:request><![CDATA[<soap:Envelope xmlns:soap="http://www.w3.org/2003/05/soap-envelope" xmlns:ccd="http://reeks.bcgov/CCD.Source.GetDocument.ws:CCD.Source.GetDocument.ws:GetDocumentSecure">
+   <soap:Header/>
+   <soap:Body>
+      <ccd:getDocumentSecure>
+         <DocumentSecureRequest>
+            <RequestAgencyIdentifierId>83.0001</RequestAgencyIdentifierId>
+            <RequestPartId>19014.0001</RequestPartId>
+            <RequestDtm>2014-02-02 12:00:00</RequestDtm>
+            <ApplicationCd>CCD</ApplicationCd>
+            <DocumentId>GUID</DocumentId>
+            <CourtDivisionCd>R</CourtDivisionCd>
+            <!--Optional:-->
+            <PhysicalFileId></PhysicalFileId>
+            <!--Optional:-->
+            <MdocJustinNo>39616</MdocJustinNo>
+         </DocumentSecureRequest>
+      </ccd:getDocumentSecure>
+   </soap:Body>
+</soap:Envelope>]]></con:request><con:assertion type="SOAP Response" id="eae48aeb-079d-4bac-bebc-94102a11c848"/><con:assertion type="Valid HTTP Status Codes" id="a87e1433-8a46-4a58-b36b-7f9ca160b994" name="Valid HTTP Status Codes"><con:configuration><codes>200</codes></con:configuration></con:assertion><con:assertion type="Response SLA Assertion" id="d41cb445-72c6-4133-8f1a-70c2710e87e6" name="Response SLA"><con:configuration><SLA>1000</SLA></con:configuration></con:assertion><con:assertion type="Simple Contains" id="b3a6c7a6-f837-4217-87b7-038b1ad887e4" name="Contains"><con:configuration><token>Not a valid Physical File/Image pairing.</token><ignoreCase>false</ignoreCase><useRegEx>false</useRegEx></con:configuration></con:assertion><con:credentials><con:username>{AUTHENTICATION_USERNAME}</con:username><con:password>{AUTHENTICATION_PASSWORD}</con:password><con:selectedAuthProfile>Basic</con:selectedAuthProfile><con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:properties><con:property><con:name>RequestAgencyIdentifierId</con:name><con:value>83.0001</con:value></con:property><con:property><con:name>RequestPartId</con:name><con:value>19014.0001</con:value></con:property><con:property><con:name>RequestDtm</con:name><con:value>2014-02-02 12:00:00</con:value></con:property><con:property><con:name>ApplicationCd</con:name><con:value>CCD</con:value></con:property><con:property><con:name>DocumentId</con:name><con:value>9296.0734</con:value></con:property><con:property><con:name>CourtDivisionCd</con:name><con:value>R</con:value></con:property><con:property><con:name>MdocJustinNo</con:name><con:value>39616</con:value></con:property></con:properties></con:testCase><con:testCase id="f49d23d9-da87-45a1-9ea4-e400783e6c04" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="AutomationTests" searchProperties="true"><con:settings/><con:testStep type="groovy" name="getDocumentSecure" id="5f67f276-a078-47ab-be99-f10439dabde3"><con:settings/><con:config><script>import com.eviware.soapui.support.XmlHolder
+import com.eviware.soapui.impl.wsdl.testcase.WsdlTestRunContext
+
+ def GetDocumentSecure = testRunner.testCase.testSuite.testCases["GetDocumentSecure"].testSteps["getDocumentSecure"].getPropertyValue("Request")
+ 
+ def RequestAgencyIdentifierId=testRunner.testCase.testSuite.testCases["GetDocumentSecure"].getPropertyValue("RequestAgencyIdentifierId")
+ def RequestPartId=testRunner.testCase.testSuite.testCases["GetDocumentSecure"].getPropertyValue("RequestPartId")
+ def RequestDtm=testRunner.testCase.testSuite.testCases["GetDocumentSecure"].getPropertyValue("RequestDtm")
+ def ApplicationCd=testRunner.testCase.testSuite.testCases["GetDocumentSecure"].getPropertyValue("ApplicationCd")
+ def DocumentId=testRunner.testCase.testSuite.testCases["GetDocumentSecure"].getPropertyValue("DocumentId")
+ def CourtDivisionCd=testRunner.testCase.testSuite.testCases["GetDocumentSecure"].getPropertyValue("CourtDivisionCd")
+ def MdocJustinNo=testRunner.testCase.testSuite.testCases["GetDocumentSecure"].getPropertyValue("MdocJustinNo")
+ 
+ def xmlAdd= new XmlHolder(GetDocumentSecure)
+ xmlAdd.setNodeValue("//ccd:getDocumentSecure/DocumentSecureRequest/RequestAgencyIdentifierId",RequestAgencyIdentifierId)
+ xmlAdd.setNodeValue("//ccd:getDocumentSecure/DocumentSecureRequest/RequestPartId",RequestPartId)
+ xmlAdd.setNodeValue("//ccd:getDocumentSecure/DocumentSecureRequest/RequestDtm",RequestDtm)
+ xmlAdd.setNodeValue("//ccd:getDocumentSecure/DocumentSecureRequest/ApplicationCd",ApplicationCd)
+ xmlAdd.setNodeValue("//ccd:getDocumentSecure/DocumentSecureRequest/DocumentId",DocumentId)
+ xmlAdd.setNodeValue("//ccd:getDocumentSecure/DocumentSecureRequest/CourtDivisionCd",CourtDivisionCd)
+ xmlAdd.setNodeValue("//ccd:getDocumentSecure/DocumentSecureRequest/MdocJustinNo",MdocJustinNo)
+ 
+ def newxmlGet= xmlAdd.getXml();
+ //add xml detail
+ testRunner.testCase.testSuite.testCases["GetDocumentSecure"].testSteps["getDocumentSecure"].setPropertyValue("Request",newxmlGet)
+
+ def getTestStep=testRunner.testCase.testSuite.testCases["GetDocumentSecure"].testSteps["getDocumentSecure"]
+ def contextGetDocumentSecure = new WsdlTestRunContext(getTestStep);
+ getTestStep.run(testRunner,contextGetDocumentSecure)
+ //Validation -
+ def getRes=testRunner.testCase.testSuite.testCases["GetDocumentSecure"].testSteps["getDocumentSecure"].getPropertyValue("Response")
+ def Response= new XmlHolder(getRes)
+ def GetResponse= Response.getNodeValue("//B64Content")
+
+log.info GetResponse
+
+assert GetResponse,isString()
+
+
+
+
+
+
+
+</script></con:config></con:testStep><con:properties/></con:testCase><con:properties/></con:testSuite><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/><con:oAuth1ProfileContainer/></con:soapui-project>

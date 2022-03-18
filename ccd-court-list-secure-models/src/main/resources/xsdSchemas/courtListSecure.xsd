@@ -222,7 +222,7 @@
     <xsd:complexType name="SpeakerEvent">
         <xsd:sequence>
             <xsd:element name="SpeakerEventDate" nillable="true" type="xsd:dateTime"/>
-            <xsd:element name="SpeakerEventTime" nillable="true" type="xsd:dateTime"/>
+            <xsd:element name="SpeakerEventTime" nillable="true" type="xsd:string"/>
             <xsd:element name="SpeakerEventText" nillable="true" type="xsd:string"/>
         </xsd:sequence>
     </xsd:complexType>
@@ -253,9 +253,9 @@
     </xsd:complexType>
     <xsd:complexType name="HearingRestrictionType">
         <xsd:sequence>
-            <xsd:element ref="dx:HearingRestrictiontype"/>
-            <xsd:element ref="dx:JudgeName"/>
-            <xsd:element ref="dx:HearingRestrictionDate"/>
+git s            <xsd:element name="HearingRestrictiontype" type="xsd:string" nillable="true"/>
+            <xsd:element name="JudgeName" type="xsd:string" nillable="true"/>
+            <xsd:element name="HearingRestrictionDate" type="xsd:dateTime" nillable="true"/>
         </xsd:sequence>
     </xsd:complexType>
     <xsd:complexType name="CFCOrderType">
@@ -268,7 +268,7 @@
     <xsd:complexType name="CivilCourtListType">
         <xsd:sequence>
             <xsd:element name="AppearanceId" nillable="true" type="xsd:string"/>
-            <xsd:element name="AppearanceTime" nillable="true" type="xsd:dateTime"/>
+            <xsd:element name="AppearanceTime" nillable="true" type="xsd:string"/>
             <xsd:element name="BinderText" nillable="true" type="xsd:string"/>
             <xsd:element name="CourtListPrintSortNumber" nillable="true" type="xsd:string"/>
             <xsd:element name="CivilDocumentsAvailable" nillable="true" type="xsd:string"/>
@@ -336,8 +336,8 @@
             <xsd:element name="DocumentTypeDescription" nillable="true" type="xsd:string"/>
             <xsd:element name="EstimatedDocumentMinutes" nillable="true" type="xsd:string"/>
             <xsd:element name="DocumentTypeCd" nillable="true" type="xsd:string"/>
-            <xsd:element name="DateGranted" nillable="true" type="xsd:string"/>
-            <xsd:element name="DateVaried" nillable="true" type="xsd:string"/>
+            <xsd:element name="DateGranted" nillable="true" type="xsd:dateTime"/>
+            <xsd:element name="DateVaried" nillable="true" type="xsd:dateTime"/>
             <xsd:element name="CancelledDate" nillable="true" type="xsd:dateTime"/>
             <xsd:element name="AdjudicatorPartId" nillable="true" type="xsd:string"/>
             <xsd:element name="AdjudicatorName" nillable="true" type="xsd:string"/>
@@ -480,7 +480,7 @@
             <xsd:element name="DocumentId" nillable="true" type="xsd:string"/>
             <xsd:element name="DocumentTypeDsc" nillable="true" type="xsd:string"/>
             <xsd:element name="AdjudicatorName" nillable="true" type="xsd:string"/>
-            <xsd:element name="DateGranted" nillable="true" type="xsd:string"/>
+            <xsd:element name="DateGranted" nillable="true" type="xsd:dateTime"/>
         </xsd:sequence>
     </xsd:complexType>
 </xsd:schema>

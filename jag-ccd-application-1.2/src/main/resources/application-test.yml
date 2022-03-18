@@ -1,0 +1,12 @@
+security:
+  basic-auth:
+    password: ${BASIC_AUTH_PASS}
+    username: ${BASIC_AUTH_USER}
+ccd:
+  host: http://127.0.0.1/
+  generic-agen-id:  generic-agen-id
+  generic-part-id:  generic-part-id
+  oracle-host: oracle-host
+  oracle-name: oracle-name
+  adobe-host: http://127.0.0.1/
+  report-app-name: report-app-name
