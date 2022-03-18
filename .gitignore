@@ -51,3 +51,4 @@ CcdUserMapping-*-FAILED.txt
 /comparison-tool-1.1/results/*.txt
 /comparison-tool-1.2/results/*.txt
 /CCDGetCivilFileContentSecure-soapui-project.xml
+/CCDCodeValuesSecure-soapui-project.xml
