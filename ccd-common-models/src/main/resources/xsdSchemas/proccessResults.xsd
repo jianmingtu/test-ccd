@@ -198,7 +198,7 @@
     <xsd:complexType name="NextAppearanceType">
         <xsd:sequence>
             <xsd:element name="AppearanceDate" nillable="true" type="xsd:dateTime"/>
-            <xsd:element name="AppearanceTime" nillable="true" type="xsd:dateTime"/>
+            <xsd:element name="AppearanceTime" nillable="true" type="xsd:string"/>
             <xsd:element name="AppearanceReason" nillable="true" type="xsd:string"/>
             <xsd:element name="CourtAgencyIdentifier" nillable="true" type="xsd:string"/>
             <xsd:element name="CourtRoom" nillable="true" type="xsd:string"/>

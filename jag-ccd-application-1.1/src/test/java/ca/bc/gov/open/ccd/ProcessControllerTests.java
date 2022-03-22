@@ -164,7 +164,7 @@ public class ProcessControllerTests {
         ni.setAppearanceReason("A");
         ni.setCourtAgencyIdentifier("A");
         ni.setCourtRoom("A");
-        ni.setAppearanceTime(Instant.now());
+        ni.setAppearanceTime("A");
 
         var af = new ApplyToFileCivilResultType();
         af.setAppearanceId("A");
