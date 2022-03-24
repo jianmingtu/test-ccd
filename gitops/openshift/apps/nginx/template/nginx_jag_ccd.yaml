@@ -153,7 +153,7 @@ objects:
         proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
         proxy_set_header X-Forwarded-Host $server_name;
         proxy_pass_request_headers on;
-        proxy_pass http://splitter-ccd-11/CivilFileContent;
+        proxy_pass http://splitter-ccd-11/ws/CivilFileContent;
       }
 
       location /api/CivilFileContent/secure {
@@ -169,7 +169,7 @@ objects:
         proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
         proxy_set_header X-Forwarded-Host $server_name;
         proxy_pass_request_headers on;
-        proxy_pass http://splitter-ccd-12/CivilFileContent/secure;
+        proxy_pass http://splitter-ccd-12/ws/CivilFileContent/secure;
       }
 
       location /api/CodeValues {
@@ -185,7 +185,7 @@ objects:
         proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
         proxy_set_header X-Forwarded-Host $server_name;
         proxy_pass_request_headers on;
-        proxy_pass http://splitter-ccd-11/CodeValues;
+        proxy_pass http://splitter-ccd-11/ws/CodeValues;
       }
 
       location /api/CodeValues/secure {
@@ -201,7 +201,7 @@ objects:
         proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
         proxy_set_header X-Forwarded-Host $server_name;
         proxy_pass_request_headers on;
-        proxy_pass http://splitter-ccd-12/CodeValues/secure;
+        proxy_pass http://splitter-ccd-12/ws/CodeValues/secure;
       }
 
       location /api/CourtList {
@@ -217,7 +217,7 @@ objects:
         proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
         proxy_set_header X-Forwarded-Host $server_name;
         proxy_pass_request_headers on;
-        proxy_pass http://splitter-ccd-11/CourtList;
+        proxy_pass http://splitter-ccd-11/ws/CourtList;
       }
 
       location /api/CourtList/secure {
@@ -233,7 +233,7 @@ objects:
         proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
         proxy_set_header X-Forwarded-Host $server_name;
         proxy_pass_request_headers on;
-        proxy_pass http://splitter-ccd-12/CourtList/secure;
+        proxy_pass http://splitter-ccd-12/ws/CourtList/secure;
       }
 
       location /api/CriminalFileContent {
@@ -249,7 +249,7 @@ objects:
         proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
         proxy_set_header X-Forwarded-Host $server_name;
         proxy_pass_request_headers on;
-        proxy_pass http://splitter-ccd-11/CriminalFileContent;
+        proxy_pass http://splitter-ccd-11/ws/CriminalFileContent;
       }
 
       location /api/CriminalFileContent/secure {
@@ -265,7 +265,7 @@ objects:
         proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
         proxy_set_header X-Forwarded-Host $server_name;
         proxy_pass_request_headers on;
-        proxy_pass http://splitter-ccd-12/CriminalFileContent/secure;
+        proxy_pass http://splitter-ccd-12/ws/CriminalFileContent/secure;
       }
 
       location /api/GetROPReport {
@@ -281,7 +281,7 @@ objects:
         proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
         proxy_set_header X-Forwarded-Host $server_name;
         proxy_pass_request_headers on;
-        proxy_pass http://splitter-ccd-11/GetROPReport;
+        proxy_pass http://splitter-ccd-11/ws/GetROPReport;
       }
 
       location /api/GetROPReport/secure {
@@ -297,7 +297,7 @@ objects:
         proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
         proxy_set_header X-Forwarded-Host $server_name;
         proxy_pass_request_headers on;
-        proxy_pass http://splitter-ccd-12/GetROPReport/secure;
+        proxy_pass http://splitter-ccd-12/ws/GetROPReport/secure;
       }
 
       location /api/DevUtils {
@@ -313,7 +313,7 @@ objects:
         proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
         proxy_set_header X-Forwarded-Host $server_name;
         proxy_pass_request_headers on;
-        proxy_pass http://splitter-ccd-11/DevUtils;
+        proxy_pass http://splitter-ccd-11/ws/DevUtils;
       }
 
       location /api/GetDocument {
@@ -329,7 +329,7 @@ objects:
         proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
         proxy_set_header X-Forwarded-Host $server_name;
         proxy_pass_request_headers on;
-        proxy_pass http://splitter-ccd-11/GetDocument;
+        proxy_pass http://splitter-ccd-11/ws/GetDocument;
       }
 
       location /api/getUserLogin {
@@ -345,7 +345,7 @@ objects:
         proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
         proxy_set_header X-Forwarded-Host $server_name;
         proxy_pass_request_headers on;
-        proxy_pass http://splitter-ccd-11/getUserLogin;
+        proxy_pass http://splitter-ccd-11/ws/getUserLogin;
       }
 
       location /api/ProcessResults {
@@ -361,7 +361,7 @@ objects:
         proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
         proxy_set_header X-Forwarded-Host $server_name;
         proxy_pass_request_headers on;
-        proxy_pass http://splitter-ccd-11/ProcessResults;
+        proxy_pass http://splitter-ccd-11/ws/ProcessResults;
       }
 
       location /api/UserMapping {
@@ -377,7 +377,7 @@ objects:
         proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
         proxy_set_header X-Forwarded-Host $server_name;
         proxy_pass_request_headers on;
-        proxy_pass http://splitter-ccd-11/UserMapping;
+        proxy_pass http://splitter-ccd-11/ws/UserMapping;
       }
 
 - kind: ConfigMap
@@ -388,15 +388,13 @@ objects:
   data:
     nginx-upstream.conf: |-
       upstream splitter-ccd-11 {
-        #server jag-ccd-1-1;
-        # Tured off for now
-        server nginx-jag-ccd-oldwm;
+        server jag-ccd-1-1;
+        #server nginx-jag-ccd-oldwm;
       }
 
       upstream splitter-ccd-12 {
-        #server jag-ccd-1-2;
-        # Tured off for now
-        server nginx-jag-ccd-oldwm;
+        server jag-ccd-1-2;
+        #server nginx-jag-ccd-oldwm;
       }
 
 - kind: DeploymentConfig

@@ -56,7 +56,7 @@ objects:
         access_log off;
       }
 
-      location /CivilFileContent {
+      location /ws/CivilFileContent {
         client_max_body_size 100m;
         proxy_read_timeout 240s;
         proxy_send_timeout 80s;
@@ -72,7 +72,7 @@ objects:
         proxy_pass https://wsgw.dev.jag.gov.bc.ca/ccdapp/ocp/CivilFileContent;
       }
 
-      location /CivilFileContent/secure {
+      location /ws/CivilFileContent/secure {
         client_max_body_size 100m;
         proxy_read_timeout 240s;
         proxy_send_timeout 80s;
@@ -88,7 +88,7 @@ objects:
         proxy_pass https://wsgw.dev.jag.gov.bc.ca:8443/ccdapp/ocp/CivilFileContentSecure;
       }
 
-      location /CodeValues {
+      location /ws/CodeValues {
         client_max_body_size 100m;
         proxy_read_timeout 240s;
         proxy_send_timeout 80s;
@@ -104,7 +104,7 @@ objects:
         proxy_pass https://wsgw.dev.jag.gov.bc.ca/ccdapp/ocp/CodeValues;
       }
 
-      location /CodeValues/secure {
+      location /ws/CodeValues/secure {
         client_max_body_size 100m;
         proxy_read_timeout 240s;
         proxy_send_timeout 80s;
@@ -120,7 +120,7 @@ objects:
         proxy_pass https://wsgw.dev.jag.gov.bc.ca:8443/ccdapp/ocp/CodeValuesSecure;
       }
 
-      location /CourtList {
+      location /ws/CourtList {
         client_max_body_size 100m;
         proxy_read_timeout 240s;
         proxy_send_timeout 80s;
@@ -136,7 +136,7 @@ objects:
         proxy_pass https://wsgw.dev.jag.gov.bc.ca/ccdapp/ocp/CourtList;
       }
 
-      location /CourtList/secure {
+      location /ws/CourtList/secure {
         client_max_body_size 100m;
         proxy_read_timeout 240s;
         proxy_send_timeout 80s;
@@ -152,7 +152,7 @@ objects:
         proxy_pass https://wsgw.dev.jag.gov.bc.ca:8443/ccdapp/ocp/CourtListSecure;
       }
 
-      location /CriminalFileContent {
+      location /ws/CriminalFileContent {
         client_max_body_size 100m;
         proxy_read_timeout 240s;
         proxy_send_timeout 80s;
@@ -168,7 +168,7 @@ objects:
         proxy_pass https://wsgw.dev.jag.gov.bc.ca/ccdapp/ocp/CriminalFileContent;
       }
 
-      location /CriminalFileContent/secure {
+      location /ws/CriminalFileContent/secure {
         client_max_body_size 100m;
         proxy_read_timeout 240s;
         proxy_send_timeout 80s;
@@ -184,7 +184,7 @@ objects:
         proxy_pass https://wsgw.dev.jag.gov.bc.ca:8443/ccdapp/ocp/CriminalFileContentSecure;
       }
 
-      location /GetROPReport {
+      location /ws/GetROPReport {
         client_max_body_size 100m;
         proxy_read_timeout 240s;
         proxy_send_timeout 80s;
@@ -200,7 +200,7 @@ objects:
         proxy_pass https://wsgw.dev.jag.gov.bc.ca/ccdapp/ocp/GetROPReport;
       }
 
-      location /GetROPReport/secure {
+      location /ws/GetROPReport/secure {
         client_max_body_size 100m;
         proxy_read_timeout 240s;
         proxy_send_timeout 80s;
@@ -216,7 +216,7 @@ objects:
         proxy_pass https://wsgw.dev.jag.gov.bc.ca:8443/ccdapp/ocp/GetROPReportSecure;
       }
 
-      location /DevUtils {
+      location /ws/DevUtils {
         client_max_body_size 100m;
         proxy_read_timeout 240s;
         proxy_send_timeout 80s;
@@ -232,7 +232,7 @@ objects:
         proxy_pass https://wsgw.dev.jag.gov.bc.ca/ccdapp/ocp/DevUtils;
       }
 
-      location /GetDocument {
+      location /ws/GetDocument {
         client_max_body_size 100m;
         proxy_read_timeout 240s;
         proxy_send_timeout 80s;
@@ -248,7 +248,7 @@ objects:
         proxy_pass https://wsgw.dev.jag.gov.bc.ca/ccdapp/ocp/GetDocument;
       }
 
-      location /getUserLogin {
+      location /ws/getUserLogin {
         client_max_body_size 100m;
         proxy_read_timeout 240s;
         proxy_send_timeout 80s;
@@ -264,7 +264,7 @@ objects:
         proxy_pass https://wsgw.dev.jag.gov.bc.ca/ccdapp/ocp/getUserLogin;
       }
 
-      location /ProcessResults {
+      location /ws/ProcessResults {
         client_max_body_size 100m;
         proxy_read_timeout 240s;
         proxy_send_timeout 80s;
@@ -280,7 +280,7 @@ objects:
         proxy_pass https://wsgw.dev.jag.gov.bc.ca/ccdapp/ocp/ProcessResults;
       }
 
-      location /UserMapping {
+      location /ws/UserMapping {
         client_max_body_size 100m;
         proxy_read_timeout 240s;
         proxy_send_timeout 80s;
