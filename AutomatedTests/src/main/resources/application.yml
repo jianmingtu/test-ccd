@@ -6,6 +6,7 @@ security:
 test:
   password: ${BASIC_AUTH_PASS}
   username: ${BASIC_AUTH_USER}
+  password-secure: ${BASIC_AUTH_PASS_SECURE}
+  username-secure: ${BASIC_AUTH_USER_SECURE}
   api-host: ${API_HOST}
   api-host-secure: ${API_HOST_SECURE}
-
