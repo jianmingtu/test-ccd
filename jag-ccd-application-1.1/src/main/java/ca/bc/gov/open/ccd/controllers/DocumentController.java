@@ -91,6 +91,10 @@ public class DocumentController {
             if (url == null) {
                 // process the response's error messages which are return from the ORDS getDocument
                 // API
+                log.info(
+                        objectMapper.writeValueAsString(
+                                new RequestSuccessLog("Request Success", "getDocument")));
+
                 var out = new GetDocumentResponse();
                 var one = new DocumentResult();
                 ;

@@ -115,6 +115,9 @@ public class ReportController {
 
             if (url == null) {
                 // return error
+                log.info(
+                        objectMapper.writeValueAsString(
+                                new RequestSuccessLog("Request Success", "getRopReportSecure")));
                 return out;
             }
 
