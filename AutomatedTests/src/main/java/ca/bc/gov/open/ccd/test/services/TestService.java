@@ -183,6 +183,18 @@ public class TestService {
         } catch (Exception Ignore) {
 
         }
+        try {
+            runner.setProjectFile("CCDGetCivilFileContentSecure-soapui-project.xml");
+            runner.run();
+        } catch (Exception Ignore) {
+
+        }
+        try {
+            runner.setProjectFile("CCDCodeValuesSecure-soapui-project.xml");
+            runner.run();
+        } catch (Exception Ignore) {
+
+        }
         return zipAndReturnErrors();
     }
 }

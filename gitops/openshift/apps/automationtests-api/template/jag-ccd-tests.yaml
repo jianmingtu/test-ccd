@@ -2,10 +2,10 @@ apiVersion: template.openshift.io/v1
 kind: Template
 metadata:
   name: ${COMPONENT_NAME}
-  description: Deployment template for the JAG-CCD-1.2
+  description: Deployment template for the JAG-CCD-TESTS
   
 labels:
-  app: ${COMPONENT_NAME}
+  app: ${APP_NAME}
   app.kubernetes.io/name: ${COMPONENT_NAME}
   app.kubernetes.io/part-of: ${APP_NAME}
   app.openshift.io/runtime: ${RUNTIME}
@@ -17,20 +17,15 @@ parameters:
   required: false
   value: jag-ccd
 
-- name: AUTH_HEADER
-  description: Basic http auth header
-  required: false
-  value: auth
-
 - name: COMPONENT_NAME
-  description: The application name
+  description: The application name that each component is part of
   required: false
-  value: jag-ccd-1.2
+  value: jag-ccd-tests
   
 - name: OC_NAMESPACE
   description: The OpenShift namespace prefix
   required: false
-  # change the OC_Namespace value as per the cluster being used.
+  # Below value must be changed as per gold cluster oc nameplate
   value: 52e74e
   
 - name: OC_ENV
@@ -38,24 +33,19 @@ parameters:
   required: true
 
 - name: RUNTIME
-  description: Runtime of the application
+  description: The run time of the application
   required: false
   value: java
 
-- name: API_NAME
-  description: The api/application name
-  required: false
-  value: jag-ccd-1.2
-
 - name: DNS
-  description: DNS of the application route
+  description: The application DNS for route url
   required: false
-  # Below value must be changed as per the DNS of openshift cluster used.
+  # Below value must be changed as per gold & dr cluster certificate/DNS
   value: apps.silver.devops.gov.bc.ca
   
 objects:
 
-### JAG-CCD-1.2 Deployment Config ###
+### JAG-CCD-TESTS Deployment Config ###
 - apiVersion: apps.openshift.io/v1
   kind: DeploymentConfig
   metadata:
@@ -77,7 +67,6 @@ objects:
           name: ${COMPONENT_NAME}
       spec:
         containers:
-          # Below Immage url must be changed as per gold cluster image stream
           - image: >-
               image-registry.openshift-image-registry.svc:5000/${OC_NAMESPACE}-tools/${COMPONENT_NAME}:${OC_ENV}
             name: ${COMPONENT_NAME} 
@@ -89,57 +78,22 @@ objects:
               valueFrom:
                 secretKeyRef:
                   name: ccd-application-secrets
-                  key: BASIC_AUTH_USER_SECURE
+                  key: BASIC_AUTH_USER
             - name: BASIC_AUTH_PASS
               valueFrom:
                 secretKeyRef:
                   name: ccd-application-secrets
-                  key: BASIC_AUTH_PASS_SECURE
+                  key: BASIC_AUTH_PASS
             - name: SPRING_PROFILES_ACTIVE
               valueFrom:
                 secretKeyRef:
                   name: ccd-application-secrets
                   key: SPRING_PROFILE
-            - name: SPLUNK_HTTP_URL
-              valueFrom:
-                secretKeyRef:
-                  name: ccd-splunk-config
-                  key: SPLUNK_HTTP_URL
-            - name: SPLUNK_TOKEN
-              valueFrom:
-                secretKeyRef:
-                  name: ccd-splunk-config
-                  key: SPLUNK_TOKEN
-            - name: SPLUNK_INDEX
-              valueFrom:
-                secretKeyRef:
-                  name: ccd-splunk-config
-                  key: SPLUNK_INDEX
-            - name: ORDS_HOST
+            - name: API_HOST
               valueFrom:
                 secretKeyRef:
                   name: ccd-application-secrets
-                  key: ORDS_HOST
-            - name: GENERIC_AGENCY_ID
-              valueFrom:
-                secretKeyRef:
-                  name: ccd-application-secrets
-                  key: GENERIC_AGENCY_ID
-            - name: GENERIC_PART_ID
-              valueFrom:
-                secretKeyRef:
-                  name: ccd-application-secrets
-                  key: GENERIC_PART_ID
-            - name: ADOBE_HOST
-              valueFrom:
-                secretKeyRef:
-                  name: ccd-application-secrets
-                  key: ADOBE_HOST
-            - name: REPORT_APP_NAME
-              valueFrom:
-                secretKeyRef:
-                  name: ccd-application-secrets
-                  key: REPORT_APP_NAME
+                  key: API_HOST
             resources:
               limits:
                 cpu: 500m
@@ -152,11 +106,8 @@ objects:
                 path: "/actuator/health"
                 port: 8080
                 scheme: HTTP
-                httpHeaders:
-                  - name: Authorization
-                    value: ${AUTH_HEADER}
-              initialDelaySeconds: 30
-              timeoutSeconds: 60
+              initialDelaySeconds: 100
+              timeoutSeconds: 30
               periodSeconds: 10
               successThreshold: 1
               failureThreshold: 3
@@ -165,11 +116,8 @@ objects:
                 path: "/actuator/health"
                 port: 8080
                 scheme: HTTP
-                httpHeaders:
-                  - name: Authorization
-                    value: ${AUTH_HEADER}
-              initialDelaySeconds: 10
-              timeoutSeconds: 60
+              initialDelaySeconds: 100
+              timeoutSeconds: 30
               periodSeconds: 10
               successThreshold: 1
               failureThreshold: 3
@@ -186,7 +134,7 @@ objects:
             name: ${COMPONENT_NAME}:${OC_ENV}
   status: {}
 
-### JAG-CCD-1.2 Service ###
+### JAG-CCD-TESTS Service ###
 - apiVersion: v1
   kind: Service
   metadata:
@@ -203,19 +151,21 @@ objects:
     sessionAffinity: None
     type: ClusterIP
 
-### JAG-CCD-1.2 Route ###
+### JAG-CCD-TESTS Route ###
 - apiVersion: route.openshift.io/v1
   kind: Route
   metadata:
     name: ${COMPONENT_NAME}
     namespace: ${OC_NAMESPACE}-${OC_ENV}
   annotations:
+    # router timeout
+    haproxy.router.openshift.io/timeout: 10m
     # if we do not use sticky-session, disable_cookies needs to be true
     haproxy.router.openshift.io/disable_cookies: "true"
     # balance algorithm
     haproxy.router.openshift.io/balance: roundrobin
   spec:
-    host: ${API_NAME}-${OC_NAMESPACE}-${OC_ENV}.${DNS}
+    host: ${COMPONENT_NAME}-${OC_NAMESPACE}-${OC_ENV}.${DNS}
     to:
       kind: Service
       name: ${COMPONENT_NAME}

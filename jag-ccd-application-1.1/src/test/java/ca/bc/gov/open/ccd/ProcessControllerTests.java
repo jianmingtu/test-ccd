@@ -135,9 +135,9 @@ public class ProcessControllerTests {
         cr.setCourtAgencyIdentifierCode("A");
         cr.setCourtRoomCode("A");
         cr.setCourtProceedingDate(Instant.now());
-        cr.setCreationTime(Instant.now());
+        cr.setCreationTime("A");
         cr.setEnterUserId("A");
-        cr.setEventTime(Instant.now());
+        cr.setEventTime("A");
         cr.setEventTypeCode("A");
         cr.setEventLogText("A");
         cr.setSourceEventSeqNo("A");
@@ -164,7 +164,7 @@ public class ProcessControllerTests {
         ni.setAppearanceReason("A");
         ni.setCourtAgencyIdentifier("A");
         ni.setCourtRoom("A");
-        ni.setAppearanceTime(Instant.now());
+        ni.setAppearanceTime("A");
 
         var af = new ApplyToFileCivilResultType();
         af.setAppearanceId("A");

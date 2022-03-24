@@ -10,3 +10,4 @@ test:
   username-secure: ${BASIC_AUTH_USER_SECURE}
   api-host: ${API_HOST}
   api-host-secure: ${API_HOST_SECURE}
+
