@@ -79,11 +79,21 @@ objects:
                 secretKeyRef:
                   name: ccd-application-secrets
                   key: BASIC_AUTH_USER
+            - name: BASIC_AUTH_USER_SECURE
+              valueFrom:
+                secretKeyRef:
+                  name: ccd-application-secrets
+                  key: BASIC_AUTH_USER_SECURE
             - name: BASIC_AUTH_PASS
               valueFrom:
                 secretKeyRef:
                   name: ccd-application-secrets
                   key: BASIC_AUTH_PASS
+            - name: BASIC_AUTH_PASS_SECURE
+              valueFrom:
+                secretKeyRef:
+                  name: ccd-application-secrets
+                  key: BASIC_AUTH_PASS_SECURE
             - name: SPRING_PROFILES_ACTIVE
               valueFrom:
                 secretKeyRef:
@@ -94,6 +104,11 @@ objects:
                 secretKeyRef:
                   name: ccd-application-secrets
                   key: API_HOST
+            - name: API_HOST_SECURE
+              valueFrom:
+                secretKeyRef:
+                  name: ccd-application-secrets
+                  key: API_HOST_SECURE
             resources:
               limits:
                 cpu: 500m
