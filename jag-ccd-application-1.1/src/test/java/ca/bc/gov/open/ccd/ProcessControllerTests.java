@@ -474,9 +474,9 @@ public class ProcessControllerTests {
         one.setCourtAgencyIdentifierCode("A");
         one.setCourtRoomCode("A");
         one.setCourtProceedingDate(Instant.now());
-        one.setCreationTime(Instant.now());
+        one.setCreationTime("A");
         one.setEnterUserId("A");
-        one.setEventTime(Instant.now());
+        one.setEventTime("A");
         one.setEventTypeCode("A");
         one.setEventLogText("A");
         one.setSourceEventSeqNo("A");
