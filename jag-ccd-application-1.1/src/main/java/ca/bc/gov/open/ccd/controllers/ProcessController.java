@@ -59,6 +59,10 @@ public class ProcessController {
                             ProcessVariationResponse.class);
             log.info(
                     objectMapper.writeValueAsString(
+                            new RequestSuccessLog(
+                                    "Request Success", objectMapper.writeValueAsString(inner))));
+            log.info(
+                    objectMapper.writeValueAsString(
                             new RequestSuccessLog("Request Success", "processVariation")));
             return resp.getBody();
         } catch (Exception ex) {
@@ -94,6 +98,17 @@ public class ProcessController {
                             ProcessSpeakerResponse.class);
             log.info(
                     objectMapper.writeValueAsString(
+                            new RequestSuccessLog(
+                                    "Request Success", objectMapper.writeValueAsString(inner))));
+            log.info(
+                    objectMapper.writeValueAsString(
+                            new RequestSuccessLog("Request Success", "processVariation")));
+            log.info(
+                    objectMapper.writeValueAsString(
+                            new RequestSuccessLog(
+                                    "Request Success", objectMapper.writeValueAsString(inner))));
+            log.info(
+                    objectMapper.writeValueAsString(
                             new RequestSuccessLog("Request Success", "processSpeaker")));
             return resp.getBody();
         } catch (Exception ex) {
@@ -127,6 +142,10 @@ public class ProcessController {
                             HttpMethod.POST,
                             payload,
                             ProcessCivilResultsResponse.class);
+            log.info(
+                    objectMapper.writeValueAsString(
+                            new RequestSuccessLog(
+                                    "Request Success", objectMapper.writeValueAsString(inner))));
             log.info(
                     objectMapper.writeValueAsString(
                             new RequestSuccessLog("Request Success", "processCivilResults")));
@@ -168,6 +187,10 @@ public class ProcessController {
                             ProcessAppearanceMethodResponse.class);
             log.info(
                     objectMapper.writeValueAsString(
+                            new RequestSuccessLog(
+                                    "Request Success", objectMapper.writeValueAsString(inner))));
+            log.info(
+                    objectMapper.writeValueAsString(
                             new RequestSuccessLog("Request Success", "processAppearanceMethod")));
             return resp.getBody();
         } catch (Exception ex) {
@@ -201,6 +224,10 @@ public class ProcessController {
                             HttpMethod.POST,
                             payload,
                             ProcessPleaResponse.class);
+            log.info(
+                    objectMapper.writeValueAsString(
+                            new RequestSuccessLog(
+                                    "Request Success", objectMapper.writeValueAsString(inner))));
             log.info(
                     objectMapper.writeValueAsString(
                             new RequestSuccessLog("Request Success", "processPlea")));
@@ -238,6 +265,10 @@ public class ProcessController {
                             ProcessElectionResponse.class);
             log.info(
                     objectMapper.writeValueAsString(
+                            new RequestSuccessLog(
+                                    "Request Success", objectMapper.writeValueAsString(inner))));
+            log.info(
+                    objectMapper.writeValueAsString(
                             new RequestSuccessLog("Request Success", "processElection")));
             return resp.getBody();
         } catch (Exception ex) {
@@ -271,6 +302,10 @@ public class ProcessController {
                             HttpMethod.POST,
                             payload,
                             ProcessBailResponse.class);
+            log.info(
+                    objectMapper.writeValueAsString(
+                            new RequestSuccessLog(
+                                    "Request Success", objectMapper.writeValueAsString(inner))));
             log.info(
                     objectMapper.writeValueAsString(
                             new RequestSuccessLog("Request Success", "processBail")));
@@ -311,6 +346,10 @@ public class ProcessController {
                             ProcessCriminalResultResponse.class);
             log.info(
                     objectMapper.writeValueAsString(
+                            new RequestSuccessLog(
+                                    "Request Success", objectMapper.writeValueAsString(inner))));
+            log.info(
+                    objectMapper.writeValueAsString(
                             new RequestSuccessLog("Request Success", "processCriminalResult")));
             return resp.getBody();
         } catch (Exception ex) {
@@ -345,6 +384,10 @@ public class ProcessController {
                             HttpMethod.POST,
                             payload,
                             ProcessAgeNoticeResponse.class);
+            log.info(
+                    objectMapper.writeValueAsString(
+                            new RequestSuccessLog(
+                                    "Request Success", objectMapper.writeValueAsString(inner))));
             log.info(
                     objectMapper.writeValueAsString(
                             new RequestSuccessLog("Request Success", "processAgeNotice")));
@@ -383,6 +426,10 @@ public class ProcessController {
                             ProcessMatterCallResponse.class);
             log.info(
                     objectMapper.writeValueAsString(
+                            new RequestSuccessLog(
+                                    "Request Success", objectMapper.writeValueAsString(inner))));
+            log.info(
+                    objectMapper.writeValueAsString(
                             new RequestSuccessLog("Request Success", "processMatterCall")));
             return resp.getBody();
         } catch (Exception ex) {
@@ -416,6 +463,10 @@ public class ProcessController {
                             HttpMethod.POST,
                             payload,
                             ProcessSentenceResponse.class);
+            log.info(
+                    objectMapper.writeValueAsString(
+                            new RequestSuccessLog(
+                                    "Request Success", objectMapper.writeValueAsString(inner))));
             log.info(
                     objectMapper.writeValueAsString(
                             new RequestSuccessLog("Request Success", "processSentence")));
@@ -453,6 +504,10 @@ public class ProcessController {
                             ProcessBanResponse.class);
             log.info(
                     objectMapper.writeValueAsString(
+                            new RequestSuccessLog(
+                                    "Request Success", objectMapper.writeValueAsString(inner))));
+            log.info(
+                    objectMapper.writeValueAsString(
                             new RequestSuccessLog("Request Success", "processBan")));
             return resp.getBody();
         } catch (Exception ex) {
@@ -486,6 +541,10 @@ public class ProcessController {
                             HttpMethod.POST,
                             payload,
                             ProcessNoteResponse.class);
+            log.info(
+                    objectMapper.writeValueAsString(
+                            new RequestSuccessLog(
+                                    "Request Success", objectMapper.writeValueAsString(inner))));
             log.info(
                     objectMapper.writeValueAsString(
                             new RequestSuccessLog("Request Success", "processNote")));
@@ -524,6 +583,10 @@ public class ProcessController {
                             ProcessArraignmentResponse.class);
             log.info(
                     objectMapper.writeValueAsString(
+                            new RequestSuccessLog(
+                                    "Request Success", objectMapper.writeValueAsString(inner))));
+            log.info(
+                    objectMapper.writeValueAsString(
                             new RequestSuccessLog("Request Success", "processArraignment")));
             return resp.getBody();
         } catch (Exception ex) {
@@ -557,6 +620,10 @@ public class ProcessController {
                             HttpMethod.POST,
                             payload,
                             ProcessMoveResponse.class);
+            log.info(
+                    objectMapper.writeValueAsString(
+                            new RequestSuccessLog(
+                                    "Request Success", objectMapper.writeValueAsString(inner))));
             log.info(
                     objectMapper.writeValueAsString(
                             new RequestSuccessLog("Request Success", "processMove")));
@@ -594,6 +661,10 @@ public class ProcessController {
                             ProcessFindingResponse.class);
             log.info(
                     objectMapper.writeValueAsString(
+                            new RequestSuccessLog(
+                                    "Request Success", objectMapper.writeValueAsString(inner))));
+            log.info(
+                    objectMapper.writeValueAsString(
                             new RequestSuccessLog("Request Success", "processFinding")));
             return resp.getBody();
         } catch (Exception ex) {
@@ -626,6 +697,10 @@ public class ProcessController {
                             HttpMethod.POST,
                             payload,
                             ProcessGenericResultResponse.class);
+            log.info(
+                    objectMapper.writeValueAsString(
+                            new RequestSuccessLog(
+                                    "Request Success", objectMapper.writeValueAsString(process))));
             log.info(
                     objectMapper.writeValueAsString(
                             new RequestSuccessLog("Request Success", "processGenericResult")));
@@ -669,6 +744,10 @@ public class ProcessController {
             log.info(
                     objectMapper.writeValueAsString(
                             new RequestSuccessLog(
+                                    "Request Success", objectMapper.writeValueAsString(inner))));
+            log.info(
+                    objectMapper.writeValueAsString(
+                            new RequestSuccessLog(
                                     "Request Success", "ProcessCivilAppearanceMethod")));
             return resp.getBody();
         } catch (Exception ex) {
@@ -702,6 +781,10 @@ public class ProcessController {
                             HttpMethod.POST,
                             payload,
                             ProcessOrderResponse.class);
+            log.info(
+                    objectMapper.writeValueAsString(
+                            new RequestSuccessLog(
+                                    "Request Success", objectMapper.writeValueAsString(inner))));
             log.info(
                     objectMapper.writeValueAsString(
                             new RequestSuccessLog("Request Success", "processOrder")));
@@ -742,6 +825,10 @@ public class ProcessController {
                             ProcessCivilOrderResultResponse.class);
             log.info(
                     objectMapper.writeValueAsString(
+                            new RequestSuccessLog(
+                                    "Request Success", objectMapper.writeValueAsString(inner))));
+            log.info(
+                    objectMapper.writeValueAsString(
                             new RequestSuccessLog("Request Success", "processCivilOrderResult")));
             return resp.getBody();
         } catch (Exception ex) {
@@ -778,6 +865,10 @@ public class ProcessController {
                             ProcessExhibitResponse.class);
             log.info(
                     objectMapper.writeValueAsString(
+                            new RequestSuccessLog(
+                                    "Request Success", objectMapper.writeValueAsString(inner))));
+            log.info(
+                    objectMapper.writeValueAsString(
                             new RequestSuccessLog("Request Success", "processExhibit")));
             return resp.getBody();
         } catch (Exception ex) {
@@ -812,6 +903,10 @@ public class ProcessController {
                             HttpMethod.POST,
                             payload,
                             ProcessSpecialCourtResponse.class);
+            log.info(
+                    objectMapper.writeValueAsString(
+                            new RequestSuccessLog(
+                                    "Request Success", objectMapper.writeValueAsString(inner))));
             log.info(
                     objectMapper.writeValueAsString(
                             new RequestSuccessLog("Request Success", "processSpecialCourt")));
