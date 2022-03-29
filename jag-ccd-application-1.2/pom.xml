@@ -3,12 +3,11 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.5.9</version>
-        <relativePath/> <!-- lookup parent from repository -->
+        <groupId>ca.bc.gov.open</groupId>
+        <artifactId>jag-ccd</artifactId>
+        <version>1.0.0</version>
     </parent>
-    <groupId>ca.bc.gov.open</groupId>
+
     <artifactId>jag-ccd-application-1.2</artifactId>
     <version>1.0</version>
     <name>jag-ccd-application-1.2</name>
@@ -91,11 +90,6 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-logging</artifactId>
             <version>2.6.3</version>
-        </dependency>
-        <dependency>
-            <groupId>com.fasterxml.jackson.datatype</groupId>
-            <artifactId>jackson-datatype-jsr310</artifactId>
-            <version>2.13.1</version>
         </dependency>
 
 
