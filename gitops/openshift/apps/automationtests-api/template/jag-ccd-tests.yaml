@@ -7,7 +7,6 @@ metadata:
 labels:
   app: ${APP_NAME}
   app.kubernetes.io/name: ${COMPONENT_NAME}
-  app.kubernetes.io/part-of: ${APP_NAME}
   app.openshift.io/runtime: ${RUNTIME}
   
 parameters:
@@ -42,6 +41,11 @@ parameters:
   required: false
   # Below value must be changed as per gold & dr cluster certificate/DNS
   value: apps.silver.devops.gov.bc.ca
+
+- name: AUTH_HEADER
+  description: The http Authorization header required for performing livenessProbe & readinessProbe in deployment config during container start.
+  required: true
+  value: ''
   
 objects:
 
@@ -121,6 +125,9 @@ objects:
                 path: "/actuator/health"
                 port: 8080
                 scheme: HTTP
+                httpHeaders:
+                - name: Authorization
+                  value: ${AUTH_HEADER}
               initialDelaySeconds: 100
               timeoutSeconds: 30
               periodSeconds: 10
@@ -131,6 +138,9 @@ objects:
                 path: "/actuator/health"
                 port: 8080
                 scheme: HTTP
+                httpHeaders:
+                - name: Authorization
+                  value: ${AUTH_HEADER}
               initialDelaySeconds: 100
               timeoutSeconds: 30
               periodSeconds: 10
