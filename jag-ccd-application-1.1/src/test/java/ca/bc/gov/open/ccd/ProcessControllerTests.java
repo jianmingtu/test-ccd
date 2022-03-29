@@ -496,7 +496,7 @@ public class ProcessControllerTests {
 
         var nc = new NextAppearanceCRType();
         nc.setAppearanceDate(Instant.now());
-        nc.setAppearanceTime(Instant.now());
+        nc.setAppearanceTime("A");
         nc.setAppearanceReason("A");
         nc.setCourtAgencyIdentifier("A");
         nc.setCourtRoom("A");
