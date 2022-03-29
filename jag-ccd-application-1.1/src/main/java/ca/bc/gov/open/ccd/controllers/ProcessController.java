@@ -688,7 +688,11 @@ public class ProcessController {
         UriComponentsBuilder builder =
                 UriComponentsBuilder.fromHttpUrl(host + "common/generic-result");
 
-        HttpEntity<ProcessGenericResult> payload = new HttpEntity<>(process, new HttpHeaders());
+        var inner =
+                process != null && process.getGenericResult() != null
+                        ? process.getGenericResult()
+                        : new GenericResult();
+        HttpEntity<GenericResult> payload = new HttpEntity<>(inner, new HttpHeaders());
 
         try {
             HttpEntity<ProcessGenericResultResponse> resp =
@@ -700,7 +704,7 @@ public class ProcessController {
             log.info(
                     objectMapper.writeValueAsString(
                             new RequestSuccessLog(
-                                    "Request Success", objectMapper.writeValueAsString(process))));
+                                    "Request Success", objectMapper.writeValueAsString(inner))));
             log.info(
                     objectMapper.writeValueAsString(
                             new RequestSuccessLog("Request Success", "processGenericResult")));
