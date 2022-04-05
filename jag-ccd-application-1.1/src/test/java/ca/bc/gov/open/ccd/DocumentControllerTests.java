@@ -44,7 +44,9 @@ public class DocumentControllerTests {
         req.setDocumentRequest(one);
 
         Map<String, String> m = new HashMap<>();
-        m.put("url", "http://www.test.com");
+        m.put(
+                "url",
+                "https://test:8443/courts/Servlet?&url=https%3A%2F%2Ftest.com%2Fpp%2Fdb%2Ftest%2Fget%2F%3FTicket%3DPcHWnmp");
         m.put("resultCd", "1");
         m.put("resultMessage", "success");
         m.put("status", "1");

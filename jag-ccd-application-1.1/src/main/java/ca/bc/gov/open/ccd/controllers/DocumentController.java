@@ -10,6 +10,7 @@ import ca.bc.gov.open.ccd.models.RequestSuccessLog;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.net.URI;
+import java.net.URLDecoder;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.Map;
@@ -107,6 +108,11 @@ public class DocumentController {
             // request uri to get base64 document
 
             try {
+
+                // get the new url from the portion after "url="
+                url = URLDecoder.decode(url, StandardCharsets.UTF_8);
+                url = url.split("url=")[1];
+
                 HttpEntity<byte[]> resp2 =
                         restTemplate.exchange(
                                 new URI(url),
