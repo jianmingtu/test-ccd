@@ -252,7 +252,7 @@ public class OrdsErrorTests {
         CodeController codeController = new CodeController(restTemplate, objectMapper);
 
         Assertions.assertThrows(
-                ORDSException.class, () -> codeController.getCodeValues(new GetCodeValues()));
+                ORDSException.class, () -> codeController.getCodeValues(new GetCodeValues(), null));
     }
 
     @Test

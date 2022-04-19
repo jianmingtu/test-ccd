@@ -54,22 +54,28 @@ public class CodeController {
             @RequestPayload GetCodeValues getCodeValues, MessageContext messageContext)
             throws JsonProcessingException, TransformerConfigurationException {
 
-        SaajSoapMessage soapResponse = (SaajSoapMessage) messageContext.getResponse();
-        soapResponse
-                .getEnvelope()
-                .addNamespaceDeclaration("SOAP-ENC", "http://schemas.xmlsoap.org/soap/encoding/");
-        soapResponse
-                .getEnvelope()
-                .addNamespaceDeclaration("xsd", "http://www.w3.org/2001/XMLSchema");
-        soapResponse
-                .getEnvelope()
-                .addNamespaceDeclaration("xsi", "http://www.w3.org/2001/XMLSchema-instance");
+        if (messageContext != null) {
+            SaajSoapMessage soapResponse = (SaajSoapMessage) messageContext.getResponse();
+            soapResponse
+                    .getEnvelope()
+                    .addNamespaceDeclaration(
+                            "SOAP-ENC", "http://schemas.xmlsoap.org/soap/encoding/");
+            soapResponse
+                    .getEnvelope()
+                    .addNamespaceDeclaration("xsd", "http://www.w3.org/2001/XMLSchema");
+            soapResponse
+                    .getEnvelope()
+                    .addNamespaceDeclaration("xsi", "http://www.w3.org/2001/XMLSchema-instance");
 
-        SoapHeader respheader = soapResponse.getSoapHeader();
+            SoapHeader respheader = soapResponse.getSoapHeader();
 
-        respheader.addNamespaceDeclaration("SOAP-ENV", "http://schemas.xmlsoap.org/soap/envelope/");
-        respheader.addNamespaceDeclaration("SOAP-ENC", "http://schemas.xmlsoap.org/soap/envelope/");
-        respheader.addNamespaceDeclaration("SOAP-ENV", "http://schemas.xmlsoap.org/soap/envelope/");
+            respheader.addNamespaceDeclaration(
+                    "SOAP-ENV", "http://schemas.xmlsoap.org/soap/envelope/");
+            respheader.addNamespaceDeclaration(
+                    "SOAP-ENC", "http://schemas.xmlsoap.org/soap/envelope/");
+            respheader.addNamespaceDeclaration(
+                    "SOAP-ENV", "http://schemas.xmlsoap.org/soap/envelope/");
+        }
         UriComponentsBuilder builder =
                 UriComponentsBuilder.fromHttpUrl(host + "codevalues")
                         .queryParam(
