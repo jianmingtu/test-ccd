@@ -92,6 +92,12 @@ public class CodeController {
             log.info(
                     objectMapper.writeValueAsString(
                             new RequestSuccessLog("Request Success", "getCodeValues")));
+
+            if (resp.getBody().getCeisCodeValues() == null
+                    && resp.getBody().getJustinCodeValues() == null) {
+                return null;
+            }
+
             return resp.getBody();
         } catch (Exception ex) {
             log.error(
