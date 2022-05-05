@@ -32,6 +32,7 @@ jobs:
       BASIC_AUTH_PASS: ${{ secrets.BASIC_AUTH_PASS }}
       GENERIC_AGENCY_ID: ${{secrets.GENERIC_AGENCY_ID}}
       GENERIC_PART_ID: ${{secrets.GENERIC_PART_ID}}
+      FORM_PARAM_IDX: ${{secrets.FORM_PARAM_IDX}}
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
