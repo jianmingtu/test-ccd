@@ -3,6 +3,7 @@ security:
     password: ${BASIC_AUTH_PASS}
     username: ${BASIC_AUTH_USER}
 ccd:
+  form-param-idx: ${FORM_PARAM_IDX}
   host: ${ORDS_HOST}
   generic-agen-id:  ${GENERIC_AGENCY_ID}
   generic-part-id:  ${GENERIC_PART_ID}
