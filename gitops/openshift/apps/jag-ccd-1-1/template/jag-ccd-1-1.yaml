@@ -121,10 +121,10 @@ objects:
                   name: ccd-application-secrets
                   key: ORDS_HOST
             - name: FORM_PARAM_IDX
-                valueFrom:
-                  secretKeyRef:
-                    name: ccd-application-secrets
-                    key: FORM_PARAM_IDX
+              valueFrom:
+                secretKeyRef:
+                  name: ccd-application-secrets
+                  key: FORM_PARAM_IDX
             - name: GENERIC_AGENCY_ID
               valueFrom:
                 secretKeyRef:

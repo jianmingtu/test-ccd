@@ -106,10 +106,10 @@ objects:
                   name: ccd-splunk-config
                   key: SPLUNK_HTTP_URL
             - name: FORM_PARAM_IDX
-                valueFrom:
-                  secretKeyRef:
-                    name: ccd-application-secrets
-                    key: FORM_PARAM_IDX
+              valueFrom:
+                secretKeyRef:
+                  name: ccd-application-secrets
+                  key: FORM_PARAM_IDX
             - name: SPLUNK_TOKEN
               valueFrom:
                 secretKeyRef:
