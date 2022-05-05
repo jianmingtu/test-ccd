@@ -39,7 +39,7 @@ public class ReportController {
     private String reportAppName = "";
 
     @Value("${ccd.form-param-idx}")
-    private String formParamIdx;
+    private String formParamIdx = "1";
 
     private final RestTemplate restTemplate;
     private final ObjectMapper objectMapper;

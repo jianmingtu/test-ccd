@@ -3,6 +3,7 @@ security:
     password: ${BASIC_AUTH_PASS}
     username: ${BASIC_AUTH_USER}
 ccd:
+  form-param-idx: 1
   host: http://127.0.0.1/
   generic-agen-id:  generic-agen-id
   generic-part-id:  generic-part-id
