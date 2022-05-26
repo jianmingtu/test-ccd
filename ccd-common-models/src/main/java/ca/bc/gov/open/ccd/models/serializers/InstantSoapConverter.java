@@ -43,7 +43,7 @@ public final class InstantSoapConverter {
                 } catch (ParseException ex2) {
 
                     try {
-                        var sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
+                        var sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.US);
                         sdf.setTimeZone(TimeZone.getTimeZone("UTC"));
                         d = sdf.parse(value + " 12:00:00");
                     } catch (ParseException ex3) {
