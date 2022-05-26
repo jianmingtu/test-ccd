@@ -50,7 +50,11 @@ public class CodeController {
             @RequestPayload GetCodeValuesSecure getCodeValues) throws JsonProcessingException {
 
         String secureExtension =
-                getCodeValues.getRequestAgencyIdentifierId().equals(genericAgenId)
+                getCodeValues.getRequestAgencyIdentifierId() != null
+                                && getCodeValues.getRequestPartId() != null
+                                && getCodeValues
+                                        .getRequestAgencyIdentifierId()
+                                        .equals(genericAgenId)
                                 && getCodeValues.getRequestPartId().equals(genericPartId)
                         ? ""
                         : "/secure";
@@ -77,7 +81,11 @@ public class CodeController {
             log.info(
                     objectMapper.writeValueAsString(
                             new RequestSuccessLog("Request Success", "getCodeValuesSecure")));
-            resp.getBody().setResultCd("0");
+            if (resp.getBody() != null && resp.getBody().getResultCd() == null
+                    || resp.getBody().getResultCd().isEmpty()) {
+                resp.getBody().setResultCd("0");
+            }
+
             return resp.getBody();
         } catch (Exception ex) {
             log.error(
