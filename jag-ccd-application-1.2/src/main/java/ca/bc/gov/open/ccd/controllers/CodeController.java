@@ -49,10 +49,14 @@ public class CodeController {
     public GetCodeValuesSecureResponse getCodeValuesSecure(
             @RequestPayload GetCodeValuesSecure getCodeValues) throws JsonProcessingException {
 
+        String secureExtension =
+                getCodeValues.getRequestAgencyIdentifierId().equals(genericAgenId)
+                                && getCodeValues.getRequestPartId().equals(genericPartId)
+                        ? ""
+                        : "/secure";
+
         UriComponentsBuilder builder =
-                UriComponentsBuilder.fromHttpUrl(host + "codevalues/secure")
-                        .queryParam("genericAgenId", genericAgenId)
-                        .queryParam("genericPartId", genericPartId)
+                UriComponentsBuilder.fromHttpUrl(host + "codevalues" + secureExtension)
                         .queryParam("requestAgencyId", getCodeValues.getRequestAgencyIdentifierId())
                         .queryParam("requestPartId", getCodeValues.getRequestPartId())
                         .queryParam(
@@ -73,6 +77,7 @@ public class CodeController {
             log.info(
                     objectMapper.writeValueAsString(
                             new RequestSuccessLog("Request Success", "getCodeValuesSecure")));
+            resp.getBody().setResultCd("0");
             return resp.getBody();
         } catch (Exception ex) {
             log.error(
