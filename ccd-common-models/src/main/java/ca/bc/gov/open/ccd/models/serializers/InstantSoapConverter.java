@@ -45,7 +45,7 @@ public final class InstantSoapConverter {
                     try {
                         var sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
                         sdf.setTimeZone(TimeZone.getTimeZone("UTC"));
-                        d = sdf.parse(value);
+                        d = sdf.parse(value + " 12:00:00");
                     } catch (ParseException ex3) {
                         return Instant.parse(value + "Z");
                     }
