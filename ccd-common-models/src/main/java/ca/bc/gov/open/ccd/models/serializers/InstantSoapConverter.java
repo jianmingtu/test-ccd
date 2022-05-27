@@ -25,7 +25,6 @@ public final class InstantSoapConverter {
     }
 
     public static Instant parse(String value) {
-        log.info(value);
         try {
             Date d;
             // Try to parse a datetime first then try date only if both fail return null

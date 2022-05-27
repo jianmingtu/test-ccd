@@ -641,7 +641,6 @@ public class ProcessController {
                         ? process.getGenericResult()
                         : new GenericResult();
         HttpEntity<GenericResult> payload = new HttpEntity<>(inner, new HttpHeaders());
-        log.info("request + " + objectMapper.writeValueAsString(inner));
         try {
             HttpEntity<ProcessGenericResultResponse> resp =
                     restTemplate.exchange(
