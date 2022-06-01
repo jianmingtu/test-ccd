@@ -40,17 +40,22 @@ public final class InstantSoapConverter {
                     sdf.setTimeZone(TimeZone.getTimeZone("UTC"));
                     d = sdf.parse(value);
                 } catch (ParseException ex2) {
-
                     try {
-                        var sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.US);
+                        var sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
                         sdf.setTimeZone(TimeZone.getTimeZone("UTC"));
-                        if (value.length() == 10) {
-                            value += " 12:00:00";
-                        }
-
                         d = sdf.parse(value);
                     } catch (ParseException ex3) {
-                        return Instant.parse(value + "Z");
+                        try {
+                            var sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.US);
+                            sdf.setTimeZone(TimeZone.getTimeZone("UTC"));
+                            // yyyy-MM-dd
+                            if (value.length() == 10) {
+                                value += " 12:00:00";
+                            }
+                            d = sdf.parse(value);
+                        } catch (ParseException ex4) {
+                            return Instant.parse(value + "Z");
+                        }
                     }
                 }
             }
