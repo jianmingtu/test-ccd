@@ -57,10 +57,7 @@ public class ProcessController {
                             HttpMethod.POST,
                             payload,
                             ProcessVariationResponse.class);
-            log.info(
-                    objectMapper.writeValueAsString(
-                            new RequestSuccessLog(
-                                    "Request Success", objectMapper.writeValueAsString(inner))));
+
             log.info(
                     objectMapper.writeValueAsString(
                             new RequestSuccessLog("Request Success", "processVariation")));
