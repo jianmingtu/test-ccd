@@ -765,10 +765,13 @@ public class ProcessController {
                             HttpMethod.POST,
                             payload,
                             ProcessCivilOrderResultResponse.class);
-
             log.info(
                     objectMapper.writeValueAsString(
                             new RequestSuccessLog("Request Success", "processCivilOrderResult")));
+            log.info(
+                    objectMapper.writeValueAsString(
+                            new RequestSuccessLog(
+                                    "Request Success", objectMapper.writeValueAsString(inner))));
             return resp.getBody();
         } catch (Exception ex) {
             inner.setEnterUserId("");
