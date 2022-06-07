@@ -48,13 +48,11 @@ public final class InstantSoapConverter {
                             value += " 12:00:00PM";
                         }
                         d = sdf.parse(value);
-                        log.warn("time: " + value);
                     } catch (ParseException ex3) {
                         try {
                             var sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
                             sdf.setTimeZone(TimeZone.getTimeZone("UTC"));
                             d = sdf.parse(value);
-                            log.warn("time: " + value);
                         } catch (ParseException ex4) {
                             return Instant.parse(value + "Z");
                         }
