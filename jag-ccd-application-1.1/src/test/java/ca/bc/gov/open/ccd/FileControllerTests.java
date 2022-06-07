@@ -350,7 +350,7 @@ public class FileControllerTests {
         rd.setAppearanceDate(Instant.now());
         rd.setObjectGuid("A");
         rd.setDescriptionText("A");
-        rd.setEnterDtm("A");
+        rd.setEnterDtm(Instant.now());
         rd.setReferenceDocumentTypeCd("A");
         rd.setReferenceDocumentTypeDsc("A");
         var rdi = new ReferenceDocInterest();

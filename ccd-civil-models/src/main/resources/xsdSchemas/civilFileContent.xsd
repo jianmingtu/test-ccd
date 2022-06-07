@@ -207,7 +207,7 @@
             <xsd:element name="AppearanceDate" nillable="true" type="xsd:dateTime"/>
             <xsd:element name="ObjectGuid" nillable="true" type="xsd:string"/>
             <xsd:element name="DescriptionText" nillable="true" type="xsd:string"/>
-            <xsd:element name="EnterDtm" nillable="true" type="xsd:string"/>
+            <xsd:element name="EnterDtm" nillable="true" type="xsd:dateTime"/>
             <xsd:element name="ReferenceDocumentTypeCd" nillable="true" type="xsd:string"/>
             <xsd:element name="ReferenceDocumentTypeDsc" nillable="true" type="xsd:string"/>
             <xsd:element name="ReferenceDocumentInterest" nillable="true" type="tns:ReferenceDocInterest"
