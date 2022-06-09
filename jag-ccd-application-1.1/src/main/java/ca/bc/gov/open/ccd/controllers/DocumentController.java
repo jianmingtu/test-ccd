@@ -101,7 +101,6 @@ public class DocumentController {
 
                 var out = new GetDocumentResponse();
                 var one = new DocumentResult();
-                ;
                 out.setDocumentResponse(one);
                 one.setResultCd(resultCd);
                 one.setResultMessage(resultMessage);
