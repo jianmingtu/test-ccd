@@ -51,10 +51,10 @@ public class DocumentControllerTests {
 
         // Set up to mock ords response
         when(restTemplate.exchange(
-                Mockito.any(URI.class),
-                Mockito.eq(HttpMethod.GET),
-                Mockito.<HttpEntity<String>>any(),
-                Mockito.<ParameterizedTypeReference<Map<String, String>>>any()))
+                        Mockito.any(URI.class),
+                        Mockito.eq(HttpMethod.GET),
+                        Mockito.<HttpEntity<String>>any(),
+                        Mockito.<ParameterizedTypeReference<Map<String, String>>>any()))
                 .thenReturn(responseEntity2);
 
         var out = "A";
@@ -62,12 +62,12 @@ public class DocumentControllerTests {
                 new ResponseEntity<>(out.getBytes(StandardCharsets.UTF_8), HttpStatus.OK);
 
         // Set up to adobe response
-                when(restTemplate.exchange(
+        when(restTemplate.exchange(
                         Mockito.any(URI.class),
                         Mockito.eq(HttpMethod.GET),
                         Mockito.<HttpEntity<String>>any(),
                         Mockito.<Class<byte[]>>any()))
-                        .thenReturn(responseEntity);
+                .thenReturn(responseEntity);
 
         DocumentController documentController = new DocumentController(restTemplate, objectMapper);
         var resp = documentController.getDocumentSecure(req);
