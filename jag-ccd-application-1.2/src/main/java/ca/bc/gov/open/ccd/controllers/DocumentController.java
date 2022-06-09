@@ -10,6 +10,8 @@ import ca.bc.gov.open.ccd.models.serializers.InstantSerializer;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.net.URI;
+import java.net.URLDecoder;
+import java.nio.charset.StandardCharsets;
 import java.util.Map;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,6 +34,9 @@ public class DocumentController {
 
     @Value("${ccd.host}")
     private String host = "https://127.0.0.1/";
+
+    @Value("${ccd.document-host}")
+    private String documentHost = "https://127.0.0.1/";
 
     private final RestTemplate restTemplate;
     private final ObjectMapper objectMapper;
@@ -112,9 +117,13 @@ public class DocumentController {
             // request uri to get base64 document
 
             try {
+                // get the ticket
+                url = URLDecoder.decode(url, StandardCharsets.UTF_8);
+                String ticket = url.split("get/\\?")[1];
+
                 HttpEntity<byte[]> resp2 =
                         restTemplate.exchange(
-                                new URI(url),
+                                new URI(documentHost + "get/?" + ticket),
                                 HttpMethod.GET,
                                 new HttpEntity<>(new HttpHeaders()),
                                 byte[].class);

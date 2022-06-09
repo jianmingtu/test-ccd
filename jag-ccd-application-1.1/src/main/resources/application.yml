@@ -9,7 +9,7 @@ ccd:
   generic-part-id:  ${GENERIC_PART_ID}
   adobe-host: ${ADOBE_HOST}
   report-app-name: ${REPORT_APP_NAME}
-
+  document-host: ${DOCUMENT_HOST}
 
 management:
   endpoints:

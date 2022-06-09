@@ -140,6 +140,11 @@ objects:
                 secretKeyRef:
                   name: ccd-application-secrets
                   key: ADOBE_HOST
+            - name: DOCUMENT_HOST
+              valueFrom:
+                secretKeyRef:
+                  name: ccd-application-secrets
+                  key: DOCUMENT_HOST
             - name: REPORT_APP_NAME
               valueFrom:
                 secretKeyRef:
