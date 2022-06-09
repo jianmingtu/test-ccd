@@ -712,7 +712,7 @@ public class ProcessController {
 
         var inner = process.getOrder() != null ? process.getOrder() : new OrderType();
 
-        UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(host + "civil/order");
+        UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(host + "criminal/order");
 
         HttpEntity<OrderType> payload = new HttpEntity<>(inner, new HttpHeaders());
 
