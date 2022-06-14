@@ -35,9 +35,6 @@ public class DocumentController {
     @Value("${ccd.host}")
     private String host = "https://127.0.0.1/";
 
-    @Value("${ccd.document-host}")
-    private String documentHost = "https://127.0.0.1/";
-
     private final RestTemplate restTemplate;
     private final ObjectMapper objectMapper;
 
@@ -119,11 +116,10 @@ public class DocumentController {
             try {
                 // get the ticket
                 url = URLDecoder.decode(url, StandardCharsets.UTF_8);
-                String ticket = url.split("get/\\?")[1];
 
                 HttpEntity<byte[]> resp2 =
                         restTemplate.exchange(
-                                new URI(documentHost + "get/?" + ticket),
+                                new URI(url),
                                 HttpMethod.GET,
                                 new HttpEntity<>(new HttpHeaders()),
                                 byte[].class);
