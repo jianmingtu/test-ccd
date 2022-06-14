@@ -10,5 +10,4 @@ ccd:
   oracle-host: oracle-host
   oracle-name: oracle-name
   adobe-host: http://127.0.0.1/
-  document-host: http://127.0.0.1/
   report-app-name: report-app-name
