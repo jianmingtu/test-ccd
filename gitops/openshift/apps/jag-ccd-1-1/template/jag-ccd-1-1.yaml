@@ -140,6 +140,11 @@ objects:
                 secretKeyRef:
                   name: ccd-application-secrets
                   key: ADOBE_HOST
+            - name: TRANSFORMATION_URL
+              valueFrom:
+                secretKeyRef:
+                  name: ccd-application-secrets
+                  key: TRANSFORMATION_URL
             - name: REPORT_APP_NAME
               valueFrom:
                 secretKeyRef:
