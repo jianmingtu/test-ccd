@@ -9,7 +9,6 @@ ccd:
   generic-part-id:  ${GENERIC_PART_ID}
   adobe-host: ${ADOBE_HOST}
   report-app-name: ${REPORT_APP_NAME}
-  transformation-url: ${TRANSFORMATION_URL}
 
 management:
   endpoints:

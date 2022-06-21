@@ -145,11 +145,6 @@ objects:
                 secretKeyRef:
                   name: ccd-application-secrets
                   key: REPORT_APP_NAME
-            - name: TRANSFORMATION_URL
-              valueFrom:
-                secretKeyRef:
-                  name: ccd-application-secrets
-                  key: TRANSFORMATION_URL
             resources:
               limits:
                 cpu: 500m
