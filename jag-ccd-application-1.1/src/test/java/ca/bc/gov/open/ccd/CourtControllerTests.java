@@ -84,7 +84,7 @@ public class CourtControllerTests {
 
         crl.setAccusedFormattedName(fn);
 
-        crl.setAccusedBirthDate(Instant.now());
+        crl.setAccusedBirthDate("A");
         crl.setAccusedCurrentBailProcessText("A");
         crl.setAccusedInCustodyFlag("A");
         crl.setCounselFullName("A");
@@ -178,7 +178,7 @@ public class CourtControllerTests {
         st.setSpeakerStatusCd("A");
         st.setSpeakerStatusDsc("A");
         SpeakerEvent se = new SpeakerEvent();
-        se.setSpeakerEventDate(Instant.now());
+        se.setSpeakerEventDate("A");
         se.setSpeakerEventTime("A");
         se.setSpeakerEventText("A");
 
@@ -355,7 +355,7 @@ public class CourtControllerTests {
         st2.setSpeakerStatusDsc("A");
         SpeakerEvent se2 = new SpeakerEvent();
         se2.setSpeakerEventText("A");
-        se2.setSpeakerEventDate(Instant.now());
+        se2.setSpeakerEventDate("A");
         se2.setSpeakerEventTime("A");
         st2.setSpeakerEvent(Collections.singletonList(se2));
 

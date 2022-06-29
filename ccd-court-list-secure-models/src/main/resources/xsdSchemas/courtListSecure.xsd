@@ -61,7 +61,7 @@
             <xsd:element name="OtherFileInformationText" type="xsd:string"/>
             <xsd:element name="AccusedFullName" type="xsd:string"/>
             <xsd:element name="AccusedFormattedName" type="tns:AccusedFormattedName" minOccurs="0"/>
-            <xsd:element name="AccusedBirthDate" type="xsd:dateTime"/>
+            <xsd:element name="AccusedBirthDate" type="xsd:string"/>
             <xsd:element name="AccusedCurrentBailProcessText" type="xsd:string"/>
             <xsd:element name="AccusedInCustodyFlag" type="xsd:string"/>
             <xsd:element name="CounselFullName" type="xsd:string"/>
@@ -221,7 +221,7 @@
     </xsd:complexType>
     <xsd:complexType name="SpeakerEvent">
         <xsd:sequence>
-            <xsd:element name="SpeakerEventDate" nillable="true" type="xsd:dateTime"/>
+            <xsd:element name="SpeakerEventDate" nillable="true" type="xsd:string"/>
             <xsd:element name="SpeakerEventTime" nillable="true" type="xsd:string"/>
             <xsd:element name="SpeakerEventText" nillable="true" type="xsd:string"/>
         </xsd:sequence>
