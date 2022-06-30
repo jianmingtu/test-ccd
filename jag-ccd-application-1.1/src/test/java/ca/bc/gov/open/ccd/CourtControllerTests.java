@@ -43,7 +43,7 @@ public class CourtControllerTests {
         crl.setCriminalAppearanceID("A");
         crl.setCourtListTypeCd("A");
         crl.setAppearanceSequenceNumber("A");
-        crl.setAppearanceTime(Instant.now());
+        crl.setAppearanceTime("A");
         var fi = new FileInformationType();
         fi.setFileLocaAgencyIdentifierCd("A");
         fi.setPhyFileFolderNo("A");

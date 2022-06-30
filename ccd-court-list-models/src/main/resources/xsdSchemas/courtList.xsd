@@ -49,7 +49,7 @@
             <xsd:element name="CriminalAppearanceID" type="xsd:string"/>
             <xsd:element name="CourtListTypeCd" type="xsd:string"/>
             <xsd:element name="AppearanceSequenceNumber" type="xsd:string"/>
-            <xsd:element name="AppearanceTime" type="xsd:dateTime"/>
+            <xsd:element name="AppearanceTime" type="xsd:string"/>
             <xsd:element name="FileInformation" type="tns:FileInformationType" minOccurs="0"/>
             <xsd:element name="FileNumberText" type="xsd:string"/>
             <xsd:element name="FileHomeLocationName" type="xsd:string"/>
