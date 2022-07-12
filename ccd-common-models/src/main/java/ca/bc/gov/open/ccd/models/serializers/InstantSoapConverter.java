@@ -45,7 +45,7 @@ public final class InstantSoapConverter {
                         sdf.setTimeZone(TimeZone.getTimeZone("UTC"));
                         // yyyy-MM-dd
                         if (value.length() == 10) {
-                            value += " 12:00:00PM";
+                            value += " 00:00:00";
                         }
                         d = sdf.parse(value);
                     } catch (ParseException ex3) {
