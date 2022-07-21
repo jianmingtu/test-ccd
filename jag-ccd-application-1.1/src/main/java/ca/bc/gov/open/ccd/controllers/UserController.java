@@ -69,6 +69,44 @@ public class UserController {
     }
 
     @PayloadRoot(
+            namespace = "http://reeks.bcgov/CCD.Source.GetParticipantInfo.WS:getParticipantInfo",
+            localPart = "getParticipantInfo")
+    @ResponsePayload
+    public ca.bc.gov.open.ccd.common.participant.info.GetParticipantInfoResponse
+            getNewParticipantInfo(
+                    @RequestPayload
+                            ca.bc.gov.open.ccd.common.participant.info.GetParticipantInfo
+                                    getParticipantInfo)
+                    throws JsonProcessingException {
+        UriComponentsBuilder builder =
+                UriComponentsBuilder.fromHttpUrl(host + "participant-info")
+                        .queryParam("guid", getParticipantInfo.getGUID());
+
+        try {
+            HttpEntity<ca.bc.gov.open.ccd.common.participant.info.GetParticipantInfoResponse> resp =
+                    restTemplate.exchange(
+                            builder.toUriString(),
+                            HttpMethod.GET,
+                            new HttpEntity<>(new HttpHeaders()),
+                            ca.bc.gov.open.ccd.common.participant.info.GetParticipantInfoResponse
+                                    .class);
+            log.info(
+                    objectMapper.writeValueAsString(
+                            new RequestSuccessLog("Request Success", "new getParticipantInfo")));
+            return resp.getBody();
+        } catch (Exception ex) {
+            log.error(
+                    objectMapper.writeValueAsString(
+                            new OrdsErrorLog(
+                                    "Error received from ORDS",
+                                    "getParticipantInfo",
+                                    ex.getMessage(),
+                                    getParticipantInfo)));
+            throw new ORDSException();
+        }
+    }
+
+    @PayloadRoot(
             namespace = "http://courts.ag.gov.bc.ca/CCD.Source.CCDUserMapping.ws:ccdUserMapping",
             localPart = "mapGuidToParticipant")
     @ResponsePayload

@@ -1,0 +1,30 @@
+<xsd:schema targetNamespace="http://reeks.bcgov/CCD.Source.GetParticipantInfo.WS:getParticipantInfo"
+            xmlns:tns="http://reeks.bcgov/CCD.Source.GetParticipantInfo.WS:getParticipantInfo"
+            xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+
+    <xsd:element name="getParticipantInfo">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="GUID" nillable="true" type="xsd:string"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+
+    <xsd:element name="getParticipantInfoResponse">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="GetParticipantInfoResponse" nillable="true" type="tns:getParticipantInfoResponseEx"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+
+    <xsd:complexType name="getParticipantInfoResponseEx">
+        <xsd:sequence>
+            <xsd:element name="PartID" nillable="true" type="xsd:string"/>
+            <xsd:element name="AgenID" nillable="true" type="xsd:string"/>
+            <xsd:element name="RoleCd" nillable="true" type="xsd:string"/>
+            <xsd:element name="SubRoleCd" nillable="true" type="xsd:string"/>
+            <xsd:element name="ErrorMsg" nillable="true" type="xsd:string"/>
+        </xsd:sequence>
+    </xsd:complexType>
+</xsd:schema>

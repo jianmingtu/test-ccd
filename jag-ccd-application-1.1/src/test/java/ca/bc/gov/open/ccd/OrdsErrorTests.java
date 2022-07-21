@@ -299,6 +299,18 @@ public class OrdsErrorTests {
     }
 
     @Test
+    public void testGetNewParticipantInfoOrdsFail() {
+        UserController userController = new UserController(restTemplate, objectMapper);
+
+        Assertions.assertThrows(
+                ORDSException.class,
+                () ->
+                        userController.getNewParticipantInfo(
+                                new ca.bc.gov.open.ccd.common.participant.info
+                                        .GetParticipantInfo()));
+    }
+
+    @Test
     public void testMapGuidToParticipantOrdsFail() {
         UserController userController = new UserController(restTemplate, objectMapper);
 

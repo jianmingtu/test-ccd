@@ -57,6 +57,41 @@ public class UserControllerTest {
     }
 
     @Test
+    public void getNewParticipantInfoTest() throws JsonProcessingException {
+        var req = new ca.bc.gov.open.ccd.common.participant.info.GetParticipantInfo();
+        req.setGUID("A");
+
+        var out = new ca.bc.gov.open.ccd.common.participant.info.GetParticipantInfoResponse();
+        var outer = new ca.bc.gov.open.ccd.common.participant.info.GetParticipantInfoResponseEx();
+        out.setGetParticipantInfoResponse(outer);
+        outer.setAgenID("A");
+        outer.setPartID("A");
+        outer.setRoleCd("A");
+        outer.setSubRoleCd("A");
+        outer.setSubRoleCd("A");
+
+        ResponseEntity<ca.bc.gov.open.ccd.common.participant.info.GetParticipantInfoResponse>
+                responseEntity = new ResponseEntity<>(out, HttpStatus.OK);
+
+        // Set up to mock ords response
+        when(restTemplate.exchange(
+                        Mockito.any(String.class),
+                        Mockito.eq(HttpMethod.GET),
+                        Mockito.<HttpEntity<String>>any(),
+                        Mockito
+                                .<Class<
+                                                ca.bc.gov.open.ccd.common.participant.info
+                                                        .GetParticipantInfoResponse>>
+                                        any()))
+                .thenReturn(responseEntity);
+
+        UserController userController = new UserController(restTemplate, objectMapper);
+        var resp = userController.getNewParticipantInfo(req);
+
+        Assertions.assertNotNull(resp);
+    }
+
+    @Test
     public void mapGuidToParticipantTest() throws JsonProcessingException {
         var req = new MapGuidToParticipant();
         req.setGuid("A");
