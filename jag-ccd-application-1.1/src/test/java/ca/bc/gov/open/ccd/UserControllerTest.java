@@ -70,8 +70,8 @@ public class UserControllerTest {
         outer.setSubRoleCd("A");
         outer.setSubRoleCd("A");
 
-        ResponseEntity<ca.bc.gov.open.ccd.common.participant.info.GetParticipantInfoResponse>
-                responseEntity = new ResponseEntity<>(out, HttpStatus.OK);
+        ResponseEntity<ca.bc.gov.open.ccd.common.participant.info.GetParticipantInfoResponseEx>
+                responseEntity = new ResponseEntity<>(outer, HttpStatus.OK);
 
         // Set up to mock ords response
         when(restTemplate.exchange(
@@ -81,7 +81,7 @@ public class UserControllerTest {
                         Mockito
                                 .<Class<
                                                 ca.bc.gov.open.ccd.common.participant.info
-                                                        .GetParticipantInfoResponse>>
+                                                        .GetParticipantInfoResponseEx>>
                                         any()))
                 .thenReturn(responseEntity);
 

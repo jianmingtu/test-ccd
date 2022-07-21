@@ -83,17 +83,21 @@ public class UserController {
                         .queryParam("guid", getParticipantInfo.getGUID());
 
         try {
-            HttpEntity<ca.bc.gov.open.ccd.common.participant.info.GetParticipantInfoResponse> resp =
-                    restTemplate.exchange(
-                            builder.toUriString(),
-                            HttpMethod.GET,
-                            new HttpEntity<>(new HttpHeaders()),
-                            ca.bc.gov.open.ccd.common.participant.info.GetParticipantInfoResponse
-                                    .class);
+            HttpEntity<ca.bc.gov.open.ccd.common.participant.info.GetParticipantInfoResponseEx>
+                    resp =
+                            restTemplate.exchange(
+                                    builder.toUriString(),
+                                    HttpMethod.GET,
+                                    new HttpEntity<>(new HttpHeaders()),
+                                    ca.bc.gov.open.ccd.common.participant.info
+                                            .GetParticipantInfoResponseEx.class);
+            ca.bc.gov.open.ccd.common.participant.info.GetParticipantInfoResponse out =
+                    new ca.bc.gov.open.ccd.common.participant.info.GetParticipantInfoResponse();
+            out.setGetParticipantInfoResponse(resp.getBody());
             log.info(
                     objectMapper.writeValueAsString(
                             new RequestSuccessLog("Request Success", "new getParticipantInfo")));
-            return resp.getBody();
+            return out;
         } catch (Exception ex) {
             log.error(
                     objectMapper.writeValueAsString(
