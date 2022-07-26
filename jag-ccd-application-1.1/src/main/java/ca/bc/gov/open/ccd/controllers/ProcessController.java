@@ -690,7 +690,7 @@ public class ProcessController {
             log.info(
                     objectMapper.writeValueAsString(
                             new RequestSuccessLog(
-                                    "Request Success", "ProcessCivilAppearanceMethod")));
+                                    "Request Success", "ProcessCivilAppearanceMethod" + inner)));
             return resp.getBody();
         } catch (Exception ex) {
             inner.setEnterUserId("");
