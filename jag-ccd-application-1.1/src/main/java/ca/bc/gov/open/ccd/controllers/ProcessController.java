@@ -680,6 +680,10 @@ public class ProcessController {
         int i = 0;
         for (CivilAppearanceMethodDetailType detail : inner.getCivilAppearanceMethodDetail()) {
             detail.setCivilAppearanceMethodDetailId(Integer.toString(i++));
+            int j = 0;
+            for (CivilPartyAppearanceMethodType party : detail.getPartyAppearanceMethod()) {
+                party.setPartyAppearanceMethodId(Integer.toString(j++));
+            }
         }
 
         HttpEntity<CivilAppearanceMethod> payload = new HttpEntity<>(inner, new HttpHeaders());

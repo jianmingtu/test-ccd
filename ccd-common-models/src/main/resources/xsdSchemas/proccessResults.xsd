@@ -1160,6 +1160,7 @@
 
     <xsd:complexType name="CivilPartyAppearanceMethodType">
         <xsd:sequence>
+            <xsd:element name="PartyAppearanceMethodId" nillable="true" type="xsd:string"/>
             <xsd:element name="PartyName" nillable="true" type="xsd:string"/>
             <xsd:element name="PartyRole" nillable="true" type="xsd:string"/>
             <xsd:element name="PartyId" nillable="true" type="xsd:string"/>
