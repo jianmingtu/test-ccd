@@ -681,7 +681,7 @@ public class ProcessController {
         for (CivilAppearanceMethodDetailType detail : inner.getCivilAppearanceMethodDetail()) {
             detail.setCivilAppearanceMethodDetailId(Integer.toString(i++));
             int j = 0;
-            for (CivilPartyAppearanceMethodType party: detail.getPartyAppearanceMethod()) {
+            for (CivilPartyAppearanceMethodType party : detail.getPartyAppearanceMethod()) {
                 party.setPartyAppearanceMethodId(Integer.toString(j++));
             }
         }
