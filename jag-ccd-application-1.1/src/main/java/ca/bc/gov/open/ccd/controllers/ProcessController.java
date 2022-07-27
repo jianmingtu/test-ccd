@@ -677,6 +677,11 @@ public class ProcessController {
         UriComponentsBuilder builder =
                 UriComponentsBuilder.fromHttpUrl(host + "civil/" + "appearance-method");
 
+        int i = 0;
+        for (CivilAppearanceMethodDetailType detail : inner.getCivilAppearanceMethodDetail()) {
+            detail.setCivilAppearanceMethodDetailId(Integer.toString(i++));
+        }
+
         HttpEntity<CivilAppearanceMethod> payload = new HttpEntity<>(inner, new HttpHeaders());
 
         try {

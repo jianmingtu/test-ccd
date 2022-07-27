@@ -1142,6 +1142,7 @@
 
     <xsd:complexType name="CivilAppearanceMethodDetailType">
         <xsd:sequence>
+            <xsd:element name="CivilAppearanceMethodDetailId" nillable="true" type="xsd:string"/>
             <xsd:element name="ApplyToFile" nillable="true" type="tns:ApplyToFileCivilAppMethodType"
                          maxOccurs="unbounded"/>
             <xsd:element name="PartyAppearanceMethod" nillable="true" type="tns:CivilPartyAppearanceMethodType"
