@@ -179,10 +179,6 @@ public class ProcessController {
                     objectMapper.writeValueAsString(
                             new RequestSuccessLog("Request Success", "processAppearanceMethod")));
 
-            log.info(
-                    objectMapper.writeValueAsString(
-                            new RequestSuccessLog(
-                                    "Request Success", objectMapper.writeValueAsString(inner))));
             return resp.getBody();
         } catch (Exception ex) {
             inner.setEnterUserId("");
