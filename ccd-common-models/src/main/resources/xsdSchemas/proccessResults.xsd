@@ -304,6 +304,7 @@
 
     <xsd:complexType name="AppearanceMethodDetailType">
         <xsd:sequence>
+            <xsd:element name="AppearanceMethodDetailId" nillable="true" type="xsd:string"/>
             <xsd:element name="ApplyToFileAppearanceMethod" nillable="true" type="tns:ApplyToFileAppearanceMethodType"
                          maxOccurs="unbounded"/>
             <xsd:element name="PartyAppearanceMethod" nillable="true" type="tns:partyAppearanceMethodType"

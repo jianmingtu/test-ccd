@@ -160,6 +160,11 @@ public class ProcessController {
         UriComponentsBuilder builder =
                 UriComponentsBuilder.fromHttpUrl(host + "criminal/appearance-method");
 
+        int i = 0;
+        for (AppearanceMethodDetailType detail : inner.getAppearanceMethodDetail()) {
+            detail.setAppearanceMethodDetailId(Integer.toString(i++));
+        }
+
         HttpEntity<AppearanceMethod> payload = new HttpEntity<>(inner, new HttpHeaders());
 
         try {
@@ -173,6 +178,11 @@ public class ProcessController {
             log.info(
                     objectMapper.writeValueAsString(
                             new RequestSuccessLog("Request Success", "processAppearanceMethod")));
+
+            log.info(
+                    objectMapper.writeValueAsString(
+                            new RequestSuccessLog(
+                                    "Request Success", objectMapper.writeValueAsString(inner))));
             return resp.getBody();
         } catch (Exception ex) {
             inner.setEnterUserId("");
