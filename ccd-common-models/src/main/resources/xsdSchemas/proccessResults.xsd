@@ -1292,6 +1292,7 @@
 
     <xsd:complexType name="CivilOrderDetailType">
         <xsd:sequence>
+            <xsd:element name="CivilOrderDetailId" nillable="true" type="xsd:string"/>
             <xsd:element name="OrderTypeCd" nillable="true" type="xsd:string"/>
             <xsd:element name="AdjudicatorPartId" nillable="true" type="xsd:string"/>
             <xsd:element name="EnteredDate" nillable="true" type="xsd:dateTime"/>
