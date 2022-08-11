@@ -769,12 +769,10 @@ public class ProcessController {
 
         UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(host + "civil/order");
 
-
         int i = 0;
         for (var detail : inner.getCivilOrderDetail()) {
             detail.setCivilOrderDetailId(Integer.toString(i++));
         }
-
 
         HttpEntity<CivilOrderType> payload = new HttpEntity<>(inner, new HttpHeaders());
 
