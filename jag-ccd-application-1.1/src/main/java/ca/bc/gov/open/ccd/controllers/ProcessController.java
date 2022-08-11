@@ -774,6 +774,11 @@ public class ProcessController {
             detail.setCivilOrderDetailId(Integer.toString(i++));
         }
 
+        i = 0;
+        for (var detail : inner.getAdminOrderDetail()) {
+            detail.setAdminOrderDetailId(Integer.toString(i++));
+        }
+
         HttpEntity<CivilOrderType> payload = new HttpEntity<>(inner, new HttpHeaders());
 
         try {
@@ -786,6 +791,12 @@ public class ProcessController {
             log.info(
                     objectMapper.writeValueAsString(
                             new RequestSuccessLog("Request Success", "processCivilOrderResult")));
+
+            log.info(
+                    objectMapper.writeValueAsString(
+                            new RequestSuccessLog(
+                                    "Request Success", objectMapper.writeValueAsString(inner))));
+
             return resp.getBody();
         } catch (Exception ex) {
             inner.setEnterUserId("");

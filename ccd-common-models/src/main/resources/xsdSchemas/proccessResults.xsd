@@ -1345,6 +1345,7 @@
 
     <xsd:complexType name="AdminOrderDetailType">
         <xsd:sequence>
+            <xsd:element name="AdminOrderDetailId" type="xsd:string"/>
             <xsd:element name="ApplyToFile" nillable="true" type="tns:ApplyToFileCivilOrderType" maxOccurs="unbounded"/>
             <xsd:element name="OrderTerm" nillable="true" type="tns:OrderTermType" maxOccurs="unbounded"/>
         </xsd:sequence>
