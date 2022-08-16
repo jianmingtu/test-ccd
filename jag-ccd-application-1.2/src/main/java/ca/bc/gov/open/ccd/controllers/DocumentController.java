@@ -137,7 +137,7 @@ public class DocumentController {
                 log.error(
                         objectMapper.writeValueAsString(
                                 new OrdsErrorLog(
-                                        "Error occurred while requesting an uri to get base64 document",
+                                        "Error occurred while getting base64 document",
                                         "getDocumentSecure",
                                         ex.getMessage(),
                                         inner)));
