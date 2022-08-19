@@ -313,6 +313,15 @@ public class ProcessController {
 
         UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(host + "criminal/results");
 
+        int i = 0;
+        for (CriminalResultsDetail detail : inner.getCriminalResultsDetail()) {
+            detail.setCriminalResultsDetailId(Integer.toString(i++));
+            int j = 0;
+            for (NextAppearanceCRType nextAppr : detail.getNextAppearance()) {
+                nextAppr.setNextAppearanceId(Integer.toString(j++));
+            }
+        }
+
         HttpEntity<CriminalResult> payload = new HttpEntity<>(inner, new HttpHeaders());
 
         try {
