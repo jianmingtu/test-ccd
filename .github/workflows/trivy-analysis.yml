@@ -52,8 +52,8 @@ jobs:
           scan-type: image
           image-ref: docker.io/ccd/jag-ccd-1-1:${{ github.sha }}
           format: sarif
-          output: table
-          exit-code: 1
+          output: trivy-results.sarif
+          exit-code: 0
           ignore-unfixed: true
           severity: HIGH,CRITICAL
       
@@ -73,7 +73,7 @@ jobs:
           image-ref: docker.io/ccd/jag-ccd-1-2:${{ github.sha }}
           format: sarif
           output: trivy-results.sarif
-          exit-code: 1
+          exit-code: 0
           ignore-unfixed: true
           severity: HIGH,CRITICAL
 
