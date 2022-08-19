@@ -541,6 +541,7 @@
 
     <xsd:complexType name="CriminalResultsDetail">
         <xsd:sequence>
+            <xsd:element name="CriminalResultsDetailId" nillable="true" type="xsd:string"/>
             <xsd:element name="AppearanceResult" nillable="true" type="xsd:string"/>
             <xsd:element name="JudgeSeizedPartId" nillable="true" type="xsd:string"/>
             <xsd:element name="JudgeSeizedName" nillable="true" type="xsd:string"/>
@@ -565,6 +566,7 @@
 
     <xsd:complexType name="NextAppearanceCRType">
         <xsd:sequence>
+            <xsd:element name="NextAppearanceId" nillable="true" type="xsd:string"/>
             <xsd:element name="AppearanceDate" nillable="true" type="xsd:dateTime"/>
             <xsd:element name="AppearanceTime" nillable="true" type="xsd:string"/>
             <xsd:element name="AppearanceReason" nillable="true" type="xsd:string"/>
