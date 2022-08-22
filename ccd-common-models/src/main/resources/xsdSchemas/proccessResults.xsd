@@ -113,6 +113,7 @@
 
     <xsd:complexType name="SpeakerDetailsType">
         <xsd:sequence>
+            <xsd:element name="SpeakerDetailId" nillable="true" type="xsd:string"/>
             <xsd:element name="SpeakerId" nillable="true" type="xsd:string"/>
             <xsd:element name="SpeakerTypeCd" nillable="true" type="xsd:string"/>
             <xsd:element name="SpeakerSeqNo" nillable="true" type="xsd:string"/>
