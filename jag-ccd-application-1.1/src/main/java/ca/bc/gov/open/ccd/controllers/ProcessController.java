@@ -82,6 +82,11 @@ public class ProcessController {
 
         var inner = process.getSpeaker() != null ? process.getSpeaker() : new Speaker();
 
+        int i = 0;
+        for (var detail : inner.getSpeakerDetail()) {
+            detail.setSpeakerDetailId(Integer.toString(i++));
+        }
+
         UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(host + "criminal/speaker");
 
         HttpEntity<Speaker> payload = new HttpEntity<>(inner, new HttpHeaders());
