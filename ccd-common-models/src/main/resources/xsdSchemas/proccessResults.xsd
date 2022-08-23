@@ -174,6 +174,7 @@
 
     <xsd:complexType name="CivilResultDetailType">
         <xsd:sequence>
+            <xsd:element name="CivilResultDetailId" nillable="true" type="xsd:string"/>
             <xsd:element name="AppearanceId" nillable="true" type="xsd:string"/>
             <xsd:element name="DocumentId" nillable="true" type="xsd:string"/>
             <xsd:element name="DocumentResultCd" nillable="true" type="xsd:string"/>
@@ -198,6 +199,7 @@
 
     <xsd:complexType name="NextAppearanceType">
         <xsd:sequence>
+            <xsd:element name="NextAppearanceId" nillable="true" type="xsd:string"/>
             <xsd:element name="AppearanceDate" nillable="true" type="xsd:dateTime"/>
             <xsd:element name="AppearanceTime" nillable="true" type="xsd:string"/>
             <xsd:element name="AppearanceReason" nillable="true" type="xsd:string"/>
@@ -263,6 +265,7 @@
 
     <xsd:complexType name="HearingRestrictionType">
         <xsd:sequence>
+            <xsd:element name="HearingRestrictionId" nillable="true" type="xsd:string"/>
             <xsd:element name="HearingRestrictionType" nillable="true" type="xsd:string"/>
             <xsd:element name="JudgePartId" nillable="true" type="xsd:string"/>
             <xsd:element name="ApplyToFile" nillable="true" type="tns:ApplyToFileCivilResultType"

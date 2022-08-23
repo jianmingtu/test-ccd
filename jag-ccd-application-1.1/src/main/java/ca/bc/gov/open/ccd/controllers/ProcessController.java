@@ -125,6 +125,21 @@ public class ProcessController {
 
         UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(host + "civil/results");
 
+        int i = 0;
+        for (var details : inner.getCivilResultDetail()) {
+            details.setCivilResultDetailId(Integer.toString(i++));
+        }
+
+        i = 0;
+        for (var appearances : inner.getNextAppearance()) {
+            appearances.setNextAppearanceId(Integer.toString(i++));
+        }
+
+        i = 0;
+        for (var restrictions : inner.getHearingRestriction()) {
+            restrictions.setHearingRestrictionId(Integer.toString(i++));
+        }
+
         HttpEntity<CivilResultType> payload = new HttpEntity<>(inner, new HttpHeaders());
 
         try {
