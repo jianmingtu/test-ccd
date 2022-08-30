@@ -16,16 +16,19 @@
             <namespace:prefix name="xsi" namespaceURI="http://www.w3.org/2001/XMLSchema-instance" />
         </jxb:bindings>
     </jxb:bindings>
+
+
     <jxb:bindings choiceContentProperty="true" schemaLocation="../xsdSchemas/codeValues.xsd">
         <jxb:schemaBindings>
             <jxb:package name="ca.bc.gov.open.ccd.common.code.values" />
         </jxb:schemaBindings>
         <jxb:bindings>
-
-            <!-- Additional @XmlNs prefix declarations to take effect for this schema/package -->
+            <namespace:prefix name="ser-root"/>
             <namespace:prefix name="xsi" namespaceURI="http://www.w3.org/2001/XMLSchema-instance" />
         </jxb:bindings>
     </jxb:bindings>
+
+
     <jxb:bindings choiceContentProperty="true" schemaLocation="../xsdSchemas/codeValuesSecure.xsd">
         <jxb:schemaBindings>
             <jxb:package name="ca.bc.gov.open.ccd.common.code.values.secure" />
@@ -119,6 +122,17 @@
     <jxb:bindings choiceContentProperty="true" schemaLocation="../xsdSchemas/getDevUtils.xsd">
         <jxb:schemaBindings>
             <jxb:package name="ca.bc.gov.open.ccd.common.dev.utils" />
+        </jxb:schemaBindings>
+        <jxb:bindings>
+
+            <!-- Additional @XmlNs prefix declarations to take effect for this schema/package -->
+            <namespace:prefix name="xsi" namespaceURI="http://www.w3.org/2001/XMLSchema-instance" />
+        </jxb:bindings>
+    </jxb:bindings>
+
+    <jxb:bindings choiceContentProperty="true" schemaLocation="../xsdSchemas/getParticipantInfo.xsd">
+        <jxb:schemaBindings>
+            <jxb:package name="ca.bc.gov.open.ccd.common.participant.info" />
         </jxb:schemaBindings>
         <jxb:bindings>
 

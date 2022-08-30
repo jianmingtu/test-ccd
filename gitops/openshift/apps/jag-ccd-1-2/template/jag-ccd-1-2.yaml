@@ -89,12 +89,12 @@ objects:
               valueFrom:
                 secretKeyRef:
                   name: ccd-application-secrets
-                  key: BASIC_AUTH_USER
+                  key: BASIC_AUTH_USER_SECURE
             - name: BASIC_AUTH_PASS
               valueFrom:
                 secretKeyRef:
                   name: ccd-application-secrets
-                  key: BASIC_AUTH_PASS
+                  key: BASIC_AUTH_PASS_SECURE
             - name: SPRING_PROFILES_ACTIVE
               valueFrom:
                 secretKeyRef:
@@ -105,6 +105,11 @@ objects:
                 secretKeyRef:
                   name: ccd-splunk-config
                   key: SPLUNK_HTTP_URL
+            - name: FORM_PARAM_IDX
+              valueFrom:
+                secretKeyRef:
+                  name: ccd-application-secrets
+                  key: FORM_PARAM_IDX
             - name: SPLUNK_TOKEN
               valueFrom:
                 secretKeyRef:

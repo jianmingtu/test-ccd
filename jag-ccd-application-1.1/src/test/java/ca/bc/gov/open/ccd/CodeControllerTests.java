@@ -21,6 +21,7 @@ import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.Collections;
 import java.util.Locale;
+import javax.xml.transform.TransformerConfigurationException;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
@@ -43,7 +44,8 @@ public class CodeControllerTests {
     @Mock private RestTemplate restTemplate = new RestTemplate();
 
     @Test
-    public void getCodeValuesTest() throws JsonProcessingException {
+    public void getCodeValuesTest()
+            throws JsonProcessingException, TransformerConfigurationException {
 
         var req = new GetCodeValues();
         req.setLastRetrievedDate(Instant.now());
@@ -72,7 +74,7 @@ public class CodeControllerTests {
                 .thenReturn(responseEntity);
 
         CodeController codeController = new CodeController(restTemplate, objectMapper);
-        var resp = codeController.getCodeValues(req);
+        var resp = codeController.getCodeValues(req, null);
 
         Assertions.assertNotNull(resp);
     }

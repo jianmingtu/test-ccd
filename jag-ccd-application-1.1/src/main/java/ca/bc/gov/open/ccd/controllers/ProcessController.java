@@ -57,6 +57,7 @@ public class ProcessController {
                             HttpMethod.POST,
                             payload,
                             ProcessVariationResponse.class);
+
             log.info(
                     objectMapper.writeValueAsString(
                             new RequestSuccessLog("Request Success", "processVariation")));
@@ -81,6 +82,11 @@ public class ProcessController {
 
         var inner = process.getSpeaker() != null ? process.getSpeaker() : new Speaker();
 
+        int i = 0;
+        for (var detail : inner.getSpeakerDetail()) {
+            detail.setSpeakerDetailId(Integer.toString(i++));
+        }
+
         UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(host + "criminal/speaker");
 
         HttpEntity<Speaker> payload = new HttpEntity<>(inner, new HttpHeaders());
@@ -92,6 +98,7 @@ public class ProcessController {
                             HttpMethod.POST,
                             payload,
                             ProcessSpeakerResponse.class);
+
             log.info(
                     objectMapper.writeValueAsString(
                             new RequestSuccessLog("Request Success", "processSpeaker")));
@@ -118,6 +125,21 @@ public class ProcessController {
 
         UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(host + "civil/results");
 
+        int i = 0;
+        for (var details : inner.getCivilResultDetail()) {
+            details.setCivilResultDetailId(Integer.toString(i++));
+        }
+
+        i = 0;
+        for (var appearances : inner.getNextAppearance()) {
+            appearances.setNextAppearanceId(Integer.toString(i++));
+        }
+
+        i = 0;
+        for (var restrictions : inner.getHearingRestriction()) {
+            restrictions.setHearingRestrictionId(Integer.toString(i++));
+        }
+
         HttpEntity<CivilResultType> payload = new HttpEntity<>(inner, new HttpHeaders());
 
         try {
@@ -127,6 +149,7 @@ public class ProcessController {
                             HttpMethod.POST,
                             payload,
                             ProcessCivilResultsResponse.class);
+
             log.info(
                     objectMapper.writeValueAsString(
                             new RequestSuccessLog("Request Success", "processCivilResults")));
@@ -157,6 +180,11 @@ public class ProcessController {
         UriComponentsBuilder builder =
                 UriComponentsBuilder.fromHttpUrl(host + "criminal/appearance-method");
 
+        int i = 0;
+        for (AppearanceMethodDetailType detail : inner.getAppearanceMethodDetail()) {
+            detail.setAppearanceMethodDetailId(Integer.toString(i++));
+        }
+
         HttpEntity<AppearanceMethod> payload = new HttpEntity<>(inner, new HttpHeaders());
 
         try {
@@ -166,9 +194,11 @@ public class ProcessController {
                             HttpMethod.POST,
                             payload,
                             ProcessAppearanceMethodResponse.class);
+
             log.info(
                     objectMapper.writeValueAsString(
                             new RequestSuccessLog("Request Success", "processAppearanceMethod")));
+
             return resp.getBody();
         } catch (Exception ex) {
             inner.setEnterUserId("");
@@ -201,6 +231,7 @@ public class ProcessController {
                             HttpMethod.POST,
                             payload,
                             ProcessPleaResponse.class);
+
             log.info(
                     objectMapper.writeValueAsString(
                             new RequestSuccessLog("Request Success", "processPlea")));
@@ -236,6 +267,7 @@ public class ProcessController {
                             HttpMethod.POST,
                             payload,
                             ProcessElectionResponse.class);
+
             log.info(
                     objectMapper.writeValueAsString(
                             new RequestSuccessLog("Request Success", "processElection")));
@@ -271,6 +303,7 @@ public class ProcessController {
                             HttpMethod.POST,
                             payload,
                             ProcessBailResponse.class);
+
             log.info(
                     objectMapper.writeValueAsString(
                             new RequestSuccessLog("Request Success", "processBail")));
@@ -300,6 +333,15 @@ public class ProcessController {
 
         UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(host + "criminal/results");
 
+        int i = 0;
+        for (CriminalResultsDetail detail : inner.getCriminalResultsDetail()) {
+            detail.setCriminalResultsDetailId(Integer.toString(i++));
+            int j = 0;
+            for (NextAppearanceCRType nextAppr : detail.getNextAppearance()) {
+                nextAppr.setNextAppearanceId(Integer.toString(j++));
+            }
+        }
+
         HttpEntity<CriminalResult> payload = new HttpEntity<>(inner, new HttpHeaders());
 
         try {
@@ -309,6 +351,7 @@ public class ProcessController {
                             HttpMethod.POST,
                             payload,
                             ProcessCriminalResultResponse.class);
+
             log.info(
                     objectMapper.writeValueAsString(
                             new RequestSuccessLog("Request Success", "processCriminalResult")));
@@ -345,6 +388,7 @@ public class ProcessController {
                             HttpMethod.POST,
                             payload,
                             ProcessAgeNoticeResponse.class);
+
             log.info(
                     objectMapper.writeValueAsString(
                             new RequestSuccessLog("Request Success", "processAgeNotice")));
@@ -381,6 +425,7 @@ public class ProcessController {
                             HttpMethod.POST,
                             payload,
                             ProcessMatterCallResponse.class);
+
             log.info(
                     objectMapper.writeValueAsString(
                             new RequestSuccessLog("Request Success", "processMatterCall")));
@@ -416,6 +461,7 @@ public class ProcessController {
                             HttpMethod.POST,
                             payload,
                             ProcessSentenceResponse.class);
+
             log.info(
                     objectMapper.writeValueAsString(
                             new RequestSuccessLog("Request Success", "processSentence")));
@@ -451,6 +497,7 @@ public class ProcessController {
                             HttpMethod.POST,
                             payload,
                             ProcessBanResponse.class);
+
             log.info(
                     objectMapper.writeValueAsString(
                             new RequestSuccessLog("Request Success", "processBan")));
@@ -486,6 +533,7 @@ public class ProcessController {
                             HttpMethod.POST,
                             payload,
                             ProcessNoteResponse.class);
+
             log.info(
                     objectMapper.writeValueAsString(
                             new RequestSuccessLog("Request Success", "processNote")));
@@ -522,6 +570,7 @@ public class ProcessController {
                             HttpMethod.POST,
                             payload,
                             ProcessArraignmentResponse.class);
+
             log.info(
                     objectMapper.writeValueAsString(
                             new RequestSuccessLog("Request Success", "processArraignment")));
@@ -557,6 +606,7 @@ public class ProcessController {
                             HttpMethod.POST,
                             payload,
                             ProcessMoveResponse.class);
+
             log.info(
                     objectMapper.writeValueAsString(
                             new RequestSuccessLog("Request Success", "processMove")));
@@ -592,6 +642,7 @@ public class ProcessController {
                             HttpMethod.POST,
                             payload,
                             ProcessFindingResponse.class);
+
             log.info(
                     objectMapper.writeValueAsString(
                             new RequestSuccessLog("Request Success", "processFinding")));
@@ -617,8 +668,11 @@ public class ProcessController {
         UriComponentsBuilder builder =
                 UriComponentsBuilder.fromHttpUrl(host + "common/generic-result");
 
-        HttpEntity<ProcessGenericResult> payload = new HttpEntity<>(process, new HttpHeaders());
-
+        var inner =
+                process != null && process.getGenericResult() != null
+                        ? process.getGenericResult()
+                        : new GenericResult();
+        HttpEntity<GenericResult> payload = new HttpEntity<>(inner, new HttpHeaders());
         try {
             HttpEntity<ProcessGenericResultResponse> resp =
                     restTemplate.exchange(
@@ -626,6 +680,7 @@ public class ProcessController {
                             HttpMethod.POST,
                             payload,
                             ProcessGenericResultResponse.class);
+
             log.info(
                     objectMapper.writeValueAsString(
                             new RequestSuccessLog("Request Success", "processGenericResult")));
@@ -657,6 +712,15 @@ public class ProcessController {
         UriComponentsBuilder builder =
                 UriComponentsBuilder.fromHttpUrl(host + "civil/" + "appearance-method");
 
+        int i = 0;
+        for (CivilAppearanceMethodDetailType detail : inner.getCivilAppearanceMethodDetail()) {
+            detail.setCivilAppearanceMethodDetailId(Integer.toString(i++));
+            int j = 0;
+            for (CivilPartyAppearanceMethodType party : detail.getPartyAppearanceMethod()) {
+                party.setPartyAppearanceMethodId(Integer.toString(j++));
+            }
+        }
+
         HttpEntity<CivilAppearanceMethod> payload = new HttpEntity<>(inner, new HttpHeaders());
 
         try {
@@ -666,10 +730,12 @@ public class ProcessController {
                             HttpMethod.POST,
                             payload,
                             ProcessCivilAppearanceMethodResponse.class);
+
             log.info(
                     objectMapper.writeValueAsString(
                             new RequestSuccessLog(
                                     "Request Success", "ProcessCivilAppearanceMethod")));
+
             return resp.getBody();
         } catch (Exception ex) {
             inner.setEnterUserId("");
@@ -691,7 +757,7 @@ public class ProcessController {
 
         var inner = process.getOrder() != null ? process.getOrder() : new OrderType();
 
-        UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(host + "civil/order");
+        UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(host + "criminal/order");
 
         HttpEntity<OrderType> payload = new HttpEntity<>(inner, new HttpHeaders());
 
@@ -702,6 +768,7 @@ public class ProcessController {
                             HttpMethod.POST,
                             payload,
                             ProcessOrderResponse.class);
+
             log.info(
                     objectMapper.writeValueAsString(
                             new RequestSuccessLog("Request Success", "processOrder")));
@@ -731,6 +798,16 @@ public class ProcessController {
 
         UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(host + "civil/order");
 
+        int i = 0;
+        for (var detail : inner.getCivilOrderDetail()) {
+            detail.setCivilOrderDetailId(Integer.toString(i++));
+        }
+
+        i = 0;
+        for (var detail : inner.getAdminOrderDetail()) {
+            detail.setAdminOrderDetailId(Integer.toString(i++));
+        }
+
         HttpEntity<CivilOrderType> payload = new HttpEntity<>(inner, new HttpHeaders());
 
         try {
@@ -743,6 +820,7 @@ public class ProcessController {
             log.info(
                     objectMapper.writeValueAsString(
                             new RequestSuccessLog("Request Success", "processCivilOrderResult")));
+
             return resp.getBody();
         } catch (Exception ex) {
             inner.setEnterUserId("");
@@ -776,6 +854,7 @@ public class ProcessController {
                             HttpMethod.POST,
                             payload,
                             ProcessExhibitResponse.class);
+
             log.info(
                     objectMapper.writeValueAsString(
                             new RequestSuccessLog("Request Success", "processExhibit")));
@@ -812,6 +891,7 @@ public class ProcessController {
                             HttpMethod.POST,
                             payload,
                             ProcessSpecialCourtResponse.class);
+
             log.info(
                     objectMapper.writeValueAsString(
                             new RequestSuccessLog("Request Success", "processSpecialCourt")));

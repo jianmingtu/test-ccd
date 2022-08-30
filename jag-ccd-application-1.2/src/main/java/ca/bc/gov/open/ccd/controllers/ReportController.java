@@ -8,6 +8,8 @@ import ca.bc.gov.open.ccd.models.RequestSuccessLog;
 import ca.bc.gov.open.ccd.models.serializers.InstantSerializer;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import java.net.URLDecoder;
+import java.nio.charset.StandardCharsets;
 import java.util.Map;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,6 +37,9 @@ public class ReportController {
 
     @Value("${ccd.report-app-name}")
     private String reportAppName = "";
+
+    @Value("${ccd.form-param-idx}")
+    private String formParamIdx = "1";
 
     private final RestTemplate restTemplate;
     private final ObjectMapper objectMapper;
@@ -109,19 +114,27 @@ public class ReportController {
             var keyValue = body.get("keyValue");
 
             // This is not shown in designer but the comparison tool is doing this
-            one.setResultCd(respCd.equals("0") ? "2" : respCd);
+            one.setResultCd(respCd != null && respCd.equals("0") ? "2" : respCd);
             one.setResultMessage(respMsg);
             out.setROPResponse(one);
 
-            if (url == null) {
+            if (url == null || url.isBlank()) {
                 // return error
+                log.error(
+                        objectMapper.writeValueAsString(
+                                new OrdsErrorLog(
+                                        "Error received from ORDS",
+                                        "getROPReport",
+                                        "Null url fetched from ords",
+                                        inner)));
                 return out;
             }
 
             try {
+                url = URLDecoder.decode(url, StandardCharsets.UTF_8);
                 String query = "";
                 if (url.contains("?")) {
-                    query = url.split("\\?")[1];
+                    query = url.split("\\?")[Integer.parseInt(formParamIdx)];
                 }
 
                 // build an adobe server uri using its url and parameters being return from ccd and

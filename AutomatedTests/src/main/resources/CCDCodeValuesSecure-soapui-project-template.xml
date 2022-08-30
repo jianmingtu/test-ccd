@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project id="23965ecf-9f92-427e-9fa9-69ead606486f" activeEnvironment="Default" name="CCDCodeValuesSecure" resourceRoot="${projectDir}" soapui-version="5.6.0" abortOnError="false" runType="SEQUENTIAL" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:interface xsi:type="con:WsdlInterface" id="616c3f36-06f5-436d-896e-a87cc5a1ad3b" wsaVersion="NONE" name="CCD_Source_CodeValues_ws_provider_CodeValuesSecure_Binder" type="wsdl" bindingName="{http://reeks.bcgov/CCD.Source.CodeValues.ws.provider:CodeValuesSecure}CCD_Source_CodeValues_ws_provider_CodeValuesSecure_Binder" soapVersion="1_2" anonymous="optional" definition="file:/C:/workspace2/jag-ccd/jag-ccd-application-1.2/src/main/resources/xsdSchemas/codeValuesSecure.wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="file:\C:\workspace2\jag-ccd\jag-ccd-application-1.2\src\main\resources\xsdSchemas\codeValuesSecure.wsdl"><con:part><con:url>file:\C:\workspace2\jag-ccd\jag-ccd-application-1.2\src\main\resources\xsdSchemas\codeValuesSecure.wsdl</con:url><con:content><![CDATA[<wsdl:definitions name="CodeValuesSecure" targetNamespace="http://reeks.bcgov/CCD.Source.CodeValues.ws.provider:CodeValuesSecure" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:soapjms="http://www.w3.org/2010/soapjms/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:tns="http://reeks.bcgov/CCD.Source.CodeValues.ws.provider:CodeValuesSecure" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://reeks.bcgov/CCD.Source.CodeValues.ws.provider:CodeValuesSecure">
+      <xsd:element name="getCodeValuesSecure" type="tns:getCodeValuesSecure"/>
+      <xsd:element name="getCodeValuesSecureResponse" type="tns:getCodeValuesSecureResponse"/>
+      <xsd:complexType name="getCodeValuesSecure">
+        <xsd:sequence>
+          <xsd:element name="RequestAgencyIdentifierId" nillable="true" type="xsd:string"/>
+          <xsd:element name="RequestPartId" nillable="true" type="xsd:string"/>
+          <xsd:element name="RequestDtm" nillable="true" type="xsd:string"/>
+          <xsd:element name="ApplicationCd" nillable="true" type="xsd:string"/>
+          <xsd:element name="LastRetrievedDate" nillable="true" type="xsd:string"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="getCodeValuesSecureResponse">
+        <xsd:sequence>
+          <xsd:element name="ResultCd" nillable="true" type="xsd:string"/>
+          <xsd:element name="ResultMessage" nillable="true" type="xsd:string"/>
+          <xsd:element name="CeisCodeValues" nillable="true" type="tns:CodeValues"/>
+          <xsd:element name="JustinCodeValues" nillable="true" type="tns:CodeValues"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="CodeValues">
+        <xsd:sequence>
+          <xsd:element name="CodeValue" nillable="true" type="tns:CodeValue" maxOccurs="unbounded"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="CodeValue">
+        <xsd:sequence>
+          <xsd:element name="codeType" nillable="true" type="xsd:string"/>
+          <xsd:element name="code" nillable="true" type="xsd:string"/>
+          <xsd:element name="shortDesc" nillable="true" type="xsd:string"/>
+          <xsd:element name="longDesc" nillable="true" type="xsd:string"/>
+          <xsd:element name="flex" nillable="true" type="xsd:string"/>
+        </xsd:sequence>
+      </xsd:complexType>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="CodeValuesSecure_PortType_getCodeValuesSecure">
+    <wsdl:part name="parameters" element="tns:getCodeValuesSecure"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="CodeValuesSecure_PortType_getCodeValuesSecureResponse">
+    <wsdl:part name="parameters" element="tns:getCodeValuesSecureResponse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="CodeValuesSecure_PortType">
+    <wsdl:operation name="getCodeValuesSecure">
+      <wsdl:input message="tns:CodeValuesSecure_PortType_getCodeValuesSecure"></wsdl:input>
+      <wsdl:output message="tns:CodeValuesSecure_PortType_getCodeValuesSecureResponse"></wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="CCD_Source_CodeValues_ws_provider_CodeValuesSecure_Binder" type="tns:CodeValuesSecure_PortType">
+    <soap12:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="getCodeValuesSecure">
+      <soap12:operation soapAction="CCD_Source_CodeValues_ws_provider_CodeValuesSecure_Binder_getCodeValuesSecure" style="document"/>
+      <wsdl:input>
+        <soap12:body parts="parameters" use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body parts="parameters" use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="CodeValuesSecure">
+    <wsdl:port name="CCD_Source_CodeValues_ws_provider_CodeValuesSecure_Port" binding="tns:CCD_Source_CodeValues_ws_provider_CodeValuesSecure_Binder">
+      <soap12:address location="http://reeks.bcgov:5555/ws/CCD.Source.CodeValues.ws.provider:CodeValuesSecure/CCD_Source_CodeValues_ws_provider_CodeValuesSecure_Port"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://reeks.bcgov:5555/ws/CCD.Source.CodeValues.ws.provider:CodeValuesSecure/CCD_Source_CodeValues_ws_provider_CodeValuesSecure_Port</con:endpoint></con:endpoints><con:operation id="a7060c4a-ec2b-4fcc-8459-e30f558ccf40" isOneWay="false" action="CCD_Source_CodeValues_ws_provider_CodeValuesSecure_Binder_getCodeValuesSecure" name="getCodeValuesSecure" bindingOperationName="getCodeValuesSecure" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="cdb3313a-0719-4e67-aa9b-67d87c9c63a7" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://reeks.bcgov:5555/ws/CCD.Source.CodeValues.ws.provider:CodeValuesSecure/CCD_Source_CodeValues_ws_provider_CodeValuesSecure_Port</con:endpoint><con:request><![CDATA[<soap:Envelope xmlns:soap="http://www.w3.org/2003/05/soap-envelope" xmlns:ccd="http://reeks.bcgov/CCD.Source.CodeValues.ws.provider:CodeValuesSecure">\r
+   <soap:Header/>\r
+   <soap:Body>\r
+      <ccd:getCodeValuesSecure>\r
+         <RequestAgencyIdentifierId>?</RequestAgencyIdentifierId>\r
+         <RequestPartId>?</RequestPartId>\r
+         <RequestDtm>?</RequestDtm>\r
+         <ApplicationCd>?</ApplicationCd>\r
+         <LastRetrievedDate>?</LastRetrievedDate>\r
+      </ccd:getCodeValuesSecure>\r
+   </soap:Body>\r
+</soap:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://reeks.bcgov/CCD.Source.CodeValues.ws.provider:CodeValuesSecure/CodeValuesSecure_PortType/getCodeValuesSecureRequest"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:testSuite id="f540e287-3674-4a41-a14a-64a058c096c9" name="CCDCodeValueSecure"><con:settings/><con:runType>SEQUENTIAL</con:runType><con:testCase id="3829fd1a-78e2-4071-a306-a2c051070bd6" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="GetCodeValuesSecure" searchProperties="true"><con:settings/><con:testStep type="request" name="getCodeValuesSecure" id="3dd906ad-3ba2-46a6-84f5-6a9b5a5abcc4"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>CCD_Source_CodeValues_ws_provider_CodeValuesSecure_Binder</con:interface><con:operation>getCodeValuesSecure</con:operation><con:request name="getCodeValuesSecure" id="0ae1cce7-1458-44a0-87c7-cfd1ab554467"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>https://jag-ccd-1-2-52e74e-dev.apps.silver.devops.gov.bc.ca/ws/secure</con:endpoint><con:request><![CDATA[<soap:Envelope xmlns:soap="http://www.w3.org/2003/05/soap-envelope" xmlns:ccd="http://reeks.bcgov/CCD.Source.CodeValues.ws.provider:CodeValuesSecure">
+   <soap:Header/>
+   <soap:Body>
+      <ccd:getCodeValuesSecure>
+         <RequestAgencyIdentifierId>83.0001</RequestAgencyIdentifierId>
+         <RequestPartId>19014.0001</RequestPartId>
+         <RequestDtm>2021-01-18 09:09:09.3</RequestDtm>
+         <ApplicationCd>PCSS</ApplicationCd>
+         <LastRetrievedDate>2021-08-18 09:09:09.1</LastRetrievedDate>
+      </ccd:getCodeValuesSecure>
+   </soap:Body>
+</soap:Envelope>]]></con:request><con:assertion type="SOAP Response" id="b459b6a5-9825-43db-bfda-9327f16bd245"/><con:assertion type="Valid HTTP Status Codes" id="54093f6f-715a-44c1-a85a-e8bee16c64d9" name="Valid HTTP Status Codes"><con:configuration><codes>200</codes></con:configuration></con:assertion><con:assertion type="Response SLA Assertion" id="704310c4-fe89-4bfc-a5d4-bdd60eefcb4f" name="Response SLA"><con:configuration><SLA>4000</SLA></con:configuration></con:assertion><con:assertion type="Invalid HTTP Status Codes" id="cc3bd670-023d-4ac3-9d52-694db511525c" name="Invalid HTTP Status Codes"><con:configuration><codes>400, 401, 403, 404, 500, 503</codes></con:configuration></con:assertion><con:assertion type="Simple Contains" id="9c4dfe30-09a2-407c-97af-0dba3540dcf4" name="Contains"><con:configuration><token>ADJUDICATOR</token><ignoreCase>false</ignoreCase><useRegEx>false</useRegEx></con:configuration></con:assertion><con:assertion type="Simple Contains" id="f6198937-c46d-46dd-8fbb-d99767d9b5a8" name="Contains 1"><con:configuration><token>59228.0045</token><ignoreCase>false</ignoreCase><useRegEx>false</useRegEx></con:configuration></con:assertion><con:assertion type="Simple Contains" id="7a4a6a1f-9125-4967-98a0-a752614ffb4e" name="Contains 2"><con:configuration><token>Ceis2, S</token><ignoreCase>false</ignoreCase><useRegEx>false</useRegEx></con:configuration></con:assertion><con:assertion type="Simple Contains" id="e61ca099-7f97-4705-b3ce-8243baf85d4d" name="Contains 3"><con:configuration><token>ceis2</token><ignoreCase>false</ignoreCase><useRegEx>false</useRegEx></con:configuration></con:assertion><con:assertion type="Simple Contains" id="76986f1d-ee83-41cc-92d4-d1664a23cf7f" name="Contains 4"><con:configuration><token>ADJU</token><ignoreCase>false</ignoreCase><useRegEx>false</useRegEx></con:configuration></con:assertion><con:assertion type="Simple Contains" id="220abb3d-73a8-40ef-9ca9-f297edff285b" name="Contains 5"><con:configuration><token>114621.0734</token><ignoreCase>false</ignoreCase><useRegEx>false</useRegEx></con:configuration></con:assertion><con:assertion type="Simple Contains" id="10c6c9e9-112f-4270-b5e3-afd9814f71b1" name="Contains 6"><con:configuration><token>Justin93, Tester</token><ignoreCase>false</ignoreCase><useRegEx>false</useRegEx></con:configuration></con:assertion><con:assertion type="Simple Contains" id="7f391553-47e7-409b-83b0-8cc9e258de6c" name="Contains 7"><con:configuration><token>TST93</token><ignoreCase>false</ignoreCase><useRegEx>false</useRegEx></con:configuration></con:assertion><con:assertion type="Simple Contains" id="458fd597-13ce-4d8f-a4b8-ebffdb7bdecc" name="Contains 8"><con:configuration><token>APPEARANCE_REASONS</token><ignoreCase>false</ignoreCase><useRegEx>false</useRegEx></con:configuration></con:assertion><con:assertion type="Simple Contains" id="9de4e49d-cd8e-49aa-a2d7-263ff136538a" name="Contains 9"><con:configuration><token>Appointment</token><ignoreCase>false</ignoreCase><useRegEx>false</useRegEx></con:configuration></con:assertion><con:assertion type="Simple Contains" id="b7fbcada-f262-4707-ab5d-70313c175d75" name="Contains 10"><con:configuration><token>APT</token><ignoreCase>false</ignoreCase><useRegEx>false</useRegEx></con:configuration></con:assertion><con:assertion type="Simple Contains" id="8b47809c-6f49-42de-88a7-a9820a21f45d" name="Contains 11"><con:configuration><token>APPEARANCE_REASONS</token><ignoreCase>false</ignoreCase><useRegEx>false</useRegEx></con:configuration></con:assertion><con:assertion type="Simple Contains" id="4f7d82e0-dd8c-4f2e-b099-236eec114bce" name="Contains 12"><con:configuration><token>Continuation of Trial or Hearing</token><ignoreCase>false</ignoreCase><useRegEx>false</useRegEx></con:configuration></con:assertion><con:assertion type="Simple Contains" id="39673cd6-ba90-411d-a13e-ed66298d570b" name="Contains 13"><con:configuration><token>CNT</token><ignoreCase>false</ignoreCase><useRegEx>false</useRegEx></con:configuration></con:assertion><con:assertion type="Simple Contains" id="b8f180c4-304e-462b-a6b5-382e9eb6500e" name="Contains 14"><con:configuration><token>First Appearance</token><ignoreCase>false</ignoreCase><useRegEx>false</useRegEx></con:configuration></con:assertion><con:assertion type="Simple Contains" id="533e0d63-857e-4a7e-bbe5-d4e350208b6c" name="Contains 15"><con:configuration><token>LANGUAGE_TYPES</token><ignoreCase>false</ignoreCase><useRegEx>false</useRegEx></con:configuration></con:assertion><con:assertion type="Simple Contains" id="c6263d17-a11f-4e03-a249-f4bb62645ae9" name="Contains 16"><con:configuration><token>ENG</token><ignoreCase>false</ignoreCase><useRegEx>false</useRegEx></con:configuration></con:assertion><con:assertion type="Simple Contains" id="6fd882fa-d91f-4330-87ca-87331b9c5207" name="Contains 17"><con:configuration><token>English</token><ignoreCase>false</ignoreCase><useRegEx>false</useRegEx></con:configuration></con:assertion><con:assertion type="Simple Contains" id="38f1065b-df91-4d92-bcce-7cd95cc86a19" name="Contains 18"><con:configuration><token>HEB</token><ignoreCase>false</ignoreCase><useRegEx>false</useRegEx></con:configuration></con:assertion><con:assertion type="Simple Contains" id="492a861a-a4b6-4a45-a572-9589de89fec9" name="Contains 19"><con:configuration><token>Hebrew</token><ignoreCase>false</ignoreCase><useRegEx>false</useRegEx></con:configuration></con:assertion><con:assertion type="Simple Contains" id="f77ef96c-cd78-47e8-9b33-59ba1c8c45c6" name="Contains 20"><con:configuration><token>SENTENCES</token><ignoreCase>false</ignoreCase><useRegEx>false</useRegEx></con:configuration></con:assertion><con:assertion type="Simple Contains" id="477d8d1c-aea5-43fb-b82d-8354ddac8e55" name="Contains 21"><con:configuration><token>DCS</token><ignoreCase>false</ignoreCase><useRegEx>false</useRegEx></con:configuration></con:assertion><con:assertion type="Simple Contains" id="041d2a7c-4472-4ce9-8c2e-b413883da580" name="Contains 22"><con:configuration><token>Deferred Custody and Supervision</token><ignoreCase>false</ignoreCase><useRegEx>false</useRegEx></con:configuration></con:assertion><con:assertion type="Simple Contains" id="84bf2fb4-fdcd-456d-a9f1-8d3694b8e1b5" name="Contains 23"><con:configuration><token>SENTENCES</token><ignoreCase>false</ignoreCase><useRegEx>false</useRegEx></con:configuration></con:assertion><con:assertion type="Simple Contains" id="47aba442-f24c-4a96-9e60-26c2b21c7f29" name="Contains 24"><con:configuration><token>High Risk Accused - Denied</token><ignoreCase>false</ignoreCase><useRegEx>false</useRegEx></con:configuration></con:assertion><con:credentials><con:username>{AUTHENTICATION_USERNAME}</con:username><con:password>{AUTHENTICATION_PASSWORD}</con:password><con:selectedAuthProfile>Basic</con:selectedAuthProfile><con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" name="getCodeValuesSecureNegativeTest" id="525903a1-1fb2-4cc5-b502-fdf26b652916"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>CCD_Source_CodeValues_ws_provider_CodeValuesSecure_Binder</con:interface><con:operation>getCodeValuesSecure</con:operation><con:request name="getCodeValuesSecureNegativeTest" id="a78da097-b073-4588-b241-bec4cb85e157"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>https://jag-ccd-1-2-52e74e-dev.apps.silver.devops.gov.bc.ca/ws/secure</con:endpoint><con:request><![CDATA[<soap:Envelope xmlns:soap="http://www.w3.org/2003/05/soap-envelope" xmlns:ccd="http://reeks.bcgov/CCD.Source.CodeValues.ws.provider:CodeValuesSecure">
+   <soap:Header/>
+   <soap:Body>
+      <ccd:getCodeValuesSecure>
+         <RequestAgencyIdentifierId>123</RequestAgencyIdentifierId>
+         <RequestPartId>19014.0001</RequestPartId>
+         <RequestDtm>2021-01-18 09:09:09.3</RequestDtm>
+         <ApplicationCd>CCD</ApplicationCd>
+         <LastRetrievedDate>2021-08-18 09:09:09.1</LastRetrievedDate>
+      </ccd:getCodeValuesSecure>
+   </soap:Body>
+</soap:Envelope>]]></con:request><con:assertion type="SOAP Response" id="acbe5086-3572-4909-96db-bca8a2e35ab9"/><con:assertion type="Valid HTTP Status Codes" id="ddd1ba56-9763-402b-9b3a-54271b7ad171" name="Valid HTTP Status Codes"><con:configuration><codes>200</codes></con:configuration></con:assertion><con:assertion type="Invalid HTTP Status Codes" id="a7bfd4d7-feee-4f72-8b24-a6be54473c3f" name="Invalid HTTP Status Codes"><con:configuration><codes>400, 401, 403, 404, 500, 503</codes></con:configuration></con:assertion><con:assertion type="Simple Contains" id="acb9ab47-de6f-432b-8ee9-33ae8d57d267" name="Contains"><con:configuration><token>>Not a valid user. No active assignment found for Part_id 19014.0001 in Agency 123</token><ignoreCase>false</ignoreCase><useRegEx>false</useRegEx></con:configuration></con:assertion><con:assertion type="Simple Contains" id="f9176bbc-713b-40c9-b328-317950455fad" name="Contains 1"><con:configuration><token>1</token><ignoreCase>false</ignoreCase><useRegEx>false</useRegEx></con:configuration></con:assertion><con:credentials><con:username>{AUTHENTICATION_USERNAME}</con:username><con:password>{AUTHENTICATION_PASSWORD}</con:password><con:selectedAuthProfile>Basic</con:selectedAuthProfile><con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:properties><con:property><con:name>RequestAgencyIdentifierId</con:name><con:value>83.0001</con:value></con:property><con:property><con:name>RequestPartId</con:name><con:value>19014.0001</con:value></con:property><con:property><con:name>RequestDtm</con:name><con:value>2021-01-18 09:09:09.3</con:value></con:property><con:property><con:name>ApplicationCd</con:name><con:value>PCSS</con:value></con:property><con:property><con:name>LastRetrievedDate</con:name><con:value>2021-08-18 09:09:09.1</con:value></con:property></con:properties></con:testCase><con:testCase id="bcf6c4b5-86eb-4056-8343-bd4d8e0a12ae" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="AutomationTests" searchProperties="true"><con:settings/><con:testStep type="groovy" name="getCodeValueSecure" id="fca76bc4-68b5-4bc7-a9b7-9d7d83b692e0"><con:settings/><con:config><script>import com.eviware.soapui.support.XmlHolder
+import com.eviware.soapui.impl.wsdl.testcase.WsdlTestRunContext
+
+ def GetCodeValuesSecure = testRunner.testCase.testSuite.testCases["GetCodeValuesSecure"].testSteps["getCodeValuesSecure"].getPropertyValue("Request")
+ 
+ def RequestAgencyIdentifierId=testRunner.testCase.testSuite.testCases["GetCodeValuesSecure"].getPropertyValue("RequestAgencyIdentifierId")
+ def RequestPartId=testRunner.testCase.testSuite.testCases["GetCodeValuesSecure"].getPropertyValue("RequestPartId")
+ def RequestDtm=testRunner.testCase.testSuite.testCases["GetCodeValuesSecure"].getPropertyValue("RequestDtm")
+ def ApplicationCd=testRunner.testCase.testSuite.testCases["GetCodeValuesSecure"].getPropertyValue("ApplicationCd")
+ def LastRetrievedDate=testRunner.testCase.testSuite.testCases["GetCodeValuesSecure"].getPropertyValue("LastRetrievedDate")
+
+ 
+ def xmlAdd= new XmlHolder(GetCodeValuesSecure)
+ xmlAdd.setNodeValue("//ccd:getCodeValuesSecure/RequestAgencyIdentifierId",RequestAgencyIdentifierId)
+ xmlAdd.setNodeValue("//ccd:getCodeValuesSecure/RequestPartId",RequestPartId)
+ xmlAdd.setNodeValue("//ccd:getCodeValuesSecure/RequestDtm",RequestDtm)
+ xmlAdd.setNodeValue("//ccd:getCodeValuesSecure/ApplicationCd",ApplicationCd)
+ xmlAdd.setNodeValue("//ccd:getCodeValuesSecure/LastRetrievedDate",LastRetrievedDate)
+ 
+ 
+ def newxmlGet= xmlAdd.getXml();
+ //add xml detail
+ testRunner.testCase.testSuite.testCases["GetCodeValuesSecure"].testSteps["getCodeValuesSecure"].setPropertyValue("Request",newxmlGet)
+
+ def getTestStep=testRunner.testCase.testSuite.testCases["GetCodeValuesSecure"].testSteps["getCodeValuesSecure"]
+ def contextGetCodeValuesSecure = new WsdlTestRunContext(getTestStep);
+ getTestStep.run(testRunner,contextGetCodeValuesSecure)
+ //Validation -
+ def getRes=testRunner.testCase.testSuite.testCases["GetCodeValuesSecure"].testSteps["getCodeValuesSecure"].getPropertyValue("Response")
+def Response= new XmlHolder(getRes)
+def GetResponse= Response.getNodeValue("//ResultCd")
+def GetResponse1= Response.getNodeValue("//codeType")
+def GetResponse2= Response.getNodeValue("//code")
+def GetResponse3= Response.getNodeValue("//shortDesc")
+def GetResponse4= Response.getNodeValue("//longDesc")
+def GetResponse5= Response.getNodeValue("//flex")
+
+log.info GetResponse
+log.info GetResponse1
+log.info GetResponse2
+log.info GetResponse3
+log.info GetResponse4
+log.info GetResponse5
+
+assert GetResponse=="0"
+assert GetResponse1=="ADJUDICATOR"
+assert GetResponse2=="12879.0026"
+assert GetResponse3=="Butler Mon Ami, R"
+assert GetResponse4=="988888"
+assert GetResponse5=="ADJU"
+
+
+</script></con:config></con:testStep><con:properties/></con:testCase><con:properties><con:property><con:name>RequestAgencyIdentifierId</con:name><con:value>83.0001</con:value></con:property><con:property><con:name>RequestPartId</con:name><con:value>19014.0001</con:value></con:property><con:property><con:name>RequestDtm</con:name><con:value>2021-01-18 09:09:09.3</con:value></con:property><con:property><con:name>ApplicationCd</con:name><con:value>PCSS</con:value></con:property><con:property><con:name>LastRetrievedDate</con:name><con:value>2021-08-18 09:09:09.1</con:value></con:property></con:properties></con:testSuite><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/><con:oAuth1ProfileContainer/></con:soapui-project>

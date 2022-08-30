@@ -3,12 +3,12 @@ security:
     password: ${BASIC_AUTH_PASS}
     username: ${BASIC_AUTH_USER}
 ccd:
+  form-param-idx: ${FORM_PARAM_IDX}
   host: ${ORDS_HOST}
   generic-agen-id:  ${GENERIC_AGENCY_ID}
   generic-part-id:  ${GENERIC_PART_ID}
   adobe-host: ${ADOBE_HOST}
   report-app-name: ${REPORT_APP_NAME}
-
 
 management:
   endpoints:
@@ -16,3 +16,16 @@ management:
       exposure:
         include: metrics,prometheus,health
 
+server:
+  compression:
+    enabled: true
+    mime-types: text/xml,application/soap+xml
+    min-response-size: 10240
+  http2:
+    enabled: true
+
+spring:
+  http:
+    gzip:
+      deflate-compression-level: 3
+      buffer-size : 20971520

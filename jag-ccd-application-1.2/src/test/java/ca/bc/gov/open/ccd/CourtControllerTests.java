@@ -64,7 +64,7 @@ public class CourtControllerTests {
         crl.setCriminalAppearanceID("A");
         crl.setCourtListTypeCd("A");
         crl.setAppearanceSequenceNumber("A");
-        crl.setAppearanceTime(Instant.now());
+        crl.setAppearanceTime("A");
         var fi = new ca.bc.gov.open.ccd.court.secure.one.FileInformationType();
         fi.setFileLocaAgencyIdentifierCd("A");
         fi.setPhyFileFolderNo("A");
@@ -105,7 +105,7 @@ public class CourtControllerTests {
 
         crl.setAccusedFormattedName(fn);
 
-        crl.setAccusedBirthDate(Instant.now());
+        crl.setAccusedBirthDate("A");
         crl.setAccusedCurrentBailProcessText("A");
         crl.setAccusedInCustodyFlag("A");
         crl.setCounselFullName("A");
@@ -199,7 +199,7 @@ public class CourtControllerTests {
         st.setSpeakerStatusCd("A");
         st.setSpeakerStatusDsc("A");
         var se = new ca.bc.gov.open.ccd.court.secure.one.SpeakerEvent();
-        se.setSpeakerEventDate(Instant.now());
+        se.setSpeakerEventDate("A");
         se.setSpeakerEventTime("A");
         se.setSpeakerEventText("A");
 
@@ -376,7 +376,7 @@ public class CourtControllerTests {
         st2.setSpeakerStatusDsc("A");
         var se2 = new ca.bc.gov.open.ccd.court.secure.one.SpeakerEvent();
         se2.setSpeakerEventText("A");
-        se2.setSpeakerEventDate(Instant.now());
+        se2.setSpeakerEventDate("A");
         se2.setSpeakerEventTime("A");
         st2.setSpeakerEvent(Collections.singletonList(se2));
 

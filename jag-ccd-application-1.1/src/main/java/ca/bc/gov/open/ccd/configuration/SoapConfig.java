@@ -144,4 +144,11 @@ public class SoapConfig extends WsConfigurerAdapter {
         wsdl11Definition.setWsdl(new ClassPathResource("xsdSchemas/getDevUtils.wsdl"));
         return wsdl11Definition;
     }
+
+    @Bean(name = "CCD.Source.GetParticipantInfo.WS:getParticipantInfo")
+    public Wsdl11Definition getParticipantInfo() {
+        SimpleWsdl11Definition wsdl11Definition = new SimpleWsdl11Definition();
+        wsdl11Definition.setWsdl(new ClassPathResource("xsdSchemas/getParticipantInfo.wsdl"));
+        return wsdl11Definition;
+    }
 }

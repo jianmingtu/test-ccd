@@ -10,6 +10,8 @@ import ca.bc.gov.open.ccd.models.serializers.InstantSerializer;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.net.URI;
+import java.net.URLDecoder;
+import java.nio.charset.StandardCharsets;
 import java.util.Map;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -103,12 +105,18 @@ public class DocumentController {
             if (url == null) {
                 // process the response's error messages which are return from the ORDS getDocument
                 // API
+                log.info(
+                        objectMapper.writeValueAsString(
+                                new RequestSuccessLog("Request Success", "getDocumentSecure")));
                 return out;
             }
 
             // request uri to get base64 document
 
             try {
+                // get the ticket
+                url = URLDecoder.decode(url, StandardCharsets.UTF_8);
+
                 HttpEntity<byte[]> resp2 =
                         restTemplate.exchange(
                                 new URI(url),
@@ -129,7 +137,7 @@ public class DocumentController {
                 log.error(
                         objectMapper.writeValueAsString(
                                 new OrdsErrorLog(
-                                        "Error occurred while requesting an uri to get base64 document",
+                                        "Error occurred while getting base64 document",
                                         "getDocumentSecure",
                                         ex.getMessage(),
                                         inner)));

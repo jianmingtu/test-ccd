@@ -135,9 +135,9 @@ public class ProcessControllerTests {
         cr.setCourtAgencyIdentifierCode("A");
         cr.setCourtRoomCode("A");
         cr.setCourtProceedingDate(Instant.now());
-        cr.setCreationTime(Instant.now());
+        cr.setCreationTime("A");
         cr.setEnterUserId("A");
-        cr.setEventTime(Instant.now());
+        cr.setEventTime("A");
         cr.setEventTypeCode("A");
         cr.setEventLogText("A");
         cr.setSourceEventSeqNo("A");
@@ -164,7 +164,7 @@ public class ProcessControllerTests {
         ni.setAppearanceReason("A");
         ni.setCourtAgencyIdentifier("A");
         ni.setCourtRoom("A");
-        ni.setAppearanceTime(Instant.now());
+        ni.setAppearanceTime("A");
 
         var af = new ApplyToFileCivilResultType();
         af.setAppearanceId("A");
@@ -474,9 +474,9 @@ public class ProcessControllerTests {
         one.setCourtAgencyIdentifierCode("A");
         one.setCourtRoomCode("A");
         one.setCourtProceedingDate(Instant.now());
-        one.setCreationTime(Instant.now());
+        one.setCreationTime("A");
         one.setEnterUserId("A");
-        one.setEventTime(Instant.now());
+        one.setEventTime("A");
         one.setEventTypeCode("A");
         one.setEventLogText("A");
         one.setSourceEventSeqNo("A");
@@ -496,7 +496,7 @@ public class ProcessControllerTests {
 
         var nc = new NextAppearanceCRType();
         nc.setAppearanceDate(Instant.now());
-        nc.setAppearanceTime(Instant.now());
+        nc.setAppearanceTime("A");
         nc.setAppearanceReason("A");
         nc.setCourtAgencyIdentifier("A");
         nc.setCourtRoom("A");

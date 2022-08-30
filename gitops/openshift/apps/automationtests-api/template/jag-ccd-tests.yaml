@@ -7,7 +7,6 @@ metadata:
 labels:
   app: ${APP_NAME}
   app.kubernetes.io/name: ${COMPONENT_NAME}
-  app.kubernetes.io/part-of: ${APP_NAME}
   app.openshift.io/runtime: ${RUNTIME}
   
 parameters:
@@ -42,6 +41,11 @@ parameters:
   required: false
   # Below value must be changed as per gold & dr cluster certificate/DNS
   value: apps.silver.devops.gov.bc.ca
+
+- name: AUTH_HEADER
+  description: The http Authorization header required for performing livenessProbe & readinessProbe in deployment config during container start.
+  required: true
+  value: ''
   
 objects:
 
@@ -51,7 +55,9 @@ objects:
   metadata:
     name: ${COMPONENT_NAME}
     namespace: ${OC_NAMESPACE}-${OC_ENV}
-      
+    annotations:
+      app.openshift.io/connects-to: 'jag-ccd-1-1, jag-ccd-1-2'
+
   spec:
     completionDeadlineSeconds: 1200
     replicas: 1
@@ -79,11 +85,21 @@ objects:
                 secretKeyRef:
                   name: ccd-application-secrets
                   key: BASIC_AUTH_USER
+            - name: BASIC_AUTH_USER_SECURE
+              valueFrom:
+                secretKeyRef:
+                  name: ccd-application-secrets
+                  key: BASIC_AUTH_USER_SECURE
             - name: BASIC_AUTH_PASS
               valueFrom:
                 secretKeyRef:
                   name: ccd-application-secrets
                   key: BASIC_AUTH_PASS
+            - name: BASIC_AUTH_PASS_SECURE
+              valueFrom:
+                secretKeyRef:
+                  name: ccd-application-secrets
+                  key: BASIC_AUTH_PASS_SECURE
             - name: SPRING_PROFILES_ACTIVE
               valueFrom:
                 secretKeyRef:
@@ -94,6 +110,11 @@ objects:
                 secretKeyRef:
                   name: ccd-application-secrets
                   key: API_HOST
+            - name: API_HOST_SECURE
+              valueFrom:
+                secretKeyRef:
+                  name: ccd-application-secrets
+                  key: API_HOST_SECURE
             resources:
               limits:
                 cpu: 500m
@@ -106,6 +127,9 @@ objects:
                 path: "/actuator/health"
                 port: 8080
                 scheme: HTTP
+                httpHeaders:
+                - name: Authorization
+                  value: ${AUTH_HEADER}
               initialDelaySeconds: 100
               timeoutSeconds: 30
               periodSeconds: 10
@@ -116,6 +140,9 @@ objects:
                 path: "/actuator/health"
                 port: 8080
                 scheme: HTTP
+                httpHeaders:
+                - name: Authorization
+                  value: ${AUTH_HEADER}
               initialDelaySeconds: 100
               timeoutSeconds: 30
               periodSeconds: 10

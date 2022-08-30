@@ -32,6 +32,7 @@ jobs:
       BASIC_AUTH_PASS: ${{ secrets.BASIC_AUTH_PASS }}
       GENERIC_AGENCY_ID: ${{secrets.GENERIC_AGENCY_ID}}
       GENERIC_PART_ID: ${{secrets.GENERIC_PART_ID}}
+      FORM_PARAM_IDX: ${{secrets.FORM_PARAM_IDX}}
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
@@ -120,53 +121,53 @@ jobs:
           docker tag ${{github.event.inputs.app2}}:${{env.gitsha}} ${IMAGE}
           docker push ${IMAGE}
 
-      #Login to OpenShift Container Repository - Kamloops (OC PROD)
-      - name: Login to OpenShift Container Repository - Kamloops (OC PROD)
-        uses: docker/login-action@v1
-        with:
-          registry: ${{secrets.OPENSHIFT_EXTERNAL_REPOSITORY}}
-          username: ${{secrets.OPENSHIFT_SA_USERNAME}}
-          password: ${{secrets.OPENSHIFT_SA_PASSWORD}}
+      # #Login to OpenShift Container Repository - Kamloops (OC PROD)
+      # - name: Login to OpenShift Container Repository - Kamloops (OC PROD)
+      #   uses: docker/login-action@v1
+      #   with:
+      #     registry: ${{secrets.OPENSHIFT_EXTERNAL_REPOSITORY}}
+      #     username: ${{secrets.OPENSHIFT_SA_USERNAME}}
+      #     password: ${{secrets.OPENSHIFT_SA_PASSWORD}}
 
-      #Push image jag-ccd-1-1 to OpenShift Image stream - Kamloops (OC Prod)
-      - name: Push Image jag-ccd-1-1 to Openshift Image Stream - Kamloops (OC Prod)
-        env:
-          IMAGE: ${{secrets.OPENSHIFT_EXTERNAL_REPOSITORY}}/${{secrets.OPENSHIFT_TOOLS_NAMESPACE}}/${{github.event.inputs.app1}}:${{secrets.OPENSHIFT_ENV_TAG}}
-        run: |
-          docker tag ${{github.event.inputs.app1}}:${{env.gitsha}} ${IMAGE}
-          docker push ${IMAGE}
+      # #Push image jag-ccd-1-1 to OpenShift Image stream - Kamloops (OC Prod)
+      # - name: Push Image jag-ccd-1-1 to Openshift Image Stream - Kamloops (OC Prod)
+      #   env:
+      #     IMAGE: ${{secrets.OPENSHIFT_EXTERNAL_REPOSITORY}}/${{secrets.OPENSHIFT_TOOLS_NAMESPACE}}/${{github.event.inputs.app1}}:${{secrets.OPENSHIFT_ENV_TAG}}
+      #   run: |
+      #     docker tag ${{github.event.inputs.app1}}:${{env.gitsha}} ${IMAGE}
+      #     docker push ${IMAGE}
       
-      #Push image jag-ccd-1-2 to OpenShift Image stream - Kamloops (OC Prod)
-      - name: Push Image jag-ccd-1-2 to Openshift Image Stream - Kamloops (OC Prod)
-        env:
-          IMAGE: ${{secrets.OPENSHIFT_EXTERNAL_REPOSITORY}}/${{secrets.OPENSHIFT_TOOLS_NAMESPACE}}/${{github.event.inputs.app2}}:${{secrets.OPENSHIFT_ENV_TAG}}
-        run: |
-          docker tag ${{github.event.inputs.app2}}:${{env.gitsha}} ${IMAGE}
-          docker push ${IMAGE}
+      # #Push image jag-ccd-1-2 to OpenShift Image stream - Kamloops (OC Prod)
+      # - name: Push Image jag-ccd-1-2 to Openshift Image Stream - Kamloops (OC Prod)
+      #   env:
+      #     IMAGE: ${{secrets.OPENSHIFT_EXTERNAL_REPOSITORY}}/${{secrets.OPENSHIFT_TOOLS_NAMESPACE}}/${{github.event.inputs.app2}}:${{secrets.OPENSHIFT_ENV_TAG}}
+      #   run: |
+      #     docker tag ${{github.event.inputs.app2}}:${{env.gitsha}} ${IMAGE}
+      #     docker push ${IMAGE}
       
-      #Login to OpenShift Container Repository - Calgary (OC DR)
-      - name: Login to OpenShift Container Repository - Calgary (OC DR)
-        uses: docker/login-action@v1
-        with:
-          registry: ${{secrets.OPENSHIFT_EXTERNAL_REPOSITORY_DR}}
-          username: ${{secrets.OPENSHIFT_SA_USERNAME}}
-          password: ${{secrets.OPENSHIFT_SA_PASSWORD_DR}}
+      # #Login to OpenShift Container Repository - Calgary (OC DR)
+      # - name: Login to OpenShift Container Repository - Calgary (OC DR)
+      #   uses: docker/login-action@v1
+      #   with:
+      #     registry: ${{secrets.OPENSHIFT_EXTERNAL_REPOSITORY_DR}}
+      #     username: ${{secrets.OPENSHIFT_SA_USERNAME}}
+      #     password: ${{secrets.OPENSHIFT_SA_PASSWORD_DR}}
 
-      #Push image jag-ccd-1-1 to OpenShift Image stream - Calgary (OC DR)
-      - name: Push Image jag-ccd-1-1 to Openshift Image Stream - Calgary (OC DR)
-        env:
-          IMAGE: ${{secrets.OPENSHIFT_EXTERNAL_REPOSITORY_DR}}/${{secrets.OPENSHIFT_TOOLS_NAMESPACE}}/${{github.event.inputs.app1}}:${{secrets.OPENSHIFT_ENV_TAG}}
-        run: |
-          docker tag ${{github.event.inputs.app1}}:${{env.gitsha}} ${IMAGE}
-          docker push ${IMAGE}
+      # #Push image jag-ccd-1-1 to OpenShift Image stream - Calgary (OC DR)
+      # - name: Push Image jag-ccd-1-1 to Openshift Image Stream - Calgary (OC DR)
+      #   env:
+      #     IMAGE: ${{secrets.OPENSHIFT_EXTERNAL_REPOSITORY_DR}}/${{secrets.OPENSHIFT_TOOLS_NAMESPACE}}/${{github.event.inputs.app1}}:${{secrets.OPENSHIFT_ENV_TAG}}
+      #   run: |
+      #     docker tag ${{github.event.inputs.app1}}:${{env.gitsha}} ${IMAGE}
+      #     docker push ${IMAGE}
       
-      #Push image jag-ccd-1-2 to OpenShift Image stream - Calgary (OC DR)
-      - name: Push Image jag-ccd-1-2 to Openshift Image Stream - Calgary (OC DR)
-        env:
-          IMAGE: ${{secrets.OPENSHIFT_EXTERNAL_REPOSITORY_DR}}/${{secrets.OPENSHIFT_TOOLS_NAMESPACE}}/${{github.event.inputs.app2}}:${{secrets.OPENSHIFT_ENV_TAG}}
-        run: |
-          docker tag ${{github.event.inputs.app2}}:${{env.gitsha}} ${IMAGE}
-          docker push ${IMAGE}
+      # #Push image jag-ccd-1-2 to OpenShift Image stream - Calgary (OC DR)
+      # - name: Push Image jag-ccd-1-2 to Openshift Image Stream - Calgary (OC DR)
+      #   env:
+      #     IMAGE: ${{secrets.OPENSHIFT_EXTERNAL_REPOSITORY_DR}}/${{secrets.OPENSHIFT_TOOLS_NAMESPACE}}/${{github.event.inputs.app2}}:${{secrets.OPENSHIFT_ENV_TAG}}
+      #   run: |
+      #     docker tag ${{github.event.inputs.app2}}:${{env.gitsha}} ${IMAGE}
+      #     docker push ${IMAGE}
       
       #Login to Openshift using OC SA and Token of respective env. for Pod labelling - Silver
       - name: Authenticate OC Env Specific SA - Silver
@@ -213,92 +214,120 @@ jobs:
         run: |
           oc rollout status -n ${openshiftEnvNamespace} dc/${appName} --watch
 
-      #Login to Openshift using OC SA and Token of respective env. for Pod labelling - Kamloops (OC PROD)
-      - name: Authenticate OC Env Specific SA - Kamloops (OC PROD)
-        uses: redhat-actions/oc-login@v1
-        env:
-          OPENSHIFT_NAMESPACE: ${{secrets.OPENSHIFT_LICENSE_PLATE}}-${{ github.event.inputs.env }}
-          OPENSHIFT_USER: ${{secrets.OPENSHIFT_SA_Env_DEPLOYER_NAME}}
-        with:
-          openshift_server_url: ${{secrets.OPENSHIFT_SERVER_URL}}
-          openshift_token: ${{secrets.OPENSHIFT_SA_ENV_DEPLOYER_TOKEN}}
-          namespace: ${OPENSHIFT_NAMESPACE}
+      # #Login to Openshift using OC SA and Token of respective env. for Pod labelling - Kamloops (OC PROD)
+      # - name: Authenticate OC Env Specific SA - Kamloops (OC PROD)
+      #   uses: redhat-actions/oc-login@v1
+      #   env:
+      #     OPENSHIFT_NAMESPACE: ${{secrets.OPENSHIFT_LICENSE_PLATE}}-${{ github.event.inputs.env }}
+      #     OPENSHIFT_USER: ${{secrets.OPENSHIFT_SA_Env_DEPLOYER_NAME}}
+      #   with:
+      #     openshift_server_url: ${{secrets.OPENSHIFT_SERVER_URL}}
+      #     openshift_token: ${{secrets.OPENSHIFT_SA_ENV_DEPLOYER_TOKEN}}
+      #     namespace: ${OPENSHIFT_NAMESPACE}
         
-      # Labels the deployment config of the application jag-ccd-1-1 with release version number to spin up the pods labelled in same version - Kamloops (OC PROD)
-      - name: Labelling DC of jag-ccd-1-1 to release version - Kamloops (OC PROD)
-        env:
-          releaseVersion: ${{ env.releaseVersion }}
-          appName: ${{github.event.inputs.app1}}
-          openshiftEnvNamespace: ${{secrets.OPENSHIFT_LICENSE_PLATE}}-${{ github.event.inputs.env }}
-        run: |
-          oc patch dc ${appName} -n ${openshiftEnvNamespace} --patch '{"spec":{"template":{"metadata":{"labels":{"version":"${{ env.releaseVersion }}.${{ env.gitsha }}"}}}}}'
+      # # Labels the deployment config of the application jag-ccd-1-1 with release version number to spin up the pods labelled in same version - Kamloops (OC PROD)
+      # - name: Labelling DC of jag-ccd-1-1 to release version - Kamloops (OC PROD)
+      #   env:
+      #     releaseVersion: ${{ env.releaseVersion }}
+      #     appName: ${{github.event.inputs.app1}}
+      #     openshiftEnvNamespace: ${{secrets.OPENSHIFT_LICENSE_PLATE}}-${{ github.event.inputs.env }}
+      #   run: |
+      #     oc patch dc ${appName} -n ${openshiftEnvNamespace} --patch '{"spec":{"template":{"metadata":{"labels":{"version":"${{ env.releaseVersion }}.${{ env.gitsha }}"}}}}}'
       
-      # Wait to DC rollout of jag-ccd-1-1 to get completed before proceeding next stage - Silver
-      - name: Wait for DC rollout of jag-ccd-1-1 - Kamloops (OC PROD)
-        env:
-          appName: ${{github.event.inputs.app1}}
-          openshiftEnvNamespace: ${{secrets.OPENSHIFT_LICENSE_PLATE}}-${{ github.event.inputs.env }}
-        run: |
-          oc rollout status -n ${openshiftEnvNamespace} dc/${appName} --watch
+      # # Wait to DC rollout of jag-ccd-1-1 to get completed before proceeding next stage - Kamloops (OC PROD)
+      # - name: Wait for DC rollout of jag-ccd-1-1 - Kamloops (OC PROD)
+      #   env:
+      #     appName: ${{github.event.inputs.app1}}
+      #     openshiftEnvNamespace: ${{secrets.OPENSHIFT_LICENSE_PLATE}}-${{ github.event.inputs.env }}
+      #   run: |
+      #     oc rollout status -n ${openshiftEnvNamespace} dc/${appName} --watch
 
-      # Labels the deployment config of the application jag-ccd-1-2 with release version number to spin up the pods labelled in same version - Kamloops (OC PROD)
-      - name: Labelling DC of jag-ccd-1-2 to release version - Kamloops (OC PROD)
-        env:
-          releaseVersion: ${{ env.releaseVersion }}
-          appName: ${{github.event.inputs.app2}}
-          openshiftEnvNamespace: ${{secrets.OPENSHIFT_LICENSE_PLATE}}-${{ github.event.inputs.env }}
-        run: |
-          oc patch dc ${appName} -n ${openshiftEnvNamespace} --patch '{"spec":{"template":{"metadata":{"labels":{"version":"${{ env.releaseVersion }}.${{ env.gitsha }}"}}}}}'
+      # # Labels the deployment config of the application jag-ccd-1-2 with release version number to spin up the pods labelled in same version - Kamloops (OC PROD)
+      # - name: Labelling DC of jag-ccd-1-2 to release version - Kamloops (OC PROD)
+      #   env:
+      #     releaseVersion: ${{ env.releaseVersion }}
+      #     appName: ${{github.event.inputs.app2}}
+      #     openshiftEnvNamespace: ${{secrets.OPENSHIFT_LICENSE_PLATE}}-${{ github.event.inputs.env }}
+      #   run: |
+      #     oc patch dc ${appName} -n ${openshiftEnvNamespace} --patch '{"spec":{"template":{"metadata":{"labels":{"version":"${{ env.releaseVersion }}.${{ env.gitsha }}"}}}}}'
       
-      # Wait to DC rollout of jag-ccd-1-2 to get completed before proceeding next stage - Silver
-      - name: Wait for DC rollout of jag-ccd-1-2 - Kamloops (OC PROD)
-        env:
-          appName: ${{github.event.inputs.app2}}
-          openshiftEnvNamespace: ${{secrets.OPENSHIFT_LICENSE_PLATE}}-${{ github.event.inputs.env }}
-        run: |
-          oc rollout status -n ${openshiftEnvNamespace} dc/${appName} --watch
+      # # Wait to DC rollout of jag-ccd-1-2 to get completed before proceeding next stage - Kamloops (OC PROD)
+      # - name: Wait for DC rollout of jag-ccd-1-2 - Kamloops (OC PROD)
+      #   env:
+      #     appName: ${{github.event.inputs.app2}}
+      #     openshiftEnvNamespace: ${{secrets.OPENSHIFT_LICENSE_PLATE}}-${{ github.event.inputs.env }}
+      #   run: |
+      #     oc rollout status -n ${openshiftEnvNamespace} dc/${appName} --watch
       
-      #Login to Openshift using OC SA and Token of respective env. for Pod labelling - Calgary (OC DR)
-      - name: Authenticate OC Env Specific SA - Calgary (OC DR)
-        uses: redhat-actions/oc-login@v1
-        env:
-          OPENSHIFT_NAMESPACE: ${{secrets.OPENSHIFT_LICENSE_PLATE}}-${{ github.event.inputs.env }}
-          OPENSHIFT_USER: ${{secrets.OPENSHIFT_SA_Env_DEPLOYER_NAME}}
-        with:
-          openshift_server_url: ${{secrets.OPENSHIFT_SERVER_URL_DR}}
-          openshift_token: ${{secrets.OPENSHIFT_SA_ENV_DEPLOYER_TOKEN_DR}}
-          namespace: ${OPENSHIFT_NAMESPACE}
+      # #Login to Openshift using OC SA and Token of respective env. for Pod labelling - Calgary (OC DR)
+      # - name: Authenticate OC Env Specific SA - Calgary (OC DR)
+      #   uses: redhat-actions/oc-login@v1
+      #   env:
+      #     OPENSHIFT_NAMESPACE: ${{secrets.OPENSHIFT_LICENSE_PLATE}}-${{ github.event.inputs.env }}
+      #     OPENSHIFT_USER: ${{secrets.OPENSHIFT_SA_Env_DEPLOYER_NAME}}
+      #   with:
+      #     openshift_server_url: ${{secrets.OPENSHIFT_SERVER_URL_DR}}
+      #     openshift_token: ${{secrets.OPENSHIFT_SA_ENV_DEPLOYER_TOKEN_DR}}
+      #     namespace: ${OPENSHIFT_NAMESPACE}
         
-      # Labels the deployment config of the application jag-ccd-1-1 with release version number to spin up the pods labelled in same version - Calgary (OC DR)
-      - name: Labelling DC of jag-ccd-1-1 to release version - Calgary (OC DR)
-        env:
-          releaseVersion: ${{ env.releaseVersion }}
-          appName: ${{github.event.inputs.app1}}
-          openshiftEnvNamespace: ${{secrets.OPENSHIFT_LICENSE_PLATE}}-${{ github.event.inputs.env }}
-        run: |
-          oc patch dc ${appName} -n ${openshiftEnvNamespace} --patch '{"spec":{"template":{"metadata":{"labels":{"version":"${{ env.releaseVersion }}.${{ env.gitsha }}"}}}}}'
+      # # Labels the deployment config of the application jag-ccd-1-1 with release version number to spin up the pods labelled in same version - Calgary (OC DR)
+      # - name: Labelling DC of jag-ccd-1-1 to release version - Calgary (OC DR)
+      #   env:
+      #     releaseVersion: ${{ env.releaseVersion }}
+      #     appName: ${{github.event.inputs.app1}}
+      #     openshiftEnvNamespace: ${{secrets.OPENSHIFT_LICENSE_PLATE}}-${{ github.event.inputs.env }}
+      #   run: |
+      #     oc patch dc ${appName} -n ${openshiftEnvNamespace} --patch '{"spec":{"template":{"metadata":{"labels":{"version":"${{ env.releaseVersion }}.${{ env.gitsha }}"}}}}}'
       
-      # Wait to DC rollout of jag-ccd-1-1 to get completed before proceeding next stage - Silver
-      - name: Wait for DC rollout of jag-ccd-1-1 - Calgary (OC DR)
-        env:
-          appName: ${{github.event.inputs.app1}}
-          openshiftEnvNamespace: ${{secrets.OPENSHIFT_LICENSE_PLATE}}-${{ github.event.inputs.env }}
-        run: |
-          oc rollout status -n ${openshiftEnvNamespace} dc/${appName} --watch
+      # # Wait to DC rollout of jag-ccd-1-1 to get completed before proceeding next stage - Calgary (OC DR)
+      # - name: Wait for DC rollout of jag-ccd-1-1 - Calgary (OC DR)
+      #   env:
+      #     appName: ${{github.event.inputs.app1}}
+      #     openshiftEnvNamespace: ${{secrets.OPENSHIFT_LICENSE_PLATE}}-${{ github.event.inputs.env }}
+      #   run: |
+      #     oc rollout status -n ${openshiftEnvNamespace} dc/${appName} --watch
 
-      # Labels the deployment config of the application jag-ccd-1-2 with release version number to spin up the pods labelled in same version - Calgary (OC DR)
-      - name: Labelling DC of jag-ccd-1-2 to release version - Calgary (OC DR)
-        env:
-          releaseVersion: ${{ env.releaseVersion }}
-          appName: ${{github.event.inputs.app2}}
-          openshiftEnvNamespace: ${{secrets.OPENSHIFT_LICENSE_PLATE}}-${{ github.event.inputs.env }}
-        run: |
-          oc patch dc ${appName} -n ${openshiftEnvNamespace} --patch '{"spec":{"template":{"metadata":{"labels":{"version":"${{ env.releaseVersion }}.${{ env.gitsha }}"}}}}}'
+      # # Labels the deployment config of the application jag-ccd-1-2 with release version number to spin up the pods labelled in same version - Calgary (OC DR)
+      # - name: Labelling DC of jag-ccd-1-2 to release version - Calgary (OC DR)
+      #   env:
+      #     releaseVersion: ${{ env.releaseVersion }}
+      #     appName: ${{github.event.inputs.app2}}
+      #     openshiftEnvNamespace: ${{secrets.OPENSHIFT_LICENSE_PLATE}}-${{ github.event.inputs.env }}
+      #   run: |
+      #     oc patch dc ${appName} -n ${openshiftEnvNamespace} --patch '{"spec":{"template":{"metadata":{"labels":{"version":"${{ env.releaseVersion }}.${{ env.gitsha }}"}}}}}'
       
-      # Wait to DC rollout of jag-ccd-1-2 to get completed before proceeding next stage - Silver
-      - name: Wait for DC rollout of jag-ccd-1-2 - Calgary (OC DR)
+      # # Wait to DC rollout of jag-ccd-1-2 to get completed before proceeding next stage - Calgary (OC DR)
+      # - name: Wait for DC rollout of jag-ccd-1-2 - Calgary (OC DR)
+      #   env:
+      #     appName: ${{github.event.inputs.app2}}
+      #     openshiftEnvNamespace: ${{secrets.OPENSHIFT_LICENSE_PLATE}}-${{ github.event.inputs.env }}
+      #   run: |
+      #     oc rollout status -n ${openshiftEnvNamespace} dc/${appName} --watch
+
+      - name: Run Integration Tests
         env:
-          appName: ${{github.event.inputs.app2}}
-          openshiftEnvNamespace: ${{secrets.OPENSHIFT_LICENSE_PLATE}}-${{ github.event.inputs.env }}
+          TEST_STARTER_URL: ${{secrets.TEST_STARTER_URL}}
+          BASIC_AUTH_USER: ${{secrets.BASIC_AUTH_USER}}
+          BASIC_AUTH_PASS: ${{secrets.BASIC_AUTH_PASS}}
         run: |
-          oc rollout status -n ${openshiftEnvNamespace} dc/${appName} --watch
+          RET=`curl --write-out '%{content_type}' --output TestErrors.zip --request GET --user ${BASIC_AUTH_USER}:${BASIC_AUTH_PASS} --url ${TEST_STARTER_URL}`
+          if [ "$RET" = "application/zip" ]; then
+          echo "Status: Failed Integration Test(s) found!"
+          exit 1
+          fi
+          if [[ "$RET" == *"json"* ]]; then
+          echo "Status: All Tests Passed"
+          fi
+          if [ "$RET" != "application/zip" ] && [[ "$RET" != *"json"* ]]; then
+          echo "Received content_type is $RET, was expecting json or zip"
+          exit 1
+          fi
+
+      - name: Archive production artifacts
+        uses: actions/upload-artifact@v2
+        if: failure()
+        with:
+          name: integration-tests-report
+          path: |
+            TestErrors.zip
+          retention-days: 5

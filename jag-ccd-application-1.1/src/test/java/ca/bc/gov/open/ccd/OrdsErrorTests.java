@@ -252,7 +252,7 @@ public class OrdsErrorTests {
         CodeController codeController = new CodeController(restTemplate, objectMapper);
 
         Assertions.assertThrows(
-                ORDSException.class, () -> codeController.getCodeValues(new GetCodeValues()));
+                ORDSException.class, () -> codeController.getCodeValues(new GetCodeValues(), null));
     }
 
     @Test
@@ -296,6 +296,18 @@ public class OrdsErrorTests {
         Assertions.assertThrows(
                 ORDSException.class,
                 () -> userController.getParticipantInfo(new GetParticipantInfo()));
+    }
+
+    @Test
+    public void testGetNewParticipantInfoOrdsFail() {
+        UserController userController = new UserController(restTemplate, objectMapper);
+
+        Assertions.assertThrows(
+                ORDSException.class,
+                () ->
+                        userController.getNewParticipantInfo(
+                                new ca.bc.gov.open.ccd.common.participant.info
+                                        .GetParticipantInfo()));
     }
 
     @Test

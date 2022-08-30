@@ -18,6 +18,12 @@ public class TestService {
     @Value("${test.password}")
     private String password;
 
+    @Value("${test.username-secure}")
+    private String usernameSecure;
+
+    @Value("${test.password-secure}")
+    private String passwordSecure;
+
     @Value("${test.api-host}")
     private String apiHostCommon;
 
@@ -45,10 +51,16 @@ public class TestService {
             if (line.contains("{AUTHENTICATION_PASSWORD}")) {
                 line = line.replaceAll("\\{AUTHENTICATION_PASSWORD}", password);
             }
+            if (line.contains("{AUTHENTICATION_USERNAME_SECURE}")) {
+                line = line.replaceAll("\\{AUTHENTICATION_USERNAME_SECURE}", usernameSecure);
+            }
+            if (line.contains("{AUTHENTICATION_PASSWORD_SECURE}")) {
+                line = line.replaceAll("\\{AUTHENTICATION_PASSWORD_SECURE}", passwordSecure);
+            }
             if (line.contains("{API_HOST}")) {
                 line = line.replaceAll("\\{API_HOST}", apiHostCommon);
             }
-            if (line.contains("{API_HOST}")) {
+            if (line.contains("{API_HOST_SECURE}")) {
                 line = line.replaceAll("\\{API_HOST_SECURE}", apiHostSecure);
             }
             writer.append(line + "\n");
@@ -93,6 +105,8 @@ public class TestService {
             String fileContent = FileUtils.readFileToString(f);
             fileContent = fileContent.replaceAll(username, "*".repeat(8));
             fileContent = fileContent.replaceAll(password, "*".repeat(8));
+            fileContent = fileContent.replaceAll(usernameSecure, "*".repeat(8));
+            fileContent = fileContent.replaceAll(passwordSecure, "*".repeat(8));
             FileUtils.write(f, fileContent);
         }
     }
@@ -164,7 +178,19 @@ public class TestService {
 
         }
         try {
+            runner.setProjectFile("CCDGetRopReportSecure-soapui-project.xml");
+            runner.run();
+        } catch (Exception Ignore) {
+
+        }
+        try {
             runner.setProjectFile("CCDGetCivilFileContentSecure-soapui-project.xml");
+            runner.run();
+        } catch (Exception Ignore) {
+
+        }
+        try {
+            runner.setProjectFile("CCDCodeValuesSecure-soapui-project.xml");
             runner.run();
         } catch (Exception Ignore) {
 

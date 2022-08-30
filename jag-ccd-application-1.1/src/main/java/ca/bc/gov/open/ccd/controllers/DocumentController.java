@@ -10,6 +10,7 @@ import ca.bc.gov.open.ccd.models.RequestSuccessLog;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.net.URI;
+import java.net.URLDecoder;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.Map;
@@ -91,9 +92,12 @@ public class DocumentController {
             if (url == null) {
                 // process the response's error messages which are return from the ORDS getDocument
                 // API
+                log.info(
+                        objectMapper.writeValueAsString(
+                                new RequestSuccessLog("Request Success", "getDocument")));
+
                 var out = new GetDocumentResponse();
                 var one = new DocumentResult();
-                ;
                 out.setDocumentResponse(one);
                 one.setResultCd(resultCd);
                 one.setResultMessage(resultMessage);
@@ -103,6 +107,9 @@ public class DocumentController {
             // request uri to get base64 document
 
             try {
+                // get the ticket
+                url = URLDecoder.decode(url, StandardCharsets.UTF_8);
+
                 HttpEntity<byte[]> resp2 =
                         restTemplate.exchange(
                                 new URI(url),
@@ -127,7 +134,7 @@ public class DocumentController {
                 log.error(
                         objectMapper.writeValueAsString(
                                 new OrdsErrorLog(
-                                        "Error occurred while requesting an uri to get base64 document",
+                                        "Error occurred while getting base64 document",
                                         "getDocument",
                                         ex.getMessage(),
                                         inner)));

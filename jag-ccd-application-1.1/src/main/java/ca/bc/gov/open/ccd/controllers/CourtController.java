@@ -62,6 +62,7 @@ public class CourtController {
             log.info(
                     objectMapper.writeValueAsString(
                             new RequestSuccessLog("Request Success", "getCrtList")));
+
             return resp.getBody();
         } catch (Exception ex) {
             log.error(

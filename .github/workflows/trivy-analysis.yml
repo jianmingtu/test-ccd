@@ -43,18 +43,17 @@ jobs:
           DOCKER_BUILDKIT: 1
           CONTEXT: ./jag-ccd-application-1.1
         run: |
-          docker build -t jag-ccd-1-1:${{ github.sha }} ${CONTEXT}
+          docker build -t docker.io/ccd/jag-ccd-1-1:${{ github.sha }} ${CONTEXT}
 
       #Run Vulnerability Scan usinig Trivy scanner
       - name: Run Trivy vulnerability scanner for jag-ccd-1-1 image
         uses: aquasecurity/trivy-action@master
         with:
           scan-type: image
-          image-ref: jag-ccd-1-1:${{ github.sha }}
-          format: template
-          template: '@/contrib/sarif.tpl'
+          image-ref: docker.io/ccd/jag-ccd-1-1:${{ github.sha }}
+          format: sarif
           output: trivy-results.sarif
-          exit-code: 1
+          exit-code: 0
           ignore-unfixed: true
           severity: HIGH,CRITICAL
       
@@ -64,24 +63,23 @@ jobs:
           DOCKER_BUILDKIT: 1
           CONTEXT: ./jag-ccd-application-1.2
         run: |
-          docker build -t jag-ccd-1-2:${{ github.sha }} ${CONTEXT}
+          docker build -t docker.io/ccd/jag-ccd-1-2:${{ github.sha }} ${CONTEXT}
 
       #Run Vulnerability Scan usinig Trivy scanner
       - name: Run Trivy vulnerability scanner for jag-ccd-1-2 image
         uses: aquasecurity/trivy-action@master
         with:
           scan-type: image
-          image-ref: jag-ccd-1-2:${{ github.sha }}
-          format: template
-          template: '@/contrib/sarif.tpl'
+          image-ref: docker.io/ccd/jag-ccd-1-2:${{ github.sha }}
+          format: sarif
           output: trivy-results.sarif
-          exit-code: 1
+          exit-code: 0
           ignore-unfixed: true
           severity: HIGH,CRITICAL
 
       #Upload results to the Github security tab.
       - name: Upload Trivy scan results to GitHub Security tab
-        uses: github/codeql-action/upload-sarif@v1
+        uses: github/codeql-action/upload-sarif@v2
         if: always()
         with:
           sarif_file: trivy-results.sarif
