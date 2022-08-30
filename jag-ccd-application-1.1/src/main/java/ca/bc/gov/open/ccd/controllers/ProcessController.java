@@ -48,6 +48,11 @@ public class ProcessController {
         UriComponentsBuilder builder =
                 UriComponentsBuilder.fromHttpUrl(host + "criminal/variation");
 
+        int i = 0;
+        for (var detail : inner.getVariationDetail()) {
+            detail.setVariationDetailId(Integer.toString(i++));
+        }
+
         HttpEntity<VariationType> payload = new HttpEntity<>(inner, new HttpHeaders());
 
         try {
@@ -222,6 +227,11 @@ public class ProcessController {
 
         UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(host + "criminal/plea");
 
+        int i = 0;
+        for (var detail : inner.getPleaDetail()) {
+            detail.setPleaDetailId(Integer.toString(i++));
+        }
+
         HttpEntity<Plea> payload = new HttpEntity<>(inner, new HttpHeaders());
 
         try {
@@ -258,6 +268,11 @@ public class ProcessController {
 
         UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(host + "criminal/election");
 
+        int i = 0;
+        for (var detail : inner.getElectionDetails()) {
+            detail.setElectionDetailId(Integer.toString(i++));
+        }
+
         HttpEntity<Election> payload = new HttpEntity<>(inner, new HttpHeaders());
 
         try {
@@ -293,6 +308,11 @@ public class ProcessController {
         var inner = process.getBailDocInput() != null ? process.getBailDocInput() : new BailDoc();
 
         UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(host + "criminal/bail");
+
+        int i = 0;
+        for (var detail : inner.getBailDetail()) {
+            detail.setBailDetailId(Integer.toString(i++));
+        }
 
         HttpEntity<BailDoc> payload = new HttpEntity<>(inner, new HttpHeaders());
 
@@ -379,6 +399,11 @@ public class ProcessController {
         UriComponentsBuilder builder =
                 UriComponentsBuilder.fromHttpUrl(host + "criminal/age-notice");
 
+        int i = 0;
+        for (var detail : inner.getAgeNoticeDetail()) {
+            detail.setAgeNoticeDetailId(Integer.toString(i++));
+        }
+
         HttpEntity<AgeNotice> payload = new HttpEntity<>(inner, new HttpHeaders());
 
         try {
@@ -416,6 +441,11 @@ public class ProcessController {
         UriComponentsBuilder builder =
                 UriComponentsBuilder.fromHttpUrl(host + "criminal/mattercall");
 
+        int i = 0;
+        for (var detail : inner.getMatterCallDetails()) {
+            detail.setMatterCallDetailId(Integer.toString(i++));
+        }
+
         HttpEntity<MatterCall> payload = new HttpEntity<>(inner, new HttpHeaders());
 
         try {
@@ -452,6 +482,23 @@ public class ProcessController {
 
         UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(host + "criminal/sentence");
 
+        int i = 0;
+        for (var detail : inner.getSentencetDetail()) {
+            detail.setSentencetDetailId(Integer.toString(i++));
+            int j = 0;
+            for (var monetaryTerm : detail.getMonetaryTerm()) {
+                monetaryTerm.setMonetaryTermId(Integer.toString(j++));
+            }
+            j = 0;
+            for (var nonMonetaryTerm : detail.getNonMonetaryTerm()) {
+                nonMonetaryTerm.setNonMonetaryTermId(Integer.toString(j++));
+                int k = 0;
+                for (var term : nonMonetaryTerm.getTerm()) {
+                    term.setTermId(Integer.toString(k++));
+                }
+            }
+        }
+
         HttpEntity<Sentence> payload = new HttpEntity<>(inner, new HttpHeaders());
 
         try {
@@ -487,6 +534,11 @@ public class ProcessController {
         var inner = process.getBan() != null ? process.getBan() : new Ban();
 
         UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(host + "criminal/ban");
+
+        int i = 0;
+        for (var detail : inner.getBanDetail()) {
+            detail.setBanDetailId(Integer.toString(i++));
+        }
 
         HttpEntity<Ban> payload = new HttpEntity<>(inner, new HttpHeaders());
 
@@ -561,6 +613,11 @@ public class ProcessController {
         UriComponentsBuilder builder =
                 UriComponentsBuilder.fromHttpUrl(host + "criminal/arraignment");
 
+        int i = 0;
+        for (var detail : inner.getArraignmentDetail()) {
+            detail.setArraignmentDetailId(Integer.toString(i++));
+        }
+
         HttpEntity<Arraignment> payload = new HttpEntity<>(inner, new HttpHeaders());
 
         try {
@@ -597,6 +654,11 @@ public class ProcessController {
 
         UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(host + "criminal/move");
 
+        int i = 0;
+        for (var detail : inner.getMoveDetail()) {
+            detail.setMoveDetailId(Integer.toString(i++));
+        }
+
         HttpEntity<Move> payload = new HttpEntity<>(inner, new HttpHeaders());
 
         try {
@@ -632,6 +694,11 @@ public class ProcessController {
         var inner = process.getFinding() != null ? process.getFinding() : new Finding();
 
         UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(host + "criminal/finding");
+
+        int i = 0;
+        for (var detail : inner.getFindingDetails()) {
+            detail.setFindingDetailId(Integer.toString(i++));
+        }
 
         HttpEntity<Finding> payload = new HttpEntity<>(inner, new HttpHeaders());
 
@@ -672,6 +739,12 @@ public class ProcessController {
                 process != null && process.getGenericResult() != null
                         ? process.getGenericResult()
                         : new GenericResult();
+
+        int i = 0;
+        for (var detail : inner.getResultDetail()) {
+            detail.setResultDetailId(Integer.toString(i++));
+        }
+
         HttpEntity<GenericResult> payload = new HttpEntity<>(inner, new HttpHeaders());
         try {
             HttpEntity<ProcessGenericResultResponse> resp =
@@ -759,6 +832,15 @@ public class ProcessController {
 
         UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(host + "criminal/order");
 
+        int i = 0;
+        for (var detail : inner.getOrderDetail()) {
+            detail.setOrderDetailId(Integer.toString(i++));
+            int j = 0;
+            for (var event : detail.getOrderEvent()) {
+                event.setOrderEventId(Integer.toString(j++));
+            }
+        }
+
         HttpEntity<OrderType> payload = new HttpEntity<>(inner, new HttpHeaders());
 
         try {
@@ -844,6 +926,11 @@ public class ProcessController {
                 process.getExhibitRequest() != null ? process.getExhibitRequest() : new Exhibit();
 
         UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(host + "criminal/exhibit");
+
+        int i = 0;
+        for (var detail : inner.getExhibitDetail()) {
+            detail.setExhibitDetailId(Integer.toString(i++));
+        }
 
         HttpEntity<Exhibit> payload = new HttpEntity<>(inner, new HttpHeaders());
 
