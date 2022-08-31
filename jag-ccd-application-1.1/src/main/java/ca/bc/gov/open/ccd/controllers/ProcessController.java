@@ -902,7 +902,7 @@ public class ProcessController {
             log.info(
                     objectMapper.writeValueAsString(
                             new RequestSuccessLog("Request Success", "processCivilOrderResult")));
-
+            log.info(objectMapper.writeValueAsString(payload.getBody()));
             return resp.getBody();
         } catch (Exception ex) {
             inner.setEnterUserId("");
