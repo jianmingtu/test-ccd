@@ -67,7 +67,7 @@ ORDS_HOST: The url for ords rest package.
 1) API_HOST: jag-ccd-application-1-1 API url
 2) API_HOST_SECURE: jag-ccd-application-1-2 API url
 
-### Optional Enviromental Variables
+### Optional Environmental Variables
 SPLUNK_HTTP_URL: The url for the splunk hec.
 
 SPLUNK_TOKEN: The bearer token to authenticate the application.
