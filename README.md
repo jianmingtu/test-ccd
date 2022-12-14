@@ -51,10 +51,10 @@ BASIC_AUTH_USER: The username for the basic authentication. This can be any valu
 
 ORDS_HOST: The url for ords rest package.
 
-### Additional Env Variables
+### Additional Environmental Variables
 * jag-ccd-application-1-1/jag-ccd-application-1-2:
-1) ADOBE_HOST: service url for requesting encoded report
-2) REPORT_APP_NAME: report name
+1) ADOBE_HOST: RESTful service url to retrieve RopReport
+2) REPORT_APP_NAME: RopReport app name
 3) FORM_PARAM_IDX: index for fetching the form value in url from ORDS (the value is varied in DEV, TEST, PROD environment)
 4) GENERIC_AGENCY_ID: generic agency id being configured on server. The value is part of CodeValuesSecure's request.
 5) GENERIC_PART_ID: generic agency id being configured on server. The value is part of CodeValuesSecure's request.
@@ -81,19 +81,19 @@ before they can be pushed to.
 3) Make sure ```ccd-civil-models```, ```ccd-civil-secure-models```, ```ccd-common-models```, ```ccd-court-list-models```, and ```ccd-court-list-secure-models``` are marked as generated sources roots (xjc)
 
 ### Running the application
-Via IDE
+Option A) Intellij
 1) Set env variables.
 2) Run the application
 
-Via Jar, e.g., to run 'jag-ccd-application-1.1' application:
+Option B) Jar, e.g., to run 'jag-ccd-application-1.1' application:
 1) Run ```mvn package```
 2) Run ```cd jag-ccd-application-1.1```
 3) Run ```java -jar ./target/ccd-application-1.1.jar $ENV_VAR$```  (Note that $ENV_VAR$ are environment variables)
 
-Via Docker in an application, e.g., to run 'jag-ccd-application-1.1' application:
+Option C) Docker, e.g., to run 'jag-ccd-application-1.1' application:
 1) Run ```mvn package```
 2) Run ```cd jag-ccd-application-1.1```
-3) Run ```docker build -t ccd-application-1.1 .``` from root folder
+3) Run ```docker build -t ccd-application-1.1 .```
 4) Run ```docker run -p 8080:8080 ccd-application-1.1 $ENV_VAR$```  (Note that $ENV_VAR$ are environment variables)
 
 ### Pre Commit
@@ -101,6 +101,5 @@ Via Docker in an application, e.g., to run 'jag-ccd-application-1.1' application
 2) Run the linter ```mvn spotless:apply```
 
 ### JaCoCo Coverage Report
-1) Run ```mvn test```
-2) Run ```mvn jacoco:report```
-3) Open ```target/site/jacoco/index.html``` in a browser
+1) Run ```mvn clean verify```
+2) Open ```ccd-code-coverage/target/site/jacoco/index.html``` in a browser
