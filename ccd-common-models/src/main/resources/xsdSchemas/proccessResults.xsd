@@ -62,6 +62,7 @@
 
     <xsd:complexType name="VariationDetailType">
         <xsd:sequence>
+            <xsd:element name="VariationDetailId" nillable="true" type="xsd:string"/>
             <xsd:element name="VariationType" nillable="true" type="xsd:string"/>
             <xsd:element name="DocmId" nillable="true" type="xsd:string"/>
             <xsd:element name="DocmTypeDsc" nillable="true" type="xsd:string"/>
@@ -373,6 +374,7 @@
 
     <xsd:complexType name="PleaDetails">
         <xsd:sequence>
+            <xsd:element name="PleaDetailId" nillable="true" type="xsd:string"/>
             <xsd:element name="ApplyToFile" nillable="true" type="tns:ApplyToFilePleaType" maxOccurs="unbounded"/>
             <xsd:element name="ActionCd" nillable="true" type="xsd:string"/>
             <xsd:element name="PleaCd" nillable="true" type="xsd:string"/>
@@ -426,6 +428,7 @@
 
     <xsd:complexType name="ElectionDetailType">
         <xsd:sequence>
+            <xsd:element name="ElectionDetailId" nillable="true" type="xsd:string"/>
             <xsd:element name="CrownProceed" nillable="true" type="xsd:string"/>
             <xsd:element name="Election" nillable="true" type="xsd:string"/>
             <xsd:element name="ApplyToFileElection" nillable="true" type="tns:ApplyToFileElectionType"
@@ -476,6 +479,7 @@
 
     <xsd:complexType name="BailDetailType">
         <xsd:sequence>
+            <xsd:element name="BailDetailId" nillable="true" type="xsd:string"/>
             <xsd:element name="BailOrderedTypeCd" nillable="true" type="xsd:string"/>
             <xsd:element name="ResponsiblePersonName" nillable="true" type="xsd:string"/>
             <xsd:element name="RecogTypeCd" nillable="true" type="xsd:string"/>
@@ -641,6 +645,7 @@
 
     <xsd:complexType name="AgeNoticeDetailType">
         <xsd:sequence>
+            <xsd:element name="AgeNoticeDetailId" nillable="true" type="xsd:string"/>
             <xsd:element name="ApplyToFileAgeNotice" nillable="true" type="tns:ApplyToFileTypeAgeNotice"
                          maxOccurs="unbounded"/>
             <xsd:element name="AgeNoticeEvent" nillable="true" type="tns:AgeNoticeEventType" maxOccurs="unbounded"/>
@@ -699,6 +704,7 @@
 
     <xsd:complexType name="MatterCallDetails">
         <xsd:sequence>
+            <xsd:element name="MatterCallDetailId" nillable="true" type="xsd:string"/>
             <xsd:element name="ActionCd" nillable="true" type="xsd:string"/>
             <xsd:element name="PreviousSourceEventSeqNo" nillable="true" type="xsd:string"/>
             <xsd:element name="CalledFile" nillable="true" type="tns:CalledFile" maxOccurs="unbounded"/>
@@ -751,6 +757,7 @@
 
     <xsd:complexType name="SentencetDetailType">
         <xsd:sequence>
+            <xsd:element name="SentencetDetailId" nillable="true" type="xsd:string"/>
             <xsd:element name="ApplyToFile" nillable="true" type="tns:SentenceApplyToFileType" maxOccurs="unbounded"/>
             <xsd:element name="MonetaryTerm" nillable="true" type="tns:MonetaryTermType" maxOccurs="unbounded"/>
             <xsd:element name="NonMonetaryTerm" nillable="true" type="tns:NonMonetaryTermType" maxOccurs="unbounded"/>
@@ -768,6 +775,7 @@
 
     <xsd:complexType name="MonetaryTermType">
         <xsd:sequence>
+            <xsd:element name="MonetaryTermId" nillable="true" type="xsd:string"/>
             <xsd:element name="SentenceTypeCd" nillable="true" type="xsd:string"/>
             <xsd:element name="Amount" nillable="true" type="xsd:string"/>
             <xsd:element name="VictimSurchargeTypeCd" nillable="true" type="xsd:string"/>
@@ -790,6 +798,7 @@
 
     <xsd:complexType name="NonMonetaryTermType">
         <xsd:sequence>
+            <xsd:element name="NonMonetaryTermId" nillable="true" type="xsd:string"/>
             <xsd:element name="Term" nillable="true" type="tns:TermType" maxOccurs="unbounded"/>
             <xsd:element name="SentenceTypeCd" nillable="true" type="xsd:string"/>
             <xsd:element name="TimeServedYN" nillable="true" type="xsd:string"/>
@@ -806,6 +815,7 @@
 
     <xsd:complexType name="TermType">
         <xsd:sequence>
+            <xsd:element name="TermId" nillable="true" type="xsd:string"/>
             <xsd:element name="TermTypeCd" nillable="true" type="xsd:string"/>
             <xsd:element name="Duration" nillable="true" type="tns:DurationType" maxOccurs="unbounded"/>
         </xsd:sequence>
@@ -845,6 +855,7 @@
 
     <xsd:complexType name="BanDetailType">
         <xsd:sequence>
+            <xsd:element name="BanDetailId" nillable="true" type="xsd:string"/>
             <xsd:element name="ApplyToFileBan" nillable="true" type="tns:ApplyToFileBanType" maxOccurs="unbounded"/>
             <xsd:element name="BanInfo" nillable="true" type="tns:BanInfoType" maxOccurs="unbounded"/>
         </xsd:sequence>
@@ -946,6 +957,7 @@
 
     <xsd:complexType name="ArraignmentDetailType">
         <xsd:sequence>
+            <xsd:element name="ArraignmentDetailId" nillable="true" type="xsd:string"/>
             <xsd:element name="ApplyToFileArraignment" nillable="true" type="tns:ApplyToFileArraignmentType"
                          maxOccurs="unbounded"/>
             <xsd:element name="ArraignmentEvent" nillable="true" type="tns:ArraignmentEventType" maxOccurs="unbounded"/>
@@ -999,6 +1011,7 @@
 
     <xsd:complexType name="MoveDetailType">
         <xsd:sequence>
+            <xsd:element name="MoveDetailId" nillable="true" type="xsd:string"/>
             <xsd:element name="CourtAgencyIdentifier" nillable="true" type="xsd:string"/>
             <xsd:element name="CourtRoom" nillable="true" type="xsd:string"/>
             <xsd:element name="ApplyToFileMove" nillable="true" type="tns:ApplyToFileMoveType" maxOccurs="unbounded"/>
@@ -1047,6 +1060,7 @@
 
     <xsd:complexType name="FindingDetailType">
         <xsd:sequence>
+            <xsd:element name="FindingDetailId" nillable="true" type="xsd:string"/>
             <xsd:element name="Finding" nillable="true" type="xsd:string"/>
             <xsd:element name="SectionOtherStatuteId" nillable="true" type="xsd:string"/>
             <xsd:element name="SectionOther" nillable="true" type="xsd:string"/>
@@ -1098,6 +1112,7 @@
 
     <xsd:complexType name="ResultDetail">
         <xsd:sequence>
+            <xsd:element name="ResultDetailId" nillable="true" type="xsd:string"/>
             <xsd:element name="ApplyToFileGenericResults" nillable="true" type="tns:ApplyToFileGenericResults"
                          maxOccurs="unbounded"/>
             <xsd:element name="EventSubType" nillable="true" type="xsd:string"/>
@@ -1232,6 +1247,7 @@
 
     <xsd:complexType name="OrderDetailType">
         <xsd:sequence>
+            <xsd:element name="OrderDetailId" nillable="true" type="xsd:string"/>
             <xsd:element name="ApplyToFile" nillable="true" type="tns:ApplyToFileOrderType" maxOccurs="unbounded"/>
             <xsd:element name="OrderEvent" nillable="true" type="tns:OrderEventType" maxOccurs="unbounded"/>
         </xsd:sequence>
@@ -1246,6 +1262,7 @@
 
     <xsd:complexType name="OrderEventType">
         <xsd:sequence>
+            <xsd:element name="OrderEventId" nillable="true" type="xsd:string"/>
             <xsd:element name="OrderDetailText" nillable="true" type="xsd:string"/>
             <xsd:element name="DueDate" nillable="true" type="xsd:dateTime"/>
             <xsd:element name="DisclosureAuthorizedTo" nillable="true" type="xsd:string"/>
@@ -1398,6 +1415,7 @@
 
     <xsd:complexType name="ExhibitDetail">
         <xsd:sequence>
+            <xsd:element name="ExhibitDetailId" nillable="true" type="xsd:string"/>
             <xsd:element name="ApplyToFile" type="tns:ApplyToFile" maxOccurs="unbounded"/>
             <xsd:element name="ExhibitType" type="xsd:string" minOccurs="0"/>
             <xsd:element name="ExhibitCardNo" type="xsd:string" minOccurs="0"/>

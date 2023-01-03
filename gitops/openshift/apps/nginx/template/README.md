@@ -3,7 +3,6 @@
 ### Template for Nginx 1 - To reverse proxy and split traffic between new jag-ccd api & the other Nginx 2 server container.
 * defaultNetworkPolicies.yaml (downloaded QuickStart.yaml from above link)
 
-
 ### Command to execute template
 1) Login to OC using login command
 2) Run below command in each env. namespace dev/test/prod/tools
