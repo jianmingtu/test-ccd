@@ -1,4 +1,4 @@
-FROM openjdk:11-jre-slim
+FROM eclipse-temurin:11-jre-alpine
 
 COPY ./target/ccd-application-1.1.jar ccd-application-1.1.jar
 
