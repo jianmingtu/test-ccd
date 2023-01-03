@@ -46,11 +46,6 @@ parameters:
   required: false
   value: jag-ccd-1-2
 
-- name: ENDPOINT3
-  description: The target endpoint
-  required: false
-  value: jag-ccd-oldwm
-
 - name: DNS
   description: The application name that each component is part of
   required: false
@@ -389,12 +384,10 @@ objects:
     nginx-upstream.conf: |-
       upstream splitter-ccd-11 {
         server jag-ccd-1-1;
-        #server nginx-jag-ccd-oldwm;
       }
 
       upstream splitter-ccd-12 {
         server jag-ccd-1-2;
-        #server nginx-jag-ccd-oldwm;
       }
 
 - kind: DeploymentConfig
