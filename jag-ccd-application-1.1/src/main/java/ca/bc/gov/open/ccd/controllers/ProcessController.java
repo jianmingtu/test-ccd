@@ -158,8 +158,7 @@ public class ProcessController {
             log.info(
                     objectMapper.writeValueAsString(
                             new RequestSuccessLog("Request Success", "processCivilResults")));
-            log.info(
-                    objectMapper.writeValueAsString(objectMapper.writeValueAsString(inner)));
+            log.info(objectMapper.writeValueAsString(objectMapper.writeValueAsString(inner)));
             return resp.getBody();
         } catch (Exception ex) {
             inner.setEnterUserId("");
