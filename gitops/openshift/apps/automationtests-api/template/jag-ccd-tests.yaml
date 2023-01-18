@@ -56,7 +56,7 @@ objects:
     name: ${COMPONENT_NAME}
     namespace: ${OC_NAMESPACE}-${OC_ENV}
     annotations:
-      app.openshift.io/connects-to: 'jag-ccd-1-1, jag-ccd-1-2'
+      app.openshift.io/connects-to: 'jag-ccd'
 
   spec:
     completionDeadlineSeconds: 1200

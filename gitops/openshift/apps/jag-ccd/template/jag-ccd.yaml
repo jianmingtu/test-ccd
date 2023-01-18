@@ -2,7 +2,7 @@ apiVersion: template.openshift.io/v1
 kind: Template
 metadata:
   name: ${COMPONENT_NAME}
-  description: Deployment template for the JAG-CCD-1.1
+  description: Deployment template for the JAG-CCD
   
 labels:
   app: ${COMPONENT_NAME}
@@ -25,7 +25,7 @@ parameters:
 - name: COMPONENT_NAME
   description: The application name
   required: false
-  value: jag-ccd-1.1
+  value: jag-ccd
   
 - name: OC_NAMESPACE
   description: The OpenShift namespace prefix
@@ -45,7 +45,7 @@ parameters:
 - name: API_NAME
   description: The api/application name
   required: false
-  value: jag-ccd-1.1
+  value: jag-ccd
 
 - name: DNS
   description: DNS of the application route
@@ -55,7 +55,7 @@ parameters:
   
 objects:
 
-### JAG-CCD-1.1 Deployment Config ###
+### JAG-CCD Deployment Config ###
 - apiVersion: apps.openshift.io/v1
   kind: DeploymentConfig
   metadata:
@@ -191,7 +191,7 @@ objects:
             name: ${COMPONENT_NAME}:${OC_ENV}
   status: {}
 
-### JAG-CCD-1.1 Service ###
+### JAG-CCD Service ###
 - apiVersion: v1
   kind: Service
   metadata:
@@ -208,7 +208,7 @@ objects:
     sessionAffinity: None
     type: ClusterIP
 
-### JAG-CCD-1.1 Route ###
+### JAG-CCD Route ###
 - apiVersion: route.openshift.io/v1
   kind: Route
   metadata:
