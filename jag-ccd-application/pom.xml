@@ -10,8 +10,8 @@
 
     <artifactId>jag-ccd-application</artifactId>
     <version>1.0</version>
-    <name>jag-ccd-application</name>
-    <description>jag-ccd-application</description>
+    <name>ccd-application</name>
+    <description>ccd-application</description>
     <properties>
         <default-package>ca.bc.gov.open.ccd</default-package>
         <java.version>11</java.version>
@@ -210,7 +210,7 @@
     </dependencies>
 
     <build>
-        <finalName>ccd-application-1.1</finalName>
+        <finalName>ccd-application</finalName>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
