@@ -18,12 +18,6 @@ public class TestService {
     @Value("${test.password}")
     private String password;
 
-    @Value("${test.username-secure}")
-    private String usernameSecure;
-
-    @Value("${test.password-secure}")
-    private String passwordSecure;
-
     @Value("${test.api-host}")
     private String apiHostCommon;
 
@@ -50,12 +44,6 @@ public class TestService {
             }
             if (line.contains("{AUTHENTICATION_PASSWORD}")) {
                 line = line.replaceAll("\\{AUTHENTICATION_PASSWORD}", password);
-            }
-            if (line.contains("{AUTHENTICATION_USERNAME_SECURE}")) {
-                line = line.replaceAll("\\{AUTHENTICATION_USERNAME_SECURE}", usernameSecure);
-            }
-            if (line.contains("{AUTHENTICATION_PASSWORD_SECURE}")) {
-                line = line.replaceAll("\\{AUTHENTICATION_PASSWORD_SECURE}", passwordSecure);
             }
             if (line.contains("{API_HOST}")) {
                 line = line.replaceAll("\\{API_HOST}", apiHostCommon);
@@ -105,8 +93,6 @@ public class TestService {
             String fileContent = FileUtils.readFileToString(f);
             fileContent = fileContent.replaceAll(username, "*".repeat(8));
             fileContent = fileContent.replaceAll(password, "*".repeat(8));
-            fileContent = fileContent.replaceAll(usernameSecure, "*".repeat(8));
-            fileContent = fileContent.replaceAll(passwordSecure, "*".repeat(8));
             FileUtils.write(f, fileContent);
         }
     }
