@@ -398,6 +398,7 @@
             <xsd:element name="PartyFullAddressText" nillable="true" type="xsd:string"/>
             <xsd:element name="WarrantIssueDate" nillable="true" type="xsd:dateTime"/>
             <xsd:element name="ActiveYN" nillable="true" type="xsd:string"/>
+            <xsd:element name="EmailAddressText" nillable="true" type="xsd:string"/>
             <xsd:element name="Counsel" nillable="true" type="tns:CounselType" minOccurs="0" maxOccurs="unbounded"/>
             <xsd:element name="Representative" nillable="true" type="tns:RepresentativeType" minOccurs="0"
                          maxOccurs="unbounded"/>
@@ -414,6 +415,7 @@
             <xsd:element name="CounselFullName" nillable="true" type="xsd:string"/>
             <xsd:element name="CounselId" nillable="true" type="xsd:string"/>
             <xsd:element name="PhoneNumber" nillable="true" type="xsd:string"/>
+            <xsd:element name="EmailAddressText" nillable="true" type="xsd:string"/>
         </xsd:sequence>
     </xsd:complexType>
 
