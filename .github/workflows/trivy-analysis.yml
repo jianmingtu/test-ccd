@@ -38,40 +38,20 @@ jobs:
       - name: Maven Verify
         run: mvn -ntp clean verify
 
-      - name: Build image jag-ccd-1-1 from Dockerfile
+      - name: Build image jag-ccd from Dockerfile
         env:
           COMPOSE_DOCKER_CLI_BUILD: 1
           DOCKER_BUILDKIT: 1
-          CONTEXT: ./jag-ccd-application-1.1
+          CONTEXT: ./jag-ccd-application
         run: |
-          docker build -t docker.io/ccd/jag-ccd-1-1:${{ github.sha }} ${CONTEXT}
+          docker build -t docker.io/ccd/jag-ccd:${{ github.sha }} ${CONTEXT}
 
       #Run Vulnerability Scan usinig Trivy scanner
-      - name: Run Trivy vulnerability scanner for jag-ccd-1-1 image
+      - name: Run Trivy vulnerability scanner for jag-ccd image
         uses: aquasecurity/trivy-action@master
         with:
           scan-type: image
-          image-ref: docker.io/ccd/jag-ccd-1-1:${{ github.sha }}
-          format: sarif
-          output: trivy-results.sarif
-          exit-code: 0
-          ignore-unfixed: true
-          severity: HIGH,CRITICAL
-      
-      - name: Build image jag-ccd-1-2 from Dockerfile
-        env:
-          COMPOSE_DOCKER_CLI_BUILD: 1
-          DOCKER_BUILDKIT: 1
-          CONTEXT: ./jag-ccd-application-1.2
-        run: |
-          docker build -t docker.io/ccd/jag-ccd-1-2:${{ github.sha }} ${CONTEXT}
-
-      #Run Vulnerability Scan usinig Trivy scanner
-      - name: Run Trivy vulnerability scanner for jag-ccd-1-2 image
-        uses: aquasecurity/trivy-action@master
-        with:
-          scan-type: image
-          image-ref: docker.io/ccd/jag-ccd-1-2:${{ github.sha }}
+          image-ref: docker.io/ccd/jag-ccd:${{ github.sha }}
           format: sarif
           output: trivy-results.sarif
           exit-code: 0

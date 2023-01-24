@@ -27,31 +27,13 @@
         </dependency>
         <dependency>
             <groupId>ca.bc.gov.open</groupId>
-            <artifactId>ccd-civil-secure-models</artifactId>
-            <version>1.0</version>
-            <scope>compile</scope>
-        </dependency>
-        <dependency>
-            <groupId>ca.bc.gov.open</groupId>
             <artifactId>ccd-court-list-models</artifactId>
             <version>1.0</version>
             <scope>compile</scope>
         </dependency>
         <dependency>
             <groupId>ca.bc.gov.open</groupId>
-            <artifactId>ccd-court-list-secure-models</artifactId>
-            <version>1.0</version>
-            <scope>compile</scope>
-        </dependency>
-        <dependency>
-            <groupId>ca.bc.gov.open</groupId>
-            <artifactId>jag-ccd-application-1.1</artifactId>
-            <version>1.0</version>
-            <scope>compile</scope>
-        </dependency>
-        <dependency>
-            <groupId>ca.bc.gov.open</groupId>
-            <artifactId>jag-ccd-application-1.2</artifactId>
+            <artifactId>jag-ccd-application</artifactId>
             <version>1.0</version>
             <scope>compile</scope>
         </dependency>
