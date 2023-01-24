@@ -43,6 +43,10 @@ BASIC_AUTH_USER: The username for the basic authentication. This can be any valu
 
 ORDS_HOST: The url for ords rest package.
 
+ORDS_USERNAME: ORDS_HOST authentication
+
+ORDS_PASSWORD: ORDS_HOST authentication
+
 ### Additional Environmental Variables
 * jag-ccd-application:
 1) ADOBE_HOST: RESTful service url to retrieve RopReport
