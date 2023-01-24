@@ -7,7 +7,7 @@ on:
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
     inputs:
-      app1:
+      app:
         description: 'App Name (jag-ccd)'
         required: true
         default: 'jag-ccd'
@@ -56,8 +56,7 @@ jobs:
       # Prints vital release paramters used
       - name: Print Release Variables
         run: |
-          echo "Release Application 1: ${{ github.event.inputs.app1 }}"
-          echo "Release Application 2: ${{ github.event.inputs.app2 }}"
+          echo "Release Application: ${{ github.event.inputs.app }}"
           echo "Release Environment: ${{ github.event.inputs.env }}"
           echo "Release Version: ${{ env.releaseVersion }}"
           echo "Release Git Sha: ${{env.gitsha}}"
@@ -86,7 +85,7 @@ jobs:
           DOCKER_BUILDKIT: 1
           CONTEXT: ./jag-ccd-application
         run: |
-          docker build -t ${{github.event.inputs.app1}}:${{env.gitsha}} ${CONTEXT}
+          docker build -t ${{github.event.inputs.app}}:${{env.gitsha}} ${CONTEXT}
       
       #Login to OpenShift Container Repository - Silver
       - name: Login to OpenShift Container Repository - Silver
@@ -99,9 +98,9 @@ jobs:
       #Push image jag-ccd to OpenShift Image stream - Silver
       - name: Push Image jag-ccd to Openshift Image Stream - Silver
         env:
-          IMAGE: ${{secrets.OPENSHIFT_EXTERNAL_REPOSITORY_SILVER}}/${{secrets.OPENSHIFT_TOOLS_NAMESPACE_SILVER}}/${{github.event.inputs.app1}}:${{secrets.OPENSHIFT_ENV_TAG}}
+          IMAGE: ${{secrets.OPENSHIFT_EXTERNAL_REPOSITORY_SILVER}}/${{secrets.OPENSHIFT_TOOLS_NAMESPACE_SILVER}}/${{github.event.inputs.app}}:${{secrets.OPENSHIFT_ENV_TAG}}
         run: |
-          docker tag ${{github.event.inputs.app1}}:${{env.gitsha}} ${IMAGE}
+          docker tag ${{github.event.inputs.app}}:${{env.gitsha}} ${IMAGE}
           docker push ${IMAGE}
 
       # #Login to OpenShift Container Repository - Kamloops (OC PROD)
@@ -115,9 +114,9 @@ jobs:
       # #Push image jag-ccd to OpenShift Image stream - Kamloops (OC Prod)
       # - name: Push Image jag-ccd to Openshift Image Stream - Kamloops (OC Prod)
       #   env:
-      #     IMAGE: ${{secrets.OPENSHIFT_EXTERNAL_REPOSITORY}}/${{secrets.OPENSHIFT_TOOLS_NAMESPACE}}/${{github.event.inputs.app1}}:${{secrets.OPENSHIFT_ENV_TAG}}
+      #     IMAGE: ${{secrets.OPENSHIFT_EXTERNAL_REPOSITORY}}/${{secrets.OPENSHIFT_TOOLS_NAMESPACE}}/${{github.event.inputs.app}}:${{secrets.OPENSHIFT_ENV_TAG}}
       #   run: |
-      #     docker tag ${{github.event.inputs.app1}}:${{env.gitsha}} ${IMAGE}
+      #     docker tag ${{github.event.inputs.app}}:${{env.gitsha}} ${IMAGE}
       #     docker push ${IMAGE}
       
       # #Login to OpenShift Container Repository - Calgary (OC DR)
@@ -131,9 +130,9 @@ jobs:
       # #Push image jag-ccd to OpenShift Image stream - Calgary (OC DR)
       # - name: Push Image jag-ccd to Openshift Image Stream - Calgary (OC DR)
       #   env:
-      #     IMAGE: ${{secrets.OPENSHIFT_EXTERNAL_REPOSITORY_DR}}/${{secrets.OPENSHIFT_TOOLS_NAMESPACE}}/${{github.event.inputs.app1}}:${{secrets.OPENSHIFT_ENV_TAG}}
+      #     IMAGE: ${{secrets.OPENSHIFT_EXTERNAL_REPOSITORY_DR}}/${{secrets.OPENSHIFT_TOOLS_NAMESPACE}}/${{github.event.inputs.app}}:${{secrets.OPENSHIFT_ENV_TAG}}
       #   run: |
-      #     docker tag ${{github.event.inputs.app1}}:${{env.gitsha}} ${IMAGE}
+      #     docker tag ${{github.event.inputs.app}}:${{env.gitsha}} ${IMAGE}
       #     docker push ${IMAGE}
       
       #Login to Openshift using OC SA and Token of respective env. for Pod labelling - Silver
@@ -151,7 +150,7 @@ jobs:
       - name: Labelling DC of jag-ccd to release version - Silver
         env:
           releaseVersion: ${{ env.releaseVersion }}
-          appName: ${{github.event.inputs.app1}}
+          appName: ${{github.event.inputs.app}}
           openshiftEnvNamespace: ${{secrets.OPENSHIFT_LICENSE_PLATE_SILVER}}-${{ github.event.inputs.env }}
         run: |
           oc patch dc ${appName} -n ${openshiftEnvNamespace} --patch '{"spec":{"template":{"metadata":{"labels":{"version":"${{ env.releaseVersion }}.${{ env.gitsha }}"}}}}}'
@@ -159,7 +158,7 @@ jobs:
        # Wait to DC rollout of jag-ccd to get completed before proceeding next stage - Silver
       - name: Wait for DC rollout of jag-ccd - Silver
         env:
-          appName: ${{github.event.inputs.app1}}
+          appName: ${{github.event.inputs.app}}
           openshiftEnvNamespace: ${{secrets.OPENSHIFT_LICENSE_PLATE_SILVER}}-${{ github.event.inputs.env }}
         run: |
           oc rollout status -n ${openshiftEnvNamespace} dc/${appName} --watch
@@ -179,7 +178,7 @@ jobs:
       # - name: Labelling DC of jag-ccd to release version - Kamloops (OC PROD)
       #   env:
       #     releaseVersion: ${{ env.releaseVersion }}
-      #     appName: ${{github.event.inputs.app1}}
+      #     appName: ${{github.event.inputs.app}}
       #     openshiftEnvNamespace: ${{secrets.OPENSHIFT_LICENSE_PLATE}}-${{ github.event.inputs.env }}
       #   run: |
       #     oc patch dc ${appName} -n ${openshiftEnvNamespace} --patch '{"spec":{"template":{"metadata":{"labels":{"version":"${{ env.releaseVersion }}.${{ env.gitsha }}"}}}}}'
@@ -187,7 +186,7 @@ jobs:
       # # Wait to DC rollout of jag-ccd to get completed before proceeding next stage - Kamloops (OC PROD)
       # - name: Wait for DC rollout of jag-ccd - Kamloops (OC PROD)
       #   env:
-      #     appName: ${{github.event.inputs.app1}}
+      #     appName: ${{github.event.inputs.app}}
       #     openshiftEnvNamespace: ${{secrets.OPENSHIFT_LICENSE_PLATE}}-${{ github.event.inputs.env }}
       #   run: |
       #     oc rollout status -n ${openshiftEnvNamespace} dc/${appName} --watch
@@ -207,7 +206,7 @@ jobs:
       # - name: Labelling DC of jag-ccd to release version - Calgary (OC DR)
       #   env:
       #     releaseVersion: ${{ env.releaseVersion }}
-      #     appName: ${{github.event.inputs.app1}}
+      #     appName: ${{github.event.inputs.app}}
       #     openshiftEnvNamespace: ${{secrets.OPENSHIFT_LICENSE_PLATE}}-${{ github.event.inputs.env }}
       #   run: |
       #     oc patch dc ${appName} -n ${openshiftEnvNamespace} --patch '{"spec":{"template":{"metadata":{"labels":{"version":"${{ env.releaseVersion }}.${{ env.gitsha }}"}}}}}'
@@ -215,7 +214,7 @@ jobs:
       # # Wait to DC rollout of jag-ccd to get completed before proceeding next stage - Calgary (OC DR)
       # - name: Wait for DC rollout of jag-ccd - Calgary (OC DR)
       #   env:
-      #     appName: ${{github.event.inputs.app1}}
+      #     appName: ${{github.event.inputs.app}}
       #     openshiftEnvNamespace: ${{secrets.OPENSHIFT_LICENSE_PLATE}}-${{ github.event.inputs.env }}
       #   run: |
       #     oc rollout status -n ${openshiftEnvNamespace} dc/${appName} --watch

@@ -5,7 +5,7 @@ name: Trigger deployment to test and prod Openshift environnment by Image stream
 on:        
   workflow_dispatch:
     inputs:
-      app1:
+      app:
         description: 'App Name (jag-ccd)'
         required: true
         default: 'jag-ccd'
@@ -62,8 +62,7 @@ jobs:
         # Prints vital release paramters used
       - name: Print Release Variables
         run: |
-          echo "Release Application 1: ${{ github.event.inputs.app1 }}"
-          echo "Release Application 2: ${{ github.event.inputs.app2 }}"
+          echo "Release Application: ${{ github.event.inputs.app }}"
           echo "Release Environment: ${{ github.event.inputs.imageTargetEnv }}"
           echo "Release Version: ${{ env.releaseVersion }}"
           echo "Release Git Sha: ${{env.gitsha}}"
@@ -83,7 +82,7 @@ jobs:
         # It also creates a tag with release version number to use it in case of rollback.
       - name: Retag jag-ccd image to release env and version - Silver
         env:
-          appName: ${{ github.event.inputs.app1 }}
+          appName: ${{ github.event.inputs.app }}
           imageSourceEnv: ${{ github.event.inputs.imageSourceEnv }}
           imageTargetEnv: ${{ github.event.inputs.imageTargetEnv }}
           openshiftToolsNamespace: ${{secrets.OPENSHIFT_TOOLS_NAMESPACE_SILVER}}
@@ -109,7 +108,7 @@ jobs:
       - name: Labelling jag-ccd DC to release version - Silver
         env:
           releaseVersion: ${{ env.releaseVersion }}
-          appName: ${{ github.event.inputs.app1 }}
+          appName: ${{ github.event.inputs.app }}
           openshiftEnvNamespace: ${{secrets.OPENSHIFT_LICENSE_PLATE_SILVER}}-${{ github.event.inputs.imageTargetEnv }}
         run: |
           oc patch dc ${appName} -n ${openshiftEnvNamespace} --patch '{"spec":{"template":{"metadata":{"labels":{"version":"${{ env.releaseVersion }}.${{ env.gitsha }}"}}}}}'
@@ -117,7 +116,7 @@ jobs:
         # Wait to jag-ccd DC rollout to get completed before proceeding next stage - Silver
       - name: Wait for jag-ccd DC rollout - Silver
         env:
-          appName: ${{ github.event.inputs.app1 }}
+          appName: ${{ github.event.inputs.app }}
           openshiftEnvNamespace: ${{secrets.OPENSHIFT_LICENSE_PLATE_SILVER}}-${{ github.event.inputs.imageTargetEnv }}
         run: |
           oc rollout status -n ${openshiftEnvNamespace} dc/${appName} --watch
@@ -137,7 +136,7 @@ jobs:
       #   # It also creates a tag with release version number to use it in case of rollback..
       # - name: Retag jag-ccd image to release env and version - Kamloops (OC PROD)
       #   env:
-      #     appName: ${{ github.event.inputs.app1 }}
+      #     appName: ${{ github.event.inputs.app }}
       #     imageSourceEnv: ${{ github.event.inputs.imageSourceEnv }}
       #     imageTargetEnv: ${{ github.event.inputs.imageTargetEnv }}
       #     openshiftToolsNamespace: ${{secrets.OPENSHIFT_TOOLS_NAMESPACE}}
@@ -163,7 +162,7 @@ jobs:
       # - name: Labelling jag-ccd DC to release version - Kamloops (OC PROD)
       #   env:
       #     releaseVersion: ${{ env.releaseVersion }}
-      #     appName: ${{ github.event.inputs.app1 }}
+      #     appName: ${{ github.event.inputs.app }}
       #     openshiftEnvNamespace: ${{secrets.OPENSHIFT_LICENSE_PLATE}}-${{ github.event.inputs.imageTargetEnv }}
       #   run: |
       #     oc patch dc ${appName} -n ${openshiftEnvNamespace} --patch '{"spec":{"template":{"metadata":{"labels":{"version":"${{ env.releaseVersion }}.${{ env.gitsha }}"}}}}}'
@@ -171,7 +170,7 @@ jobs:
       #   # Wait to jag-ccd DC rollout to get completed before proceeding next stage - Kamloops (OC PROD)
       # - name: Wait for jag-ccd DC rollout - Kamloops (OC PROD)
       #   env:
-      #     appName: ${{ github.event.inputs.app1 }}
+      #     appName: ${{ github.event.inputs.app }}
       #     openshiftEnvNamespace: ${{secrets.OPENSHIFT_LICENSE_PLATE}}-${{ github.event.inputs.imageTargetEnv }}
       #   run: |
       #     oc rollout status -n ${openshiftEnvNamespace} dc/${appName} --watch
@@ -191,7 +190,7 @@ jobs:
       #   # It also creates a tag with release version number to use it in case of rollback.
       # - name: Retag jag-ccd image to release env and version - Calgary (OC DR)
       #   env:
-      #     appName: ${{ github.event.inputs.app1 }}
+      #     appName: ${{ github.event.inputs.app }}
       #     imageSourceEnv: ${{ github.event.inputs.imageSourceEnv }}
       #     imageTargetEnv: ${{ github.event.inputs.imageTargetEnv }}
       #     openshiftToolsNamespace: ${{secrets.OPENSHIFT_TOOLS_NAMESPACE}}
@@ -217,7 +216,7 @@ jobs:
       # - name: Labelling jag-ccd DC to release version - Calgary (OC DR)
       #   env:
       #     releaseVersion: ${{ env.releaseVersion }}
-      #     appName: ${{ github.event.inputs.app1 }}
+      #     appName: ${{ github.event.inputs.app }}
       #     openshiftEnvNamespace: ${{secrets.OPENSHIFT_LICENSE_PLATE}}-${{ github.event.inputs.imageTargetEnv }}
       #   run: |
       #     oc patch dc ${appName} -n ${openshiftEnvNamespace} --patch '{"spec":{"template":{"metadata":{"labels":{"version":"${{ env.releaseVersion }}.${{ env.gitsha }}"}}}}}'
@@ -225,7 +224,7 @@ jobs:
       #   # Wait to jag-ccd DC rollout to get completed before proceeding next stage - Calgary (OC DR)
       # - name: Wait for jag-ccd DC rollout - Calgary (OC DR)
       #   env:
-      #     appName: ${{ github.event.inputs.app1 }}
+      #     appName: ${{ github.event.inputs.app }}
       #     openshiftEnvNamespace: ${{secrets.OPENSHIFT_LICENSE_PLATE}}-${{ github.event.inputs.imageTargetEnv }}
       #   run: |
       #     oc rollout status -n ${openshiftEnvNamespace} dc/${appName} --watch
