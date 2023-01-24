@@ -5,6 +5,8 @@ security:
 ccd:
   form-param-idx: ${FORM_PARAM_IDX}
   host: ${ORDS_HOST}
+  username: ${ORDS_USERNAME}
+  password: ${ORDS_PASSWORD}
   generic-agen-id:  ${GENERIC_AGENCY_ID}
   generic-part-id:  ${GENERIC_PART_ID}
   adobe-host: ${ADOBE_HOST}

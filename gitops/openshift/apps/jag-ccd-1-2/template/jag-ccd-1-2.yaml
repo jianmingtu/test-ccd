@@ -125,6 +125,16 @@ objects:
                 secretKeyRef:
                   name: ccd-application-secrets
                   key: ORDS_HOST
+            - name: ORDS_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: ccd-application-secrets
+                  key: ORDS_USERNAME
+            - name: ORDS_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: ccd-application-secrets
+                  key: ORDS_PASSWORD
             - name: GENERIC_AGENCY_ID
               valueFrom:
                 secretKeyRef:

@@ -5,6 +5,8 @@ security:
 ccd:
   form-param-idx: 1
   host: http://127.0.0.1/
+  username: ${BASIC_AUTH_USER}
+  password: ${BASIC_AUTH_PASS}
   generic-agen-id:  generic-agen-id
   generic-part-id:  generic-part-id
   oracle-host: oracle-host
