@@ -79,32 +79,9 @@ objects:
             imagePullPolicy: Always
             ports:
               - containerPort: 8080
-            env:
-            - name: BASIC_AUTH_USER
-              valueFrom:
-                secretKeyRef:
+            envFrom:
+              - secretRef:
                   name: ccd-application-secrets
-                  key: BASIC_AUTH_USER
-            - name: BASIC_AUTH_PASS
-              valueFrom:
-                secretKeyRef:
-                  name: ccd-application-secrets
-                  key: BASIC_AUTH_PASS
-            - name: SPRING_PROFILES_ACTIVE
-              valueFrom:
-                secretKeyRef:
-                  name: ccd-application-secrets
-                  key: SPRING_PROFILE
-            - name: API_HOST
-              valueFrom:
-                secretKeyRef:
-                  name: ccd-application-secrets
-                  key: API_HOST
-            - name: API_HOST_SECURE
-              valueFrom:
-                secretKeyRef:
-                  name: ccd-application-secrets
-                  key: API_HOST_SECURE
             resources:
               limits:
                 cpu: 500m
