@@ -6,7 +6,7 @@
     <version>1.0.0</version>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>AutomatedTest</artifactId>
+    <artifactId>AutomatedTests</artifactId>
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
@@ -99,7 +99,7 @@
         <dependency>
             <groupId>com.thoughtworks.xstream</groupId>
             <artifactId>xstream</artifactId>
-            <version>1.4.19</version>
+            <version>1.4.20</version>
         </dependency>
     </dependencies>
 

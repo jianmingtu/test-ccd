@@ -2,11 +2,12 @@ apiVersion: template.openshift.io/v1
 kind: Template
 metadata:
   name: ${COMPONENT_NAME}
-  description: Deployment template for the JAG-CCD-TESTS
+  description: Deployment template for the JAG-CCD
   
 labels:
-  app: ${APP_NAME}
+  app: ${COMPONENT_NAME}
   app.kubernetes.io/name: ${COMPONENT_NAME}
+  app.kubernetes.io/part-of: ${APP_NAME}
   app.openshift.io/runtime: ${RUNTIME}
   
 parameters:
@@ -16,15 +17,20 @@ parameters:
   required: false
   value: jag-ccd
 
-- name: COMPONENT_NAME
-  description: The application name that each component is part of
+- name: AUTH_HEADER
+  description: Basic http auth header
   required: false
-  value: jag-ccd-tests
+  value: auth
+
+- name: COMPONENT_NAME
+  description: The application name
+  required: false
+  value: jag-ccd
   
 - name: OC_NAMESPACE
   description: The OpenShift namespace prefix
   required: false
-  # Below value must be changed as per gold cluster oc nameplate
+  # change the OC_Namespace value as per the cluster being used.
   value: 52e74e
   
 - name: OC_ENV
@@ -32,32 +38,25 @@ parameters:
   required: true
 
 - name: RUNTIME
-  description: The run time of the application
+  description: Runtime of the application
   required: false
   value: java
 
 - name: DNS
-  description: The application DNS for route url
+  description: DNS of the application route
   required: false
-  # Below value must be changed as per gold & dr cluster certificate/DNS
+  # Below value must be changed as per the DNS of openshift cluster used.
   value: apps.silver.devops.gov.bc.ca
-
-- name: AUTH_HEADER
-  description: The http Authorization header required for performing livenessProbe & readinessProbe in deployment config during container start.
-  required: true
-  value: ''
   
 objects:
 
-### JAG-CCD-TESTS Deployment Config ###
+### JAG-CCD Deployment Config ###
 - apiVersion: apps.openshift.io/v1
   kind: DeploymentConfig
   metadata:
     name: ${COMPONENT_NAME}
     namespace: ${OC_NAMESPACE}-${OC_ENV}
-    annotations:
-      app.openshift.io/connects-to: 'jag-ccd'
-
+      
   spec:
     completionDeadlineSeconds: 1200
     replicas: 1
@@ -73,6 +72,7 @@ objects:
           name: ${COMPONENT_NAME}
       spec:
         containers:
+          # Below Immage url must be changed as per gold cluster image stream
           - image: >-
               image-registry.openshift-image-registry.svc:5000/${OC_NAMESPACE}-tools/${COMPONENT_NAME}:${OC_ENV}
             name: ${COMPONENT_NAME} 
@@ -82,6 +82,8 @@ objects:
             envFrom:
               - secretRef:
                   name: ccd-application-secrets
+              - secretRef:
+                  name: ccd-splunk-config
             resources:
               limits:
                 cpu: 500m
@@ -95,10 +97,10 @@ objects:
                 port: 8080
                 scheme: HTTP
                 httpHeaders:
-                - name: Authorization
-                  value: ${AUTH_HEADER}
-              initialDelaySeconds: 100
-              timeoutSeconds: 30
+                  - name: Authorization
+                    value: ${AUTH_HEADER}
+              initialDelaySeconds: 30
+              timeoutSeconds: 60
               periodSeconds: 10
               successThreshold: 1
               failureThreshold: 3
@@ -108,10 +110,10 @@ objects:
                 port: 8080
                 scheme: HTTP
                 httpHeaders:
-                - name: Authorization
-                  value: ${AUTH_HEADER}
-              initialDelaySeconds: 100
-              timeoutSeconds: 30
+                  - name: Authorization
+                    value: ${AUTH_HEADER}
+              initialDelaySeconds: 10
+              timeoutSeconds: 60
               periodSeconds: 10
               successThreshold: 1
               failureThreshold: 3
@@ -128,7 +130,7 @@ objects:
             name: ${COMPONENT_NAME}:${OC_ENV}
   status: {}
 
-### JAG-CCD-TESTS Service ###
+### JAG-CCD Service ###
 - apiVersion: v1
   kind: Service
   metadata:
@@ -145,15 +147,13 @@ objects:
     sessionAffinity: None
     type: ClusterIP
 
-### JAG-CCD-TESTS Route ###
+### JAG-CCD Route ###
 - apiVersion: route.openshift.io/v1
   kind: Route
   metadata:
     name: ${COMPONENT_NAME}
     namespace: ${OC_NAMESPACE}-${OC_ENV}
   annotations:
-    # router timeout
-    haproxy.router.openshift.io/timeout: 10m
     # if we do not use sticky-session, disable_cookies needs to be true
     haproxy.router.openshift.io/disable_cookies: "true"
     # balance algorithm
