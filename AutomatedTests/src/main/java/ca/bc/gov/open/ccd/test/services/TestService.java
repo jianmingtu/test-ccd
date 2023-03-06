@@ -21,8 +21,6 @@ public class TestService {
     @Value("${test.api-host}")
     private String apiHostCommon;
 
-    @Value("${test.api-host-secure}")
-    private String apiHostSecure;
 
     public TestService() {}
 
@@ -47,9 +45,6 @@ public class TestService {
             }
             if (line.contains("{API_HOST}")) {
                 line = line.replaceAll("\\{API_HOST}", apiHostCommon);
-            }
-            if (line.contains("{API_HOST_SECURE}")) {
-                line = line.replaceAll("\\{API_HOST_SECURE}", apiHostSecure);
             }
             writer.append(line + "\n");
         }
@@ -101,13 +96,13 @@ public class TestService {
 
         SoapUITestCaseRunner runner = new SoapUITestCaseRunner();
         try {
-            runner.setProjectFile("CCDUserMapping-soapui-project.xml");
+            runner.setProjectFile("CCDUserMapping-soapui-project-template.xml");
             runner.run();
         } catch (Exception Ignore) {
 
         }
         try {
-            runner.setProjectFile("CCDCivilFileContent-soapui-project.xml");
+            runner.setProjectFile("CCDCivilFileContent-soapui-project-template.xml");
             runner.run();
         } catch (Exception Ignore) {
 
@@ -144,43 +139,6 @@ public class TestService {
 
         }
 
-        try {
-            runner.setProjectFile("CCDCriminalFileContentSecure-soapui-project.xml");
-            runner.run();
-        } catch (Exception Ignore) {
-
-        }
-
-        try {
-            runner.setProjectFile("CCDCourtListSecure-soapui-project.xml");
-            runner.run();
-        } catch (Exception Ignore) {
-
-        }
-        try {
-            runner.setProjectFile("CCDgetDocumentSecure-soapui-project.xml");
-            runner.run();
-        } catch (Exception Ignore) {
-
-        }
-        try {
-            runner.setProjectFile("CCDGetRopReportSecure-soapui-project.xml");
-            runner.run();
-        } catch (Exception Ignore) {
-
-        }
-        try {
-            runner.setProjectFile("CCDGetCivilFileContentSecure-soapui-project.xml");
-            runner.run();
-        } catch (Exception Ignore) {
-
-        }
-        try {
-            runner.setProjectFile("CCDCodeValuesSecure-soapui-project.xml");
-            runner.run();
-        } catch (Exception Ignore) {
-
-        }
         return zipAndReturnErrors();
     }
 }

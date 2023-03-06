@@ -45,14 +45,8 @@ CcdUserMapping-*-FAILED.txt
 /CCDGetUserLogin-soapui-project.xml
 /TestErrors.zip
 /CCDProcessResults-soapui-project.xml
-/CCDCriminalFileContentSecure-soapui-project.xml
-/CCDCourtListSecure-soapui-project.xml
-/CCDgetDocumentSecure-soapui-project.xml
 /comparison-tool-1.1/results/*.txt
 /comparison-tool-1.2/results/*.txt
-/CCDGetCivilFileContentSecure-soapui-project.xml
-/CCDGetRopReportSecure-soapui-project.xml
-/CCDCodeValuesSecure-soapui-project.xml
 
 ## macOS ##
 .DS_STORE
