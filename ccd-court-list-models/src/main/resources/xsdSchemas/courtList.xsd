@@ -298,6 +298,7 @@
             <xsd:element name="SheriffCommentText" type="xsd:string"/>
             <xsd:element name="SealFileSOCText" nillable="true" type="xsd:string"/>
             <xsd:element name="EstimatedAppearanceMinutes" nillable="true" type="xsd:string"/>
+            <xsd:element name="HearingLanguageCd" nillable="true" type="xsd:string"/>
             <xsd:element name="PhysicalFile" nillable="true" type="tns:PhysicalFileType"/>
             <xsd:element name="Asset" nillable="true" type="tns:AssetType" minOccurs="0" maxOccurs="unbounded"/>
             <xsd:element name="Document" nillable="true" type="tns:DocumentType" minOccurs="0" maxOccurs="unbounded"/>
@@ -363,6 +364,7 @@
             <xsd:element name="DocumentSealStartDate" nillable="true" type="xsd:dateTime"/>
             <xsd:element name="DocumentSealEndDate" nillable="true" type="xsd:dateTime"/>
             <xsd:element name="AppearanceReasonCode" nillable="true" type="xsd:string"/>
+            <xsd:element name="FilingLanguageCd" nillable="true" type="xsd:string"/>
             <xsd:element name="Issue" nillable="true" type="tns:IssueType" minOccurs="0" maxOccurs="unbounded"/>
             <xsd:element name="FiledBy" nillable="true" type="tns:FiledByType" minOccurs="0" maxOccurs="unbounded"/>
         </xsd:sequence>
@@ -399,6 +401,7 @@
             <xsd:element name="WarrantIssueDate" nillable="true" type="xsd:dateTime"/>
             <xsd:element name="ActiveYN" nillable="true" type="xsd:string"/>
             <xsd:element name="EmailAddressText" nillable="true" type="xsd:string"/>
+            <xsd:element name="PreferredLanguageCd" nillable="true" type="xsd:string"/>
             <xsd:element name="Counsel" nillable="true" type="tns:CounselType" minOccurs="0" maxOccurs="unbounded"/>
             <xsd:element name="Representative" nillable="true" type="tns:RepresentativeType" minOccurs="0"
                          maxOccurs="unbounded"/>
@@ -489,6 +492,7 @@
             <xsd:element name="AppearanceReasonCd" nillable="true" type="xsd:string"/>
             <xsd:element name="EstDurationHours" nillable="true" type="xsd:string"/>
             <xsd:element name="EstDurationMins" nillable="true" type="xsd:string"/>
+            <xsd:element name="HearingLanguageCd" nillable="true" type="xsd:string"/>
         </xsd:sequence>
     </xsd:complexType>
 
@@ -497,6 +501,7 @@
             <xsd:element name="WarrantTypeCd" nillable="true" type="xsd:string"/>
             <xsd:element name="WarrantDate" nillable="true" type="xsd:dateTime"/>
             <xsd:element name="WarrantTypeDsc" nillable="true" type="xsd:string"/>
+            <xsd:element name="FilingLanguageCd" nillable="true" type="xsd:string"/>
         </xsd:sequence>
     </xsd:complexType>
 
@@ -505,6 +510,7 @@
             <xsd:element name="DocumentId" nillable="true" type="xsd:string"/>
             <xsd:element name="FileSeqNumber" nillable="true" type="xsd:string"/>
             <xsd:element name="DocumentTypeDsc" nillable="true" type="xsd:string"/>
+            <xsd:element name="FilingLanguageCd" nillable="true" type="xsd:string"/>
             <xsd:element name="FiledBy" nillable="true" type="tns:FiledByType" minOccurs="0" maxOccurs="unbounded"/>
         </xsd:sequence>
     </xsd:complexType>
@@ -515,6 +521,7 @@
             <xsd:element name="DocumentTypeDsc" nillable="true" type="xsd:string"/>
             <xsd:element name="AdjudicatorName" nillable="true" type="xsd:string"/>
             <xsd:element name="DateGranted" nillable="true" type="xsd:dateTime"/>
+            <xsd:element name="FilingLanguageCd" nillable="true" type="xsd:string"/>
         </xsd:sequence>
     </xsd:complexType>
 
