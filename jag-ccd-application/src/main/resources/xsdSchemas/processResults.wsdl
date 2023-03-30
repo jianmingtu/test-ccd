@@ -1110,6 +1110,7 @@
                     <xsd:element name="FirearmYN" nillable="true" type="xsd:string"/>
                     <xsd:element name="VaryDocumentId" nillable="true" type="xsd:string"/>
                     <xsd:element name="CancelDocumentId" nillable="true" type="xsd:string"/>
+                    <xsd:element name="FilingLanguageCd" nillable="true" type="xsd:string"/>
                     <xsd:element name="ApplyToFile" nillable="true" type="tns:ApplyToFileCivilOrderType"
                                  maxOccurs="unbounded"/>
                     <xsd:element name="OrderTerm" nillable="true" type="tns:OrderTermType" maxOccurs="unbounded"/>
