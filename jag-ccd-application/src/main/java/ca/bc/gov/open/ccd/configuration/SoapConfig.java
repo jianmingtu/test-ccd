@@ -6,6 +6,7 @@ import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.databind.module.SimpleModule;
+import java.time.Duration;
 import java.time.Instant;
 import java.util.HashMap;
 import java.util.Map;
@@ -37,6 +38,9 @@ public class SoapConfig extends WsConfigurerAdapter {
     @Value("${ccd.password}")
     private String password;
 
+    @Value("${ccd.ords-read-timeout}")
+    private String ordsReadTimeout;
+
     @Bean
     public ServletRegistrationBean<MessageDispatcherServlet> messageDispatcherServlet(
             ApplicationContext applicationContext) {
@@ -48,7 +52,11 @@ public class SoapConfig extends WsConfigurerAdapter {
 
     @Bean
     public RestTemplate restTemplate(RestTemplateBuilder restTemplateBuilder) {
-        var restTemplate = restTemplateBuilder.basicAuthentication(username, password).build();
+        var restTemplate =
+                restTemplateBuilder
+                        .basicAuthentication(username, password)
+                        .setReadTimeout(Duration.ofSeconds(Integer.parseInt(ordsReadTimeout)))
+                        .build();
         restTemplate.getMessageConverters().add(0, createMappingJacksonHttpMessageConverter());
         return restTemplate;
     }
