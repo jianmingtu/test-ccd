@@ -47,6 +47,8 @@ ORDS_USERNAME: ORDS_HOST authentication
 
 ORDS_PASSWORD: ORDS_HOST authentication
 
+ORDS_READ_TIMEOUT: Timeout in seconds which expects the response/result from ORDS.
+
 ### Additional Environmental Variables
 * jag-ccd-application:
 1) ADOBE_HOST: RESTful service url to retrieve RopReport
