@@ -7,7 +7,7 @@ ccd:
   host: http://127.0.0.1/
   username: ${BASIC_AUTH_USER}
   password: ${BASIC_AUTH_PASS}
-  ords-read-timeout: ${ORDS_READ_TIMEOUT:120}
+  ords-read-timeout: 1
   generic-agen-id:  generic-agen-id
   generic-part-id:  generic-part-id
   oracle-host: oracle-host
