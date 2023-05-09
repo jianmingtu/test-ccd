@@ -7,6 +7,7 @@ ccd:
   host: ${ORDS_HOST}
   username: ${ORDS_USERNAME}
   password: ${ORDS_PASSWORD}
+  ords-read-timeout: ${ORDS_READ_TIMEOUT:120}
   generic-agen-id:  ${GENERIC_AGENCY_ID}
   generic-part-id:  ${GENERIC_PART_ID}
   adobe-host: ${ADOBE_HOST}

@@ -80,6 +80,7 @@
                     <xsd:element name="AdjudicatorName" nillable="true" type="xsd:string"/>
                     <xsd:element name="AdjudicatorComment" nillable="true" type="xsd:string"/>
                     <xsd:element name="AdjudicatorAppearanceMethod" nillable="true" type="xsd:string"/>
+                    <xsd:element name="HearingLanguageCd" nillable="true" type="xsd:string"/>
                     <xsd:element name="DocumentHearing" nillable="true" type="tns:DocumentHearingType" maxOccurs="unbounded"/>
                     <xsd:element name="CourtParticipant" nillable="true" type="tns:CourtParticipantType" maxOccurs="unbounded"/>
                     <xsd:element name="GeneralAttendee" nillable="true" type="tns:GeneralAttendeeType" maxOccurs="unbounded"/>
@@ -118,6 +119,7 @@
                     <xsd:element name="PartId" nillable="true" type="xsd:string"/>
                     <xsd:element name="PartyAppearanceMethod" nillable="true" type="xsd:string"/>
                     <xsd:element name="LeftRightParty" nillable="true" type="xsd:string"/>
+                    <xsd:element name="InterpreterLanguageCd" nillable="true" type="xsd:string"/>
                     <xsd:element name="Counsel" nillable="true" type="tns:CounselType" maxOccurs="unbounded"/>
                 </xsd:sequence>
             </xsd:complexType>
@@ -156,6 +158,7 @@
                     <xsd:element name="DocumentPageCount" nillable="true" type="xsd:string"/>
                     <xsd:element name="SwornByNm" nillable="true" type="xsd:string"/>
                     <xsd:element name="AffidavitNo" nillable="true" type="xsd:string"/>
+                    <xsd:element name="FilingLanguageCd" nillable="true" type="xsd:string"/>
                     <xsd:element name="Issue" nillable="true" type="tns:IssueType" maxOccurs="unbounded"/>
                     <xsd:element name="Appearance" nillable="true" type="tns:AppearanceType" maxOccurs="unbounded"/>
                     <xsd:element name="PartyInterest" nillable="true" type="tns:PartyInterestType" maxOccurs="unbounded"/>
@@ -169,6 +172,7 @@
                     <xsd:element name="CourtAgencyIdentifier" nillable="true" type="xsd:string"/>
                     <xsd:element name="CourtRoom" nillable="true" type="xsd:string"/>
                     <xsd:element name="AppearanceReason" nillable="true" type="xsd:string"/>
+                    <xsd:element name="HearingLanguageCd" nillable="true" type="xsd:string"/>
                 </xsd:sequence>
             </xsd:complexType>
             <xsd:complexType name="PartyInterestType">

@@ -144,6 +144,7 @@
                     <xsd:element name="WarrantReasonForArrestCd" nillable="true" type="xsd:string"/>
                     <xsd:element name="WarrantReasonForArrestText" nillable="true" type="xsd:string"/>
                     <xsd:element name="WarrantJudgeCommentText" nillable="true" type="xsd:string"/>
+                    <xsd:element name="FilingLanguageCd" nillable="true" type="xsd:string"/>
                     <xsd:element name="Issues" nillable="true" type="tns:IssueType" maxOccurs="unbounded"/>
                 </xsd:sequence>
             </xsd:complexType>
@@ -162,6 +163,7 @@
                     <xsd:element name="CourtAgencyIdentifier" nillable="true" type="xsd:string"/>
                     <xsd:element name="CourtRoom" nillable="true" type="xsd:string"/>
                     <xsd:element name="AppearanceId" nillable="true" type="xsd:string"/>
+                    <xsd:element name="HearingLanguageCd" nillable="true" type="xsd:string"/>
                     <xsd:element name="ApplyToFile" nillable="true" type="tns:ApplyToFileCivilResultType"
                                  maxOccurs="unbounded"/>
                     <xsd:element name="Party" nillable="true" type="tns:PartyType" maxOccurs="unbounded"/>
@@ -1108,6 +1110,7 @@
                     <xsd:element name="FirearmYN" nillable="true" type="xsd:string"/>
                     <xsd:element name="VaryDocumentId" nillable="true" type="xsd:string"/>
                     <xsd:element name="CancelDocumentId" nillable="true" type="xsd:string"/>
+                    <xsd:element name="FilingLanguageCd" nillable="true" type="xsd:string"/>
                     <xsd:element name="ApplyToFile" nillable="true" type="tns:ApplyToFileCivilOrderType"
                                  maxOccurs="unbounded"/>
                     <xsd:element name="OrderTerm" nillable="true" type="tns:OrderTermType" maxOccurs="unbounded"/>
