@@ -117,18 +117,26 @@ public class DocumentController {
                                 new HttpEntity<>(new HttpHeaders()),
                                 byte[].class);
 
-                String bs64 =
-                        resp2.getBody() != null ? Base64Utils.encodeToString(resp2.getBody()) : "";
-
                 var out = new GetDocumentResponse();
                 var one = new DocumentResult();
-                one.setB64Content(bs64);
+                one.setB64Content(
+                        resp2.getBody() != null ? Base64Utils.encodeToString(resp2.getBody()) : "");
                 out.setDocumentResponse(one);
                 one.setResultCd(resultCd);
                 one.setResultMessage(resultMessage);
                 log.info(
                         objectMapper.writeValueAsString(
                                 new RequestSuccessLog("Request Success", "getDocument")));
+
+                log.info(
+                        "Used Memory   :  "
+                                + (Runtime.getRuntime().totalMemory()
+                                        - Runtime.getRuntime().freeMemory())
+                                + " bytes");
+                log.info("Free Memory   : " + Runtime.getRuntime().freeMemory() + " bytes");
+                log.info("Total Memory  : " + Runtime.getRuntime().totalMemory() + " bytes");
+                log.info("Max Memory    : " + Runtime.getRuntime().maxMemory() + " bytes");
+
                 return out;
             } catch (Exception ex) {
                 log.error(
