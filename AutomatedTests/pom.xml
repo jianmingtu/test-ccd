@@ -10,12 +10,13 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.7.3</version>
+        <version>3.1.2</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <properties>
-        <maven.compiler.source>11</maven.compiler.source>
-        <maven.compiler.target>11</maven.compiler.target>
+        <java.version>17</java.version>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
     </properties>
     <repositories>
         <repository>
@@ -62,7 +63,6 @@
                     <artifactId>guava</artifactId>
                 </exclusion>
             </exclusions>
-            <version>2.5.14</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -103,10 +103,6 @@
         </dependency>
     </dependencies>
 
-
-
-
-
     <build>
         <finalName>ccd-test-runner</finalName>
         <plugins>
@@ -144,13 +140,6 @@
                             </indent>
                         </format>
                     </formats>
-                    <!-- define a language-specific format -->
-                    <java>
-                        <googleJavaFormat>
-                            <version>1.8</version>
-                            <style>AOSP</style>
-                        </googleJavaFormat>
-                    </java>
                 </configuration>
             </plugin>
         </plugins>

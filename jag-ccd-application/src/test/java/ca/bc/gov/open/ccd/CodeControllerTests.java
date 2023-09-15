@@ -55,7 +55,7 @@ public class CodeControllerTests {
         out.setCeisCodeValues(cvs);
         out.setJustinCodeValues(cvs);
         var cv = new CodeValue();
-        cvs.setCodeValue(Collections.singletonList(cv));
+        cvs.getCodeValue().add(cv);
         cv.setCode("A");
         cv.setCodeType("A");
         cv.setFlex("A");

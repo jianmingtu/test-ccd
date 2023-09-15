@@ -144,7 +144,7 @@ public class UserControllerTest {
         ht.setDeviceNm("A");
         ht.setIpAddressTxt("A");
 
-        out.setLoginHistory(Collections.singletonList(ht));
+        out.getLoginHistory().add(ht);
 
         ResponseEntity<GetUserLoginResponseType> responseEntity =
                 new ResponseEntity<>(out, HttpStatus.OK);
