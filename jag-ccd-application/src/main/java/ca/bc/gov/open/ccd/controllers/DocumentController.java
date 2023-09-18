@@ -127,16 +127,6 @@ public class DocumentController {
                 log.info(
                         objectMapper.writeValueAsString(
                                 new RequestSuccessLog("Request Success", "getDocument")));
-
-                log.info(
-                        "Used Memory   :  "
-                                + (Runtime.getRuntime().totalMemory()
-                                        - Runtime.getRuntime().freeMemory())
-                                + " bytes");
-                log.info("Free Memory   : " + Runtime.getRuntime().freeMemory() + " bytes");
-                log.info("Total Memory  : " + Runtime.getRuntime().totalMemory() + " bytes");
-                log.info("Max Memory    : " + Runtime.getRuntime().maxMemory() + " bytes");
-
                 return out;
             } catch (Exception ex) {
                 log.error(
