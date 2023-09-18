@@ -3,15 +3,19 @@ package ca.bc.gov.open.ccd;
 import static org.mockito.Mockito.when;
 
 import ca.bc.gov.open.ccd.common.process.results.*;
+import ca.bc.gov.open.ccd.controllers.CourtController;
 import ca.bc.gov.open.ccd.controllers.ProcessController;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.time.Instant;
 import java.util.Collections;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInstance;
 import org.mockito.Mock;
 import org.mockito.Mockito;
+import org.mockito.MockitoAnnotations;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.HttpEntity;
@@ -21,12 +25,17 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.web.client.RestTemplate;
 
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-@ActiveProfiles("test")
+@TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class ProcessControllerTests {
-    @Autowired private ObjectMapper objectMapper;
+    @Mock private ObjectMapper objectMapper;
+    @Mock private RestTemplate restTemplate;
+    @Mock private ProcessController processController;
 
-    @Mock private RestTemplate restTemplate = new RestTemplate();
+    @BeforeEach
+    public void setUp() {
+        MockitoAnnotations.openMocks(this);
+        processController = Mockito.spy(new ProcessController(restTemplate, objectMapper));
+    }
 
     @Test
     public void processVariationTest() throws JsonProcessingException {
@@ -55,8 +64,8 @@ public class ProcessControllerTests {
         af.setCountId("A");
         af.setCountNumber("A");
 
-        vdt.setApplyToFile(Collections.singletonList(af));
-        var.setVariationDetail(Collections.singletonList(vdt));
+        vdt.getApplyToFile().add(af);
+        var.getVariationDetail().add(vdt);
 
         var out = new ProcessVariationResponse();
         out.setStatus("A");
@@ -72,7 +81,6 @@ public class ProcessControllerTests {
                         Mockito.<Class<ProcessVariationResponse>>any()))
                 .thenReturn(responseEntity);
 
-        ProcessController processController = new ProcessController(restTemplate, objectMapper);
         var resp = processController.processVariation(req);
 
         Assertions.assertNotNull(resp);
@@ -89,7 +97,7 @@ public class ProcessControllerTests {
         app.setFileNumber("A");
         app.setFileCourtDivisionCd("A");
 
-        sp.setApplyToFile(Collections.singletonList(app));
+        sp.getApplyToFile().add(app);
 
         var sd = new SpeakerDetailsType();
         sd.setSpeakerId("A");
@@ -104,7 +112,7 @@ public class ProcessControllerTests {
         se.setSpeakerEventTime("A");
         se.setSpeakerEventText("A");
 
-        sd.setSpeakerEvent(Collections.singletonList(se));
+        sd.getSpeakerEvent().add(se);
 
         req.setSpeaker(sp);
 
@@ -122,7 +130,6 @@ public class ProcessControllerTests {
                         Mockito.<Class<ProcessSpeakerResponse>>any()))
                 .thenReturn(responseEntity);
 
-        ProcessController processController = new ProcessController(restTemplate, objectMapper);
         var resp = processController.processSpeaker(req);
 
         Assertions.assertNotNull(resp);
@@ -172,7 +179,7 @@ public class ProcessControllerTests {
         af.setFileNumber("A");
         af.setFileSeqNo("A");
 
-        ni.setApplyToFile(Collections.singletonList(af));
+        ni.getApplyToFile().add(af);
 
         PartyType pt = new PartyType();
         pt.setPartyId("A");
@@ -181,7 +188,7 @@ public class ProcessControllerTests {
         pt.setPhoneNumber("A");
         pt.setInstruction("A");
 
-        ni.setParty(Collections.singletonList(pt));
+        ni.getParty().add(pt);
 
         var nd = new NewDocumentFiledType();
         nd.setAppearanceId("A");
@@ -216,17 +223,17 @@ public class ProcessControllerTests {
         at.setDocumentId("A");
         at.setFileNumber("A");
 
-        hr.setApplyToFile(Collections.singletonList(at));
+        hr.getApplyToFile().add(at);
 
-        cr.setJudgeComment(Collections.singletonList(jc));
+        cr.getJudgeComment().add(jc);
 
-        cr.setOralApplication(Collections.singletonList(or));
+        cr.getOralApplication().add(or);
 
-        cr.setNewDocumentFiled(Collections.singletonList(nd));
+        cr.getNewDocumentFiled().add(nd);
 
-        cr.setNextAppearance(Collections.singletonList(ni));
-        cd.setIssues(Collections.singletonList(is));
-        cr.setCivilResultDetail(Collections.singletonList(cd));
+        cr.getNextAppearance().add(ni);
+        cd.getIssues().add(is);
+        cr.getCivilResultDetail().add(cd);
 
         req.setCivilResult(cr);
 
@@ -244,7 +251,6 @@ public class ProcessControllerTests {
                         Mockito.<Class<ProcessCivilResultsResponse>>any()))
                 .thenReturn(responseEntity);
 
-        ProcessController processController = new ProcessController(restTemplate, objectMapper);
         var resp = processController.processCivilResults(req);
 
         Assertions.assertNotNull(resp);
@@ -270,7 +276,7 @@ public class ProcessControllerTests {
         var af = new ApplyToFileAppearanceMethodType();
         af.setAppearanceId("A");
         af.setFileNumber("A");
-        at.setApplyToFileAppearanceMethod(Collections.singletonList(af));
+        at.getApplyToFileAppearanceMethod().add(af);
         var pa = new PartyAppearanceMethodType();
         pa.setPartyName("A");
         pa.setPartyRole("A");
@@ -283,8 +289,8 @@ public class ProcessControllerTests {
         pa.setRemoteAgencyIdentifierId("A");
         pa.setRemoteCourtRoomAgencyIdentifierId("A");
         pa.setRemoteCourtRoomCd("A");
-        at.setPartyAppearanceMethod(Collections.singletonList(pa));
-        one.setAppearanceMethodDetail(Collections.singletonList(at));
+        at.getPartyAppearanceMethod().add(pa);
+        one.getAppearanceMethodDetail().add(at);
 
         req.setAppearanceMethod(one);
 
@@ -302,7 +308,6 @@ public class ProcessControllerTests {
                         Mockito.<Class<ProcessAppearanceMethodResponse>>any()))
                 .thenReturn(responseEntity);
 
-        ProcessController processController = new ProcessController(restTemplate, objectMapper);
         var resp = processController.processAppearanceMethod(req);
 
         Assertions.assertNotNull(resp);
@@ -335,8 +340,8 @@ public class ProcessControllerTests {
         ap.setFileNumber("A");
         ap.setCountNumber("A");
 
-        pd.setApplyToFile(Collections.singletonList(ap));
-        one.setPleaDetail(Collections.singletonList(pd));
+        pd.getApplyToFile().add(ap);
+        one.getPleaDetail().add(pd);
         req.setPlea(one);
 
         var out = new ProcessPleaResponse();
@@ -353,7 +358,6 @@ public class ProcessControllerTests {
                         Mockito.<Class<ProcessPleaResponse>>any()))
                 .thenReturn(responseEntity);
 
-        ProcessController processController = new ProcessController(restTemplate, objectMapper);
         var resp = processController.processPlea(req);
 
         Assertions.assertNotNull(resp);
@@ -381,8 +385,8 @@ public class ProcessControllerTests {
         ad.setFileNumber("A");
         ad.setCountId("A");
         ad.setCountNumber("A");
-        ed.setApplyToFileElection(Collections.singletonList(ad));
-        one.setElectionDetails(Collections.singletonList(ed));
+        ed.getApplyToFileElection().add(ad);
+        one.getElectionDetails().add(ed);
 
         req.setElection(one);
         var out = new ProcessElectionResponse();
@@ -399,7 +403,6 @@ public class ProcessControllerTests {
                         Mockito.<Class<ProcessElectionResponse>>any()))
                 .thenReturn(responseEntity);
 
-        ProcessController processController = new ProcessController(restTemplate, objectMapper);
         var resp = processController.processElection(req);
 
         Assertions.assertNotNull(resp);
@@ -425,7 +428,7 @@ public class ProcessControllerTests {
         bt.setRecogTypeCd("A");
         bt.setRecogAmount("A");
         bt.setRecogDeposit("A");
-        bt.setAlternateBailText(Collections.singletonList("A"));
+        bt.getAlternateBailText().add("A");
         bt.setBdpcYN("A");
         bt.setDetainedUnderSec524YN("A");
         bt.setSuretyQty("A");
@@ -436,15 +439,15 @@ public class ProcessControllerTests {
         st.setSuretyAddress("A");
         st.setSuretyDeclaration("A");
         st.setSuretyDeposit("A");
-        bt.setSurety(Collections.singletonList(st));
+        bt.getSurety().add(st);
         var af = new ApplyToFileBailType();
         af.setAppearanceId("A");
         af.setCountId("A");
         af.setCountNumber("A");
         af.setFileNumber("A");
-        bt.setApplyToFile(Collections.singletonList(af));
+        bt.getApplyToFile().add(af);
 
-        one.setBailDetail(Collections.singletonList(bt));
+        one.getBailDetail().add(bt);
         req.setBailDocInput(one);
 
         var out = new ProcessBailResponse();
@@ -461,7 +464,6 @@ public class ProcessControllerTests {
                         Mockito.<Class<ProcessBailResponse>>any()))
                 .thenReturn(responseEntity);
 
-        ProcessController processController = new ProcessController(restTemplate, objectMapper);
         var resp = processController.processBail(req);
 
         Assertions.assertNotNull(resp);
@@ -513,8 +515,8 @@ public class ProcessControllerTests {
         nct.setPhoneNumber("A");
         nct.setInstruction("A");
 
-        nc.setNextAppMethod(Collections.singletonList(nct));
-        cd.setApplyToFile(Collections.singletonList(af));
+        nc.getNextAppMethod().add(nct);
+        cd.getApplyToFile().add(af);
 
         var gd = new GenerateDocumentCRType();
         gd.setFormTypeCd("A");
@@ -524,8 +526,8 @@ public class ProcessControllerTests {
         gd.setReferralReason("A");
         gd.setReferralComment("A");
 
-        cd.setGenerateDocument(Collections.singletonList(gd));
-        one.setCriminalResultsDetail(Collections.singletonList(cd));
+        cd.getGenerateDocument().add(gd);
+        one.getCriminalResultsDetail().add(cd);
         req.setCriminalResult(one);
 
         var out = new ProcessCriminalResultResponse();
@@ -542,7 +544,6 @@ public class ProcessControllerTests {
                         Mockito.<Class<ProcessCriminalResultResponse>>any()))
                 .thenReturn(responseEntity);
 
-        ProcessController processController = new ProcessController(restTemplate, objectMapper);
         var resp = processController.processCriminalResult(req);
 
         Assertions.assertNotNull(resp);
@@ -568,7 +569,7 @@ public class ProcessControllerTests {
         af.setAppearanceId("A");
         af.setFileNumber("A");
 
-        one.setAgeNoticeDetail(Collections.singletonList(an));
+        one.getAgeNoticeDetail().add(an);
 
         var ag = new AgeNoticeEventType();
         ag.setEventType("A");
@@ -578,8 +579,8 @@ public class ProcessControllerTests {
         ag.setProvenBy("A");
         ag.setNoticeTo("A");
 
-        an.setAgeNoticeEvent(Collections.singletonList(ag));
-        an.setApplyToFileAgeNotice(Collections.singletonList(af));
+        an.getAgeNoticeEvent().add(ag);
+        an.getApplyToFileAgeNotice().add(af);
 
         req.setAgeNotice(one);
 
@@ -597,7 +598,6 @@ public class ProcessControllerTests {
                         Mockito.<Class<ProcessAgeNoticeResponse>>any()))
                 .thenReturn(responseEntity);
 
-        ProcessController processController = new ProcessController(restTemplate, objectMapper);
         var resp = processController.processAgeNotice(req);
 
         Assertions.assertNotNull(resp);
@@ -628,8 +628,8 @@ public class ProcessControllerTests {
         cf.setCivilPhysicalFileId("A");
         cf.setFileNumber("A");
         cf.setFileCourtDivisionCd("A");
-        mc.setCalledFile(Collections.singletonList(cf));
-        one.setMatterCallDetails(Collections.singletonList(mc));
+        mc.getCalledFile().add(cf);
+        one.getMatterCallDetails().add(mc);
 
         req.setMatterCall(one);
 
@@ -647,7 +647,6 @@ public class ProcessControllerTests {
                         Mockito.<Class<ProcessMatterCallResponse>>any()))
                 .thenReturn(responseEntity);
 
-        ProcessController processController = new ProcessController(restTemplate, objectMapper);
         var resp = processController.processMatterCall(req);
 
         Assertions.assertNotNull(resp);
@@ -669,7 +668,7 @@ public class ProcessControllerTests {
         one.setSourcePackageId("A");
         var sd = new SentencetDetailType();
 
-        one.setSentencetDetail(Collections.singletonList(sd));
+        one.getSentencetDetail().add(sd);
         var af = new SentenceApplyToFileType();
         af.setAppearanceId("A");
         af.setFileNumber("A");
@@ -690,7 +689,7 @@ public class ProcessControllerTests {
         var dt = new DurationType();
         dt.setDurationLength("A");
         dt.setDurationUnitCd("A");
-        mt.setDuration(Collections.singletonList(dt));
+        mt.getDuration().add(dt);
 
         var nt = new NonMonetaryTermType();
         nt.setSentenceTypeCd("A");
@@ -706,12 +705,12 @@ public class ProcessControllerTests {
 
         var tt = new TermType();
         tt.setTermTypeCd("A");
-        tt.setDuration(Collections.singletonList(dt));
-        nt.setTerm(Collections.singletonList(tt));
+        tt.getDuration().add(dt);
+        nt.getTerm().add(tt);
 
-        sd.setNonMonetaryTerm(Collections.singletonList(nt));
-        sd.setMonetaryTerm(Collections.singletonList(mt));
-        sd.setApplyToFile(Collections.singletonList(af));
+        sd.getNonMonetaryTerm().add(nt);
+        sd.getMonetaryTerm().add(mt);
+        sd.getApplyToFile().add(af);
 
         req.setSentence(one);
 
@@ -729,7 +728,6 @@ public class ProcessControllerTests {
                         Mockito.<Class<ProcessSentenceResponse>>any()))
                 .thenReturn(responseEntity);
 
-        ProcessController processController = new ProcessController(restTemplate, objectMapper);
         var resp = processController.processSentence(req);
 
         Assertions.assertNotNull(resp);
@@ -766,9 +764,9 @@ public class ProcessControllerTests {
         bi.setBanCommentText("A");
         bi.setAcprId("A");
 
-        bt.setBanInfo(Collections.singletonList(bi));
-        bt.setApplyToFileBan(Collections.singletonList(af));
-        one.setBanDetail(Collections.singletonList(bt));
+        bt.getBanInfo().add(bi);
+        bt.getApplyToFileBan().add(af);
+        one.getBanDetail().add(bt);
         req.setBan(one);
 
         var out = new ProcessBanResponse();
@@ -785,7 +783,6 @@ public class ProcessControllerTests {
                         Mockito.<Class<ProcessBanResponse>>any()))
                 .thenReturn(responseEntity);
 
-        ProcessController processController = new ProcessController(restTemplate, objectMapper);
         var resp = processController.processBan(req);
 
         Assertions.assertNotNull(resp);
@@ -804,14 +801,14 @@ public class ProcessControllerTests {
         af.setAppearanceId("A");
         af.setFileNumber("A");
         af.setFileCourtDivisionCd("A");
-        one.setApplyToFile(Collections.singletonList(af));
+        one.getApplyToFile().add(af);
 
         var nd = new NoteDetailType();
         nd.setNoteText("A");
         nd.setNoteSeqNo("A");
         nd.setNoteTypeCd("A");
 
-        one.setNoteDetail(Collections.singletonList(nd));
+        one.getNoteDetail().add(nd);
         req.setNote(one);
 
         var out = new ProcessNoteResponse();
@@ -828,7 +825,6 @@ public class ProcessControllerTests {
                         Mockito.<Class<ProcessNoteResponse>>any()))
                 .thenReturn(responseEntity);
 
-        ProcessController processController = new ProcessController(restTemplate, objectMapper);
         var resp = processController.processNote(req);
 
         Assertions.assertNotNull(resp);
@@ -854,14 +850,14 @@ public class ProcessControllerTests {
         var af = new ApplyToFileArraignmentType();
         af.setAppearanceId("A");
         af.setFileNumber("A");
-        ad.setApplyToFileArraignment(Collections.singletonList(af));
+        ad.getApplyToFileArraignment().add(af);
 
         var ae = new ArraignmentEventType();
         ae.setEventType("A");
         ae.setDetailText("A");
 
-        ad.setArraignmentEvent(Collections.singletonList(ae));
-        one.setArraignmentDetail(Collections.singletonList(ad));
+        ad.getArraignmentEvent().add(ae);
+        one.getArraignmentDetail().add(ad);
         req.setArraignment(one);
 
         var out = new ProcessArraignmentResponse();
@@ -878,7 +874,6 @@ public class ProcessControllerTests {
                         Mockito.<Class<ProcessArraignmentResponse>>any()))
                 .thenReturn(responseEntity);
 
-        ProcessController processController = new ProcessController(restTemplate, objectMapper);
         var resp = processController.processArraignment(req);
 
         Assertions.assertNotNull(resp);
@@ -905,8 +900,8 @@ public class ProcessControllerTests {
         af.setAppearanceId("A");
         af.setFileCourtDivisionCd("A");
         af.setFileNumber("A");
-        md.setApplyToFileMove(Collections.singletonList(af));
-        one.setMoveDetail(Collections.singletonList(md));
+        md.getApplyToFileMove().add(af);
+        one.getMoveDetail().add(md);
         req.setMove(one);
 
         var out = new ProcessMoveResponse();
@@ -923,7 +918,6 @@ public class ProcessControllerTests {
                         Mockito.<Class<ProcessMoveResponse>>any()))
                 .thenReturn(responseEntity);
 
-        ProcessController processController = new ProcessController(restTemplate, objectMapper);
         var resp = processController.processMove(req);
 
         Assertions.assertNotNull(resp);
@@ -949,7 +943,7 @@ public class ProcessControllerTests {
         fd.setSectionOtherStatuteId("A");
         fd.setSectionOther("A");
 
-        one.setFindingDetails(Collections.singletonList(fd));
+        one.getFindingDetails().add(fd);
 
         var af = new ApplyToFileFindingType();
         af.setAppearanceId("A");
@@ -957,7 +951,7 @@ public class ProcessControllerTests {
         af.setCountId("A");
         af.setCountNumber("A");
 
-        fd.setApplyToFileFinding(Collections.singletonList(af));
+        fd.getApplyToFileFinding().add(af);
 
         var out = new ProcessFindingResponse();
         out.setStatus("A");
@@ -973,7 +967,6 @@ public class ProcessControllerTests {
                         Mockito.<Class<ProcessFindingResponse>>any()))
                 .thenReturn(responseEntity);
 
-        ProcessController processController = new ProcessController(restTemplate, objectMapper);
         var resp = processController.processFinding(req);
 
         Assertions.assertNotNull(resp);
@@ -1003,9 +996,9 @@ public class ProcessControllerTests {
         af.setCountId("A");
         af.setCountNumber("A");
 
-        rd.setApplyToFileGenericResults(Collections.singletonList(af));
+        rd.getApplyToFileGenericResults().add(af);
 
-        one.setResultDetail(Collections.singletonList(rd));
+        one.getResultDetail().add(rd);
 
         req.setGenericResult(one);
 
@@ -1023,7 +1016,6 @@ public class ProcessControllerTests {
                         Mockito.<Class<ProcessGenericResultResponse>>any()))
                 .thenReturn(responseEntity);
 
-        ProcessController processController = new ProcessController(restTemplate, objectMapper);
         var resp = processController.processGenericResult(req);
 
         Assertions.assertNotNull(resp);
@@ -1050,7 +1042,7 @@ public class ProcessControllerTests {
         af.setFileNumber("A");
         af.setAppearanceId("A");
 
-        cd.setApplyToFile(Collections.singletonList(af));
+        cd.getApplyToFile().add(af);
 
         var cm = new CivilPartyAppearanceMethodType();
         cm.setPartyName("A");
@@ -1063,18 +1055,18 @@ public class ProcessControllerTests {
         ct.setCounselFullName("A");
         ct.setPartyId("A");
         ct.setAttendanceMethodCd("A");
-        cm.setCounsel(Collections.singletonList(ct));
+        cm.getCounsel().add(ct);
 
         var rt = new RepresentativeType();
         rt.setRepresentativeFullName("A");
         rt.setAttendanceMethodCd("A");
         rt.setPartyId("A");
 
-        cm.setRepresentative(Collections.singletonList(rt));
+        cm.getRepresentative().add(rt);
 
-        cd.setPartyAppearanceMethod(Collections.singletonList(cm));
+        cd.getPartyAppearanceMethod().add(cm);
 
-        one.setCivilAppearanceMethodDetail(Collections.singletonList(cd));
+        one.getCivilAppearanceMethodDetail().add(cd);
         req.setCivilAppearanceMethod(one);
 
         var out = new ProcessCivilAppearanceMethodResponse();
@@ -1091,7 +1083,6 @@ public class ProcessControllerTests {
                         Mockito.<Class<ProcessCivilAppearanceMethodResponse>>any()))
                 .thenReturn(responseEntity);
 
-        ProcessController processController = new ProcessController(restTemplate, objectMapper);
         var resp = processController.processCivilAppearanceMethod(req);
 
         Assertions.assertNotNull(resp);
@@ -1116,7 +1107,7 @@ public class ProcessControllerTests {
         var af = new ApplyToFileOrderType();
         af.setAppearanceId("A");
         af.setFileNumber("A");
-        od.setApplyToFile(Collections.singletonList(af));
+        od.getApplyToFile().add(af);
 
         var oe = new OrderEventType();
         oe.setOrderDetailText("A");
@@ -1127,9 +1118,9 @@ public class ProcessControllerTests {
         oe.setCustody("A");
         var oct = new OrderTypeCdType();
         oct.setOrderTypeCd("A");
-        oe.setOrderTypeCds(Collections.singletonList(oct));
+        oe.getOrderTypeCds().add(oct);
 
-        one.setOrderDetail(Collections.singletonList(od));
+        one.getOrderDetail().add(od);
         req.setOrder(one);
 
         var out = new ProcessOrderResponse();
@@ -1146,7 +1137,6 @@ public class ProcessControllerTests {
                         Mockito.<Class<ProcessOrderResponse>>any()))
                 .thenReturn(responseEntity);
 
-        ProcessController processController = new ProcessController(restTemplate, objectMapper);
         var resp = processController.processOrder(req);
 
         Assertions.assertNotNull(resp);
@@ -1189,37 +1179,37 @@ public class ProcessControllerTests {
         af.setFileNumber("A");
         af.setDocumentId("A");
         af.setFileSeqNo("A");
-        co.setApplyToFile(Collections.singletonList(af));
+        co.getApplyToFile().add(af);
 
         var ot = new OrderTermType();
         ot.setOrderTermSeqNo("A");
         ot.setOrderTermEventTime(Instant.now());
         ot.setOrderTermText("A");
         ot.setOrderTermLogNoteText("A");
-        co.setOrderTerm(Collections.singletonList(ot));
+        co.getOrderTerm().add(ot);
 
         var op = new CivilOrderPartyType();
         op.setOrderRoleCd("A");
         op.setPartyFullName("A");
         op.setPartyId("A");
         op.setBirthDate(Instant.now());
-        co.setParty(Collections.singletonList(op));
+        co.getParty().add(op);
 
-        one.setCivilOrderDetail(Collections.singletonList(co));
+        one.getCivilOrderDetail().add(co);
 
         req.setCivilOrderResult(one);
 
         var ao = new AdminOrderDetailType();
-        ao.setApplyToFile(Collections.singletonList(af));
-        ao.setOrderTerm(Collections.singletonList(ot));
+        ao.getApplyToFile().add(af);
+        ao.getOrderTerm().add(ot);
 
-        one.setAdminOrderDetail(Collections.singletonList(ao));
+        one.getAdminOrderDetail().add(ao);
 
         var jc = new JudgeCommentType2();
         jc.setAppearanceId("A");
         jc.setJudgeCommentText("A");
 
-        one.setJudgeComment(Collections.singletonList(jc));
+        one.getJudgeComment().add(jc);
 
         var out = new ProcessCivilOrderResultResponse();
         out.setStatus("A");
@@ -1235,7 +1225,6 @@ public class ProcessControllerTests {
                         Mockito.<Class<ProcessCivilOrderResultResponse>>any()))
                 .thenReturn(responseEntity);
 
-        ProcessController processController = new ProcessController(restTemplate, objectMapper);
         var resp = processController.processCivilOrderResult(req);
 
         Assertions.assertNotNull(resp);
@@ -1266,7 +1255,7 @@ public class ProcessControllerTests {
         af.setAppearanceId("A");
         af.setFileNumber("A");
 
-        ed.setApplyToFile(Collections.singletonList(af));
+        ed.getApplyToFile().add(af);
 
         var ei = new ExhibitItem();
         ei.setExhibitNo("A");
@@ -1274,8 +1263,8 @@ public class ProcessControllerTests {
         ei.setExhibitDescription("A");
         ei.setOwnedBy("A");
 
-        ed.setExhibitItem(Collections.singletonList(ei));
-        one.setExhibitDetail(Collections.singletonList(ed));
+        ed.getExhibitItem().add(ei);
+        one.getExhibitDetail().add(ed);
 
         req.setExhibitRequest(one);
 
@@ -1293,7 +1282,6 @@ public class ProcessControllerTests {
                         Mockito.<Class<ProcessExhibitResponse>>any()))
                 .thenReturn(responseEntity);
 
-        ProcessController processController = new ProcessController(restTemplate, objectMapper);
         var resp = processController.processExhibit(req);
 
         Assertions.assertNotNull(resp);
@@ -1320,9 +1308,9 @@ public class ProcessControllerTests {
         af.setAppearanceId("A");
         af.setFileNumber("A");
 
-        sp.setApplyToFile(Collections.singletonList(af));
+        sp.getApplyToFile().add(af);
 
-        sp.setSpecialCourtCd(Collections.singletonList("A"));
+        sp.getSpecialCourtCd().add("A");
         req.setSpecialCourt(one);
         var out = new ProcessSpecialCourtResponse();
         out.setStatus("A");
@@ -1338,7 +1326,6 @@ public class ProcessControllerTests {
                         Mockito.<Class<ProcessSpecialCourtResponse>>any()))
                 .thenReturn(responseEntity);
 
-        ProcessController processController = new ProcessController(restTemplate, objectMapper);
         var resp = processController.processSpecialCourt(req);
 
         Assertions.assertNotNull(resp);

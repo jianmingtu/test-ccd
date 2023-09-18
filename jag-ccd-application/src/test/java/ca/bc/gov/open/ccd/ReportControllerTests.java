@@ -5,6 +5,7 @@ import static org.mockito.Mockito.when;
 
 import ca.bc.gov.open.ccd.common.rop.report.*;
 import ca.bc.gov.open.ccd.common.rop.report.secure.*;
+import ca.bc.gov.open.ccd.controllers.CourtController;
 import ca.bc.gov.open.ccd.controllers.ReportController;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -12,10 +13,13 @@ import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.Map;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInstance;
 import org.mockito.AdditionalMatchers;
 import org.mockito.Mock;
 import org.mockito.Mockito;
+import org.mockito.MockitoAnnotations;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.core.ParameterizedTypeReference;
@@ -26,13 +30,18 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.web.client.RestTemplate;
 
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-@ActiveProfiles("test")
+@TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class ReportControllerTests {
 
-    @Autowired private ObjectMapper objectMapper;
+    @Mock private ObjectMapper objectMapper;
+    @Mock private RestTemplate restTemplate;
+    @Mock private ReportController reportController;
 
-    @Mock private RestTemplate restTemplate = new RestTemplate();
+    @BeforeEach
+    public void setUp() {
+        MockitoAnnotations.openMocks(this);
+        reportController = Mockito.spy(new ReportController(restTemplate, objectMapper));
+    }
 
     @Test
     public void getRopReportTest() throws JsonProcessingException {
@@ -72,7 +81,6 @@ public class ReportControllerTests {
                         Mockito.<Class<byte[]>>any()))
                 .thenReturn(responseEntity);
 
-        ReportController reportController = new ReportController(restTemplate, objectMapper);
         var resp = reportController.getRopReport(req);
         Assertions.assertNotNull(resp);
     }

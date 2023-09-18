@@ -117,12 +117,10 @@ public class DocumentController {
                                 new HttpEntity<>(new HttpHeaders()),
                                 byte[].class);
 
-                String bs64 =
-                        resp2.getBody() != null ? Base64Utils.encodeToString(resp2.getBody()) : "";
-
                 var out = new GetDocumentResponse();
                 var one = new DocumentResult();
-                one.setB64Content(bs64);
+                one.setB64Content(
+                        resp2.getBody() != null ? Base64Utils.encodeToString(resp2.getBody()) : "");
                 out.setDocumentResponse(one);
                 one.setResultCd(resultCd);
                 one.setResultMessage(resultMessage);
