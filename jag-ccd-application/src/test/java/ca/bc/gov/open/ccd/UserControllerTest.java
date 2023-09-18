@@ -4,15 +4,18 @@ import static org.mockito.Mockito.when;
 
 import ca.bc.gov.open.ccd.common.user.login.*;
 import ca.bc.gov.open.ccd.common.user.mapping.*;
+import ca.bc.gov.open.ccd.controllers.CourtController;
 import ca.bc.gov.open.ccd.controllers.UserController;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.time.Instant;
 import java.util.Collections;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.mockito.Mockito;
+import org.mockito.MockitoAnnotations;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.HttpEntity;
@@ -26,9 +29,15 @@ import org.springframework.web.client.RestTemplate;
 @ActiveProfiles("test")
 public class UserControllerTest {
 
-    @Autowired private ObjectMapper objectMapper;
+    @Mock private ObjectMapper objectMapper;
+    @Mock private RestTemplate restTemplate;
+    @Mock private UserController userController;
 
-    @Mock private RestTemplate restTemplate = new RestTemplate();
+    @BeforeEach
+    public void setUp() {
+        MockitoAnnotations.openMocks(this);
+        userController = Mockito.spy(new UserController(restTemplate, objectMapper));
+    }
 
     @Test
     public void getParticipantInfoTest() throws JsonProcessingException {
@@ -50,7 +59,6 @@ public class UserControllerTest {
                         Mockito.<Class<GetParticipantInfoResponse>>any()))
                 .thenReturn(responseEntity);
 
-        UserController userController = new UserController(restTemplate, objectMapper);
         var resp = userController.getParticipantInfo(req);
 
         Assertions.assertNotNull(resp);
@@ -85,7 +93,6 @@ public class UserControllerTest {
                                         any()))
                 .thenReturn(responseEntity);
 
-        UserController userController = new UserController(restTemplate, objectMapper);
         var resp = userController.getNewParticipantInfo(req);
 
         Assertions.assertNotNull(resp);
@@ -112,7 +119,6 @@ public class UserControllerTest {
                         Mockito.<Class<MapGuidToParticipantResponse>>any()))
                 .thenReturn(responseEntity);
 
-        UserController userController = new UserController(restTemplate, objectMapper);
         var resp = userController.mapGuidToParticipant(req);
 
         Assertions.assertNotNull(resp);
@@ -157,7 +163,6 @@ public class UserControllerTest {
                         Mockito.<Class<GetUserLoginResponseType>>any()))
                 .thenReturn(responseEntity);
 
-        UserController userController = new UserController(restTemplate, objectMapper);
         var resp = userController.getUserLogin(req);
 
         Assertions.assertNotNull(resp);

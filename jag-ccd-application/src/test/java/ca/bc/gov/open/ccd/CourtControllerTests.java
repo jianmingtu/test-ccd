@@ -2,6 +2,7 @@ package ca.bc.gov.open.ccd;
 
 import static org.mockito.Mockito.when;
 
+import ca.bc.gov.open.ccd.controllers.CodeController;
 import ca.bc.gov.open.ccd.controllers.CourtController;
 import ca.bc.gov.open.ccd.court.one.*;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -10,9 +11,12 @@ import java.net.URI;
 import java.time.Instant;
 import java.util.Collections;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInstance;
 import org.mockito.Mock;
 import org.mockito.Mockito;
+import org.mockito.MockitoAnnotations;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.HttpEntity;
@@ -22,13 +26,18 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.web.client.RestTemplate;
 
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-@ActiveProfiles("test")
+@TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class CourtControllerTests {
 
-    @Autowired private ObjectMapper objectMapper;
+    @Mock private ObjectMapper objectMapper;
+    @Mock private RestTemplate restTemplate;
+    @Mock private CourtController courtController;
 
-    @Mock private RestTemplate restTemplate = new RestTemplate();
+    @BeforeEach
+    public void setUp() {
+        MockitoAnnotations.openMocks(this);
+        courtController = Mockito.spy(new CourtController(restTemplate, objectMapper));
+    }
 
     @Test
     public void getCrtListTest() throws JsonProcessingException {
@@ -441,7 +450,6 @@ public class CourtControllerTests {
                         Mockito.<Class<GetCrtListResponse>>any()))
                 .thenReturn(responseEntity);
 
-        CourtController courtController = new CourtController(restTemplate, objectMapper);
         var resp = courtController.getCrtList(req);
 
         Assertions.assertNotNull(resp);
