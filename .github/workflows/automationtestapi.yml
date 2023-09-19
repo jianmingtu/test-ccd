@@ -29,6 +29,7 @@ jobs:
       GENERIC_AGENCY_ID: ${{secrets.GENERIC_AGENCY_ID}}
       GENERIC_PART_ID: ${{secrets.GENERIC_PART_ID}}
       FORM_PARAM_IDX: ${{secrets.FORM_PARAM_IDX}}
+      JAVA_VERSION: '17'
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
@@ -59,11 +60,11 @@ jobs:
           echo "Release Git Sha: ${{env.gitsha}}"
 
       # Set up JDK build environment
-      - name: Set up JDK 17
+      - name: Set up JDK ${{env.JAVA_VERSION}}
         uses: actions/setup-java@v3
         with:
           distribution: 'temurin'
-          java-version: 17
+          java-version: ${{env.JAVA_VERSION}}
         
       # Runs build steps
       - name: Maven Package
