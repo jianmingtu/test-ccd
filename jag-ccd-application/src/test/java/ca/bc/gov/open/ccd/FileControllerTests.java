@@ -29,6 +29,7 @@ import ca.bc.gov.open.ccd.common.criminal.file.content.HearingRestrictionType;
 import ca.bc.gov.open.ccd.common.criminal.file.content.PartyAppearanceMethodType;
 import ca.bc.gov.open.ccd.common.criminal.file.content.ProtectionOrderType;
 import ca.bc.gov.open.ccd.common.criminal.file.content.SentenceType;
+import ca.bc.gov.open.ccd.controllers.CourtController;
 import ca.bc.gov.open.ccd.controllers.FileController;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -36,9 +37,12 @@ import java.net.URI;
 import java.time.Instant;
 import java.util.Collections;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInstance;
 import org.mockito.Mock;
 import org.mockito.Mockito;
+import org.mockito.MockitoAnnotations;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.HttpEntity;
@@ -48,12 +52,17 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.web.client.RestTemplate;
 
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-@ActiveProfiles("test")
+@TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class FileControllerTests {
-    @Autowired private ObjectMapper objectMapper;
+    @Mock private ObjectMapper objectMapper;
+    @Mock private RestTemplate restTemplate;
+    @Mock private FileController fileController;
 
-    @Mock private RestTemplate restTemplate = new RestTemplate();
+    @BeforeEach
+    public void setUp() {
+        MockitoAnnotations.openMocks(this);
+        fileController = Mockito.spy(new FileController(restTemplate, objectMapper));
+    }
 
     @Test
     public void getCriminalFileContentTest() throws JsonProcessingException {
@@ -68,7 +77,7 @@ public class FileControllerTests {
         out.setCourtLocaCd("A");
         out.setCourtRoomCd("A");
         out.setCourtProceedingDate(Instant.now());
-        out.setAppearanceId(Collections.singletonList("A"));
+        out.getAppearanceId().add("A");
         out.setMdocJustinNo("A");
         AccusedFileType ac = new AccusedFileType();
 
@@ -88,7 +97,7 @@ public class FileControllerTests {
         ArrestWarrantType wt = new ArrestWarrantType();
         wt.setFileNumberText("A");
         wt.setWarrantDate(Instant.now());
-        ac.setArrestWarrant(Collections.singletonList(wt));
+        ac.getArrestWarrant().add(wt);
 
         BanTypes bt = new BanTypes();
         bt.setBanTypeCd("A");
@@ -100,25 +109,25 @@ public class FileControllerTests {
         bt.setBanCommentText("A");
         bt.setBanOrderedDate(Instant.now());
         bt.setBanSeqNo("A");
-        ac.setBan(Collections.singletonList(bt));
+        ac.getBan().add(bt);
 
         ProtectionOrderType pt = new ProtectionOrderType();
         pt.setPOROrderIssueDate(Instant.now());
         pt.setOrderTypeDsc("A");
         pt.setPORConditionText("A");
-        ac.setProtectionOrder(Collections.singletonList(pt));
+        ac.getProtectionOrder().add(pt);
 
         CFCOrderType ct = new CFCOrderType();
         ct.setCFCOrderIssueDate(Instant.now());
         ct.setCFCConditionText("A");
         ct.setOrderTypeDsc("A");
-        ac.setCFCOrder(Collections.singletonList(ct));
+        ac.getCFCOrder().add(ct);
 
         HearingRestrictionType ht = new HearingRestrictionType();
         ht.setHearingRestrictiontype("A");
         ht.setJudgeName("A");
         ht.setHearingRestrictionDate(Instant.now());
-        ac.setHearingRestriction(Collections.singletonList(ht));
+        ac.getHearingRestriction().add(ht);
 
         DocumentType dt = new DocumentType();
         dt.setDocmClassification("A");
@@ -130,7 +139,7 @@ public class FileControllerTests {
         dt.setDocmDispositionDate(Instant.now());
         dt.setImageId("A");
         dt.setDocumentPageCount("A");
-        ac.setDocument(Collections.singletonList(dt));
+        ac.getDocument().add(dt);
 
         AppearanceTypes at = new AppearanceTypes();
         at.setAppearanceId("A");
@@ -165,17 +174,17 @@ public class FileControllerTests {
         st.setSentDetailTxt("A");
         st.setSentYcjaAdultYouthCd("A");
         st.setSentCustodySecureYn("A");
-        apc.setSentence(Collections.singletonList(st));
-        at.setAppearanceCount(Collections.singletonList(apc));
+        apc.getSentence().add(st);
+        at.getAppearanceCount().add(apc);
 
         PartyAppearanceMethodType pmt = new PartyAppearanceMethodType();
         pmt.setPartyName("A");
         pmt.setPartyRole("A");
         pmt.setPartId("A");
         pmt.setPartyAppearanceMethod("A");
-        at.setPartyAppearanceMethod(Collections.singletonList(pmt));
+        at.getPartyAppearanceMethod().add(pmt);
 
-        out.setAccusedFile(Collections.singletonList(ac));
+        out.getAccusedFile().add(ac);
 
         var outer = new GetCriminalFileContentResponse();
         outer.setFileContent(out);
@@ -191,7 +200,6 @@ public class FileControllerTests {
                         Mockito.<Class<GetCriminalFileContentResponse>>any()))
                 .thenReturn(responseEntity);
 
-        FileController fileController = new FileController(restTemplate, objectMapper);
         var resp = fileController.getCriminalFileContent(req);
 
         Assertions.assertNotNull(resp);
@@ -211,7 +219,7 @@ public class FileControllerTests {
         fileContentDoc.setCourtLocaCd("A");
         fileContentDoc.setCourtRoomCd("A");
         fileContentDoc.setCourtProceedingDate(Instant.now());
-        fileContentDoc.setAppearanceId(Collections.singletonList("A"));
+        fileContentDoc.getAppearanceId().add("A");
         fileContentDoc.setPhysicalFileId("A");
 
         var out = new GetCivilFileContentResponse();
@@ -253,7 +261,7 @@ public class FileControllerTests {
         sp.setProgramExitDate(Instant.now());
         sp.setProgramExitReasonDsc("A");
 
-        cft.setSpecialProgram(Collections.singletonList(sp));
+        cft.getSpecialProgram().add(sp);
 
         var pt = new PreviousAppearanceType();
         pt.setAppearanceId("A");
@@ -263,7 +271,7 @@ public class FileControllerTests {
         pt.setAdjudicatorName("A");
         pt.setAdjudicatorComment("A");
         pt.setAdjudicatorAppearanceMethod("A");
-        cft.setPreviousAppearance(Collections.singletonList(pt));
+        cft.getPreviousAppearance().add(pt);
 
         var dh = new DocumentHearingType();
         dh.setDocumentId("A");
@@ -277,12 +285,12 @@ public class FileControllerTests {
         is.setIssueDsc("A");
         is.setIssueNumber("A");
         is.setConcludedYN("A");
-        dh.setIssue(Collections.singletonList(is));
+        dh.getIssue().add(is);
 
         var fb = new FiledByType();
         fb.setFiledByName("A");
         fb.setRoleTypeCode("A");
-        dh.setFiledBy(Collections.singletonList(fb));
+        dh.getFiledBy().add(fb);
 
         var cp = new CourtParticipantType();
         cp.setPartyName("A");
@@ -293,16 +301,16 @@ public class FileControllerTests {
         var ct = new CounselType();
         ct.setCounselName("A");
         ct.setCounselAppearanceMethod("A");
-        cp.setCounsel(Collections.singletonList(ct));
+        cp.getCounsel().add(ct);
 
-        pt.setCourtParticipant(Collections.singletonList(cp));
-        pt.setDocumentHearing(Collections.singletonList(dh));
+        pt.getCourtParticipant().add(cp);
+        pt.getDocumentHearing().add(dh);
 
         var gt = new GeneralAttendeeType();
         gt.setAttendeeName("A");
         gt.setCounselName("A");
 
-        pt.setGeneralAttendee(Collections.singletonList(gt));
+        pt.getGeneralAttendee().add(gt);
 
         var dt = new ca.bc.gov.open.ccd.civil.DocumentType();
         dt.setDocumentId("A");
@@ -331,15 +339,15 @@ public class FileControllerTests {
         is2.setIssueDsc("A");
         is2.setConcludedYN("A");
         is2.setIssueNumber("A");
-        dt.setIssue(Collections.singletonList(is2));
+        dt.getIssue().add(is2);
 
         var pit = new PartyInterestType();
         pit.setOrderRoleTypeDsc("A");
         pit.setPartyName("A");
         pit.setPartyBirthDate(Instant.now());
-        dt.setPartyInterest(Collections.singletonList(pit));
+        dt.getPartyInterest().add(pit);
 
-        cft.setDocument(Collections.singletonList(dt));
+        cft.getDocument().add(dt);
 
         var rd = new ReferenceDocumentType();
         rd.setReferenceDocumentId("A");
@@ -355,7 +363,7 @@ public class FileControllerTests {
         rdi.setPartyId("A");
         rdi.setPartyName("A");
         rdi.setNonPartyName("A");
-        rd.setReferenceDocumentInterest(Collections.singletonList(rdi));
+        rd.getReferenceDocumentInterest().add(rdi);
 
         ResponseEntity<GetCivilFileContentResponse> responseEntity =
                 new ResponseEntity<>(out, HttpStatus.OK);
@@ -368,7 +376,6 @@ public class FileControllerTests {
                         Mockito.<Class<GetCivilFileContentResponse>>any()))
                 .thenReturn(responseEntity);
 
-        FileController fileController = new FileController(restTemplate, objectMapper);
         var resp = fileController.getCivilFileContent(req);
 
         Assertions.assertNotNull(resp);

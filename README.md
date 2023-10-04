@@ -10,7 +10,7 @@ Integration API for Court Clerk Desktop for the webMethods retirement project
 * Intellij
 * Docker
 * Maven
-* Java 11
+* Java 17
 * Lombok
 
 ### Application Endpoints

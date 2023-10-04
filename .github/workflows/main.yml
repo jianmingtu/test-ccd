@@ -62,11 +62,11 @@ jobs:
           echo "Release Git Sha: ${{env.gitsha}}"
 
       # Set up JDK build environment
-      - name: Set up JDK 11
+      - name: Set up JDK 17
         uses: actions/setup-java@v3
         with:
           distribution: 'temurin'
-          java-version: 11
+          java-version: 17
         
       # Runs build steps
       - name: Maven Package
@@ -161,7 +161,7 @@ jobs:
           appName: ${{github.event.inputs.app}}
           openshiftEnvNamespace: ${{secrets.OPENSHIFT_LICENSE_PLATE_SILVER}}-${{ github.event.inputs.env }}
         run: |
-          oc rollout status -n ${openshiftEnvNamespace} dc/${appName} --watch
+          oc rollout --request-timeout=0 status -n ${openshiftEnvNamespace} dc/${appName} --watch
 
       # #Login to Openshift using OC SA and Token of respective env. for Pod labelling - Kamloops (OC PROD)
       # - name: Authenticate OC Env Specific SA - Kamloops (OC PROD)
