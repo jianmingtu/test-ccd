@@ -159,6 +159,7 @@
                     <xsd:element name="SwornByNm" nillable="true" type="xsd:string"/>
                     <xsd:element name="AffidavitNo" nillable="true" type="xsd:string"/>
                     <xsd:element name="FilingLanguageCd" nillable="true" type="xsd:string"/>
+                    <xsd:element name="TranslationExistsYN" nillable="true" type="xsd:string"/>
                     <xsd:element name="Issue" nillable="true" type="tns:IssueType" maxOccurs="unbounded"/>
                     <xsd:element name="Appearance" nillable="true" type="tns:AppearanceType" maxOccurs="unbounded"/>
                     <xsd:element name="PartyInterest" nillable="true" type="tns:PartyInterestType" maxOccurs="unbounded"/>
