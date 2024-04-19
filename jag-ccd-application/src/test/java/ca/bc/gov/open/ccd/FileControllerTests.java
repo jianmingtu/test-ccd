@@ -106,9 +106,17 @@ public class FileControllerTests {
         bt.setBanTypeSection("A");
         bt.setBanTypeSubSection("A");
         bt.setBanStatuteId("A");
-        bt.setBanCommentText("A");
-        bt.setBanOrderedDate(Instant.now());
-        bt.setBanSeqNo("A");
+        bt.setBanTypeParagraph("A");
+        bt.setBanTypeSubParagraph("A");
+        bt.setBanTypeShortDescription("A");
+        bt.setBanTypeShortDescription("A");
+
+        BanStatus bs = new BanStatus();
+        bs.setBanCommentText("A");
+        bs.setBanStatusCd("A");
+        bs.setBanStatusDate(Instant.now());
+        bs.setBanStatusDsc("A");
+        bt.getBanStatus().add(bs);
         ac.getBan().add(bt);
 
         ProtectionOrderType pt = new ProtectionOrderType();
