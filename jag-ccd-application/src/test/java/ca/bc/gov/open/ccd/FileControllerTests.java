@@ -28,6 +28,7 @@ import ca.bc.gov.open.ccd.common.criminal.file.content.HearingRestrictionType;
 import ca.bc.gov.open.ccd.common.criminal.file.content.PartyAppearanceMethodType;
 import ca.bc.gov.open.ccd.common.criminal.file.content.ProtectionOrderType;
 import ca.bc.gov.open.ccd.common.criminal.file.content.SentenceType;
+import ca.bc.gov.open.ccd.common.process.results.Ban;
 import ca.bc.gov.open.ccd.controllers.FileController;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -94,7 +95,7 @@ public class FileControllerTests {
         wt.setWarrantDate(Instant.now());
         ac.getArrestWarrant().add(wt);
 
-        Ban bn = new Ban();
+        BanTypes bn = new BanTypes();
         bn.setBanTypeCd("A");
         bn.setBanTypeDescription("A");
         bn.setBanTypeDescription("A");

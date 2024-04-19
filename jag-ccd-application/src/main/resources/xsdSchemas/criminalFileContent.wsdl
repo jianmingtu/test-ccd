@@ -41,7 +41,7 @@
                     <xsd:element name="SealTypeCd" nillable="true" type="xsd:string"/>
                     <xsd:element name="FiledDate" nillable="true" type="xsd:string"/>
                     <xsd:element name="ArrestWarrant" nillable="true" type="tns:ArrestWarrantType" maxOccurs="unbounded"/>
-                    <xsd:element name="Ban" nillable="true" type="tns:Ban" maxOccurs="unbounded"/>
+                    <xsd:element name="Ban" nillable="true" type="tns:BanTypes" maxOccurs="unbounded"/>
                     <xsd:element name="ProtectionOrder" nillable="true" type="tns:ProtectionOrderType" maxOccurs="unbounded"/>
                     <xsd:element name="CFCOrder" nillable="true" type="tns:CFCOrderType" maxOccurs="unbounded"/>
                     <xsd:element name="HearingRestriction" nillable="true" type="tns:HearingRestrictionType" maxOccurs="unbounded"/>
@@ -55,7 +55,7 @@
                     <xsd:element name="WarrantDate" form="qualified" type="xsd:string"/>
                 </xsd:sequence>
             </xsd:complexType>
-            <xsd:complexType name="Ban">
+            <xsd:complexType name="BanTypes">
                 <xsd:sequence>
                     <xsd:element name="BanTypeCd"  type="xsd:string"/>
                     <xsd:element name="BanTypeDescription" type="xsd:string"/>
