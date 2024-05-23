@@ -309,6 +309,7 @@
             <xsd:element name="SealStartDate" nillable="true" type="xsd:dateTime"/>
             <xsd:element name="SealEndDate" nillable="true" type="xsd:dateTime"/>
             <xsd:element name="SheriffCommentText" type="xsd:string"/>
+            <xsd:element name="IndigenousLawFileYn" nillable="true" type="xsd:string"/>
             <xsd:element name="SealFileSOCText" nillable="true" type="xsd:string"/>
             <xsd:element name="EstimatedAppearanceMinutes" nillable="true" type="xsd:string"/>
             <xsd:element name="HearingLanguageCd" nillable="true" type="xsd:string"/>
