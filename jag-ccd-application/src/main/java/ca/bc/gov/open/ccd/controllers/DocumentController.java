@@ -63,7 +63,8 @@ public class DocumentController {
                         .queryParam(
                                 "documentId",
                                 URLEncoder.encode(inner.getDocumentId(), StandardCharsets.UTF_8))
-                        .queryParam("courtDivisionCd", inner.getCourtDivisionCd());
+                        .queryParam("courtDivisionCd", inner.getCourtDivisionCd())
+                        .queryParam("translationExistsYN", inner.getTranslatedYN());
 
         HttpEntity<Map<String, String>> resp = null;
         try {
