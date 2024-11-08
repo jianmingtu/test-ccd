@@ -1,6 +1,6 @@
 # This is the workflow that creates a new automation test api image and push to Openshift image stream which in turn triggers the deployment
 
-name: AutomationTestAPI - Build Image and Push to Openshift Registry for Dev Deployment
+name: AutomationTestAPI - Build Image and Push toArtifactory for Dev Deployment
 
 # Controls when the workflow will run
 on:
@@ -115,7 +115,7 @@ jobs:
           DATETIME=$(date +'%Y-%m-%d %H:%M:%S')  # Get current date and time
 
           sed -i "s/ccdtesttag: .*/ccdtesttag: dev # Image Updated on $DATETIME/" ../deploy/dev_values.yaml
-          sed -i "s/appVersion: .*/appVersion: ${{ env.releaseVersion }}.${{ env.gitsha }} # Version Updated on $DATETIME/" ../deploy/dev_values.yaml
+          sed -i "s/ccdtestVersion: .*/ccdtestVersion: ${{ env.releaseVersion }}.${{ env.gitsha }} # Version Updated on $DATETIME/" ../deploy/dev_values.yaml
           
           # Commit and push the changes
           git config --global user.email "actions@github.com"
@@ -135,5 +135,5 @@ jobs:
 
           git add .
           
-          git commit -m "Update Dev AI Reviewer API image tag"
+          git commit -m "Update Dev CCD test image tag"
           git push origin develop  # Update the branch name as needed

@@ -63,7 +63,7 @@ jobs:
           DATETIME=$(date +'%Y-%m-%d %H:%M:%S')  # Get current date and time
 
           sed -i "s/ccdtesttag: .*/ccdtesttag: test # Image Updated on $DATETIME/" ../deploy/test_values.yaml
-          sed -i "s/appVersion: .*/appVersion: ${{ env.releaseVersion }}.${{ env.gitsha }} # Version Updated on $DATETIME/" ../deploy/test_values.yaml
+          sed -i "s/ccdtestVersion: .*/ccdtestVersion: ${{ env.releaseVersion }}.${{ env.gitsha }} # Version Updated on $DATETIME/" ../deploy/test_values.yaml
           
           # Commit and push the changes
           git config --global user.email "actions@github.com"
@@ -98,7 +98,7 @@ jobs:
           DATETIME=$(date +'%Y-%m-%d %H:%M:%S')  # Get current date and time
 
           sed -i "s/ccdtag: .*/ccdtag: test # Image Updated on $DATETIME/" ../deploy/test_values.yaml
-          sed -i "s/appVersion: .*/appVersion: ${{ env.releaseVersion }}.${{ env.gitsha }} # Version Updated on $DATETIME/" ../deploy/test_values.yaml
+          sed -i "s/ccdVersion: .*/ccdVersion: ${{ env.releaseVersion }}.${{ env.gitsha }} # Version Updated on $DATETIME/" ../deploy/test_values.yaml
           
           # Commit and push the changes
           git config --global user.email "actions@github.com"
