@@ -31,7 +31,7 @@
         <dependency>
             <groupId>org.apache.ws.xmlschema</groupId>
             <artifactId>xmlschema-core</artifactId>
-            <version>2.3.1</version>
+            <version>2.2.5</version>
         </dependency>
         <dependency>
             <groupId>org.apache.ws.commons.schema</groupId>
@@ -46,6 +46,7 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-security</artifactId>
+            <version>2.5.14</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -90,23 +91,26 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-logging</artifactId>
+            <version>2.6.3</version>
         </dependency>
 
         <!-- Splunk logging -->
         <dependency>
             <groupId>com.splunk.logging</groupId>
             <artifactId>splunk-library-javalogging</artifactId>
-            <version>1.11.8</version>
+            <version>1.11.1</version>
             <scope>runtime</scope>
         </dependency>
         <!-- Logging framework -->
         <dependency>
             <groupId>ch.qos.logback</groupId>
             <artifactId>logback-classic</artifactId>
+            <version>1.4.12</version>
         </dependency>
         <dependency>
             <groupId>ch.qos.logback</groupId>
             <artifactId>logback-core</artifactId>
+            <version>1.4.12</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -134,6 +138,7 @@
         <dependency>
             <groupId>com.squareup.okhttp3</groupId>
             <artifactId>okhttp</artifactId>
+            <version>5.0.0-alpha.11</version>
         </dependency>
         <dependency>
             <groupId>commons-collections</groupId>
@@ -148,20 +153,22 @@
         <dependency>
             <groupId>com.squareup.okhttp3</groupId>
             <artifactId>logging-interceptor</artifactId>
+            <version>4.9.3</version>
         </dependency>
         <dependency>
             <groupId>org.threeten</groupId>
             <artifactId>threetenbp</artifactId>
-            <version>1.6.9</version>
+            <version>1.5.1</version>
         </dependency>
         <dependency>
             <groupId>com.google.code.gson</groupId>
             <artifactId>gson</artifactId>
+            <version>2.8.9</version>
         </dependency>
         <dependency>
             <groupId>io.gsonfire</groupId>
             <artifactId>gson-fire</artifactId>
-            <version>1.9.0</version>
+            <version>1.8.5</version>
         </dependency>
         <dependency>
             <groupId>junit</groupId>
@@ -195,11 +202,13 @@
         <dependency>
             <groupId>org.springframework.security</groupId>
             <artifactId>spring-security-core</artifactId>
+            <version>6.2.3</version>
         </dependency>
 
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-web</artifactId>
+            <version>6.1.6</version>
         </dependency>
     </dependencies>
 
@@ -221,7 +230,7 @@
             <plugin>
                 <groupId>com.diffplug.spotless</groupId>
                 <artifactId>spotless-maven-plugin</artifactId>
-                <version>2.43.0</version>
+                <version>2.12.2</version>
                 <configuration>
                     <formats>
                         <!-- you can define as many formats as you want, each is independent -->
@@ -257,12 +266,12 @@
                     <dependency>
                         <groupId>org.glassfish.jaxb</groupId>
                         <artifactId>jaxb-runtime</artifactId>
-                        <version>4.0.5</version>
+                        <version>4.0.1</version>
                     </dependency>
                     <dependency>
                         <groupId>com.sun.activation</groupId>
                         <artifactId>jakarta.activation</artifactId>
-                        <version>2.0.1</version>
+                        <version>1.2.1</version>
                     </dependency>
                 </dependencies>
                 <configuration>
@@ -280,7 +289,7 @@
             <plugin>
                 <groupId>org.jacoco</groupId>
                 <artifactId>jacoco-maven-plugin</artifactId>
-                <version>0.8.12</version>
+                <version>0.8.7</version>
                 <configuration>
                     <excludes>
                         <exclude>**/configuration/WSDLFilter*</exclude>
