@@ -1,5 +1,5 @@
 # Deploy an artifact onto Test
-name: Promote jag-ccd and jag-ccd-tests to Test
+name: Promote jag-ccd to Test
 on:
   workflow_dispatch:
     inputs:
@@ -9,7 +9,7 @@ on:
         type: choice
         options:
           - jag-ccd
-          - jag-ccd-tests
+
 
 jobs:
   build:
@@ -50,41 +50,6 @@ jobs:
           ref: test
           token: ${{ secrets.ARGO_PAT }} # `GH_PAT` is a secret that contains your PAT
           path: gitops
-
-      - name: Update ADMIN Helm Values and Commit
-        id: helm-admin
-        if: ${{ github.event.inputs.application == 'jag-ccd-tests' }}
-        run: |
-          # Clone the GitOps deployment configuration repository
-          # Navigate to the directory containing your Helm values file for the environment develop -> DEV, test -> test and 
-          cd gitops/charts
-
-          # Update the Helm values file with the new image tag and version
-          DATETIME=$(date +'%Y-%m-%d %H:%M:%S')  # Get current date and time
-
-          sed -i "s/ccdtesttag: .*/ccdtesttag: test # Image Updated on $DATETIME/" ../deploy/test_values.yaml
-          sed -i "s/ccdtestVersion: .*/ccdtestVersion: ${{ env.releaseVersion }}.${{ env.gitsha }} # Version Updated on $DATETIME/" ../deploy/test_values.yaml
-          
-          # Commit and push the changes
-          git config --global user.email "actions@github.com"
-          git config --global user.name "GitHub Actions"
-          
-          git add .
-          
-          git add ../deploy/test_values.yaml
-          
-          # Repackage Helm Chart      
-
-          cd ccd-gitops
-
-          helm dependency build
-          
-          cd charts
-
-          git add .
-          
-          git commit -m "Update Test AI Reviewer Admin image tag"
-          git push origin test  # Update the branch name as needed
       
       - name: Update API Helm Values and Commit
         id: helm-api
@@ -118,5 +83,5 @@ jobs:
 
           git add .
           
-          git commit -m "Update Test AI Reviewer API image tag"
+          git commit -m "Update Test jag-ccd image tag"
           git push origin test  # Update the branch name as needed

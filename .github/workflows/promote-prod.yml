@@ -1,5 +1,5 @@
 # Deploy an artifact onto Test
-name: Promote jag-ccd and jag-ccd-tests to Prod
+name: Promote jag-ccd  to Prod
 on:
   workflow_dispatch:
     inputs:
@@ -9,7 +9,6 @@ on:
         type: choice
         options:
           - jag-ccd
-          - jag-ccd-tests
 
 jobs:
   build:
@@ -47,45 +46,10 @@ jobs:
         uses: actions/checkout@v4
         with:
           repository: bcgov-c/tenant-gitops-52e74e
-          ref: test
+          ref: main
           token: ${{ secrets.ARGO_PAT }} # `GH_PAT` is a secret that contains your PAT
           path: gitops
 
-      - name: Update ADMIN Helm Values and Commit
-        id: helm-admin
-        if: ${{ github.event.inputs.application == 'jag-ccd-tests' }}
-        run: |
-          # Clone the GitOps deployment configuration repository
-          # Navigate to the directory containing your Helm values file for the environment develop -> DEV, test -> test and 
-          cd gitops/charts
-
-          # Update the Helm values file with the new image tag and version
-          DATETIME=$(date +'%Y-%m-%d %H:%M:%S')  # Get current date and time
-
-          sed -i "s/ccdtesttag: .*/ccdtesttag: test # Image Updated on $DATETIME/" ../deploy/test_values.yaml
-          sed -i "s/ccdtestVersion: .*/ccdtestVersion: ${{ env.releaseVersion }}.${{ env.gitsha }} # Version Updated on $DATETIME/" ../deploy/test_values.yaml
-          
-          # Commit and push the changes
-          git config --global user.email "actions@github.com"
-          git config --global user.name "GitHub Actions"
-          
-          git add .
-          
-          git add ../deploy/test_values.yaml
-          
-          # Repackage Helm Chart      
-
-          cd ccd-gitops
-
-          helm dependency build
-          
-          cd charts
-
-          git add .
-          
-          git commit -m "Update Test AI Reviewer Admin image tag"
-          git push origin test  # Update the branch name as needed
-      
       - name: Update API Helm Values and Commit
         id: helm-api
         if: ${{ github.event.inputs.application == 'jag-ccd' }}
@@ -97,8 +61,8 @@ jobs:
           # Update the Helm values file with the new image tag and version
           DATETIME=$(date +'%Y-%m-%d %H:%M:%S')  # Get current date and time
 
-          sed -i "s/ccdtag: .*/ccdtag: test # Image Updated on $DATETIME/" ../deploy/test_values.yaml
-          sed -i "s/ccdVersion: .*/ccdVersion: ${{ env.releaseVersion }}.${{ env.gitsha }} # Version Updated on $DATETIME/" ../deploy/test_values.yaml
+          sed -i "s/ccdtag: .*/ccdtag: test # Image Updated on $DATETIME/" ../deploy/prod_values.yaml
+          sed -i "s/ccdVersion: .*/ccdVersion: ${{ env.releaseVersion }}.${{ env.gitsha }} # Version Updated on $DATETIME/" ../deploy/prod_values.yaml
           
           # Commit and push the changes
           git config --global user.email "actions@github.com"
@@ -106,7 +70,7 @@ jobs:
           
           git add .
           
-          git add ../deploy/test_values.yaml
+          git add ../deploy/prod_values.yaml
           
           # Repackage Helm Chart      
 
@@ -118,5 +82,5 @@ jobs:
 
           git add .
           
-          git commit -m "Update Test AI Reviewer API image tag"
-          git push origin test  # Update the branch name as needed
+          git commit -m "Update Prod jag-ccd image tag"
+          git push origin main  # Update the branch name as needed
